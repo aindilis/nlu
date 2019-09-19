@@ -1,0 +1,913 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{stmaryrd}
+\usepackage{bbm}
+\usepackage[T1]{fontenc}
+\usepackage{accents}
+\usepackage{mathtools}
+\usepackage[total={5.13in,8.02in},paper=a4paper]{geometry}
+\usepackage{ifthen}
+\pagestyle{empty}
+
+\scrollmode
+
+%% Macro Definitions
+
+
+\begin{document}
+
+\centerline{{\Large \textbf{Combining } } \quad {\Large \textbf{Logics } } \quad {\Large \textbf{in } } \quad {\Large \textbf{Simple } } \quad {\Large \textbf{Type } } \quad  $ \mathbf{Theory} ^{ \star }$  }
+
+\centerline{Christoph Benzm  $ \ddot{u}  \mathrm{ller} ^{ \star  \star }$  }
+
+\centerline{{\small Ar ticulate Softwar e , Angwin , CA , U . S . } }
+
+\centerline{{\small \textbf{Abstract . } } \quad {\small Simple type theor y is suited as fr amework for } \quad {\small combining } }
+
+\centerline{{\small classical and non - classical logics . This claim is based on the obser vation } }
+
+\centerline{{\small that var ious pr ominent logics , including ( quantified ) multimodal logics } }
+
+\centerline{{\small and intuitionistic logics , can be elegantly embedded in simple type the - } }
+
+\centerline{{\small or y . Fur ther mor e , simple type theor y is sufficiently expr essive to model } }
+
+\centerline{{\small combinations of embedded logics and it has a well under stood seman - } }
+
+\centerline{{\small tics . Off - the - shelf r easoning systems for simple type theor y exist that } }
+
+\centerline{{\small can be unifor mly employed for r easoning \textit{within } and \textit{about } combinations } }
+
+\centerline{{\small of logics . Combinations of modal logics and other logics ar e par ticular ly } }
+
+\centerline{{\small r elevant for multi - agent systems . } }
+
+\noindent {\large \textbf{1 } } \quad {\large \textbf{Introduction } } 
+
+\noindent Church ' s simple type theory  $ \mathcal{STT}   [  1  8  ]  , $  also known as classical higher - order logic , 
+ is suited as a framework for combining classical and non - classical logics . This is 
+ what this paper illustrates . 
+
+Evidently  $ ,  \quad  \mathcal{STT} $  has many prominent \quad classical logic fragments , \quad including 
+ propositional and first - order logic , \quad the guarded fragment , \quad second - order logic , 
+ monadic second - order logic , the basic fragment of  $ \mathcal{STT}  , $  etc . Interestingly , also 
+ prominent non - classical logics \quad including quantified multi - modal logics and in - 
+ tuitionistic logic \quad can be elegantly embedded in  $ \mathcal{STT}  . $  It is thus not surprising 
+ that also combinations of such logics can be flexibly modeled within  $ \mathcal{STT}  . $  Our 
+ claim is furthermore supported by the fact that the semantics of  $ \mathcal{STT} $  is well un - 
+ derstood [ 1 , 2 , 8 , 26 ] and that powerful proof assistants and automated theorem 
+
+\noindent provers for  $ \mathcal{STT} $  already exist . The automation of  $ \mathcal{STT} $  currently experiences 
+
+\noindent a renaissance that has been fostered by the recent extension of the successful 
+ TPTP infrastructure for first - order logic [ 33 ] to higher - order logic , called TPTP 
+
+\noindent THF \quad [ 34 , 35 , 1 5 ] . Exploiting this new infrastructure we will demonstrate how 
+ higher - order automated theorem provers and model generators can be employed 
+ for reasoning \textit{within } and \textit{about } combinations of logics . 
+
+Our work is relevant for multi - agents systems in several ways . Most impor - 
+ tantly , modal logics and combinations of modal logics are often employed for 
+ modeling multi - agents systems and for reasoning about them . 
+
+\begin{align*}
+ \rule{3em}{0.4pt} 
+\end{align*}
+
+ $ \star $  {\small A pr evious ver sion of this paper has been pr esented at the Wor ld Congr ess and } 
+ {\small School on Univer sal Logic III ( UNILOG ' 20 1 0 ) , Lisbon , Por tugal , Apr il 1 8 - 2 5 , 20 1 0 . } 
+  $ \star  \star $  {\small This wor k has been funded by the German Resear ch Foundation ( DFG ) under gr ant } 
+
+\centerline{{\small BE 2501 / 6 - 1 . } }
+
+
+\newpage
+In this paper we present a fresh approach to the automation of logic combina - 
+ tions and we in particular include quantified modal logics . For quantified modal 
+ logics actually only very few theorem provers are available . In our approach 
+ even challenge combinations of logics can be achieved : as an example we outline 
+ a combination of spatial and epistemic reasoning . Moreover , our approach even 
+ supports the automated analysis and verification of meta - properties of combined 
+ logics . It can thus serve as a useful tool for engineers of logic combinations . 
+
+In Sect . 2 we outline our embedding of quantified multimodal logics in  $ \mathcal{STT}  . $  
+ Further logic embeddings in  $ \mathcal{STT} $  are discussed in Sect . 3 ; our examples com - 
+ prise intuitionistic logic , access control logics and the region connection calculus . 
+ In Sect . 4 we i llustrate how the reasoning \textit{about } logics and their combinations is 
+ facilitated in our approach , and in Sect . 5 we employ simple examples to demon - 
+ strate the application of our approach for reasoning \textit{within } combined logics . The 
+ performance results of our experiments with off - the - shelf , TPTP THF compliant 
+ higher - order automated reasoning systems are presented in Sect . 6 . 
+
+\noindent {\large \textbf{2 } } \quad {\large \textbf{( Normal ) } } \quad {\large \textbf{Quantified Multimodal Logics in } }  $ \boldsymbol{\mathcal{STT}} $  
+
+\noindent  $ \mathcal{STT}   [  1  8  ] $  is based on the simply typed  $ \lambda  - $  calculus . The set  $ \mathcal{T} $  of simple types 
+
+\noindent is usually freely generated from a set of basic types  $ \{  o  ,   \iota  \}   ( $  where  $ o $  is the type 
+
+\noindent of Booleans and  $ \iota $  is the type of individuals ) using the right - associative function 
+
+\noindent type constructor  $ shortrightarrow  . $  Instead of  $ \{  o  ,   \iota  \} $  we here consider a set of base types  $ \{  o  ,   \iota  ,   \mu  \}  , $  
+
+\noindent providing an additional base type  $ \mu   ( $  the type of possible worlds ) . 
+
+\centerline{The simple type theory language  $ \mathcal{STT} $  is defined by ( where  $ \alpha  ,   \beta  ,   o   \in   \mathcal{T}  )  : $  }
+
+\[\begin{aligned} s  ,   t   :  :  =   p  \alpha   \mid   X _{ \alpha }  \mid   (  \lambda  X _{ \alpha }  s _{ \beta } ) _{ \alpha  shortrightarrow  \beta }  \mid   (  s _{ \alpha  shortrightarrow  \beta }  t _{ \alpha } ) _{ \beta }  \mid   (  \neg _{ o  shortrightarrow  o }  s _{ o } ) _{ o }  \mid \\
+  (  s _{ o }  \vee _{ o  shortrightarrow  o  shortrightarrow  o }  t _{ o } ) _{ o }  \mid   (  s _{ \alpha }  = _{ \alpha  shortrightarrow  \alpha  shortrightarrow  o }  t _{ \alpha } ) _{ o }  \mid   (  \Pi _{ (  \alpha  shortrightarrow  o  )  shortrightarrow  o }  s _{ \alpha  shortrightarrow  o } ) _{ o }\end{aligned}\]
+
+
+\noindent  $ p  \alpha $  denotes typed constants and  $ X _{ \alpha }$  typed variables ( distinct from  $ p  \alpha  )  . $  Complex 
+ typed terms are constructed via abstraction and application . Our logical con - 
+
+\noindent nectives of choice are  $ \neg _{ o  shortrightarrow  o } ,   \vee _{ o  shortrightarrow  o  shortrightarrow  o } ,   = _{ \alpha  shortrightarrow  \alpha  shortrightarrow  o }$  and  $ \Pi _{ (  \alpha  shortrightarrow  o  )  shortrightarrow  o }  ( $  for each type  $ \alpha  )  . ^{ 1 }$  
+
+\noindent From these connectives , other logical connectives can be defined in the usual way 
+ ( e . g  $ .  ,   \wedge $  and  $ \Rightarrow  )  . $  We often use binder notation  $ \forall  X _{ \alpha }  s $  for  $ \Pi _{ (  \alpha  shortrightarrow  o  )  shortrightarrow  o } (  \lambda  X _{ \alpha }  s _{ o } )  . $  We 
+
+\noindent assume familiarity with  $ \alpha  - $  conversion  $ ,   \beta  - $  and  $ \eta  - $  reduction , and the existence of 
+  $ \beta  - $  and  $ \beta  \eta  - $  normal forms . Moreover , we obey the usual definitions of free variable 
+ occurrences and substitutions . 
+
+The semantics of  $ \mathcal{STT} $  is well understood and thoroughly documented in the 
+ literature [ 1 , 2 , 8 , 26 ] . The semantics of choice for our work is Henkin semantics . 
+ Quantified modal logics have been studied by Fitting [ 1 9 ] \quad ( further related 
+ work is available by Blackburn and Marx [ 1 6 ] and Bra  $ \ddot{u} $  ner [ 1 7 ] ) . In contrast to 
+ Fitting we are here not interested only in \textbf{S 5 } structures but in the more general 
+ case of \textbf{K } from which more constrained structures ( such as \textbf{S 5 } ) can be easily 
+ obtained . First - order quantification can be constant domain or varying domain . 
+
+\begin{align*}
+ \rule{3em}{0.4pt} 
+\end{align*}
+
+{\scriptsize 1 } {\small This choice is not minimal ( fr om }  $ = _{ \alpha  shortrightarrow  \alpha  shortrightarrow  o }$  {\small all other logical constants can alr eady be } 
+ {\small defined [ 3 ] ) . It useful though in the context of r esolution based theor em pr oving . } 
+
+
+\newpage
+\noindent Below we only consider the constant domain case : every possible world has the 
+ same domain . Like Fitting , we keep our definitions simple by not having function 
+ or constant symbols . While Fitting [ 1 9 ] studies quantified monomodal logic , we 
+ are interested in quantified multimodal logic . Hence , we introduce multiple  $ a50 _{ r }$  
+ operators for symbols  $ r $  from an index set  $ S  . $  The grammar for our quantified 
+ multimodal logic  $ \mathcal{QML} $  hence is 
+
+\[ s  ,   t   :  :  =   P   \mid   k  (  X ^{ 1 } ,   .   .   .   ,   X ^{ n } )   \mid   \neg   s   \mid   s   \vee   t   \mid   \forall  X   s   \mid   \forall  P   s   \mid   a50 _{ r }  s \]
+
+
+\noindent where  $ P   \in   \mathcal{PV} $  denotes propositional variables  $ ,   X  ,   X ^{ i }  \in   \mathcal{IV} $  denote first - order 
+ ( individual ) variables , and  $ k   \in   \mathcal{SYM} $  denotes predicate symbols of any arity . 
+ Further connectives , quantifiers , and modal operators can be defined as usual . 
+ We also obey the usual definitions of free variable occurrences and substitutions . 
+
+\hspace*{\fill}Fitting introduces three different notions of Kripke semantics for \quad  $ \mathcal{QML}  : $  
+
+\noindent \textbf{QS }  $ 5  \pi ^{ - } , $  \textbf{QS }  $ 5  \pi  , $  and \textbf{QS }  $ 5  \pi ^{ + } . $  In our work [ 1 0 ] we study related notions \textbf{QK }  $ \pi ^{ - } , $  
+
+\noindent \textbf{QK }  $ \pi  , $  and \textbf{QK }  $ \pi ^{ + }$  for a modal context \textbf{K } , and we support multiple modalities . 
+
+\hspace*{\fill} $ \mathcal{STT} $  is an expressive logic and it is thus not surprising that  $ \mathcal{QML} $  can be 
+
+\[ \mathrm{coding} ^{ \mathrm{elegantly} }_{ , } \mathrm{called} ^{ \mathrm{modeled} }\mathrm{and}{ \mathcal{QML} }\mathrm{even}{ STT }_{ , }_{ \mathrm{is} } \mathrm{automated}{ \mathrm{simple} }_{ .   \mathrm{Choose} } \mathrm{as}   \mathrm{a}   \mathrm{fragment} _{ \mathrm{type}   \iota   \mathrm{to} }  \mathrm{denote} ^{ \mathrm{of}  \mathcal{STT} }^{ . }_{ \mathrm{the} }^{ \mathrm{The} } (  \mathrm{idea} _{ \mathrm{non}  -  \mathrm{empty}  ) }^{ \mathrm{of}  \mathrm{the} }  \mathrm{en}  - { \mathrm{set} }\]
+
+
+\noindent of individuals and we choose the second base type  $ \mu $  to denote the ( non - empty ) 
+ set of possible worlds . As usual , the type  $ o $  denotes the set of truth values . Cer - 
+
+\noindent tain formulas of type  $ \mu   shortrightarrow   o $  then correspond to multimodal logic expressions . The 
+ multimodal connectives  $ \neg  ,   \vee  , $  and  $ a50  , $  become  $ \lambda  - $  terms of types  $ (  \mu   shortrightarrow   o  )   shortrightarrow   (  \mu   shortrightarrow   o  )  , $  
+
+\[ (  \mu   shortrightarrow   o  )   shortrightarrow   (  \mu   shortrightarrow   o  )   shortrightarrow   (  \mu   shortrightarrow   o  )  ,   \mathrm{and}   (  \mu   shortrightarrow   \mu   shortrightarrow   o  )   shortrightarrow   (  \mu   shortrightarrow   o  )   shortrightarrow   (  \mu   shortrightarrow   o  )   \mathrm{respectively}  . \]
+
+
+Quantification is handled as in  $ \mathcal{STT} $  by modeling  $ \forall  X   p $  as  $ \Pi  (  \lambda  X   .  p  ) $  \quad for 
+ a suitably chosen connective  $ \Pi  . $  Here we are interested in defining two par - 
+ ticular modal  $ \Pi  - $  connectives  $ :   \Pi ^{ \iota } , $  for quantification over individual variables , 
+ and  $ \Pi ^{ \mu  shortrightarrow  o } , $  for quantification over modal propositional variables that depend on 
+ worlds . They become terms of type  $ (  \iota   shortrightarrow   (  \mu   shortrightarrow   o  )  )   shortrightarrow   (  \mu   shortrightarrow   o  ) $  and  $ (  (  \mu   shortrightarrow   o  )   shortrightarrow $  
+
+\noindent  $ (  \mu   shortrightarrow   o  )  ) { \mathrm{The} }_{ \mathcal{QML} } shortrightarrow   (  \mu   shortrightarrow   o  ) { STT }  \mathrm{respectively} _{ \mathrm{modal}   \mathrm{operators} }^{ . }  \neg  ,   \vee  ,   a50  ,   \Pi ^{ \iota } , $  and  $ \Pi ^{ \mu  shortrightarrow  o }$  are now simply de - 
+ fined as follows : 
+
+\[\begin{aligned} \neg   (  \mu  shortrightarrow  o  )  shortrightarrow  (  \mu  shortrightarrow  o  )   =   \lambda  \phi _{ \mu  shortrightarrow  o }  \lambda  W _{ \mu }  \neg  \phi   W \\
+  \vee   (  \mu  shortrightarrow  o  )  shortrightarrow  (  \mu  shortrightarrow  o  )  shortrightarrow  (  \mu  shortrightarrow  o  )   =   \lambda  \phi _{ \mu  shortrightarrow  o }  \lambda  \psi _{ \mu  shortrightarrow  o }  \lambda  W _{ \mu }  \phi   W   \vee   \psi   W \\
+  a50   (  \mu  shortrightarrow  \mu  shortrightarrow  o  )  shortrightarrow  (  \mu  shortrightarrow  o  )  shortrightarrow  (  \mu  shortrightarrow  o  )   =   \lambda  R _{ \mu  shortrightarrow  \mu  shortrightarrow  o }  \lambda  \phi _{ \mu  shortrightarrow  o }  \lambda  W _{ \mu }  \forall  V _{ \mu }  \neg  RW   V   \vee   \phi  V \\
+ \Pi{ \iota }_{ (  \iota  shortrightarrow  (  \mu  shortrightarrow  o  )  )  shortrightarrow  (  \mu  shortrightarrow  o  ) }  =   \lambda  \phi _{ \iota  shortrightarrow  (  \mu  shortrightarrow  o  ) }  \lambda  W _{ \mu }  \forall  X _{ \iota }  \phi  X   W \\
+ \Pi{ \mu }^{ shortrightarrow  o }_{ (  (  \mu  shortrightarrow  o  )  shortrightarrow  (  \mu  shortrightarrow  o  )  )  shortrightarrow  (  \mu  shortrightarrow  o  ) }  =   \lambda  \phi _{ (  \mu  shortrightarrow  o  )  shortrightarrow  (  \mu  shortrightarrow  o  ) }  \lambda  W _{ \mu }  \forall  P _{ \mu  shortrightarrow  o }  \phi   PW \end{aligned}\]
+
+
+\hspace*{\fill}Note that our encoding actually only employs the second - order fragment of 
+
+\noindent  $ \mathcal{STT} $  enhanced with lambda - abstraction . 
+
+\hspace*{\fill}Further operators can be introduced as usual , for example  $ ,   \top   =   \lambda  W _{ \mu }  \top  ,   \bot   = $  
+
+\[\begin{aligned} \neg   \top  ,  \quad  \wedge  \quad  =   \lambda  \phi  ,   \psi   \neg   (  \neg   \phi   \vee   \neg   \psi  )  ,  \quad  \supset   =   \lambda  \phi  ,   \psi   \neg   \phi   \vee   \psi  ,  \quad  \Leftrightarrow   =   \lambda  \phi  ,   \psi   (  \phi  \quad  \supset  \quad  \psi  )   \wedge \\
+  (  \psi  \quad  \supset  \quad  \phi  )  ,  \quad  a51  \quad  =  \quad  \lambda  R  ,   \phi   \neg   (  a50   R   (  \neg   \phi  )  )  ,  \quad  \Sigma ^{ \iota } \quad  =  \quad  \lambda  \phi   \neg   \Pi ^{ \iota } (  \lambda  X   \neg   \phi  X  )  ,  \quad  \Sigma ^{ \mu  shortrightarrow  o } \quad  = \\
+  \lambda  \phi   \neg   \Pi ^{ \mu  shortrightarrow  o } (  \lambda  P   \neg   \phi   P  )  . \end{aligned}\]
+
+
+
+\newpage
+\[\begin{aligned} \mathrm{of}   \mathrm{type}   \iota  ,   \mathrm{a}   \mathrm{set}   \mathcal{PV} ^{ STT }  \mathrm{of}   \mathrm{propositional}   \mathrm{variables} ^{ 2 }  \mathrm{of}   \mathrm{type}   \mu   shortrightarrow  \quad  o  ,  \quad  \mathrm{and}   \mathrm{a}   \mathrm{set} ^{ \mathcal{SYM} ^{ STT }  \mathrm{of}   n  -  \mathrm{ary}   (  \mathrm{curried}  )   \mathrm{predicate}   \mathrm{symbols}   \mathrm{of}   \mathrm{types}   \iota   shortrightarrow   .   .   .   shortrightarrow   \iota { \underbrace{\ } }  shortrightarrow   (  \mu   shortrightarrow   o  )  . }_{ \mathrm{For}   \mathrm{de fi ning}   \mathcal{QML} ^{ STT } -  \mathrm{propositions}   \mathrm{we}   \mathrm{fi x}   \mathrm{a}   \mathrm{set}   \mathcal{IV} ^{ STT }  \mathrm{of}  \mathrm{individual}   \mathrm{variables} }\\
+  n \\
+ \mathrm{Moreover}{ \mathcal{QML} },{ STT }_{ - }^{ \mathrm{we} }_{ \mathrm{propositions} }^{ \mathrm{fi x}   \mathrm{a}   \mathrm{set}   \mathcal{S} ^{ STT }}_{ \mathrm{are} }  \mathrm{of} _{ \mathrm{now} }^{ \mathrm{accessibility} } \mathrm{de fi ned}   \mathrm{relation} _{ \mathrm{as}   \mathrm{the}   \mathrm{smallest} }^{ \mathrm{constants} } \mathrm{set}   \mathrm{of} ^{ \mathrm{of} }  \mathrm{type} _{ \mathcal{STT}  -  \mathrm{terms} } \mu   shortrightarrow   \mu   shortrightarrow   o  . { \mathrm{for} }\end{aligned}\]
+
+
+\noindent which the following hold : 
+
+\begin{align*}
+ --   \mathrm{if}   P   \in   \mathcal{PV} ^{ STT } ,   \mathrm{then}   P   \in   \mathcal{QML} ^{ STT }\\ --   \mathrm{if}   X ^{ j }{ \mathcal{QML} }^{ \in }_{ STT } \mathcal{IV} ^{ STT }  (  j   =   1  , \tag*{$ .   .   .   ,   n  )   \mathrm{and}   k   \in   \mathcal{SYM} ^{ STT } ,   \mathrm{then}   (  k   X ^{ 1 }  .   .   .   X ^{ n } )   \in $}
+\end{align*}
+
+\noindent \textbf{-- } if  $ \phi  ,   \psi   \in   \mathcal{QML} ^{ STT } , $  then  $ \neg   \phi   \in   \mathcal{QML} ^{ STT }$  and  $ \phi   \vee   \psi   \in   \mathcal{QML} ^{ STT }$  
+ \textbf{-- } if  $ r   \in   \mathcal{S} ^{ STT }$  and  $ \phi   \in   \mathcal{QML} ^{ STT } , $  then  $ a50   r   \phi   \in   \mathcal{QML} ^{ STT }$  
+
+\[ -- _{ -- }  \mathrm{if} ^{ \mathrm{if} }  X _{ P }  \in ^{ \in }  \mathcal{PV} ^{ I-V ^{ STT }_{ STT }}  \mathrm{and} _{ \mathrm{and} }  \phi _{ \phi }  \in _{ \in }  \mathcal{QML} ^{ STT }_{ \mathcal{QML} ^{ STT ^{ , }} , }  \mathrm{then} _{ \mathrm{then} }  \Pi ^{ \iota }_{ \Pi ^{ \mu }}^{ (  \lambda  X }_{ shortrightarrow  o  (  \lambda  P } \phi  )  \in{ \phi } )   \mathcal{QML} _{ \in   \mathcal{QML} ^{ STT }}^{ STT }\]
+
+
+\noindent We write  $ a50 _{ r }  \phi $  for  $ a50   r   \phi  ,   \forall  X _{ \iota }  \phi $  for  $ \Pi ^{ \iota } (  \lambda  X _{ \iota }  \phi  )  , $  and  $ \forall  P _{ \mu  shortrightarrow  o }  \phi $  for  $ \Pi ^{ \mu  shortrightarrow  o } (  \lambda  P _{ \mu  shortrightarrow  o }  \phi  )  . $  
+ Note that the defining equations for our  $ \mathcal{QML} $  modal operators are them - 
+
+\[ \mathrm{selves} _{ \mathrm{reasoner} }^{ \mathrm{formulas} } \mathrm{in}   \mathcal{STT}  . { \mathrm{elegantly} } \mathrm{in}   \mathrm{the} ^{ \mathrm{Hence} }^{ , }_{ \mathrm{usual}   \mathrm{syntax} }^{ \mathrm{we}   \mathrm{can} }_{ . }\mathrm{express}{ \mathrm{For} }\mathcal{QML}{ \mathrm{example} } ,   \mathrm{formulas} _{ a50 _{ r }  \exists  P _{ \mu  shortrightarrow  o }}  \mathrm{in} _{ P } \mathrm{a}{ \mathrm{is} }  \mathrm{higher} _{ \mathrm{a}   \mathcal{QML} ^{ STT }} -  \mathrm{order} \]
+
+
+\noindent  $ \mathrm{proposition}  ; { \mathrm{Validity} } \mathrm{it}{ \mathrm{of} }  \mathrm{has}   \mathrm{type} { \mathcal{QML} } \mu _{ STT }  shortrightarrow   o  . { \mathrm{propositions} }$  is defined in the obvious way : a  $ \mathcal{QML}  - $  
+
+\noindent proposition  $ \phi _{ \mu  shortrightarrow  o }$  is valid if and only if for all possible worlds  $ w _{ \mu }$  we have  $ w   \in $  
+  $ \phi _{ \mu  shortrightarrow  o } , $  \quad that is , \quad if and only if  $ \phi _{ \mu  shortrightarrow  o }  w _{ \mu }$  \quad holds . \quad Hence , \quad the notion of validity is 
+ modeled via the following equation ( alternatively we could define valid simply 
+
+\begin{align*}
+ \mathrm{as}   \Pi _{ (  \mu  shortrightarrow  o  )  shortrightarrow  o } )  : \\ \mathrm{valid}   =   \lambda  \phi _{ \mu  shortrightarrow  o }  \forall  W _{ \mu }  \phi  W 
+\end{align*}
+
+Now we can formulate proof problems in  $ \mathcal{QML} ^{ STT } , $  e . g . , valid  $ a50 _{ r }  \exists  P _{ \mu  shortrightarrow  o } \quad  P  . $  
+ Using rewriting or definition expanding , we can reduce such proof problems to 
+ corresponding statements containing only the basic connectives  $ \neg  ,   \vee  ,   =  ,  \quad  \Pi ^{ \iota } , $  
+ and  $ \Pi ^{ \mu  shortrightarrow  o }$  of  $ \mathcal{STT}  . $  In contrast to the many other approaches no external trans - 
+ formation mechanism is required . For our example formula valid  $ a50 _{ r }  \exists  P _{ \mu  shortrightarrow  o } \quad  P $  
+
+\noindent unfolding and  $ \beta  \eta  - $  reduction leads to  $ \forall  W _{ \mu }  \forall  Y _{ \mu }  \neg  r   WY   \vee   (  \neg  \forall  X _{ \mu  shortrightarrow  o }  \neg  (  X   Y  )  )  . $  It 
+ is easy to check that this formula is valid in Henkin semantics : put  $ X   =   \lambda  Y _{ \mu }  \top  . $  
+
+\[ \mathrm{for}   \mathrm{We} _{ s   \in }  \mathrm{have}   \mathrm{proved} { \mathcal{QML} }_{ \mathrm{and}   \mathrm{the} } \mathrm{soundness}   \mathrm{and}   \mathrm{completeness} { \mathrm{corresponding} }_{ s _{ \mu  shortrightarrow  o }  \in   \mathcal{QML} } \mathrm{for} _{ STT } \mathrm{this} _{ \subset } \mathrm{embedding} _{ \mathcal{STT}   \mathrm{we} }  [ _{ \mathrm{have} }^{ 1  0  ]  , }_{ : }^{ \mathrm{that} }  \mathrm{is}  , \]
+
+
+\noindent \textbf{Theorem }  $ 1  .  \quad  = ^{ \mathcal{STT} }  ( $  \textit{valid }  $ s _{ \mu  shortrightarrow  o } ) $  \textit{if and only if }  $ = ^{ \mathbf{QK}  \pi }  s  . $  
+
+This result also illustrates the correspondence between \textbf{QK }  $ \pi $  models and 
+ Henkin models ; for more details see [ 1 0 ] . 
+
+Obviously , the reduction of our embedding to first - order multimodal log - 
+ ics ( which only allow quantification over individual variables ) , to propositional 
+ quantified multimodal logics ( which only allow quantification over propositional 
+ variables ) and to propositional multimodal logics ( no quantifiers ) is sound and 
+
+\begin{align*}
+ \rule{3em}{0.4pt} 
+\end{align*}
+
+\centerline{{\scriptsize 2 } {\small Note that the denotation of pr opositional var iables depends on wor lds . } }
+
+
+\newpage
+\noindent complete . Extending our embedding for hybrid logics is straightforward [ 27 ] ; note 
+ in particular that denomination of individual worlds using constant symbols of 
+ type  $ \mu $  is easily possible . 
+
+In the remainder we will often omit type information . It is sufficient to re - 
+ member that worlds are of type  $ \mu  , $  multimodal propositions of type  $ \mu   shortrightarrow   o  , $  and 
+ accessibility relations of type  $ \mu   shortrightarrow   \mu   shortrightarrow   o  . $  Individuals are of type  $ \iota  . $  
+
+\noindent {\large \textbf{3 } } \quad {\large \textbf{Embeddings of Other Logics in } }  $ \boldsymbol{\mathcal{STT}} $  
+
+\noindent We have studied several other logic embeddings in  $ \mathcal{STT}  , $  some of which will be 
+ mentioned in this section . 
+
+\noindent \textit{Intuitionistic Logics } \quad G  $ \ddot{o} $  dels interpretation of propositional intuitionistic logic 
+ in propositional modal logic  $ S  4  \quad  [  23  ] $  \quad can be combined with our results from 
+ the previous section in order to provide a sound and complete embedding of 
+ propositional intuitionistic logic into  $ \mathcal{STT}   [  1  0  ]  . $  
+
+\centerline{G  $ \ddot{o} $  del studies the propositional intuitionistic logic  $ \mathcal{IPL} $  defined by }
+
+\[ s  ,   t   :  :  =   p   \mid  \dot{}{ \neg }  s   \mid   s   \dot{\supset}   t   \mid   s   \dot{\vee}   t   \mid   p   \dot{\wedge}   t \]
+
+
+\hspace*{\fill}He introduces the a mapping from  $ \mathcal{IPL} $  into propositional modal logic  $ S  4 $  
+
+\noindent which maps  $\dot{}{ \neg }  s $  to  $ \neg   a50 _{ r }  s  ,   s   \dot{\supset}   t $  to  $ a50 _{ r }  s  \quad  \supset  \quad  a50 _{ r }  t  ,   s   \dot{\vee}   t $  to  $ a50 _{ r }  s   \vee   a50 _{ r }  t  , $  and  $ s   \dot{\wedge}   t $  
+ to  $ s   \wedge   t  . ^{ 3 }$  By simply combining G  $ \ddot{o} $  del ' s mapping with our mapping from before 
+
+\noindent we obtain the following embedding of  $ \mathcal{IPL} $  in  $ \mathcal{STT}  . $  
+
+\hspace*{\fill}Let  $ \mathcal{IPL} $  be a propositional intuitionistic logic with atomic primitives  $ p ^{ 1 } , $  
+
+\noindent  $ .   .   .   ,   p ^{ m } \quad  (  m   \geq  \quad  1  )  \quad  . $  We define the set  $ \mathcal{IPL} ^{ \mathcal{STT} }$  of corresponding propositional 
+ intuitionistic logic propositions in  $ \mathcal{STT} $  as follows . 
+
+\hspace*{\fill}1 . \quad For \quad the \quad atomic  $ \mathcal{IPL} $  \quad primitives  $ p ^{ 1 } ,  \quad  .   .   .   ,  \quad  p ^{ m }$  \quad we \quad introduce corresponding 
+
+\hspace*{\fill} $ \mathcal{IPL} ^{ \mathcal{STT} }$  predicate constants  $ p ^{ 1 }_{ \mu  shortrightarrow  o ^{ , }}  .   .   .   ,   p ^{ m }_{ \mu  shortrightarrow  o ^{ . }}$  Moreover , we provide the sin - 
+
+\centerline{gle accessibility relation constant  $ r _{ \mu  shortrightarrow  \mu  shortrightarrow  o } . $  }
+
+\hspace*{\fill}2 . \quad Corresponding to G  $ \ddot{o} $  del ' s mapping we introduce the logical connectives of 
+
+\hspace*{\fill} $ \mathcal{IPL} ^{ \mathcal{STT} }$  as abbreviations for the following  $ \lambda  - $  terms ( we omit the types here ) : 
+
+\[\begin{aligned}\neg{ \dot{} }  =   \lambda  \phi   \lambda  W   \neg  \forall  V   \neg  r   W   V   \vee   \phi   V \\
+  \dot{\supset}   =   \lambda  \phi   \lambda  \psi   \lambda  W   \neg  (  \forall  V   \neg  r   W   V   \vee   \phi  V  )   \vee   (  \forall  V   \neg  r   W   V   \vee   \psi   V  ) \\
+  \dot{\vee}   =   \lambda  \phi   \lambda  \psi   \lambda  W   (  \forall  V   \neg  r   W   V   \vee   \phi   V  )   \vee   (  \forall  V   \neg  r   WV   \vee   \psi   V  ) \\
+  \dot{\wedge}   =   \lambda  \phi   \lambda  \psi   \lambda  W   \neg  (  \neg  \phi  W   \vee   \neg  \psi   W  ) \end{aligned}\]
+
+
+3 . \quad We define the set of  $ \mathcal{IPL} ^{ \mathcal{STT} } - $  propositions as the smallest set of simply typed 
+  $ \lambda  - $  terms for which the following hold : 
+
+\centerline{\textbf{-- }  $ p ^{ 1 }_{ \mu  shortrightarrow  o ^{ , }}  .   .   .   ,   p ^{ m }_{ \mu  shortrightarrow  o }$  define the atomic  $ \mathcal{IPL} ^{ \mathcal{STT} } - $  propositions . }
+
+\begin{align*}
+ \rule{3em}{0.4pt} 
+\end{align*}
+
+{\scriptsize 3 } {\small Alter native mappings have been pr oposed and studied in the liter atur e which we } 
+ {\small could employ her e equally as well . } 
+
+
+\newpage
+\hspace*{\fill}\textbf{-- } If  $ \phi $  and  $ \psi $  are  $ \mathcal{IPL} ^{ \mathcal{STT} } - $  propositions , then so are  $\neg{ \dot{} }  \phi  ,   \phi   \dot{\supset}   \psi  ,   \phi ^{ \dot{\vee} }  \psi  , $  and 
+
+\[ \phi ^{ \dot{\wedge} }  \psi  . \]
+
+
+The notion of validity we adopt is the same as for  $ \mathcal{QML} ^{ STT } . $  However , since 
+ G  $ \ddot{o} $  del connects  $ \mathcal{IPL} $  with modal logic  $ S  4  , $  we transform each proof problem 
+  $ t   \in   \mathcal{IPL} $  into a corresponding proof problem  $ t ^{ \prime }$  in  $ \mathcal{STT} $  of the following form 
+
+\noindent  $ t ^{ \prime }  :  =   (  ( $  valid  $ \forall  \phi _{ \mu  shortrightarrow  o } \quad  a50 _{ r }  \phi   \supset  \quad  \phi  )   \wedge   ( $  valid  $ \forall  \phi _{ \mu  shortrightarrow  o } \quad  a50 _{ r }  \phi   \supset  \quad  a50 _{ r }  a50 _{ r }  \phi  )  )   \Rightarrow   ( $  valid  $ t _{ \mu  shortrightarrow  o } ) $  
+
+\noindent where  $ t _{ \mu  shortrightarrow  o }$  is the  $ \mathcal{IPL} ^{ \mathcal{STT} }$  term for  $ t $  according to our definition above . Alterna - 
+
+\noindent tively we may translate  $ t $  into  $ t ^{ \prime  \prime }  :  =   (  ( $  reflexive  $ r  )   \wedge   ( $  transitive  $ r  )  )   \Rightarrow   ( $  valid  $ t _{ \mu  shortrightarrow  o } )  . $  
+
+Combining soundness [ 23 ] and completeness [ 28 ] of G  $ \ddot{o} $  del ' s embedding with 
+ Theorem \quad 1 \quad we obtain the following soundness \quad and completeness \quad result : \quad Let 
+  $ t   \in   \mathcal{IPL} $  and let  $ t ^{ \prime } \quad  \in  \quad  \mathcal{STT} $  as constructed above  $ .   t $  is valid in propositional 
+ intuitionistic logic if and only if  $ t ^{ \prime }$  is valid in  $ \mathcal{STT}  . $  
+
+\hspace*{\fill}Example problems in intuitionistic logic have been encoded in THF syntax 
+
+\noindent [ 1 5 ] and added to the TPTP THF  $ \mathrm{library} ^{ 4 }$  and are accessible under identifiers 
+ SYO  $ 58  \hat{}  4 $  \quad SYO  $ 74  \hat{}  4  . $  
+
+\noindent \textit{Access } \quad \textit{Control Logics } \quad Garg and Abadi recently translated several prominent 
+ access control logics into modal logic S 4 and proved these translations sound 
+ and complete [ 2 1 ] . We have combined this work with our above results in order 
+ to obtain a sound and complete embedding of these access control logics in 
+  $ \mathcal{STT} $  and we have carried out experiments with the prover LEO - I I [ 7 ] . Example 
+ problems have been added to the TPTP THF library and are accessible under 
+ identifiers SWV  $ 425 \hat{}{ x }$  \quad SWV  $ 436 \hat{}{ x }  ( $  for  $ x   \in   \{  1  ,   .   .   .   ,   4  \}  )  . $  
+
+\noindent \textit{Logics for Spatial Reasoning } Evidently , the region connection calculus [ 30 ] is a 
+ fragment of  $ \mathcal{STT}  : $  choose a base type  $ r   ( $  ' region ' ) and a reflexive and symmetric 
+ relation  $ c   ( $  ' connected ' ) of type  $ r   shortrightarrow   r   shortrightarrow   o $  and define ( where  $ X  ,   Y  , $  and  $ Z $  are 
+ variables of type  $ r  )  : $  
+
+\[\begin{aligned} \mathrm{disconnected}   :  \quad  dc  \quad  =   \lambda  X  ,   Y   \neg  (  c   X   Y  ) \\
+  \mathrm{part}   \mathrm{of}   :  \quad  p  \quad  =   \lambda  X  ,   Y   \forall  Z   (  (  c   Z   X  )   \Rightarrow   (  c   Z   Y  )  ) \\
+  \mathrm{identical}   \mathrm{with}   :  \quad  eq  \quad  =   \lambda  X  ,   Y   (  (  p   X   Y  )   \wedge   (  p   Y   X  )  ) \\
+  \mathrm{overlaps}   :  \quad  o  \quad  =   \lambda  X  ,   Y   \exists  Z   (  (  p   Z   X  )   \wedge   (  p   Z   Y  )  ) \\
+  \mathrm{partially}   \mathrm{overlaps}   :  \quad  po  \quad  =   \lambda  X  ,   Y   (  (  o   X   Y  )   \wedge   \neg  (  p   X   Y  )   \wedge   \neg  (  p   Y   X  )  ) \\
+  \mathrm{externally}   \mathrm{connected}   :  \quad  ec  \quad  =   \lambda  X  ,   Y   (  (  c   X   Y  )   \wedge   \neg  (  o   X   Y  )  ) \\
+  \mathrm{proper}   \mathrm{part}   :  \quad  pp  \quad  =   \lambda  X  ,   Y   (  (  p   X   Y  )   \wedge   \neg  (  p   Y   X  )  ) \end{aligned}\]
+
+
+\noindent tangential proper part  $ :  \quad  tpp  \quad  =   \lambda  X  ,   Y   (  (  pp   X   Y  )   \wedge   \exists  Z   (  (  ec   Z   X  )   \wedge   (  ec   Z   Y  )  )  ) $  
+
+nontang . proper part  $ :   ntpp   =   \lambda  X  ,   Y   (  (  pp   X   Y  )   \wedge   \neg  \exists  Z   (  (  ec   Z   X  )   \wedge   (  ec   Z   Y  )  )  ) $  
+ An example problem for the region connection calculus will be discussed below . 
+
+\begin{align*}
+ \rule{3em}{0.4pt} 
+\end{align*}
+
+{\scriptsize 4 } {\small TPTP THF pr oblems for var ious pr oblem categor ies ar e available at \texttt{http : / / www . } } 
+ {\small \texttt{c s . mi } }  $ \mathtt{a-m} $  {\small \texttt{i . edu / \textasciitilde tptp / cgi - b in / Se eTPTP } }  $ ? $  {\small \texttt{Category } }  $ = $  {\small \texttt{Problems } ; all pr oblem identifier s } 
+ {\small with an ' }  $ \hat{} $  {\small ' in their name r efer to higher - or der THF pr oblems . The TPTP libr ar y } 
+ {\small meanwhile contains mor e than 2700 example pr oblems in THF syntax . } 
+
+
+\newpage
+\noindent {\large \textbf{4 } } \quad {\large \textbf{Reasoning about Logics and Combinations of Logics } } 
+
+\noindent We i llustrate how our approach supports reasoning about logics and their com - 
+ binations . First , we focus on modal logics and their well known relationships 
+ between properties of accessibility relations and corresponding modal axioms 
+ ( respectively axiom schemata ) [ 25 ] . Such meta - theoretic insights can be elegantly 
+
+\noindent encoded ( and , as we will later see , automatically proved ) in our approach . First 
+ we encode various accessibility relation properties in  $ \mathcal{STT}  : $  
+
+\begin{align*}
+ \mathrm{re fl exive}   =   \lambda  R   \forall  S   R  S   S \tag*{$ (  1  ) $}\\ \mathrm{symmetric}   =   \lambda  R   \forall  S  ,   T   (  (  R   S  T  )   \Rightarrow   (  RT   S  )  ) \tag*{$ (  2  ) $}\\ \mathrm{serial}   =   \lambda  R   \forall  S   \exists  T   (  R   S  T  ) \tag*{$ (  3  ) $}\\ \mathrm{transitive}   =   \lambda  R   \forall  S  ,   T  ,   U   (  (  R   S  T  )   \wedge   (  R  T   U  )   \Rightarrow   (  R  S   U  )  ) \tag*{$ (  4  ) $}\\ \mathrm{euclidean}   =   \lambda  R   \forall  S  ,   T  ,   U   (  (  R   S  T  )   \wedge   (  R   S   U  )   \Rightarrow   (  R  T   U  )  ) \tag*{$ (  5  ) $}\\ \mathrm{partially} _{ \rule{3em}{0.4pt} } \mathrm{functional}   =   \lambda  R   \forall  S  ,   T  ,   U   (  (  R   S  T  )   \wedge   (  R   S   U  )   \Rightarrow   T   =   U  ) \tag*{$ (  6  ) $}\\ \mathrm{functional}   =   \lambda  R   \forall  S   \exists  T   (  (  R   S  T  )   \wedge   \forall  U   (  (  R  S   U  )   \Rightarrow   T   =   U  )  ) \tag*{$ (  7  ) $}\\ \mathrm{weakly} _{ \rule{3em}{0.4pt} } \mathrm{dense}   =   \lambda  R   \forall  S  ,   T   (  (  R   S  T  )   \Rightarrow   \exists  U   (  (  R   S   U  )   \wedge   (  R   U   T  )  )  ) \tag*{$ (  8  ) $}\\ \mathrm{weakly} _{ \rule{3em}{0.4pt} } \mathrm{connected}   =   \lambda  R   \forall  S  ,   T  ,   U   (  (  (  R   S  T  )   \wedge   (  R   S   U  )  )   \Rightarrow \\ (  (  R  T   U  )   \vee   T   =   U   \vee   (  R   U   T  )  )  ) \tag*{$ (  9  ) $}\\ \mathrm{weakly} _{ \rule{3em}{0.4pt} } \mathrm{directed}   =   \lambda  R   \forall  S  ,   T  ,   U   (  (  (  R   S  T  )   \wedge   (  R   S   U  )  )   \Rightarrow \\ \exists  V   (  (  R  T   V  )   \wedge   (  R   U   V  )  )  ) \tag*{$ (  1  0  ) $}
+\end{align*}
+
+\noindent Remember , that  $ R $  is of type  $ \mu   shortrightarrow   \mu   shortrightarrow   o $  and  $ S  ,   T  ,   U $  are of type  $ \mu  . $  The corre - 
+ sponding axioms are given next . 
+
+\begin{align*}
+ \forall  \phi   a51 _{ r }  \phi   \supset  \quad  a50 _{ r }  \phi \tag*{$ (  1  6  ) $}\\ M   :  \quad  \forall  \phi   a50 _{ r }  \phi   \supset   \phi  \quad  (  1  1  )  \quad  \forall  \phi   a51 _{ r }  \phi   \Leftrightarrow   a50 _{ r }  \phi \tag*{$ (  1  7  ) $}\\ B   :  \quad  \forall  \phi   \phi   \supset  \quad  a50 _{ r }  a51 _{ r }  \phi  \quad  (  1  2  )  \quad  \forall  \phi   a50 _{ r }  a50 _{ r }  \phi   \supset  \quad  a50 _{ r }  \phi \tag*{$ (  1  8  ) $}\\ D   :  \quad  \forall  \phi   a50 _{ r }  \phi   \supset  \quad  a51 _{ r }  \phi  \quad  (  1  3  )  \quad  \forall  \phi  ,   \psi   a50 _{ r }  (  (  \phi   \wedge   a50 _{ r }  \phi  )  \quad  \supset   \psi  )   \vee \\ 4   :  \quad  \forall  \phi   a50 _{ r }  \phi   \supset  \quad  a50 _{ r }  a50 _{ r }  \phi  \quad  (  1  4  )  \quad  a50 _{ r }  (  (  \psi   \wedge   a50 _{ r }  \psi  )  \quad  \supset  \quad  \phi  ) \tag*{$ (  1  9  ) $}\\ 5   :  \quad  \forall  \phi   a51 _{ r }  \phi   \supset  \quad  a50 _{ r }  a51 _{ r }  \phi  \quad  (  1  5  )  \quad  \forall  \phi   a51 _{ r }  a50 _{ r }  \phi   \supset  \quad  a50 _{ r }  a51 _{ r }  \phi \tag*{$ (  20  ) $}
+\end{align*}
+
+\noindent \textit{Example 1 . } \quad For  $ k   (  k   =   (  1  )  ,   .   .   .   ,   (  1  0  )  ) $  we can now easily formulate the well known 
+ correspondence theorems  $ (  k  )   \Rightarrow   (  k   +   1  0  ) $  and  $ (  k  )   \Leftarrow   (  k   +   1  0  )  . $  For example , 
+
+\[ (  1  )   \Rightarrow   (  1  1  )   :  \quad  \forall  R   (  \mathrm{re fl exive}   R  )   \Rightarrow   (  \mathrm{valid}   \forall  \phi   a50 _{ R }  \phi   \supset  \quad  \phi  ) \]
+
+
+\noindent \textit{Example 2 . } \quad There are well known relationships between different modal logics 
+ and there exist alternatives for their axiomatization ( cf . the relationship map 
+ in [ 22 ] ) . For example , for modal logic S 5 we may choose axioms M and 5 as 
+ standard axioms . Respectively for logic KB 5 we may choose B and 5 . We may 
+ then want to investigate the following conjectures ( the only one that does not 
+
+\begin{align*}
+ \mathrm{hold}   \mathrm{is}   (  3  1  )  )  : 
+\end{align*}
+
+
+\newpage
+\centerline{S  $ 5   = $  M  $ 5   \Leftrightarrow $  MB 5 \quad ( 2 1 ) }
+
+\[\begin{aligned} \Leftrightarrow ^{ \Leftrightarrow }_{ \Leftrightarrow }  \mathrm{M}  45 ^{ \mathrm{M}  4  \mathrm{B} }_{ \mathrm{M}  4  \mathrm{B}  5 } \quad  (  23  ) ^{ (  24  ) }_{ (  22  ) } \quad  \mathrm{KB}  5   \Leftrightarrow ^{ \Leftrightarrow }  \mathrm{K} ^{ \mathrm{K} }^{ 4  \mathrm{B}  5 }_{ 4  \mathrm{B} } \quad  ( ^{ ( }^{ 28  ) }_{ 29  ) }\\
+  \Leftrightarrow ^{ \Leftrightarrow }_{ \Leftrightarrow }  \mathrm{D}  4  \mathrm{B}  5 ^{ \mathrm{DB}  5 }_{ \mathrm{D}  4  \mathrm{B} } \quad  (  26  ) ^{ (  27  ) }_{ (  25  ) } \quad  \mathrm{D} ^{ \mathrm{M} }^{ 5 }_{ 45 }  \Rightarrow ^{ \Rightarrow }  \mathrm{D} _{ \mathrm{M} }^{ 45 }_{ 5 } \quad  ( ^{ ( }^{ 30  ) }_{ 3  1  ) }\end{aligned}\]
+
+
+\noindent Exploiting the correlations  $ (  k  )   \Leftrightarrow   (  k   +   1  0  ) $  from before these problems can be 
+
+\noindent formulated as follows ; we give the case for M  $ 5   \Leftrightarrow $  D 4 B : 
+  $ \forall  R   (  (  ( $  reflexive  $ R  )  \wedge  ( $  euclidean  $ R  )  )   \Leftrightarrow   (  ( $  serial  $ R  )  \wedge  ( $  transitive  $ R  )  \wedge  ( $  symmetric  $ R  )  )  ) $  
+ \textit{Example 3 . } \quad We can also encode the Barcan formula and it s converse . ( They are 
+
+\noindent theorems in our approach , which confirms that we are ' constant domain ' . ) 
+
+\[\begin{aligned} BF   :  \quad  \mathrm{valid}   \forall  X _{ \iota } \quad  a50 _{ r }  (  p  \iota  shortrightarrow  (  \mu  shortrightarrow  o  )   X  )  \quad  \supset  \quad  a50 _{ r }  \forall  X _{ \iota } \quad  (  p  \iota  shortrightarrow  (  \mu  shortrightarrow  o  )   X  )  \quad  (  32  ) \\
+  BF ^{ -  1 }  :  \quad  \mathrm{valid}   a50 _{ r }  \forall  X _{ \iota } \quad  (  p  \iota  shortrightarrow  (  \mu  shortrightarrow  o  )   X  )  \quad  \supset   \forall  X _{ \iota } \quad  a50 _{ r }  (  p  \iota  shortrightarrow  (  \mu  shortrightarrow  o  )   X  )  \quad  (  33  ) \end{aligned}\]
+
+
+\noindent \textit{Example 4 . } \quad An interesting meta property for combined logics with modalities 
+  $ a51 _{ i } ,   a50 _{ j } ,   a50 _{ k } , $  and  $ a51 _{ l }$  is the correspondence between the following axiom and the 
+
+\begin{align*}
+ (  i  ,   j  ,   k  ,   l  )  -  \mathrm{con fl uence}   \mathrm{property} \\ (  \mathrm{valid}   \forall  \phi  \quad  (  a51 _{ i }  a50 _{ j }  \phi  )  \quad  \supset  \quad  a50 _{ k }  a51 _{ l }  \phi  ) \\ \Leftrightarrow   (  \forall  A  \forall  B   \forall  C   (  (  (  i   A   B  )   \wedge   (  k   A   C  )  )   \Rightarrow   \exists  D   (  (  j   B   D  )   \wedge   (  l   CD  )  )  )  )  \quad  (  34  ) 
+\end{align*}
+
+\noindent \textit{Example 5 . } \quad Segerberg [ 3 1 ] discusses a 2 - dimensional logic providing two S 5 modal - 
+ ities  $ a50 _{ a }$  and  $ a50 _{ b } . $  He adds further axioms stating that these modalities are com - 
+ mutative and orthogonal . \quad It actually turns out that orthogonality is already 
+ implied in this context . \quad This statement can be encoded in our framework as 
+
+\begin{align*}
+ \succ  : 
+\end{align*}
+
+\centerline{( reflexive  $ a  )  ,   ( $  transitive  $ a  )  ,   ( $  euclid  $ .   a  )  ,   ( $  reflexive  $ b  )  ,   ( $  transitive  $ b  )  ,   ( $  euclid  $ .  \quad  b  )  , $  }
+
+\[\begin{aligned} (  valid   \forall  \phi  \quad  a50 _{ a }  a50 _{ b }  \phi   \Leftrightarrow  \quad  a50 _{ b }  a50 _{ a }  \phi  ) \\
+  = ^{ \mathcal{STT} } \quad  (  valid   \forall  \phi  ,   \psi  \quad  a50 _{ a }  (  a50 _{ a }  \phi   \vee   a50 _{ b }  \psi  )  \quad  \supset  \quad  (  a50 _{ a }  \phi   \vee   a50 _{ a }  \psi  )  )   \wedge \\
+  (  valid   \forall  \phi  ,   \psi  \quad  a50 _{ b }  (  a50 _{ a }  \phi   \vee   a50 _{ b }  \psi  )  \quad  \supset  \quad  (  a50 _{ b }  \phi   \vee   a50 _{ b }  \psi  )  )  \quad  (  35  ) \end{aligned}\]
+
+
+\noindent \textit{Example 6 . } \quad Suppose we want to work with a 2 - dimensional logic combining a 
+ modality  $ a50 _{ k }$  of knowledge with a modality  $ a50 _{ b }$  of belief . Moreover , suppose we 
+ model  $ a50 _{ k }$  as an S 5 modality and  $ a50 _{ b }$  as an D 45 modality and let us furthermore 
+ add two axioms characterizing their relationship . We may then want to check 
+ whether or not  $ a50 _{ k }$  and  $ a50 _{ b }$  coincide , i . e . , whether  $ a50 _{ k }$  includes  $ a50 _{ b } : $  
+
+\centerline{( reflexive  $ k  )  ,   ( $  transitive  $ k  )  ,   ( $  euclid  $ .   k  )  ,   ( $  serial  $ b  )  ,   ( $  transitive  $ b  )  ,   ( $  euclid  $ .   b  )  , $  }
+
+\[\begin{aligned} (  valid   \forall  \phi  \quad  a50 _{ k }  \phi   \supset  \quad  a50 _{ b }  \phi  )  ,   (  valid   \forall  \phi  \quad  a50 _{ b }  \phi   \supset  \quad  a50 _{ b }  a50 _{ k }  \phi  ) \\
+  = ^{ \mathcal{STT} } \quad  (  valid   \forall  \phi  \quad  a50 _{ b }  \phi   \supset  \quad  a50 _{ k }  \phi  )  \quad  (  36  ) \end{aligned}\]
+
+
+
+\newpage
+\noindent {\large \textbf{5 } } \quad {\large \textbf{Reasoning within Combined Logics } } 
+
+\noindent We i llustrate how our approach supports reasoning within combined logics . First 
+ we present two examples in epistemic reasoning . In this examples we model the 
+ individual and common knowledge of different persons respectively agents by 
+ combining different modalities . Our formulation in both cases adapts Baldoni ' s 
+ modeling [ 6 ] . 
+
+\noindent \textit{Example 7 ( Epistemic reas oning : } \quad \textit{The friends puzzle ) . } \quad ( i ) Peter is a friend of 
+ John , so if Peter knows that John knows something then John knows that Peter 
+ knows the same thing . ( i i ) Peter is married , so if Peter ' s wife knows something , 
+ then Peter knows the same thing . John and Peter have an appointment , let us 
+ consider the following situation : ( a ) Peter knows the t ime of their appointment . 
+ ( b ) Peter also knows that John knows the place of their appointment . Moreover , 
+ ( c ) Peter ' s wife knows that if Peter knows the time of their appointment , then 
+
+\noindent John knows that too ( since John and Peter are friends ) . Finally , ( d ) Peter knows 
+ that if John knows the place and the time of their appointment , then John knows 
+ that he has an appointment . From this situation we want to prove ( e ) that each 
+ of the two friends knows that the other one knows that he has an appointment . 
+
+For modeling the knowledge of Peter , Peter ' s wife , and John we consider 
+ a 3 - dimensional logic combining the modalities \quad  $ a50 _{ \mathrm{p} } ,  \quad  a50 _{ (  \mathrm{w}  \mathrm{p}  ) } , $  \quad and \quad  $ a50 _{ \mathrm{j} }  . $  Actually 
+
+\noindent modeling them as S 4 modalities turns out to be sufficient for this example . 
+ Hence , we introduce three corresponding accessibility relations j , p , and ( w p ) . 
+ The S 4 axioms for  $ x   \in   \{ $  j , p , ( w p ) \} are 
+
+\begin{align*}
+ \mathrm{valid}   \forall  \phi  \quad  a50 _{ x }  \phi   \supset  \quad  \phi  \quad  (  37  )  \quad  \mathrm{valid}   \forall  \phi  \quad  a50 _{ x }  \phi   \supset  \quad  a50 _{ x }  a50 _{ x }  \phi \tag*{$ (  38  ) $}
+\end{align*}
+
+\noindent As done before , we could alternatively postulate that the accessibility relations 
+ are reflexive and transitive . 
+
+\hspace*{\fill}Next , we encode the facts from the puzzle . For ( i ) we provide a persistence 
+
+\noindent axiom and for ( i i ) an inclusion axiom : 
+
+\begin{align*}
+ \mathrm{valid}   \forall  \phi  \quad  a50 _{ \mathrm{p} }  a50 _{ \mathrm{j} }  \phi   \supset  \quad  a50 _{ \mathrm{j} }  a50 _{ \mathrm{p} }  \phi  \quad  (  39  )  \quad  \mathrm{valid}   \forall  \phi  \quad  a50 _{ (  \mathrm{w}  \mathrm{p}  ) }  \phi   \supset  \quad  a50 _{ \mathrm{p} }  \phi \tag*{$ (  40  ) $}
+\end{align*}
+
+Finally , the facts ( a ) - ( d ) and the conclusion ( e ) are encoded as follows ( time , 
+ place , and appointment are propositional constants , that is , constants of type 
+  $ \mu   shortrightarrow   o $  in our framework ) : 
+
+\hspace*{\fill}valid  $ a50 _{ \mathrm{p} }$  time \quad ( 4 1 ) 
+
+\begin{align*}
+ \mathrm{valid}   a50 _{ \mathrm{p} }  a50 _{ \mathrm{j} }  \mathrm{place} \tag*{$ (  42  ) $}
+\end{align*}
+
+valid  $ a50 _{ (  \mathrm{w}  \mathrm{p}  ) }  (  a50 _{ \mathrm{p} }$  time  $ \supset  \quad  a50 _{ \mathrm{j} }$  time ) \quad ( 43 ) 
+ valid  $ a50 _{ \mathrm{p} }  a50 _{ \mathrm{j} }  ( $  place  $ \wedge $  time  $ \supset $  \quad appointment ) \quad ( 44 ) 
+ valid  $ a50 _{ \mathrm{j} }  a50 _{ \mathrm{p} }$  appointment  $ \wedge   a50 _{ \mathrm{p} }  a50 _{ \mathrm{j} }$  appointment \quad ( 45 ) 
+
+
+\newpage
+\noindent The combined proof problem for Example 8 is 
+
+\begin{align*}
+ (  37  )  ,   .   .   .   ,   (  44  )   = ^{ \mathcal{STT} }  (  45  ) \tag*{$ (  46  ) $}
+\end{align*}
+
+\noindent \textit{Example 8 } \quad \textit{( Wise men puzzle ) . } Once upon a time , a king wanted to find the 
+ wisest out of his three wisest men . He arranged them in a circle and told them 
+ that he would put a white or a black spot on their foreheads and that one of 
+ the three spots would certainly be white . The three wise men could see and hear 
+ each other but , of course , they could not see their faces reflected anywhere . The 
+ king , then , asked to each of them to find out the color of his own spot . After a 
+ while , the wisest correctly answered that his spot was white . 
+
+We employ a  $ \mathrm{four-hyphen} $  dimensional logic combining the modalities  $ a50 _{ \mathrm{a} } ,   a50 _{ \mathrm{b} } , $  and  $ a50 _{ \mathrm{c} } , $  
+ for encoding the individual knowledge of the three wise men , and a box operator 
+  $ a50 _{ \mathrm{fool} } , $  for encoding the knowledge that is common to all of them . The entire 
+ encoding consists now of the following axioms for  $ X  ,   Y  ,   Z   \in   \{  a  ,   b  ,   c  \} $  and  $ X   \ne $  
+
+\begin{align*}
+ Y   \not=   Z  : 
+\end{align*}
+
+valid  $ a50 _{ \mathrm{fool} }  (  ( $  ws a  $ )   \vee   ( $  ws b  $ )   \vee   ( $  ws c ) ) \quad ( 47 ) 
+ valid  $ a50 _{ \mathrm{fool} }  (  ( $  ws  $ X  )  \quad  \supset  \quad  a50 _{ Y }  ( $  ws  $ X  )  )  \quad  (  48  ) $  
+ valid  $ a50 _{ \mathrm{fool} }  (  \neg   ( $  ws  $ X  )  \quad  \supset  \quad  a50 _{ Y }  \neg   ( $  ws  $ X  )  )  \quad  (  49  ) $  
+
+\begin{align*}
+ \mathrm{valid}   \forall  \phi  \quad  a50 _{ \mathrm{fool} }  \phi   \supset  \quad  \phi \tag*{$ (  50  ) $}\\ \mathrm{valid}   \forall  \phi  \quad  a50 _{ \mathrm{fool} }  \phi   \supset  \quad  a50 _{ \mathrm{fool} }  a50 _{ \mathrm{fool} }  \phi \tag*{$ (  5  1  ) $}\\ \mathrm{valid}   \forall  \phi  \quad  a50 _{ \mathrm{fool} }  \phi   \supset  \quad  a50 _{ \mathrm{a} }  \phi \tag*{$ (  52  ) $}\\ \mathrm{valid}   \forall  \phi  \quad  a50 _{ \mathrm{fool} }  \phi   \supset  \quad  a50 _{ \mathrm{b} }  \phi \tag*{$ (  53  ) $}\\ \mathrm{valid}   \forall  \phi  \quad  a50 _{ \mathrm{fool} }  \phi   \supset  \quad  a50 _{ \mathrm{c} }  \phi \tag*{$ (  54  ) $}\\ \mathrm{valid}   \forall  \phi  \quad  \neg   a50 _{ \mathrm{X} }  \phi   \supset  \quad  a50 _{ \mathrm{Y} }  \neg   a50 _{ \mathrm{X} }  \phi \tag*{$ (  55  ) $}\\ \mathrm{valid}   \forall  \phi  \quad  a50 _{ \mathrm{X} }  \phi   \supset  \quad  a50 _{ \mathrm{Y} }  a50 _{ \mathrm{X} }  \phi \tag*{$ (  56  ) $}
+\end{align*}
+
+\hspace*{\fill}valid  $ \neg   a50 _{ \mathrm{a} }  ( $  ws a ) \quad ( 57 ) 
+
+\hspace*{\fill}valid  $ \neg   a50 _{ \mathrm{b} }  ( $  ws b ) \quad ( 58 ) 
+
+\noindent From these assumptions we want to conclude that 
+
+\hspace*{\fill}valid  $ a50 _{ \mathrm{c} }  ( $  ws c ) \quad ( 59 ) 
+
+\hspace*{\fill}Axiom ( 47 ) says that a , b , or c must have a white spot and that this infor - 
+
+\noindent mation is known to everybody . Axioms ( 48 ) and ( 49 ) express that it is generally 
+ known that if someone has a white spot ( or not ) then the others see and hence 
+ know this  $ .   a50 _{ \mathrm{fool} }$  is axiomatized as an S 4 modality in axioms ( 50 ) and ( 5 1 ) . For 
+  $ a50 _{ \mathrm{a} } ,   a50 _{ \mathrm{b} } , $  and  $ a50 _{ \mathrm{c} }$  it is sufficient to consider K modalities . The relation between 
+ those and common knowledge  $ (  a50 _{ \mathrm{fool} }$  modality ) is axiomatized in inclusion ax - 
+
+\noindent ioms ( 52 ) \quad ( 55 ) . Axioms ( 55 ) and ( 56 ) encode that whenever a wise man does 
+ ( not ) know something the others know that he does ( not ) know this . Axioms ( 57 ) 
+
+
+\newpage
+\noindent and ( 58 ) say that a and b do not know whether they have a white spot . Finally , 
+ conjecture ( 59 ) states that that c knows he has a white spot . The combined 
+ proof problem for Example 7 is 
+
+\begin{align*}
+ (  47  )  ,   .   .   .   ,   (  58  )   = ^{ \mathcal{STT} }  (  59  ) \tag*{$ (  60  ) $}
+\end{align*}
+
+\noindent \textit{Example 9 . } \quad A trivial example problem for the \quad region connection calculus is 
+ ( adapted from [ 20 ] , p . 80 ) : 
+
+\[\begin{aligned} (  tpp   \mathrm{catalunya}   \mathrm{spain}  )  , \\
+  (  ec   \mathrm{spain}   \mathrm{france}  )  , \\
+  (  ntpp   \mathrm{paris}   \mathrm{france}  )  , \end{aligned}\]
+
+
+\hspace*{\fill} $ = ^{ \mathcal{STT} }  (  dc $  catalunya paris  $ )   \wedge   (  dc $  spain paris ) \quad ( 6 1 ) 
+
+\noindent The assumptions express that \hfill ( i ) \hfill Catalunya is a border region of Spain , \hfill ( i i ) 
+
+\noindent Spain and France are two different countries sharing a common border , and ( ii i ) 
+
+\noindent Paris is a proper part of France . The conjecture is that ( iv ) Catalunya and Paris 
+ are disconnected as well as Spain and Paris . 
+
+\noindent \textit{Example 1 0 . } \quad Within our  $ \mathcal{STT} $  framework we can easily put such spatial rea - 
+ soning examples in an epistemic context , that is , we can model the individual 
+ spatial knowledge of different agents . Similar to before we here distinguish be - 
+
+\noindent tween common knowledge ( fool ) and the knowledge of person bob : 
+
+\[ \mathrm{valid}   \forall  \phi  \quad  a50 _{ \mathrm{fool} }  \phi   \supset  \quad  a50 _{ \mathrm{bob} }  \phi  , \]
+
+
+\noindent valid  $ a50 _{ \mathrm{bob} }  (  \lambda  W   (  tpp $  catalunya spain ) ) , 
+ valid  $ a50 _{ \mathrm{fool} }  (  \lambda  W   (  ec $  spain france ) ) , 
+ valid  $ a50 _{ \mathrm{bob} }  (  \lambda  W   (  ntpp $  paris france ) ) 
+
+\[ = ^{ \mathcal{STT} }\]
+
+
+\hspace*{\fill}valid  $ a50 _{ \mathrm{bob} }  (  \lambda  W   (  (  dc $  catalunya paris  $ )   \wedge   (  dc $  spain paris ) ) ) \quad ( 62 ) 
+
+\noindent We here express that ( ii ) from above is commonly known , while ( i ) and ( ii i ) are 
+
+\noindent not . ( i ) and ( i ii ) are known to the educated person bob though . In this situation , 
+
+\noindent conjecture ( iv ) still follows for bob . However , it does not follow when replacing 
+
+\noindent bob by common knowledge ( hence , the following problem is not provable ) : 
+
+\hspace*{\fill} $ .   .   .   = ^{ \mathcal{STT} }$  valid  $ a50 _{ \mathrm{fool} }  (  \lambda  W   (  (  dc $  catalunya paris  $ )   \wedge   (  dc $  spain paris ) ) ) \quad ( 63 ) 
+
+In order to facilit ate the combination of logics we have here lifted the region 
+ connection calculus propositions of type  $ o $  to modal propositions of type  $ \mu   shortrightarrow   o $  
+ by  $ \lambda  - $  abstraction . Thus , the region connection calculus statements can now be 
+ applied to possible worlds ; they evaluate statically though for all possible worlds 
+ since the  $ \lambda  - $  abstracted variable  $ W $  is fresh for the encapsulated region connection 
+ calculus proposition . 
+
+\centerline{ $ (  tpp $  catalunya spain  $ )   \rightarrow   (  \lambda  W   (  tpp $  catalunya spain ) ) }
+
+\[\begin{aligned} \underbrace{\ }  \quad  \underbrace{\ } \\
+  \mathrm{type}  o  \quad  \mathrm{type}  \iota  shortrightarrow  o \end{aligned}\]
+
+
+
+\newpage
+\noindent {\large \textbf{6 } } \quad {\large \textbf{Experiments } } 
+
+\noindent In our case studies , we have employed the  $ \mathcal{STT} $  automated reasoners LEO - 
+ II \quad v 1 . 1 [ 1 2 ] , TPS \quad 3 . 80227 G 1 d [ 4 ] , IsabelleP \quad 2009 - 1 , IsabelleM \quad 2009 - 1 , and 
+
+\noindent IsabelleN \quad  $ 2009  -  1  . ^{ 5 }$  These systems are available online via the SystemOnTPTP 
+ tool [ 32 ] and they support the new TPTP THF infrastructure for typed higher - 
+
+\[ \mathrm{order} _{ \mathrm{The} } \mathrm{logic} _{ \mathrm{axiomatizations} } [  1  5  ]  .   \mathrm{Their}   \mathrm{reasoning} _{ \mathrm{of}   \mathcal{QML} ^{ STT }} \mathrm{power}   \mathrm{is} { \mathrm{and} }_{ \mathcal{IPL} }^{ \mathrm{currently} }_{ \mathcal{STT} }_{ \mathrm{are} } \mathrm{improving} _{ \mathrm{available} } \mathrm{rapidly} _{ \mathrm{as}   \mathrm{LCL}  0 }^{ . }_{ 1  3  \hat{}  0  .  \mathrm{ax} }\]
+
+
+\noindent and LCL  $ 0  1  0  \hat{}  0  . $  ax in the TPTP library  $ 6 _{ . }$  The example problems LCL  $ 698  \hat{}   1  . $  p and 
+ LCL  $ 695  \hat{}  1  . $  p ask about the satisfiability of these axiomatizations . Both questions 
+ are answered positively by the Satallax prover [ 5 ] in less than a second . 
+
+Table 1 presents the results of our experiments ; the timeout was set to 1 20 
+ seconds and the entries in the t able are reported in seconds . Those examples 
+ which have already entered the new higher - order TPTP library are presented 
+ with their respective TPTP identifiers in the second column and the others have 
+ meanwhile been submitted and will appear in a forthcoming TPTP release . 
+
+\hspace*{\fill}As expected , \quad ( 3 1 ) and ( 63 ) cannot be proved by any prover and IsabelleN 
+
+\noindent reports a counterexample for ( 3 1 ) in 34 . 4 seconds and for ( 63 ) in 39 . 7 seconds . 
+
+In summary , all but one of our example problems can be solved effectively 
+ by at least one of the reasoners . In fact , most of our example problems require 
+ only milliseconds . LEO - I I solves most problems and it is the fastest prover in 
+ our experiment . 
+
+As mentioned before , we are not aware of any other running system that can 
+ handle all of the above problems . 
+
+\noindent {\large \textbf{7 } } \quad {\large \textbf{Conclusion } } 
+
+\noindent Our overall goal is to show that various interesting classical and non - classical 
+ logics and their combinations can be elegantly mechanized and partly automated 
+ in modern higher - order reasoning systems with the help of our logic embeddings . 
+ Our experiments are encouraging and they provide first evidence for our claim 
+ that  $ \mathcal{STT} $  is suited as a framework for combining classical and non - classical log - 
+ ics . It is obvious , however , that  $ \mathcal{STT} $  reasoners should be significantly improved 
+ for fruitful application to more challenge problems in practice . The author is 
+ convinced that significant improvements \quad in particular for fragments of  $ \mathcal{STT} $  
+ as i llustrated in this paper \quad are possible and that they will be fostered by the 
+ new TPTP infrastructure and the new yearly higher - order CASC competitions . 
+ Note that when working with our reasoners from within a proof assist ant 
+ such as Isabelle / HOL the user may also provide interactive help if the reasoning 
+
+\begin{align*}
+ \rule{3em}{0.4pt} 
+\end{align*}
+
+{\scriptsize 5 } {\small IsabelleM and IsabelleN ar e model finder in the Isabelle pr oof assistant [ 29 ] that } 
+ {\small have been made available in batch mode , while IsabelleP applies a ser ies of Isabelle } 
+ {\small pr oof tactics in batch mode . } 
+
+{\scriptsize 6 } {\small Note that the types }  $ \mu $  {\small and }  $ \iota $  {\small ar e unfor tunately switched in the encodings available in } 
+ {\small the TPTP : the for mer is used for individuals and the latter for wor lds . This syntactic } 
+ {\small switch is completely unpr oblematic . } 
+
+
+\newpage
+
+
+\vspace*{3ex}\centerline{\framebox[.5\linewidth]{\textbf{Table ignored!}}}\vspace*{3ex}
+
+
+
+\noindent {\small \textbf{Table 1 . } Per for mance r esults of }  $ \mathcal{STT} $  {\small pr over s for pr oblems in paper . } 
+
+
+\newpage
+\noindent tasks are still to challenging , for example , by formulating some lemmas or by 
+ splitting proof tasks in simpler subtasks . 
+
+An advantage of our approach also is that provers such as our LEO - II are 
+ generally capable of producing verifiable proof output , \quad though much further 
+ work is needed to make these proof protocols exchangeable between systems or 
+ to explain them to humans . Furthermore , it may be possible to formally verify 
+ the entire theory of our embedding ( s ) within a proof assistant . 
+
+The work presented in this paper has its roots in the LEO - II project \quad ( in 
+ 2006 / 2007 at University of Cambridge , UK ) in which we first studied and em - 
+ ployed the presented embedding of quantified and propositional multimodal log - 
+ ics in  $ \mathcal{STT}   [  9  ,   1  1  ]  . $  This research , amongst others , is currently continued in the 
+ DFG project ONTOLEO ( BE 250 1 / 6 - 1 ) . In ONTOLEO we study whether our 
+ approach can be applied to automate modalities in ontology reasoning [ 1 4 , 1 3 ] . 
+ However , our work is relevant also for other application directions , including 
+ multi - agent systems . \quad Studying the scalability of our approach for a range of 
+ applications is thus important future work . 
+
+\noindent \textit{Acknowledgment : } The author is indebted to Larry Paulson , Geoff Sutcliffe , and 
+ Chad Brown . \quad Larry Paulson , \quad together with the author , \quad initiated the LEO - II 
+ project at Cambridge University ( EPRSC grant LEO - II EP / D 705 1 1 / 1 ) . Geoff 
+ Sutcliffe , in collaboration with the author and supported by several further con - 
+ tributors , developed the new higher - order TPTP THF infrastructure ( EU FP 7 
+ grant THFTPTP PIIF - GA - 2008 - 2 1 9982 ) . Both projects had a significant impact 
+ on the work presented in this article . Moreover , Chad Brown originally inspired 
+ this research with a presentation at Loria , Nancy in 2005 . 
+
+\noindent {\large \textbf{References } } 
+
+{\small 1 . } \quad {\small Peter B . Andr ews . Gener al models and extensionality . } \quad {\small \textit{Jou } }  $ r-n $  {\small \textit{al of Symbolic Logic } , } 
+ {\small 37 : 395 397 , 1 972 . } 
+
+{\small 2 . } \quad {\small Peter B . Andr ews . Gener al models , descr iptions , and choice in type theor y . \textit{Jou } }  $ r-n $  {\small \textit{al } } 
+ {\small \textit{of Symbolic Logic } , 37 : 385 394 , 1 972 . } 
+
+{\small 3 . } \quad {\small Peter B . Andr ews . } \quad {\small \textit{An Introduction to Mathematical Logic and Type Theory : To } } 
+ {\small \textit{Truth Through Proof } . Kluwer Academic Publisher s , second edition , 2002 . } 
+
+{\small 4 . } \quad {\small Peter } \quad {\small B . Andr ews and Chad E . } \quad {\small Br own . } \quad {\small TPS : A hybr id automatic - inter active } 
+ {\small system for developing pr oofs . } \quad {\small \textit{Jou } }  $ r-n $  {\small \textit{al of Applied Logic } , 4 ( 4 ) : 367 395 , 2006 . } 
+
+{\small 5 . } \quad {\small Julian Backes and Chad E . Br own . Analytic tableaux for higher - or der logic with } 
+ {\small choice . } \quad {\small In J }  $ \ddot{u} $  {\small r gen Giesl and Reiner Haehnle , editor s , \textit{IJCAR 2010 - 5 th Inter - } } 
+ {\small \textit{national Joint Conference on Automated Reasoning } , LNAI , Edinbur gh , UK , July } 
+ {\small 2 0 1 0 . Spr inger . } 
+
+{\small 6 . } \quad {\small Matteo Baldoni . \textit{No } }  $ r-m $  {\small \textit{al Multimodal Logics : Automatic Deduction and Logic Pro - } } 
+ {\small \textit{gramming Extension } . PhD thesis , Univer sita degli studi di Tor ino , 1 998 . } 
+
+{\small 7 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller . Automating access contr ol logic in simple type theor y with } 
+ {\small LEO - II . In Dimitr is Gr itzalis and Javier L }  $ \acute{o} $  {\small pez , editor s , \textit{Emerging Challenges for } } 
+ {\small \textit{Security , Privacy and Trust , 24 th IFIP TC 1 1 Inte } }  $ r-n $  {\small \textit{ational Information Security } } 
+ {\small \textit{Conference , SEC 2009 , Pafos , Cyprus , May 1 8 - 20 , 2009 . Proceedings } , volume 297 } 
+ {\small of \textit{IFIP } , pages 387 398 . Spr inger , 2009 . } 
+
+
+\newpage
+{\small 8 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller , Chad E . Br own , and Michael Kohlhase . } \quad {\small Higher or der se - } 
+ {\small mantics and extensionality . } \quad {\small \textit{Jou } }  $ r-n $  {\small \textit{al of Symbolic Logic } , 69 : 1 27 1 88 , 2004 . } 
+
+{\small 9 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller and Lawr ence Paulson . } \quad {\small \textit{Festschri } }  $ t-f $  {\small \textit{in Honor of Peter B . } } 
+ {\small \textit{Andrews on His 70 th Bi } }  $ r-t $  {\small \textit{hday } , chapter Explor ing Pr oper ties of Normal Multimodal } 
+ {\small Logics in Simple Type Theor y with LEO - II . Studies in Logic , Mathematical Logic } 
+ {\small and Foundations . College Publications , 2 8 . } 
+ {\small 1 0 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller } \quad {\small and Lawr ence C . } \quad {\small Paulson . } \quad {\small \textit{Quantified Multimodal Log - } } 
+ {\small \textit{ics } } \quad {\small \textit{in } } \quad {\small \textit{Simple } } \quad {\small \textit{Type } } \quad {\small \textit{Theory } . } \quad {\small SEKI } \quad {\small Repor t } \quad {\small SR 2 9 2 } \quad {\small ( IS SN } \quad {\small 1 437 - 4447 ) . } 
+ {\small SEKI } \quad {\small Publications , } \quad {\small DFKI } \quad {\small Br emen } \quad {\small GmbH , } \quad {\small Safe } \quad {\small and } \quad {\small Secur e } \quad {\small Cognitive } \quad {\small Sys - } 
+ {\small tems , } \quad {\small Car tesium , } \quad {\small Enr ique } \quad {\small Schmidt } \quad {\small Str . 5 , } \quad {\small D 28359 } \quad {\small Br emen , } \quad {\small Germany , } \quad {\small 2009 . } 
+ {\small http : / / ar xiv . or g / abs / 905 . 2435 . } 
+
+\noindent {\small 1 1 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller and Lawr ence C . Paulson . } \quad {\small Multimodal and intuitionistic } 
+ {\small logics in simple type theor y . } \quad {\small \textit{The Logic Journal of the IGPL } , 20 1 0 . } 
+
+\noindent {\small 1 2 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller , Lawr ence C . Paulson , Fr ank Theiss , and Ar naud Fietzke . } 
+ {\small LEO - II } \quad {\small A Cooper ative Automatic Theor em Pr over } \quad {\small for } \quad {\small Higher - Or der } \quad {\small Logic . } 
+ {\small In P . Baumgar tner , A . Armando , and D . Gilles , editor s , \textit{Proceedings of the 4 th } } 
+ {\small \textit{Inte } }  $ r-n $  {\small \textit{ational Joint Conference on Automated Reasoning } , number 5 1 95 in Lectur e } 
+ {\small Notes in Ar tificial Intelligence , pages 1 62 } \quad {\small 1 70 , 2008 . } 
+
+\noindent {\small 1 3 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller and Adam Pease . Pr ogr ess in automating higher - or der on - } 
+ {\small tology r easoning . } \quad {\small In Bor is Konev , Renate Schmidt , and Stephan Schulz , editor s , } 
+ {\small \textit{Workshop on Practical Aspects of Automated Reasoning ( PAAR - 201 0 ) } , Edinbur gh , } 
+ {\small UK , July 14 th 20 1 0 . CEUR Workshop Pr oceedings . } 
+
+\noindent {\small 14 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller and Adam Pease . } \quad {\small Reasoning with embedded for mulas and } 
+ {\small modalities in SUMO . In A . Bundy , J . Lehmann , G . Qi , and I . J . Var zinczak , editor s , } 
+
+{\small \textit{The ECAI - 1 0 } } \quad {\small \textit{Workshop on Automated Reasoning about Context and Ontology } } 
+ {\small \textit{Evolution ( ARCOE - 1 0 ) } , August 1 6 - 1 7 , Lisbon , Por tugal , 20 1 0 . } 
+
+\noindent {\small 1 5 . } \quad {\small Chr istoph Benzm }  $ \ddot{u} $  {\small ller , Flor ian Rabe , and Geoff Sutcliffe . THF 0 } \quad {\small The Cor e TPTP } 
+ {\small Language for Classical Higher - Or der Logic . In P . Baumgar tner , A . Armando , and } 
+ {\small D . Gilles , editor s , \textit{Proceedings of the 4 th Inte } }  $ r-n $  {\small \textit{ational Joint Conference on Auto - } } 
+ {\small \textit{mated Reasoning } , number 5 1 95 in Lectur e Notes in Ar tificial Intelligence , pages } 
+ {\small 49 1 506 , 2008 . } 
+ {\small 1 6 . } \quad {\small Patr ick Blackbur n and Maar ten Marx . } \quad {\small Tableaux for quantified hybr id logic . } \quad {\small In } 
+ {\small Uwe Egly and Chr istian G . Fer m }  $ \ddot{u} $  {\small ller , editor s , \textit{Automated Reasoning with Ana - } } 
+ {\small \textit{lytic Tableaux and Related Methods , Inte } }  $ r-n $  {\small \textit{ational Conference , TABLEA UX 2002 , } } 
+ {\small \textit{Copenhagen , } } \quad {\small \textit{Denmark , } } \quad {\small \textit{July 30 - August 1 , } } \quad {\small \textit{2002 , } } \quad {\small \textit{Proceedings } , volume 2381 of } 
+ {\small \textit{Lecture Notes in Computer Science } , pages 38 52 . Spr inger , 2002 . } 
+
+\noindent {\small 1 7 . } \quad {\small Tor ben Br a }  $ \ddot{u} $  {\small ner . Natur al deduction for fir st - or der hybr id logic . } \quad {\small \textit{Jou } }  $ n-r $  {\small \textit{al of Logic , } } 
+ {\small \textit{Language and Info } }  $ r-m $  {\small \textit{ation } , 14 ( 2 ) : 1 73 } \quad {\small 1 98 , 2005 . } 
+
+\noindent {\small 1 8 . } \quad {\small Alonzo Chur ch . A for mulation of the simple theor y of types . } \quad {\small \textit{Jou } }  $ r-n $  {\small \textit{al of Symbolic } } 
+ {\small \textit{Logic } , 5 : 5 6 68 , 1 940 . } 
+
+\noindent {\small 1 9 . } \quad {\small Melvin Fitting . } \quad {\small Inter polation for } \quad {\small fir st or der } \quad {\small S 5 . } \quad {\small \textit{Jou } }  $ r-n $  {\small \textit{al of Symbolic Logic } , } 
+ {\small 67 ( 2 ) : 62 1 634 , 2002 . } 
+
+\noindent {\small 20 . } \quad {\small Dov Gabbay , Agi Kurucz , Fr ank Wolter , } \quad {\small and Michael Zakhar yaschev . } \quad {\small \textit{Many - } } 
+ {\small \textit{dimensional modal logics : theory and applications } . } \quad {\small Studies in Logic , 148 . Elsevier } 
+ {\small Science , 2 3 . } 
+
+\noindent {\small 2 1 . } \quad {\small Deepak Gar g and Mar tin Abadi . A Modal Deconstr uction of Access Contr ol Logics . } 
+ {\small In R . Amadio , editor , \textit{Proceedings of the 1 1 th Inte } }  $ r-n $  {\small \textit{ational Conference on the } } 
+ {\small \textit{Foundations of So } }  $ f-t $  {\small \textit{ware Science and Computational Structures } , number 4962 in } 
+ {\small Lectur e Notes in Computer Science , pages 2 1 6 2 30 , 2 8 . } 
+ {\small 22 . } \quad {\small James Gar son . Modal logic . In Edward N . Zalta , editor , \textit{The Stanford Encyclopedia } } 
+ {\small \textit{of Philosophy } . Winter 2009 edition , 2009 . } 
+
+
+\newpage
+\noindent {\small 23 . } \quad {\small Kur t G }  $ \ddot{o} $  {\small del . Eine inter pr etation des intuitionistischen }  $ \mathrm{aussagen} ^{ \mathrm{k-a} }$  {\small lk }  $ \ddot{u} $  {\small ls . \textit{Ergebnisse } } 
+ {\small \textit{eines Mathematischen Kolloquiums } , 8 : 39 40 , 1 933 . } \quad {\small Also published in G }  $ \ddot{o} $  {\small del [ 24 ] , } 
+ {\small 2 96 302 . } 
+
+\noindent {\small 24 . } \quad {\small Kur t G }  $ \ddot{o} $  {\small del . } \quad {\small \textit{Collected Works , } } \quad {\small \textit{Volume I } . Oxfor d Univer sity Pr ess , 1 986 . } 
+ {\small 25 . } \quad {\small Rober t Goldblatt . } \quad {\small \textit{Logics of Time and Computation } . } \quad {\small Number } \quad {\small 7 in Center for } 
+ {\small the Study of Language and Infor mation - Lectur e Notes . Leland Stanfor d Junior } 
+ {\small Univer sity , 1 992 . } 
+ {\small 26 . } \quad {\small Leon Henkin . } \quad {\small Completeness in the theor y of types . } \quad {\small \textit{Journal of Symbolic Logic } , } 
+ {\small 1 5 : 8 1 9 1 , 1 950 . } 
+ {\small 27 . } \quad {\small Mark } \quad {\small Kaminski } \quad {\small and } \quad {\small Ger t } \quad  $ \mathrm{Smol} ^{ \mathrm{k-a} } . $  \quad {\small Terminating } \quad {\small tableau } \quad {\small systems } \quad {\small for } \quad {\small hybr id } 
+ {\small logic with differ ence and conver se . } \quad {\small \textit{Journal of Logic , Language and Info } }  $ r-m $  {\small \textit{ation } , } 
+ {\small 1 8 ( 4 ) : 437 464 , Oct 2009 . } 
+ {\small 28 . } \quad {\small John C . C . McKinsey and Alfr ed Tar ski . } \quad {\small Some theor ems about the sentential } 
+ {\small calculi of lewis and heyting . } \quad {\small \textit{Jou } }  $ r-n $  {\small \textit{al of Symbolic Logic } , 1 3 : 1 } \quad {\small 1 5 , 1 948 . } 
+ {\small 29 . } \quad {\small Tobias Nipkow , Lawr ence C . Paulson , and Markus Wenzel . } \quad {\small \textit{Isabelle / HOL - A } } 
+ {\small \textit{Proof Assistant for Higher - Order Logic } , volume 2283 of \textit{Lecture Notes in Computer } } 
+ {\small \textit{Science } . Spr inger , 2002 . } 
+ {\small 30 . } \quad {\small David A . Randell , Zhan Cui , and Anthony G . Cohn . } \quad {\small A spatial logic based on } 
+ {\small r egions and connection . In \textit{Proceedings 3 rd Inte } }  $ r-n $  {\small \textit{ational Conference on Knowledge } } 
+ {\small \textit{Representation and Reasoning } , pages 1 65 } \quad {\small 1 76 , 1 992 . } 
+ {\small 3 1 . } \quad {\small Kr ister Seger ber g . } \quad {\small Two - dimensional modal logic . } \quad {\small \textit{Jou } }  $ r-n $  {\small \textit{al of Philosophical Logic } , } 
+ {\small 2 ( 1 ) : 77 96 , 1 973 . } 
+ {\small 32 . } \quad {\small Geoff Sutcliffe . } \quad {\small TPTP , } \quad {\small TSTP , } \quad {\small CASC , } \quad {\small etc . } \quad {\small In V . } \quad {\small Dieker t , } \quad {\small M . } \quad {\small Volkov , } \quad {\small and } 
+ {\small A . Vor onkov , editor s , \textit{Proceedings of the 2 nd Inte } }  $ r-n $  {\small \textit{ational Computer Science Sym - } } 
+ {\small \textit{posium in Russia } , number 4649 in Lectur e Notes in Computer Science , pages 7 23 . } 
+ {\small Spr inger - Ver lag , 2 7 . } 
+ {\small 33 . } \quad {\small Geoff Sutcliffe . The TPTP pr oblem libr ar y and associated infr astr uctur e . } \quad {\small \textit{J . Au - } } 
+ {\small \textit{tom . Reasoning } , 43 ( 4 ) : 337 362 , 2009 . } 
+ {\small 34 . } \quad {\small Geoff Sutcliffe and Chr istoph Benzm }  $ \ddot{u} $  {\small ller . } \quad {\small Automated r easoning in higher - or der } 
+ {\small logic using the TPTP THF infr astr uctur e . } \quad {\small \textit{Jou } }  $ r-n $  {\small \textit{al of Fo } }  $ m-r $  {\small \textit{alized Reasoning } , } 
+ {\small 3 ( 1 ) : 1 } \quad {\small 27 , 2 0 1 0 . } 
+ {\small 35 . } \quad {\small Geoff Sutcliffe , Chr istoph Benzm }  $ \ddot{u} $  {\small ller , Chad Br own , and Fr ank Theiss . Pr ogr ess in } 
+ {\small the development of automated theor em pr oving for higher - or der logic . } \quad {\small In Renate } 
+ {\small Schmidt , editor , \textit{Automated Deduction - CADE - 22 , 22 nd International Conference } } 
+ {\small \textit{on Automated Deduction , Montreal , Canada , August 2 - 7 , 2009 . Proceedings } , vol - } 
+ {\small ume 5663 of \textit{LNCS } , pages 1 1 6 1 30 . Spr inger , 2009 . } 
+
+
+
+\end{document}

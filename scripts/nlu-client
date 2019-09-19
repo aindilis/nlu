@@ -1,0 +1,91 @@
+#!/usr/bin/perl -w
+
+use KBS2::ImportExport;
+use PerlLib::SwissArmyKnife;
+use UniLang::Util::TempAgent;
+
+use BOSS::Config;
+
+$specification = "
+	-c <context>	The context to use
+
+	--start <pos>	The starting offset of the text
+	--end <pos>	The ending offset of the text
+
+	--clear		Clear the context of Sayer
+
+	--plain		Don't print the message
+
+	--emacs		Output emacs data
+	--prolog	Output prolog data
+
+	-f <file>	File to process
+
+	-o		Output to file (<file>.nlu.gz)
+
+	-r		Run the processing
+
+	--all		Perform all processing
+
+	--pp		Process Patterns
+	--pw		Process WSD
+
+	-t		Run the tests
+
+	-p		Print the domain
+
+	-u [<host> <port>]	Run as a UniLang agent
+
+	-w			Require user input before exiting
+";
+
+
+my $config =
+  BOSS::Config->new
+  (Spec => $specification);
+my $conf = $config->CLIConfig;
+# $UNIVERSAL::systemdir = "/var/lib/myfrdcsa/codebases/minor/system";
+
+if (exists $conf->{'-u'}) {
+  $agent->Register
+    (Host => defined $conf->{-u}->{'<host>'} ?
+     $conf->{-u}->{'<host>'} : "localhost",
+     Port => defined $conf->{-u}->{'<port>'} ?
+     $conf->{-u}->{'<port>'} : "9000");
+}
+
+my $tempagent = UniLang::Util::TempAgent->new();
+
+my $file = $conf->{'-f'} or die "Need to specify a file\n";;
+die "File does not exist: $file\n" unless -f $file;
+
+my $c = read_file($file);
+my $message = $tempagent->MyAgent->QueryAgent
+  (
+   Receiver => "NLU",
+   Contents => "",
+   'Data' => {
+	      '_DoNotLog' => 1,
+	      'Database' => 'freekbs2',
+	      'Context' => $conf->{'-c'} || 'Org::FRDCSA::NLU::Temp2',
+	      'Light' => 1,
+	      'All' => 1,
+	      'Run' => 1,
+	      'File' => $file,
+	      'Start' => 0,
+	      'End' => length($c),
+	     },
+  );
+
+if ($conf->{'--plain'}) {
+  print $message->Data->{Result}."\n";
+} elsif ($conf->{'-o'}) {
+  my $ofile = $file.".nlu";
+  my $fh = IO::File->new;
+  $fh->open(">$ofile") or die "Cannot open for writing: $ofile\n";
+  print $fh $message->Generate();
+  $fh->close();
+  system "gzip ".shell_quote($ofile);
+} else {
+  print $message->Generate();
+}

@@ -1,0 +1,71 @@
+("annotations" "HTML")
+("annotations" "DocBook")
+("annotations" "TIMEX3")
+("annotations" "RST")
+("annotations" "NER")
+
+;; named entity annotations
+("annotations" "NameLex")
+("annotations" "NameNet")
+
+;; http://www.tei-c.org/Guidelines/Customization/Lite/U5-body.html#vedr
+
+;; script writing formatting
+;; play formatting
+
+;; have implied annotations, for instance a tag of Isa::Canine would
+;; imply Isa::Mammal
+
+;; come up with general formatting tags
+
+("genls" "html_document" "sgmlish-document")
+("genls" "xml_document" "sgmlish-document")
+
+
+"ascii_text"
+"text"
+"sentence"
+"paragraph"
+"punctuation"
+"period"
+"whitespace_between_paragraphs"
+"title"
+"hex_characters"
+"date"
+"wikipedia_markup"
+"bullet_list"
+"timezone"
+"word"
+"phrase"
+"named_entity"
+"proper_noun"
+"noun"
+"verb"
+"adverb"
+"sentence_end_without_punctuation"
+"number"
+"wikipedia_markup_link"
+"wikipedia_markup_title"
+"wikipedia_markup_infobox"
+"lisp_notation_list"
+"lisp_notation_list_item"
+"lisp_notation_list_opening"
+"lisp_notation_list_closing"
+"pddl_domain"
+"pddl_domain_init_item"
+"FRDCSA_system_name"
+"perl_program"
+"perl_module"
+"perl_script"
+"html_tag"
+"url"
+"thing-at-point-symbol"
+"line"
+"line-end"
+"line-start"
+"fiction"
+"nonfiction"
+"article"
+"research_paper"
+"journal_paper"
+"book_chapter"

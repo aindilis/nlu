@@ -1,0 +1,1080 @@
+Combining Logics in Simple Type Theory
+Christoph Benzm¨ller
+u
+Articulate Software, Angwin, CA, U.S.
+
+Abstract. Simple type theory is suited as framework for combining
+classical and non-classical logics. This claim is based on the observation
+that various prominent logics, including (quantiﬁed) multimodal logics
+and intuitionistic logics, can be elegantly embedded in simple type theory. Furthermore, simple type theory is suﬃciently expressive to model
+combinations of embedded logics and it has a well understood semantics. Oﬀ-the-shelf reasoning systems for simple type theory exist that
+can be uniformly employed for reasoning within and about combinations
+of logics. Combinations of modal logics and other logics are particularly
+relevant for multi-agent systems.
+
+1
+
+Introduction
+
+Church’s simple type theory ST T [18], also known as classical higher-order logic,
+is suited as a framework for combining classical and non-classical logics. This is
+what this paper illustrates.
+Evidently, ST T has many prominent classical logic fragments, including
+propositional and ﬁrst-order logic, the guarded fragment, second-order logic,
+monadic second-order logic, the basic fragment of ST T , etc. Interestingly, also
+prominent non-classical logics – including quantiﬁed multi-modal logics and intuitionistic logic – can be elegantly embedded in ST T . It is thus not surprising
+that also combinations of such logics can be ﬂexibly modeled within ST T . Our
+claim is furthermore supported by the fact that the semantics of ST T is well understood [1, 2, 8, 26] and that powerful proof assistants and automated theorem
+provers for ST T already exist. The automation of ST T currently experiences
+a renaissance that has been fostered by the recent extension of the successful
+TPTP infrastructure for ﬁrst-order logic [33] to higher-order logic, called TPTP
+THF [34, 35, 15]. Exploiting this new infrastructure we will demonstrate how
+higher-order automated theorem provers and model generators can be employed
+for reasoning within and about combinations of logics.
+Our work is relevant for multi-agents systems in several ways. Most importantly, modal logics and combinations of modal logics are often employed for
+modeling multi-agents systems and for reasoning about them.
+A previous version of this paper has been presented at the World Congress and
+School on Universal Logic III (UNILOG’2010), Lisbon, Portugal, April 18-25, 2010.
+This work has been funded by the German Research Foundation (DFG) under grant
+BE 2501/6-1.
+
+In this paper we present a fresh approach to the automation of logic combinations and we in particular include quantiﬁed modal logics. For quantiﬁed modal
+logics actually only very few theorem provers are available. In our approach
+even challenge combinations of logics can be achieved: as an example we outline
+a combination of spatial and epistemic reasoning. Moreover, our approach even
+supports the automated analysis and veriﬁcation of meta-properties of combined
+logics. It can thus serve as a useful tool for engineers of logic combinations.
+In Sect. 2 we outline our embedding of quantiﬁed multimodal logics in ST T .
+Further logic embeddings in ST T are discussed in Sect. 3; our examples comprise intuitionistic logic, access control logics and the region connection calculus.
+In Sect. 4 we illustrate how the reasoning about logics and their combinations is
+facilitated in our approach, and in Sect. 5 we employ simple examples to demonstrate the application of our approach for reasoning within combined logics. The
+performance results of our experiments with oﬀ-the-shelf, TPTP THF compliant
+higher-order automated reasoning systems are presented in Sect. 6.
+
+2
+
+(Normal) Quantiﬁed Multimodal Logics in ST T
+
+ST T [18] is based on the simply typed λ-calculus. The set T of simple types
+is usually freely generated from a set of basic types {o, ι} (where o is the type
+of Booleans and ι is the type of individuals) using the right-associative function
+type constructor . Instead of {o, ι} we here consider a set of base types {o, ι, µ},
+providing an additional base type µ (the type of possible worlds).
+The simple type theory language ST T is deﬁned by (where α, β, o ∈ T ):
+s, t ::= pα | Xα | (λXα sβ )α
+(so ∨o
+
+o o to )o
+
+β
+
+| (sα
+
+| (sα =α
+
+β tα )β
+
+α o tα )o
+
+| (¬o
+
+| (Π(α
+
+o so )o
+
+|
+
+o) o sα o )o
+
+pα denotes typed constants and Xα typed variables (distinct from pα ). Complex
+typed terms are constructed via abstraction and application. Our logical connectives of choice are ¬o o , ∨o o o , =α α o and Π(α o) o (for each type α).1
+From these connectives, other logical connectives can be deﬁned in the usual way
+(e.g., ∧ and ⇒). We often use binder notation ∀Xα s for Π(α o) o (λXα so ). We
+assume familiarity with α-conversion, β- and η-reduction, and the existence of
+β- and βη-normal forms. Moreover, we obey the usual deﬁnitions of free variable
+occurrences and substitutions.
+The semantics of ST T is well understood and thoroughly documented in the
+literature [1, 2, 8, 26]. The semantics of choice for our work is Henkin semantics.
+Quantiﬁed modal logics have been studied by Fitting [19] (further related
+work is available by Blackburn and Marx [16] and Bra¨ner [17]). In contrast to
+u
+Fitting we are here not interested only in S5 structures but in the more general
+case of K from which more constrained structures (such as S5) can be easily
+obtained. First-order quantiﬁcation can be constant domain or varying domain.
+1
+
+This choice is not minimal (from =α α o all other logical constants can already be
+deﬁned [3]). It useful though in the context of resolution based theorem proving.
+
+Below we only consider the constant domain case: every possible world has the
+same domain. Like Fitting, we keep our deﬁnitions simple by not having function
+or constant symbols. While Fitting [19] studies quantiﬁed monomodal logic, we
+are interested in quantiﬁed multimodal logic. Hence, we introduce multiple 2r
+operators for symbols r from an index set S. The grammar for our quantiﬁed
+multimodal logic QML hence is
+s, t ::= P | k(X 1 , . . . , X n ) | ¬ s | s ∨ t | ∀X s | ∀P s | 2r s
+where P ∈ PV denotes propositional variables, X, X i ∈ IV denote ﬁrst-order
+(individual) variables, and k ∈ SYM denotes predicate symbols of any arity.
+Further connectives, quantiﬁers, and modal operators can be deﬁned as usual.
+We also obey the usual deﬁnitions of free variable occurrences and substitutions.
+Fitting introduces three diﬀerent notions of Kripke semantics for QML:
+QS5π − , QS5π, and QS5π + . In our work [10] we study related notions QKπ − ,
+QKπ, and QKπ + for a modal context K, and we support multiple modalities.
+ST T is an expressive logic and it is thus not surprising that QML can be
+elegantly modeled and even automated as a fragment of ST T . The idea of the encoding, called QMLST T , is simple. Choose type ι to denote the (non-empty) set
+of individuals and we choose the second base type µ to denote the (non-empty)
+set of possible worlds. As usual, the type o denotes the set of truth values. Certain formulas of type µ o then correspond to multimodal logic expressions. The
+multimodal connectives ¬, ∨, and 2, become λ-terms of types (µ o) (µ o),
+(µ o) (µ o) (µ o), and (µ µ o) (µ o) (µ o) respectively.
+Quantiﬁcation is handled as in ST T by modeling ∀X p as Π(λX .p) for
+a suitably chosen connective Π. Here we are interested in deﬁning two particular modal Π-connectives: Π ι , for quantiﬁcation over individual variables,
+and Π µ o , for quantiﬁcation over modal propositional variables that depend on
+worlds. They become terms of type (ι
+(µ
+o))
+(µ
+o) and ((µ
+o)
+(µ o)) (µ o) respectively.
+The QMLST T modal operators ¬, ∨, 2, Π ι , and Π µ o are now simply deﬁned as follows:
+¬ (µ
+∨ (µ
+2 (µ µ
+
+o) (µ o)
+
+o) (µ o) (µ o)
+o) (µ o) (µ o)
+
+Πι
+(ι
+
+(µ o)) (µ o)
+Π µ o o) (µ o)) (µ o)
+((µ
+
+= λφµ
+= λφµ
+= λRµ
+= λφι
+= λφ(µ
+
+o
+
+λWµ ¬φ W
+
+λψµ o λWµ φ W ∨ ψ W
+µ o λφµ o λWµ ∀Vµ ¬R W V ∨ φ V
+
+o
+
+(µ o)
+
+λWµ ∀Xι φ X W
+
+o) (µ o)
+
+λWµ ∀Pµ
+
+o
+
+φP W
+
+Note that our encoding actually only employs the second-order fragment of
+ST T enhanced with lambda-abstraction.
+Further operators can be introduced as usual, for example, = λWµ , ⊥ =
+¬ , ∧ = λφ, ψ ¬ (¬ φ ∨ ¬ ψ), ⊃ = λφ, ψ ¬ φ ∨ ψ, ⇔ = λφ, ψ (φ ⊃ ψ) ∧
+(ψ ⊃ φ), 3 = λR, φ ¬ (2 R (¬ φ)), Σ ι = λφ ¬ Π ι (λX ¬ φ X), Σ µ o =
+λφ ¬ Π µ o (λP ¬ φ P ).
+
+For deﬁning QMLST T -propositions we ﬁx a set IV ST T of individual variables
+of type ι, a set PV ST T of propositional variables2 of type µ
+o, and a set
+SYMST T of n-ary (curried) predicate symbols of types ι . . . ι (µ o).
+n
+
+Moreover, we ﬁx a set S ST T of accessibility relation constants of type µ µ o.
+QMLST T -propositions are now deﬁned as the smallest set of ST T -terms for
+which the following hold:
+– if P ∈ PV ST T , then P ∈ QMLST T
+– if X j ∈ IV ST T (j = 1, . . . , n) and k ∈ SYMST T , then (k X 1 . . . X n ) ∈
+QMLST T
+– if φ, ψ ∈ QMLST T , then ¬ φ ∈ QMLST T and φ ∨ ψ ∈ QMLST T
+– if r ∈ S ST T and φ ∈ QMLST T , then 2 r φ ∈ QMLST T
+– if X ∈ IV ST T and φ ∈ QMLST T , then Π ι (λX φ) ∈ QMLST T
+– if P ∈ PV ST T and φ ∈ QMLST T , then Π µ o (λP φ) ∈ QMLST T
+We write 2r φ for 2 r φ, ∀Xι φ for Π ι (λXι φ), and ∀Pµ o φ for Π µ o (λPµ o φ).
+Note that the deﬁning equations for our QML modal operators are themselves formulas in ST T . Hence, we can express QML formulas in a higher-order
+reasoner elegantly in the usual syntax. For example, 2r ∃Pµ o P is a QMLST T
+proposition; it has type µ o.
+Validity of QMLST T propositions is deﬁned in the obvious way: a QMLproposition φµ o is valid if and only if for all possible worlds wµ we have w ∈
+φµ o , that is, if and only if φµ o wµ holds. Hence, the notion of validity is
+modeled via the following equation (alternatively we could deﬁne valid simply
+as Π(µ o) o ):
+valid = λφµ o ∀Wµ φ W
+Now we can formulate proof problems in QMLST T , e.g., valid 2r ∃Pµ o P .
+Using rewriting or deﬁnition expanding, we can reduce such proof problems to
+corresponding statements containing only the basic connectives ¬, ∨, =, Π ι ,
+and Π µ o of ST T . In contrast to the many other approaches no external transformation mechanism is required. For our example formula valid 2r ∃Pµ o P
+unfolding and βη-reduction leads to ∀Wµ ∀Yµ ¬r W Y ∨ (¬∀Xµ o ¬(X Y )). It
+is easy to check that this formula is valid in Henkin semantics: put X = λYµ .
+We have proved soundness and completeness for this embedding [10], that is,
+for s ∈ QML and the corresponding sµ o ∈ QMLST T ⊂ ST T we have:
+Theorem 1. |=ST T (valid sµ
+
+o)
+
+if and only if |=QKπ s.
+
+This result also illustrates the correspondence between QKπ models and
+Henkin models; for more details see [10].
+Obviously, the reduction of our embedding to ﬁrst-order multimodal logics (which only allow quantiﬁcation over individual variables), to propositional
+quantiﬁed multimodal logics (which only allow quantiﬁcation over propositional
+variables) and to propositional multimodal logics (no quantiﬁers) is sound and
+2
+
+Note that the denotation of propositional variables depends on worlds.
+
+complete. Extending our embedding for hybrid logics is straightforward [27]; note
+in particular that denomination of individual worlds using constant symbols of
+type µ is easily possible.
+In the remainder we will often omit type information. It is suﬃcient to remember that worlds are of type µ, multimodal propositions of type µ o, and
+accessibility relations of type µ µ o. Individuals are of type ι.
+
+3
+
+Embeddings of Other Logics in ST T
+
+We have studied several other logic embeddings in ST T , some of which will be
+mentioned in this section.
+Intuitionistic Logics G¨dels interpretation of propositional intuitionistic logic
+o
+in propositional modal logic S4 [23] can be combined with our results from
+the previous section in order to provide a sound and complete embedding of
+propositional intuitionistic logic into ST T [10].
+G¨del studies the propositional intuitionistic logic IPL deﬁned by
+o
+˙
+˙
+˙
+s, t ::= p | ¬ s | s ⊃ t | s ∨ t | p ∧ t
+˙
+He introduces the a mapping from IPL into propositional modal logic S4
+˙
+˙
+˙
+which maps ¬ s to ¬ 2r s, s ⊃ t to 2r s ⊃ 2r t, s ∨ t to 2r s ∨ 2r t, and s ∧ t
+˙
+to s ∧ t.3 By simply combining G¨del’s mapping with our mapping from before
+o
+we obtain the following embedding of IPL in ST T .
+Let IPL be a propositional intuitionistic logic with atomic primitives p1 ,
+. . . , pm (m ≥ 1) . We deﬁne the set IPLST T of corresponding propositional
+intuitionistic logic propositions in ST T as follows.
+1. For the atomic IPL primitives p1 , . . . , pm we introduce corresponding
+IPLST T predicate constants p1 o , . . . , pm o . Moreover, we provide the sinµ
+µ
+gle accessibility relation constant rµ µ o .
+2. Corresponding to G¨del’s mapping we introduce the logical connectives of
+o
+IPLST T as abbreviations for the following λ-terms (we omit the types here):
+¬ = λφ λW ¬∀V ¬r W V ∨ φ V
+˙
+˙
+⊃ = λφ λψ λW ¬(∀V ¬r W V ∨ φ V ) ∨ (∀V ¬r W V ∨ ψ V )
+˙
+∨ = λφ λψ λW (∀V ¬r W V ∨ φ V ) ∨ (∀V ¬r W V ∨ ψ V )
+˙
+∧ = λφ λψ λW ¬(¬φ W ∨ ¬ψ W )
+3. We deﬁne the set of IPLST T -propositions as the smallest set of simply typed
+λ-terms for which the following hold:
+– p1 o , . . . , pm o deﬁne the atomic IPLST T -propositions.
+µ
+µ
+3
+
+Alternative mappings have been proposed and studied in the literature which we
+could employ here equally as well.
+
+˙
+˙
+– If φ and ψ are IPLST T -propositions, then so are ¬ φ, φ ⊃ ψ, φ ∨ ψ, and
+˙
+˙
+φ ∧ ψ.
+The notion of validity we adopt is the same as for QMLST T . However, since
+G¨del connects IPL with modal logic S4, we transform each proof problem
+o
+t ∈ IPL into a corresponding proof problem t in ST T of the following form
+t := ((valid ∀φµ
+
+o
+
+2r φ ⊃ φ) ∧ (valid ∀φµ
+
+o
+
+2r φ ⊃ 2r 2r φ)) ⇒ (valid tµ
+
+o)
+
+where tµ o is the IPLST T term for t according to our deﬁnition above. Alternatively we may translate t into t := ((reﬂexive r) ∧ (transitive r)) ⇒ (valid tµ o ).
+Combining soundness [23] and completeness [28] of G¨del’s embedding with
+o
+Theorem 1 we obtain the following soundness and completeness result: Let
+t ∈ IPL and let t ∈ ST T as constructed above. t is valid in propositional
+intuitionistic logic if and only if t is valid in ST T .
+Example problems in intuitionistic logic have been encoded in THF syntax
+[15] and added to the TPTP THF library4 and are accessible under identiﬁers
+SYO058ˆ4 – SYO074ˆ4.
+Access Control Logics Garg and Abadi recently translated several prominent
+access control logics into modal logic S4 and proved these translations sound
+and complete [21]. We have combined this work with our above results in order
+to obtain a sound and complete embedding of these access control logics in
+ST T and we have carried out experiments with the prover LEO-II [7]. Example
+problems have been added to the TPTP THF library and are accessible under
+identiﬁers SWV425ˆx – SWV436ˆx (for x ∈ {1, . . . , 4}).
+Logics for Spatial Reasoning Evidently, the region connection calculus [30] is a
+fragment of ST T : choose a base type r (’region’) and a reﬂexive and symmetric
+relation c (’connected’) of type r
+r
+o and deﬁne (where X, Y, and Z are
+variables of type r):
+disconnected : dc = λX, Y ¬(c X Y )
+part of : p = λX, Y ∀Z ((c Z X) ⇒ (c Z Y ))
+identical with : eq = λX, Y ((p X Y ) ∧ (p Y X))
+overlaps :
+
+o
+
+= λX, Y ∃Z ((p Z X) ∧ (p Z Y ))
+
+partially overlaps : po = λX, Y ((o X Y ) ∧ ¬(p X Y ) ∧ ¬(p Y X))
+externally connected : ec = λX, Y ((c X Y ) ∧ ¬(o X Y ))
+proper part : pp = λX, Y ((p X Y ) ∧ ¬(p Y X))
+tangential proper part : tpp = λX, Y ((pp X Y ) ∧ ∃Z ((ec Z X) ∧ (ec Z Y )))
+nontang. proper part : ntpp = λX, Y ((pp X Y ) ∧ ¬∃Z ((ec Z X) ∧ (ec Z Y )))
+An example problem for the region connection calculus will be discussed below.
+4
+
+TPTP THF problems for various problem categories are available at http://www.
+cs.miami.edu/~tptp/cgi-bin/SeeTPTP?Category=Problems; all problem identiﬁers
+with an ’ˆ’ in their name refer to higher-order THF problems. The TPTP library
+meanwhile contains more than 2700 example problems in THF syntax.
+
+4
+
+Reasoning about Logics and Combinations of Logics
+
+We illustrate how our approach supports reasoning about logics and their combinations. First, we focus on modal logics and their well known relationships
+between properties of accessibility relations and corresponding modal axioms
+(respectively axiom schemata) [25]. Such meta-theoretic insights can be elegantly
+encoded (and, as we will later see, automatically proved) in our approach. First
+we encode various accessibility relation properties in ST T :
+reﬂexive = λR ∀S R S S
+symmetric = λR ∀S, T ((R S T ) ⇒ (R T S))
+serial = λR ∀S ∃T (R S T )
+
+(1)
+(2)
+(3)
+
+transitive = λR ∀S, T, U ((R S T ) ∧ (R T U ) ⇒ (R S U ))
+euclidean = λR ∀S, T, U ((R S T ) ∧ (R S U ) ⇒ (R T U ))
+partially functional = λR ∀S, T, U ((R S T ) ∧ (R S U ) ⇒ T = U )
+
+(4)
+(5)
+(6)
+
+functional = λR ∀S ∃T ((R S T ) ∧ ∀U ((R S U ) ⇒ T = U ))
+
+(7)
+
+weakly dense = λR ∀S, T ((R S T ) ⇒ ∃U ((R S U ) ∧ (R U T )))
+
+(8)
+
+weakly connected = λR ∀S, T, U (((R S T ) ∧ (R S U )) ⇒
+((R T U ) ∨ T = U ∨ (R U T )))
+
+(9)
+
+weakly directed = λR ∀S, T, U (((R S T ) ∧ (R S U )) ⇒
+∃V ((R T V ) ∧ (R U V )))
+Remember, that R is of type µ
+sponding axioms are given next.
+
+µ
+
+M : ∀φ 2r φ ⊃ φ
+B : ∀φ φ ⊃ 2r 3r φ
+
+(11)
+
+D : ∀φ 2r φ ⊃ 3r φ
+
+(13)
+
+(12)
+
+4 : ∀φ 2r φ ⊃ 2r 2r φ (14)
+5 : ∀φ 3r φ ⊃ 2r 3r φ (15)
+
+(10)
+
+o and S, T, U are of type µ. The corre∀φ 3r φ ⊃ 2r φ
+∀φ 3r φ ⇔ 2r φ
+
+(16)
+(17)
+
+∀φ 2r 2r φ ⊃ 2r φ
+(18)
+∀φ, ψ 2r ((φ ∧ 2r φ) ⊃ ψ) ∨
+2r ((ψ ∧ 2r ψ) ⊃ φ)
+∀φ 3r 2r φ ⊃ 2r 3r φ
+
+(19)
+(20)
+
+Example 1. For k (k = (1), . . . , (10)) we can now easily formulate the well known
+correspondence theorems (k) ⇒ (k + 10) and (k) ⇐ (k + 10). For example,
+(1) ⇒ (11) :
+
+∀R (reﬂexive R) ⇒ (valid ∀φ 2R φ ⊃ φ)
+
+Example 2. There are well known relationships between diﬀerent modal logics
+and there exist alternatives for their axiomatization (cf. the relationship map
+in [22]). For example, for modal logic S5 we may choose axioms M and 5 as
+standard axioms. Respectively for logic KB5 we may choose B and 5. We may
+then want to investigate the following conjectures (the only one that does not
+hold is (31)):
+
+S5 = M5 ⇔ MB5
+⇔ M4B5
+
+(21)
+(22)
+
+⇔ M45
+
+(23)
+
+⇔ M4B
+⇔ D4B
+
+(24)
+(25)
+
+⇔ D4B5
+⇔ DB5
+
+(26)
+(27)
+
+KB5 ⇔ K4B5
+⇔ K4B
+
+(28)
+(29)
+
+M5 ⇒ D45
+D45 ⇒ M5
+
+(30)
+(31)
+
+Exploiting the correlations (k) ⇔ (k + 10) from before these problems can be
+formulated as follows; we give the case for M5 ⇔ D4B:
+∀R (((reﬂexive R)∧(euclidean R)) ⇔ ((serial R)∧(transitive R)∧(symmetric R)))
+Example 3. We can also encode the Barcan formula and its converse. (They are
+theorems in our approach, which conﬁrms that we are ’constant domain’.)
+BF :
+
+valid ∀Xι 2r (pι
+
+(µ o)
+
+X) ⊃ 2r ∀Xι (pι
+
+(µ o)
+
+X)
+
+(32)
+
+−1
+
+valid 2r ∀Xι (pι
+
+(µ o)
+
+X) ⊃ ∀Xι 2r (pι
+
+(µ o)
+
+X)
+
+(33)
+
+BF
+
+:
+
+Example 4. An interesting meta property for combined logics with modalities
+3i , 2j , 2k , and 3l is the correspondence between the following axiom and the
+(i, j, k, l)-conﬂuence property
+(valid ∀φ (3i 2j φ) ⊃ 2k 3l φ)
+⇔ (∀A ∀B ∀C (((i A B) ∧ (k A C)) ⇒ ∃D ((j B D) ∧ (l C D))))
+
+(34)
+
+Example 5. Segerberg [31] discusses a 2-dimensional logic providing two S5 modalities 2a and 2b . He adds further axioms stating that these modalities are commutative and orthogonal. It actually turns out that orthogonality is already
+implied in this context. This statement can be encoded in our framework as
+follows:
+(reﬂexive a), (transitive a), (euclid. a), (reﬂexive b), (transitive b), (euclid. b),
+(valid ∀φ 2a 2b φ ⇔ 2b 2a φ)
+|=ST T (valid ∀φ, ψ 2a (2a φ ∨ 2b ψ) ⊃ (2a φ ∨ 2a ψ)) ∧
+(valid ∀φ, ψ 2b (2a φ ∨ 2b ψ) ⊃ (2b φ ∨ 2b ψ))
+
+(35)
+
+Example 6. Suppose we want to work with a 2-dimensional logic combining a
+modality 2k of knowledge with a modality 2b of belief. Moreover, suppose we
+model 2k as an S5 modality and 2b as an D45 modality and let us furthermore
+add two axioms characterizing their relationship. We may then want to check
+whether or not 2k and 2b coincide, i.e., whether 2k includes 2b :
+(reﬂexive k), (transitive k), (euclid. k), (serial b), (transitive b), (euclid. b),
+(valid ∀φ 2k φ ⊃ 2b φ), (valid ∀φ 2b φ ⊃ 2b 2k φ)
+|=ST T (valid ∀φ 2b φ ⊃ 2k φ)
+
+(36)
+
+5
+
+Reasoning within Combined Logics
+
+We illustrate how our approach supports reasoning within combined logics. First
+we present two examples in epistemic reasoning. In this examples we model the
+individual and common knowledge of diﬀerent persons respectively agents by
+combining diﬀerent modalities. Our formulation in both cases adapts Baldoni’s
+modeling [6].
+Example 7 (Epistemic reasoning: The friends puzzle). (i) Peter is a friend of
+John, so if Peter knows that John knows something then John knows that Peter
+knows the same thing. (ii) Peter is married, so if Peter’s wife knows something,
+then Peter knows the same thing. John and Peter have an appointment, let us
+consider the following situation: (a) Peter knows the time of their appointment.
+(b) Peter also knows that John knows the place of their appointment. Moreover,
+(c) Peter’s wife knows that if Peter knows the time of their appointment, then
+John knows that too (since John and Peter are friends). Finally, (d) Peter knows
+that if John knows the place and the time of their appointment, then John knows
+that he has an appointment. From this situation we want to prove (e) that each
+of the two friends knows that the other one knows that he has an appointment.
+For modeling the knowledge of Peter, Peter’s wife, and John we consider
+a 3-dimensional logic combining the modalities 2p , 2(w p) , and 2j . Actually
+modeling them as S4 modalities turns out to be suﬃcient for this example.
+Hence, we introduce three corresponding accessibility relations j, p, and (w p).
+The S4 axioms for x ∈ {j, p, (w p)} are
+valid ∀φ 2x φ ⊃ φ (37)
+
+valid ∀φ 2x φ ⊃ 2x 2x φ (38)
+
+As done before, we could alternatively postulate that the accessibility relations
+are reﬂexive and transitive.
+Next, we encode the facts from the puzzle. For (i) we provide a persistence
+axiom and for (ii) an inclusion axiom:
+valid ∀φ 2p 2j φ ⊃ 2j 2p φ (39)
+
+valid ∀φ 2(w p) φ ⊃ 2p φ
+
+(40)
+
+Finally, the facts (a)-(d) and the conclusion (e) are encoded as follows (time,
+place, and appointment are propositional constants, that is, constants of type
+µ o in our framework):
+valid 2p time
+valid 2p 2j place
+
+(41)
+(42)
+
+valid 2(w p) (2p time ⊃ 2j time)
+
+(43)
+
+valid 2p 2j (place ∧ time ⊃ appointment)
+
+(44)
+
+valid 2j 2p appointment ∧ 2p 2j appointment
+
+(45)
+
+The combined proof problem for Example 8 is
+(37), . . . , (44) |=ST T (45)
+
+(46)
+
+Example 8 (Wise men puzzle). Once upon a time, a king wanted to ﬁnd the
+wisest out of his three wisest men. He arranged them in a circle and told them
+that he would put a white or a black spot on their foreheads and that one of
+the three spots would certainly be white. The three wise men could see and hear
+each other but, of course, they could not see their faces reﬂected anywhere. The
+king, then, asked to each of them to ﬁnd out the color of his own spot. After a
+while, the wisest correctly answered that his spot was white.
+We employ a 4-dimensional logic combining the modalities 2a , 2b , and 2c ,
+for encoding the individual knowledge of the three wise men, and a box operator
+2fool , for encoding the knowledge that is common to all of them. The entire
+encoding consists now of the following axioms for X, Y, Z ∈ {a, b, c} and X =
+Y = Z:
+valid 2fool ((ws a) ∨ (ws b) ∨ (ws c))
+valid 2fool ((ws X) ⊃ 2Y (ws X))
+
+(47)
+(48)
+
+valid 2fool (¬ (ws X) ⊃ 2Y ¬ (ws X))
+
+(49)
+
+valid ∀φ 2fool φ ⊃ φ
+valid ∀φ 2fool φ ⊃ 2fool 2fool φ
+valid ∀φ 2fool φ ⊃ 2a φ
+
+(50)
+(51)
+
+valid ∀φ 2fool φ ⊃ 2b φ
+valid ∀φ 2fool φ ⊃ 2c φ
+
+(53)
+(54)
+
+valid ∀φ ¬ 2X φ ⊃ 2Y ¬ 2X φ
+
+(55)
+
+valid ∀φ 2X φ ⊃ 2Y 2X φ
+
+(56)
+
+valid ¬ 2a (ws a)
+
+(57)
+
+valid ¬ 2b (ws b)
+
+(58)
+
+(52)
+
+From these assumptions we want to conclude that
+valid 2c (ws c)
+
+(59)
+
+Axiom (47) says that a, b, or c must have a white spot and that this information is known to everybody. Axioms (48) and (49) express that it is generally
+known that if someone has a white spot (or not) then the others see and hence
+know this. 2fool is axiomatized as an S4 modality in axioms (50) and (51). For
+2a , 2b , and 2c it is suﬃcient to consider K modalities. The relation between
+those and common knowledge (2fool modality) is axiomatized in inclusion axioms (52)–(55). Axioms (55) and (56) encode that whenever a wise man does
+(not) know something the others know that he does (not) know this. Axioms (57)
+
+and (58) say that a and b do not know whether they have a white spot. Finally,
+conjecture (59) states that that c knows he has a white spot. The combined
+proof problem for Example 7 is
+(47), . . . , (58) |=ST T (59)
+
+(60)
+
+Example 9. A trivial example problem for the region connection calculus is
+(adapted from [20], p. 80):
+(tpp catalunya spain),
+(ec spain france),
+(ntpp paris france),
+|=ST T (dc catalunya paris) ∧ (dc spain paris)
+
+(61)
+
+The assumptions express that (i) Catalunya is a border region of Spain, (ii)
+Spain and France are two diﬀerent countries sharing a common border, and (iii)
+Paris is a proper part of France. The conjecture is that (iv) Catalunya and Paris
+are disconnected as well as Spain and Paris.
+Example 10. Within our ST T framework we can easily put such spatial reasoning examples in an epistemic context, that is, we can model the individual
+spatial knowledge of diﬀerent agents. Similar to before we here distinguish between common knowledge (fool) and the knowledge of person bob:
+valid ∀φ 2fool φ ⊃ 2bob φ,
+valid 2bob (λW (tpp catalunya spain)),
+valid 2fool (λW (ec spain france)),
+valid 2bob (λW (ntpp paris france))
+|=ST T
+valid 2bob (λW ((dc catalunya paris) ∧ (dc spain paris)))
+
+(62)
+
+We here express that (ii) from above is commonly known, while (i) and (iii) are
+not. (i) and (iii) are known to the educated person bob though. In this situation,
+conjecture (iv) still follows for bob. However, it does not follow when replacing
+bob by common knowledge (hence, the following problem is not provable):
+. . . |=ST T valid 2fool (λW ((dc catalunya paris) ∧ (dc spain paris))) (63)
+In order to facilitate the combination of logics we have here lifted the region
+connection calculus propositions of type o to modal propositions of type µ o
+by λ-abstraction. Thus, the region connection calculus statements can now be
+applied to possible worlds; they evaluate statically though for all possible worlds
+since the λ-abstracted variable W is fresh for the encapsulated region connection
+calculus proposition.
+(tpp catalunya spain) −→ (λW (tpp catalunya spain))
+type o
+
+type ι o
+
+6
+
+Experiments
+
+In our case studies, we have employed the ST T automated reasoners LEOII—v1.1 [12], TPS—3.080227G1d [4], IsabelleP—2009-1, IsabelleM—2009-1, and
+IsabelleN—2009-1.5 These systems are available online via the SystemOnTPTP
+tool [32] and they support the new TPTP THF infrastructure for typed higherorder logic [15]. Their reasoning power is currently improving rapidly.
+The axiomatizations of QMLST T and IPLST T are available as LCL013ˆ0.ax
+and LCL010ˆ0.ax in the TPTP library.6 The example problems LCL698ˆ1.p and
+LCL695ˆ1.p ask about the satisﬁability of these axiomatizations. Both questions
+are answered positively by the Satallax prover [5] in less than a second.
+Table 1 presents the results of our experiments; the timeout was set to 120
+seconds and the entries in the table are reported in seconds. Those examples
+which have already entered the new higher-order TPTP library are presented
+with their respective TPTP identiﬁers in the second column and the others have
+meanwhile been submitted and will appear in a forthcoming TPTP release.
+As expected, (31) and (63) cannot be proved by any prover and IsabelleN
+reports a counterexample for (31) in 34.4 seconds and for (63) in 39.7 seconds.
+In summary, all but one of our example problems can be solved eﬀectively
+by at least one of the reasoners. In fact, most of our example problems require
+only milliseconds. LEO-II solves most problems and it is the fastest prover in
+our experiment.
+As mentioned before, we are not aware of any other running system that can
+handle all of the above problems.
+
+7
+
+Conclusion
+
+Our overall goal is to show that various interesting classical and non-classical
+logics and their combinations can be elegantly mechanized and partly automated
+in modern higher-order reasoning systems with the help of our logic embeddings.
+Our experiments are encouraging and they provide ﬁrst evidence for our claim
+that ST T is suited as a framework for combining classical and non-classical logics. It is obvious, however, that ST T reasoners should be signiﬁcantly improved
+for fruitful application to more challenge problems in practice. The author is
+convinced that signiﬁcant improvements — in particular for fragments of ST T
+as illustrated in this paper — are possible and that they will be fostered by the
+new TPTP infrastructure and the new yearly higher-order CASC competitions.
+Note that when working with our reasoners from within a proof assistant
+such as Isabelle/HOL the user may also provide interactive help if the reasoning
+5
+
+6
+
+IsabelleM and IsabelleN are model ﬁnder in the Isabelle proof assistant [29] that
+have been made available in batch mode, while IsabelleP applies a series of Isabelle
+proof tactics in batch mode.
+Note that the types µ and ι are unfortunately switched in the encodings available in
+the TPTP: the former is used for individuals and the latter for worlds. This syntactic
+switch is completely unproblematic.
+
+Problem
+
+TPTP id
+
+LEO-II
+
+TPS
+
+IsabelleP
+
+Reasoning about Logics and Combined Logics
+(1) ⇒ (11) LCL699ˆ1.p 0.0
+0.3
+3.6
+(2) ⇒ (12) LCL700ˆ1.p 0.0
+0.3
+13.9
+(3) ⇒ (13) LCL701ˆ1.p 0.0
+0.3
+4.0
+(4) ⇒ (14) LCL702ˆ1.p 0.0
+0.3
+15.9
+(5) ⇒ (15) LCL703ˆ1.p 0.1
+0.3
+16.0
+(6) ⇒ (16) LCL704ˆ1.p 0.0
+0.3
+3.6
+(7) ⇒ (17) LCL705ˆ1.p 0.1
+51.2
+3.9
+(8) ⇒ (18) LCL706ˆ1.p 0.1
+0.3
+3.9
+(9) ⇒ (19) LCL707ˆ1.p 0.1
+0.3
+3.6
+(10) ⇒ (20) LCL708ˆ1.p 0.1
+0.3
+4.1
+(1) ⇐ (11) LCL709ˆ1.p 0.0
+0.3
+3.7
+(2) ⇐ (12) LCL710ˆ1.p —
+0.3
+53.8
+(3) ⇐ (13) LCL711ˆ1.p 0.0
+0.3
+3.7
+(4) ⇐ (14) LCL712ˆ1.p 0.0
+0.3
+3.8
+(5) ⇐ (15) LCL713ˆ1.p —
+0.8
+67.0
+(6) ⇐ (16) LCL714ˆ1.p 1.6
+0.3
+29.3
+(7) ⇐ (17) LCL715ˆ1.p 37.9
+—
+—
+(8) ⇐ (18) LCL716ˆ1.p —
+6.6
+—
+(9) ⇐ (19) LCL717ˆ1.p —
+—
+—
+(10) ⇐ (20) LCL718ˆ1.p 0.1
+0.4
+8.1
+(21)
+0.1
+0.4
+4.3
+(22)
+0.2
+27.4
+4.0
+(23)
+0.1
+8.9
+4.0
+(24)
+0.1
+1.2
+3.7
+(25)
+0.1
+1.7
+4.2
+(26)
+0.2
+14.8
+5.4
+(27)
+0.1
+0.6
+3.7
+(28)
+0.2
+2.3
+4.0
+(29)
+0.1
+0.9
+3.9
+(30)
+0.1
+12.8
+16.5
+(31)Countersatisﬁable
+—
+—
+—
+(32)
+0.0
+0.3
+3.6
+(33)
+0.0
+0.3
+3.6
+(34)
+0.1
+0.4
+3.6
+(35)
+0.2
+35.5
+—
+(36)
+0.4
+—
+—
+Reasoning within Combined Logics
+(46)
+PUZ086ˆ1.p 0.1
+—
+102.4
+(60)
+PUZ087ˆ1.p 0.3
+—
+—
+(61)
+2.3
+—
+112.7
+(62)
+20.4
+—
+—
+(63)Countersatisﬁable
+—
+—
+—
+Table 1. Performance results of ST T provers for problems in paper.
+
+tasks are still to challenging, for example, by formulating some lemmas or by
+splitting proof tasks in simpler subtasks.
+An advantage of our approach also is that provers such as our LEO-II are
+generally capable of producing veriﬁable proof output, though much further
+work is needed to make these proof protocols exchangeable between systems or
+to explain them to humans. Furthermore, it may be possible to formally verify
+the entire theory of our embedding(s) within a proof assistant.
+The work presented in this paper has its roots in the LEO-II project (in
+2006/2007 at University of Cambridge, UK) in which we ﬁrst studied and employed the presented embedding of quantiﬁed and propositional multimodal logics in ST T [9, 11]. This research, amongst others, is currently continued in the
+DFG project ONTOLEO (BE 2501/6-1). In ONTOLEO we study whether our
+approach can be applied to automate modalities in ontology reasoning [14, 13].
+However, our work is relevant also for other application directions, including
+multi-agent systems. Studying the scalability of our approach for a range of
+applications is thus important future work.
+Acknowledgment: The author is indebted to Larry Paulson, Geoﬀ Sutcliﬀe, and
+Chad Brown. Larry Paulson, together with the author, initiated the LEO-II
+project at Cambridge University (EPRSC grant LEO-II EP/D070511/1). Geoﬀ
+Sutcliﬀe, in collaboration with the author and supported by several further contributors, developed the new higher-order TPTP THF infrastructure (EU FP7
+grant THFTPTP PIIF-GA-2008-219982). Both projects had a signiﬁcant impact
+on the work presented in this article. Moreover, Chad Brown originally inspired
+this research with a presentation at Loria, Nancy in 2005.
+
+References
+1. Peter B. Andrews. General models and extensionality. Journal of Symbolic Logic,
+37:395–397, 1972.
+2. Peter B. Andrews. General models, descriptions, and choice in type theory. Journal
+of Symbolic Logic, 37:385–394, 1972.
+3. Peter B. Andrews. An Introduction to Mathematical Logic and Type Theory: To
+Truth Through Proof. Kluwer Academic Publishers, second edition, 2002.
+4. Peter B. Andrews and Chad E. Brown. TPS: A hybrid automatic-interactive
+system for developing proofs. Journal of Applied Logic, 4(4):367–395, 2006.
+5. Julian Backes and Chad E. Brown. Analytic tableaux for higher-order logic with
+choice. In J¨rgen Giesl and Reiner Haehnle, editors, IJCAR 2010 - 5th Interu
+national Joint Conference on Automated Reasoning, LNAI, Edinburgh, UK, July
+2010. Springer.
+6. Matteo Baldoni. Normal Multimodal Logics: Automatic Deduction and Logic Programming Extension. PhD thesis, Universita degli studi di Torino, 1998.
+7. Christoph Benzm¨ller. Automating access control logic in simple type theory with
+u
+LEO-II. In Dimitris Gritzalis and Javier L´pez, editors, Emerging Challenges for
+o
+Security, Privacy and Trust, 24th IFIP TC 11 International Information Security
+Conference, SEC 2009, Pafos, Cyprus, May 18-20, 2009. Proceedings, volume 297
+of IFIP, pages 387–398. Springer, 2009.
+
+8. Christoph Benzm¨ller, Chad E. Brown, and Michael Kohlhase. Higher order seu
+mantics and extensionality. Journal of Symbolic Logic, 69:1027–1088, 2004.
+9. Christoph Benzm¨ller and Lawrence Paulson. Festschrift in Honor of Peter B.
+u
+Andrews on His 70th Birthday, chapter Exploring Properties of Normal Multimodal
+Logics in Simple Type Theory with LEO-II. Studies in Logic, Mathematical Logic
+and Foundations. College Publications, 2008.
+10. Christoph Benzm¨ller and Lawrence C. Paulson. Quantiﬁed Multimodal Logu
+ics in Simple Type Theory.
+SEKI Report SR–2009–02 (ISSN 1437-4447).
+SEKI Publications, DFKI Bremen GmbH, Safe and Secure Cognitive Systems, Cartesium, Enrique Schmidt Str. 5, D–28359 Bremen, Germany, 2009.
+http://arxiv.org/abs/0905.2435.
+11. Christoph Benzm¨ller and Lawrence C. Paulson. Multimodal and intuitionistic
+u
+logics in simple type theory. The Logic Journal of the IGPL, 2010.
+12. Christoph Benzm¨ller, Lawrence C. Paulson, Frank Theiss, and Arnaud Fietzke.
+u
+LEO-II — A Cooperative Automatic Theorem Prover for Higher-Order Logic.
+In P. Baumgartner, A. Armando, and D. Gilles, editors, Proceedings of the 4th
+International Joint Conference on Automated Reasoning, number 5195 in Lecture
+Notes in Artiﬁcial Intelligence, pages 162–170, 2008.
+13. Christoph Benzm¨ller and Adam Pease. Progress in automating higher-order onu
+tology reasoning. In Boris Konev, Renate Schmidt, and Stephan Schulz, editors,
+Workshop on Practical Aspects of Automated Reasoning (PAAR-2010), Edinburgh,
+UK, July 14th 2010. CEUR Workshop Proceedings.
+14. Christoph Benzm¨ller and Adam Pease. Reasoning with embedded formulas and
+u
+modalities in SUMO. In A. Bundy, J. Lehmann, G. Qi, and I. J. Varzinczak, editors,
+The ECAI-10 Workshop on Automated Reasoning about Context and Ontology
+Evolution (ARCOE-10), August 16-17, Lisbon, Portugal, 2010.
+15. Christoph Benzm¨ller, Florian Rabe, and Geoﬀ Sutcliﬀe. THF0 — The Core TPTP
+u
+Language for Classical Higher-Order Logic. In P. Baumgartner, A. Armando, and
+D. Gilles, editors, Proceedings of the 4th International Joint Conference on Automated Reasoning, number 5195 in Lecture Notes in Artiﬁcial Intelligence, pages
+491–506, 2008.
+16. Patrick Blackburn and Maarten Marx. Tableaux for quantiﬁed hybrid logic. In
+Uwe Egly and Christian G. Ferm¨ller, editors, Automated Reasoning with Anau
+lytic Tableaux and Related Methods, International Conference, TABLEAUX 2002,
+Copenhagen, Denmark, July 30 - August 1, 2002, Proceedings, volume 2381 of
+Lecture Notes in Computer Science, pages 38–52. Springer, 2002.
+17. Torben Bra¨ner. Natural deduction for ﬁrst-order hybrid logic. Journal of Logic,
+u
+Language and Information, 14(2):173–198, 2005.
+18. Alonzo Church. A formulation of the simple theory of types. Journal of Symbolic
+Logic, 5:56–68, 1940.
+19. Melvin Fitting. Interpolation for ﬁrst order S5. Journal of Symbolic Logic,
+67(2):621–634, 2002.
+20. Dov Gabbay, Agi Kurucz, Frank Wolter, and Michael Zakharyaschev. Manydimensional modal logics: theory and applications. Studies in Logic, 148. Elsevier
+Science, 2003.
+21. Deepak Garg and Martin Abadi. A Modal Deconstruction of Access Control Logics.
+In R. Amadio, editor, Proceedings of the 11th International Conference on the
+Foundations of Software Science and Computational Structures, number 4962 in
+Lecture Notes in Computer Science, pages 216–230, 2008.
+22. James Garson. Modal logic. In Edward N. Zalta, editor, The Stanford Encyclopedia
+of Philosophy. Winter 2009 edition, 2009.
+
+23. Kurt G¨del. Eine interpretation des intuitionistischen aussagenkalk¨ls. Ergebnisse
+o
+u
+eines Mathematischen Kolloquiums, 8:39–40, 1933. Also published in G¨del [24],
+o
+296–302.
+24. Kurt G¨del. Collected Works, Volume I. Oxford University Press, 1986.
+o
+25. Robert Goldblatt. Logics of Time and Computation. Number 7 in Center for
+the Study of Language and Information - Lecture Notes. Leland Stanford Junior
+University, 1992.
+26. Leon Henkin. Completeness in the theory of types. Journal of Symbolic Logic,
+15:81–91, 1950.
+27. Mark Kaminski and Gert Smolka. Terminating tableau systems for hybrid
+logic with diﬀerence and converse. Journal of Logic, Language and Information,
+18(4):437–464, Oct 2009.
+28. John C. C. McKinsey and Alfred Tarski. Some theorems about the sentential
+calculi of lewis and heyting. Journal of Symbolic Logic, 13:1–15, 1948.
+29. Tobias Nipkow, Lawrence C. Paulson, and Markus Wenzel. Isabelle/HOL - A
+Proof Assistant for Higher-Order Logic, volume 2283 of Lecture Notes in Computer
+Science. Springer, 2002.
+30. David A. Randell, Zhan Cui, and Anthony G. Cohn. A spatial logic based on
+regions and connection. In Proceedings 3rd International Conference on Knowledge
+Representation and Reasoning, pages 165–176, 1992.
+31. Krister Segerberg. Two-dimensional modal logic. Journal of Philosophical Logic,
+2(1):77–96, 1973.
+32. Geoﬀ Sutcliﬀe. TPTP, TSTP, CASC, etc. In V. Diekert, M. Volkov, and
+A. Voronkov, editors, Proceedings of the 2nd International Computer Science Symposium in Russia, number 4649 in Lecture Notes in Computer Science, pages 7–23.
+Springer-Verlag, 2007.
+33. Geoﬀ Sutcliﬀe. The TPTP problem library and associated infrastructure. J. Autom. Reasoning, 43(4):337–362, 2009.
+34. Geoﬀ Sutcliﬀe and Christoph Benzm¨ller. Automated reasoning in higher-order
+u
+logic using the TPTP THF infrastructure. Journal of Formalized Reasoning,
+3(1):1–27, 2010.
+35. Geoﬀ Sutcliﬀe, Christoph Benzm¨ller, Chad Brown, and Frank Theiss. Progress in
+u
+the development of automated theorem proving for higher-order logic. In Renate
+Schmidt, editor, Automated Deduction - CADE-22, 22nd International Conference
+on Automated Deduction, Montreal, Canada, August 2-7, 2009. Proceedings, volume 5663 of LNCS, pages 116–130. Springer, 2009.
+
+

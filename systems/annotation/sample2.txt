@@ -1,0 +1,5 @@
+So say we all.
+
+how does so function here?
+
+;; (exists (?X, ?Y) (has-state-of-affairs ?X ?Y)

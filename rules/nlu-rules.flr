@@ -1,0 +1,31 @@
+% Rules file for NLU
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% if you have a text document, which has been converted from a pdf, it
+% may have headers and footers inserted into parts of the text,
+% splitting it.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% if there is a '...', it may indicate an elipsis.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Best.  Day.  Ever.  <-- unusual use of punctuation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Definitional 
+
+<NounPhrase>: <sentenceClause>
+
+is
+
+
+
+i.e.
+
+Resource Description Framework: A lightweight ontology system to support the exchange of knowledge on the Semantic Web. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

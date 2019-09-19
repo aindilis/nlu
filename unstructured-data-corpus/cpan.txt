@@ -1,0 +1,26 @@
+Looks good
+Writing Makefile for Hash::Merge
+Running [/usr/bin/make test UNINST=1]...
+make[1]: Entering directory `/home/andrewdo/.cpanplus/5.10.0/build/Hash-Merge-0.12'
+PERL_DL_NONLAZY=1 /usr/bin/perl "-MExtUtils::Command::MM" "-e" "test_harness(0, 'blib/lib', 'blib/arch')"$
+t/merge....ok
+t/oo.......ok
+All tests successful.
+Files=2, Tests=94,  0 wallclock secs ( 0.13 cusr +  0.01 csys =  0.14 CPU)
+make[1]: Leaving directory `/home/andrewdo/.cpanplus/5.10.0/build/Hash-Merge-0.12'
+*** Hash::Merge successfully installed.
+*** Installing Heap::Simple...
+==> MISSING Signature file! <==
+Running [/usr/bin/perl /usr/bin/cpanp-run-perl /home/andrewdo/.cpanplus/5.10.0/build/Heap-Simple-0.13/Mak$
+
+You seem to have neither 'Heap::Simple::XS' nor 'Heap::Simple::Perl' installed.
+That should not stop this package from getting installed (in fact, you'll need
+to install this package before you can install any of the other two).
+However, this package won't be usable until you install one (or both) of these
+two.
+
+Checking if your kit is complete...
+Looks good
+Writing Makefile for Heap::Simple
+Running [/usr/bin/make test UNINST=1]...
+make[1]: Entering directory `/home/andrewdo/.cpanplus/5.10.0/build/Heap-Simple-0.13'

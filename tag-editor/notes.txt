@@ -1,0 +1,63 @@
+Have a tag database - which includes each tag, and the description of
+what the tag is supposed to mean - in order to resolve redundant tags,
+etc.  Perhaps have a formal explication of the meaning of the tag as
+well, allowing for CSP or what not in the estimation of the tags in
+the first place.  Pre/post conditions?
+
+Deal with the full range of possible tags, and learn more about
+standoff, etc.
+
+Write the function that takes an XML file and maps it into properties.
+Write the function that stores the properties.  Deal with changes to
+the source text - or make the buffer read only.
+
+
+
+Things at Points
+
+$source = "Actually, where broadsides of the text in question are concerned, the prime focus of this piece, there are not many to consider.";
+
+contiguous-non-whitespace:  "Actually,"
+word "Actually"
+sentence "Actually, where broadsides of the text in question are concerned, the prime focus of this piece, there are not many to consider."
+
+$source = "the poetic translation to English of the Irish national anthem (or
+perhaps the English original if the song is originally written in
+English), is \"Soldiers are we, whose lives are pledged to Ireland,"
+
+parenthetical: "(or
+perhaps the English original if the song is originally written in
+English)"
+
+balanced-delimiter: "(or
+perhaps the English original if the song is originally written in
+English)"
+
+named-entity: "Ireland"
+
+next-this
+previous-that
+
+
+$source = the poetic translation to English of the Irish national anthem (or
+perhaps the English original if the song is originally written in
+English), is "Soldiers are we, whose lives are pledged to Ireland,
+Some have come from a land beyond the wave, Sworn to be free, no more
+our ancient sireland, Shall shelter the despot or the slave. Tonight
+we man the "bearna baoil",[fn 4] In Erin’s cause, come woe or weal,
+’Mid cannon’s roar and rifles’ peal, We’ll chant a soldier’s song"
+
+quoted: ’Mid cannon’s roar and rifles’
+
+paragraph: the poetic translation to English of the Irish national anthem (or
+perhaps the English original if the song is originally written in
+English), is "Soldiers are we, whose lives are pledged to Ireland,
+Some have come from a land beyond the wave, Sworn to be free, no more
+our ancient sireland, Shall shelter the despot or the slave. Tonight
+we man the "bearna baoil",[fn 4] In Erin’s cause, come woe or weal,
+’Mid cannon’s roar and rifles’ peal, We’ll chant a soldier’s song"
+
+$source = Success to Old England, let Ireland remain,<BR>
+
+what is this -> "Old England"
+

@@ -1,0 +1,24 @@
+top - 08:44:11 up 21 days, 22:40, 13 users,  load average: 1.68, 2.48, 2.67
+Tasks: 446 total,   3 running, 400 sleeping,   0 stopped,  43 zombie
+%Cpu(s): 17.6 us,  2.1 sy,  0.4 ni, 78.7 id,  1.2 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem:  16445680 total, 15087220 used,  1358460 free,  1065256 buffers
+KiB Swap:  9526268 total,  1311048 used,  8215220 free.  2659396 cached Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                                   
+20361 andrewdo  20   0 2961872 1.714g  13776 R 102.2 10.9 785:09.92 icedove                                                                                   
+25557 andrewdo  20   0  115320  36300   1892 R  83.0  0.2   1227:33 unilang                                                                                   
+ 3636 root      20   0  441732 194912   9132 S  19.2  1.2 920:39.68 Xorg                                                                                      
+19452 andrewdo  20   0 1753952 175988  11948 S  12.8  1.1   1048:27 gnome-shell                                                                               
+22277 andrewdo  20   0   26004   1724   1100 R   6.4  0.0   0:00.01 top                                                                                       
+    1 root      20   0   15476    220    188 S   0.0  0.0   0:12.93 init                                                                                      
+    2 root      20   0       0      0      0 S   0.0  0.0   0:01.73 kthreadd                                                                                  
+    3 root      20   0       0      0      0 S   0.0  0.0   6:03.05 ksoftirqd/0                                                                               
+    5 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:0H                                                                              
+    7 root      20   0       0      0      0 S   0.0  0.0  16:41.16 rcu_sched                                                                                 
+    8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh                                                                                    
+    9 root      rt   0       0      0      0 S   0.0  0.0   0:51.87 migration/0                                                                               
+   10 root      rt   0       0      0      0 S   0.0  0.0   0:15.48 watchdog/0                                                                                
+   11 root      rt   0       0      0      0 S   0.0  0.0   0:04.59 watchdog/1                                                                                
+   12 root      rt   0       0      0      0 S   0.0  0.0   0:05.84 migration/1                                                                               
+   13 root      20   0       0      0      0 S   0.0  0.0   1:32.54 ksoftirqd/1                                                                               
+   15 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/1:0H                                                                              

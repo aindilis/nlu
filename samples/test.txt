@@ -1,0 +1,5 @@
+# need to define the precise mappings of the annotations to the NLU stuff
+
+<title>Test Information</title>
+
+<nlu-tag sem="(is (rel item 5) fdb)"></nlu-tag>

@@ -1,0 +1,12 @@
+The situation calculus is a logic formalism designed for representing and reasoning about dynamical domains. It was first introduced by 
+John McCarthy in 1963. The main version of the situational calculus that is presented in this article is based on that introduced by Ray
+Reiter in 1991. It is followed by sections about McCarthy's 1986 version and a logic programming formulation.
+
+A simple robot world will be modeled as a running example. In this world there is a single robot and several inanimate objects. The world
+is laid out according to a grid so that locations can be specified in terms of (x,y) coordinate points. It is possible for the robot to
+move around the world, and to pick up and drop items. Some items may be too heavy for the robot to pick up, or fragile so that they break
+when they are dropped. The robot also has the ability to repair any broken items that it is holding.
+
+The main difference between the original situation calculus by
+McCarthy and Hayes and the one in use today is the interpretation of
+situations.

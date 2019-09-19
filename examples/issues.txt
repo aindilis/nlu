@@ -1,0 +1,36 @@
+Then the two main parts of the sentence are analysed further, and the
+pronoun “it” triggers a rule which at once deals with the pronoun's
+lexical content and its context dependence; i.e. it says that we must
+select a new discourse referent, link it to a discourse referent made
+available by the preceding discourse, and update the DRS so as to
+record these changes.
+
+What are the function of the quotes around "it"?
+
+------------------------------------------------------
+
+In two-level versions of DRT there is no such rule
+
+What is connoted by two-level?  what kinds of items can be created in
+this way, how should they be parsed?
+
+------------------------------------------------------
+
+4. The DRS language: syntax, semantics, accessibility
+
+How do we deal with sections like the above - how do we encode and
+conversely generate that representation in various contexts?
+
+------------------------------------------------------
+
+
+
+------------------------------------------------------
+
+------------------------------------------------------
+
+------------------------------------------------------
+
+------------------------------------------------------
+
+------------------------------------------------------

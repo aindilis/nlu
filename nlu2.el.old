@@ -1,0 +1,990 @@
+;; NOT SURE ABOUT THIS CODE, EVENTUALLY MERGE BACK INTO nlu.el
+
+;; Emacs code for NLU system
+
+(global-set-key "\C-cnll" 'nlu-lookup-item-extensively)
+(global-set-key "\C-cnlr" 'nlu-retrieve-document-link-at-point-for-analysis)
+(global-set-key "\C-cntn" 'nlu-toggle-navigation)
+(global-set-key "\C-cntt" 'nlu-see-tags-at-point)
+(global-set-key "\C-cntT" 'nlu-see-properties-at-point)
+(global-set-key "\C-cntp" 'nlu-add-tag-to-region)
+(global-set-key "\C-cntm" 'nlu-remove-tags-from-region)
+(global-set-key "\C-cntM" 'nlu-remove-non-tags-from-region)
+(global-set-key "\C-cnte" 'nlu-remove-properties-from-region)
+(global-set-key "\C-cntq" 'nlu-reset-buffer)
+
+(global-set-key "\C-cntA" 'nlu-analyze-region)
+(global-set-key "\C-cnta" 'nlu-analyze-region-light)
+(global-set-key "\C-cntr" 'nlu-reset-tags)
+(global-set-key "\C-cnt." 'nlu-see-tag-at-point)
+(global-set-key "\C-cnti" 'nlu-push-most-interesting-tag-at-point-onto-stack)
+(global-set-key "\C-cnt>" 'nlu-push-tag-at-point-onto-stack)
+(global-set-key "\C-cnt," 'nlu-get-tag-at-point-test)
+
+(global-set-key "\C-cntw" 'nlu-tag-word-sense)
+(global-set-key "\C-cnn" 'nlu-push-n-words-onto-stack)
+
+(global-set-key "\C-cn\M-e" 'nlu-forward-sentence)
+(global-set-key "\C-cn\M-a" 'nlu-backward-sentence)
+
+(global-set-key "\C-cnsa" 'nlu-mark-academic-research-interest-in-item-on-top-of-stack)
+(global-set-key "\C-cnsD" 'nlu-mark-requires-definition-of-item-on-top-of-stack)
+(global-set-key "\C-cnsdi" 'nlu-declare-isa-for-item-on-top-of-stack)
+(global-set-key "\C-cnsdr" 'nlu-mark-desire-to-read-citation-on-top-of-stack)
+
+(defvar nlu-display-tags-mode t)
+
+(defvar nlu-navigation-on nil)
+(setq nlu-property-header "nlu-")
+
+(defun nlu-reset-tags ()
+ "Resets the tags in the buffer"
+ (interactive))
+
+(defun nlu-see-tags-at-point ()
+ "List the tags for the current point of text"
+ (interactive)
+ (nlu-show-tags (nlu-tags (text-properties-at (point)))))
+
+(defun nlu-message-tags-at-point ()
+ "List the tags for the current point of text"
+ (interactive)
+ ;;(message (elisp-format-string (prin1-to-string (nlu-tags (text-properties-at (point)))))))
+ (let* ((tags (nlu-tags (text-properties-at (point))))
+	(valuestrings (plist-values tags)))
+  (message (elisp-format-string (prin1-to-string valuestrings)))))
+
+(defun nlu-show-tags (plist)
+ "Convert from the raw tags format to the output"
+ ;; first, get just the keys
+ (dolist (value (plist-values plist))
+  (see value)))
+
+(defun nlu-add-tag-to-region ()
+ "Annotation a text with a tag"
+ (interactive)
+ (let* ((prop (read (completing-read "Tag?: " (mapcar (lambda (item) (prin1-to-string item)) nlu-tag-suite-entries)))))
+  (nlu-add-tag (mark) (point) prop prop)))
+
+(defun nlu-add-spanlist (start spanlist)
+ "Add all spans to text"
+ (dolist (span spanlist) 
+  (nlu-add-tag (+ (nth 0 span) start) (+ (nth 1 span) start) (eval (nth 2 span)) (eval (nth 2 span))))
+ (if nlu-display-tags-mode
+  (nlu-redisplay-text-with-tags-emphasized))
+ )
+
+(defun nlu-add-tag (start end prop value)
+ ""
+ (put-text-property start end (make-symbol (concat nlu-property-header (prin1-to-string prop))) value))
+
+(defun nlu-tags (plist)
+ (let* ((newplist nil))
+  (dolist (key (plist-keys plist))
+   (if (string= (substring (prin1-to-string key) 0 (min (length (prin1-to-string key)) (length nlu-property-header))) nlu-property-header)
+    (progn 
+     (push (plist-get plist key) newplist)
+     (push key newplist)
+     )
+    )
+   )
+  newplist))
+
+(defun nlu-non-tags (plist)
+ (let* ((newplist nil))
+  (dolist (key (plist-keys plist))
+   (if (not (string= (substring (prin1-to-string key) 0 (min (length (prin1-to-string key)) (length nlu-property-header))) nlu-property-header))
+    (progn 
+     (push (plist-get plist key) newplist)
+     (push key newplist)
+     )
+    )
+   )
+  newplist))
+
+(defun plist-keys (plist)
+ "Return the plist's keys"
+ (let ((newlist nil))
+  (while plist
+   (shift plist)
+   (push (shift plist) newlist)
+   )
+  newlist))
+
+(defun plist-values (plist)
+ "Return the plist's keys"
+ (let ((newlist nil))
+  (while plist
+   (push (shift plist) newlist)
+   (shift plist)
+   )
+  newlist))
+
+;;   (backward-paragraph)
+
+;;   ;; get the position
+;;   (forward-paragraph)
+;;   (let* (
+;; 	 ;; have an offset value corresponding to the text
+;; 	 (start (progn (backward-paragraph) (set-mark (point)) (prin1-to-string (point))))
+;; 	 (end (progn (forward-paragraph) (prin1-to-string (point))))
+;; 	 ;; create a new theory for this item
+;; 	 (context (concat "Org::FRDCSA::NLU::Buffer::" (buffer-name)))
+;; 	 (filename (make-temp-file "nlu-"))
+;; 	 )
+
+(defun nlu-region-min (&optional mark-arg point-arg)
+ (let* ((mark (if mark-arg mark-arg (mark)))
+	(point (if point-arg point-arg (point)))
+	)
+  (min mark point)))
+
+(defun nlu-region-max (&optional mark-arg point-arg)
+ (let* ((mark (if mark-arg mark-arg (mark)))
+	(point (if point-arg point-arg (point)))
+	)
+  (max mark point)))
+
+(defun nlu-analyze-region (&optional light mark-arg point-arg)
+ "Take a text region and perform the NLU analysis on it"
+ (interactive)
+ (setq debug-on-error 1)
+ (if buffer-read-only
+  (nlu-ghost-buffer))
+ (save-excursion
+  (let* (
+	 ;; have an offset value corresponding to the text
+	 ;; create a new theory for this item
+	 (context (concat "Org::FRDCSA::NLU::Buffer::" (buffer-name)))
+	 (filename (make-temp-file "nlu-"))
+	 (light-var (if light light 0))
+	 (point (if point-arg point-arg (point)))
+	 (mark (if mark-arg mark-arg (mark)))
+	 ;; (temp (progn (see (list point mark)) 5))
+	 (start (prin1-to-string (nlu-region-min mark point)))
+	 (end (prin1-to-string (nlu-region-max mark point)))
+	 )
+   ;; write the contents to a file, run the nlu system on it, adding
+   ;; information such as which file it came from, so on and so forth
+   (write-region mark point filename)
+   (let*
+    ((message 
+      (uea-query-agent-raw nil "NLU"
+       (freekbs2-util-data-dumper
+	(list
+	 (cons "_DoNotLog" 1)
+	 (cons "Database" "freekbs2")
+	 (cons "Context" context)
+	 (cons "All" 1)
+	 (cons "Run" 1)
+	 (cons "File" filename)
+	 (cons "Emacs" 1)
+	 (cons "Start" start)
+	 (cons "End" end)
+	 (cons "Light" light-var)
+	 )
+	)
+       )
+      )
+     (result
+      (assoc "Result"
+	(freekbs2-util-data-dedumper
+	 (nth 5 message))))
+     (tobeevaled
+      (if (non-nil 'result)
+       (cdr result)
+       ""))
+     )
+    ;; (message (prin1-to-string tobeevaled))
+    (if (string-match "nlu-add-spanlist" tobeevaled)
+     ;; (eval (read tobeevaled))
+     (message tobeevaled)
+     )
+    )
+   )
+  )
+ )
+
+(defun nlu-analyze-region-light (&optional mark-arg point-arg)
+ "Take a text region and perform a weaker NLU analysis on it"
+ (interactive)
+ (nlu-analyze-region 1 mark-arg point-arg)
+ )
+
+;; have the option for running only those results which are near instantaneous
+
+(defun nlu-make-tag-for-object (object)
+ ""
+ (make-symbol object))
+
+(defvar nlu-predicate-priorities 
+ '(("timex3-date" . 400)
+   ("noun-phrase" . 300)
+   ("word-sense-disambiguation" . 200)
+   ("matches-pattern" . 100)
+   ))
+
+;; (cdr (assoc "fdsf" nlu-predicate-priorities))
+
+(defun nlu-sort-formulae-by-interest (formula1 formula2)
+ ""
+ (let ((f1p (cdr (assoc (car formula1) nlu-predicate-priorities)))
+       (f2p (cdr (assoc (car formula2) nlu-predicate-priorities))))
+  (if (= f1p f2p)
+   ;; do something here with sorting based on other properties than just the predicate
+   t 
+   (> f1p f2p))
+  )
+ )
+
+(defun nlu-formula-to-tagname (formula)
+ "Convert from a lisp object which is a formula to a tag"
+ (prin1-to-string (make-symbol (concat nlu-property-header (prin1-to-string formula)))))
+
+(defun nlu-tagname-to-formula (tag)
+ "Convert from a tag to lisp object which is a formula"
+ (let ((printed (prin1-to-string tag t)))
+  (read (substring printed (length nlu-property-header) (length printed)))))
+
+(defun nlu-get-most-interesting-tag-at-point (&optional skip-ensuring-tags)
+ "According to a particular ordering of interesting"
+ (interactive)
+ (if (not skip-ensuring-tags)
+  (nlu-ensure-text-surrounding-point-has-tags))
+ (let* (
+	(tags (nlu-tags (text-properties-at (point))))
+	(formulae (mapcar (lambda (symbol) (nlu-tagname-to-formula symbol)) (plist-keys tags)))
+	(tagname (nlu-formula-to-tagname (car (sort formulae 'nlu-sort-formulae-by-interest))))
+	)
+  ;; FIXME make sure that this is the correct usage of "tag" or set up some proper terminology
+  (nlu-get-tag tagname)))
+
+(defun nlu-ensure-text-surrounding-point-has-tags ()
+ ""
+ (if (nlu-text-at-point-has-no-tags) 
+  (nlu-analyze-text-at-point)))
+
+(defun nlu-analyze-text-at-point ()
+ ;; for now, just move to the beginning of the sentence, and the end
+ ;; of the sentence, then analyze the region
+ ;; check if the buffer is read only, if so, ask if 
+ (let ((mark (save-excursion
+	      (backward-sentence 1)
+	      (point)))
+       (point (save-excursion
+	       (forward-sentence 1)
+	       (point))))
+  (nlu-analyze-region-light mark point)
+  )
+ )
+
+(defun nlu-analyze-text-at-point-original ()
+ ;; for now, just move to the beginning of the sentence, and the end
+ ;; of the sentence, then analyze the region
+ ;; check if the buffer is read only, if so, ask if 
+ (save-excursion
+  (backward-sentence 1)
+  (set-mark (point))
+  (forward-sentence 1)
+  (nlu-analyze-region-light)
+  )
+ )
+
+(defun nlu-see-tag-at-point ()
+ ""
+ (interactive)
+ (see (nlu-get-tag-at-point)))
+
+(defun nlu-push-tag-at-point-onto-stack (arg)
+ ""
+ (interactive "P")
+ (freekbs2-push-onto-stack (nlu-get-tag-at-point) arg))
+
+(defun nlu-get-tag-at-point ()
+ ""
+ (interactive)
+ ;; first get a list of the tags at point
+ (let* (
+	(tags (nlu-tags (text-properties-at (point))))
+	(valuestrings (mapcar (lambda (symbol) (prin1-to-string symbol)) (plist-keys tags)))
+	(tagname (if (> (length valuestrings) 1) 
+		  (completing-read "Choose Tag: " valuestrings)
+		  (if (= (length valuestrings) 1)
+		   (car valuestrings)
+		   "")))
+	)
+  (if (> (length tagname) 0)
+   (nlu-get-tag tagname)
+   (message "ERROR: No tags found for point"))))
+
+(defun nlu-get-tag-at-point-test ()
+ ""
+ (interactive)
+ (see (nlu-text-at-point-has-tag nlu-current-tagname)))
+
+(defun nlu-get-tag (tagname)
+ ""
+ (save-excursion
+  (nlu-back-to-beginning-of-tag tagname)
+  (set-mark (point))
+  ;; (see (point))
+  (nlu-forward-to-ending-of-tag tagname)
+  ;; (see (point))
+  (buffer-substring-no-properties (point) (mark))))
+
+;; (see (nlu-text-at-point-has-no-tags))
+
+(defun nlu-text-at-point-has-no-tags ()
+ "Determine whether or not the text has nlu tags, presumably to
+ determine whether to run nlu-analyze-region on it"
+ (interactive)
+ (not (> (length (nlu-tags (text-properties-at (point)))) 0)))
+
+(defun nlu-screwed-up-plist-to-alist (plist)
+ (let ((newlist nil))
+  (while plist
+   (unshift (cons (prin1-to-string (pop plist)) (list (pop plist))) newlist)
+   )
+  newlist))
+
+(defun nlu-text-at-point-has-tag (tagname)
+ "Determine if the text at point has the tag by tagname"
+ (let* (
+	(tags (nlu-tags (text-properties-at (point))))
+	(alist (nlu-screwed-up-plist-to-alist tags))
+	(matches (assoc tagname alist))
+	)
+  (> (length matches) 0)))
+
+(defun nlu-back-to-beginning-of-tag (tagname)
+ "Move backward to the beginning of a tag"
+ (while
+  (nlu-text-at-point-has-tag tagname)
+  (backward-char))
+ (forward-char))
+
+(defun nlu-forward-to-ending-of-tag (tagname)
+ "Move forward to the end of a tag"
+ (while
+  (nlu-text-at-point-has-tag tagname)
+  (forward-char)))
+
+;; navigational aids
+
+(defun nlu-forward-char (&optional num)
+ "Forward char but displaying the nlu-tags at point in the minibuffer"
+ (interactive "p")
+ (forward-char num)
+ (nlu-message-tags-at-point))
+
+(defun nlu-backward-char (&optional num)
+ "Forward char but displaying the nlu-tags at point in the minibuffer"
+ (interactive "p")
+ (backward-char num)
+ (nlu-message-tags-at-point))
+
+(defun nlu-previous-line (&optional num)
+ "Forward char but displaying the nlu-tags at point in the minibuffer"
+ (interactive "p")
+ (previous-line num)
+ (nlu-message-tags-at-point))
+
+(defun nlu-next-line (&optional num)
+ "Forward char but displaying the nlu-tags at point in the minibuffer"
+ (interactive "p")
+ (next-line num)
+ (nlu-message-tags-at-point))
+
+(defun nlu-toggle-navigation ()
+ "Switch between normal navigation bindings and nlu navigation bindings"
+ (interactive)
+ (if nlu-navigation-on
+  (progn
+   (global-set-key "\C-f" 'forward-char)
+   (global-set-key "\C-b" 'backward-char)
+   (global-set-key "\C-n" 'next-line)
+   (global-set-key "\C-p" 'previous-line)
+   (message "NLU navigation off")
+   )
+  (progn
+   (global-set-key "\C-f" 'nlu-forward-char)
+   (global-set-key "\C-b" 'nlu-backward-char)
+   (global-set-key "\C-n" 'nlu-next-line)
+   (global-set-key "\C-p" 'nlu-previous-line)
+   (message "NLU navigation on")
+   )
+  )
+ (setq nlu-navigation-on (not nlu-navigation-on)))
+
+(defun nlu-export-mallet-feature-sequences ()
+ "Export the format for the mallet simpletagger"
+
+ ;; Eventually allow it to reimport the results and then use those
+ ;; results to run tests, i.e., is this what it has been tagged as.
+
+ ;; Do tag overlaps, etc
+
+ )
+
+;; some things to write, import/export to and from standoff to inline
+;; to text properties
+
+;; use the unilang agent to do the converstion, send to nlu agent
+
+;; have to know which tag suite to apply
+
+(defun nlu-add-tag-to-region-special ()
+ "Annotation a text with a tag"
+ (interactive)
+ (let* ((prop (completing-read "Please select metadata: " nlu-sample-tags)))
+  (nlu-add-tag (mark) (point) prop prop)))
+
+;; add a function for classifying the item at point, or entity
+;; detecting it, etc.
+
+;; use the knowledge base to add new tag types
+
+;; have to remove tags from a region before proceeding
+
+;; have the context information stored as well..., or at least
+;; retrievable, i.e. the whole document, or what else
+
+(setq nlu-tag-suite-entries
+ (list
+  '("matches-pattern" var-SNIPPET "Alpha-numeric String")
+  '("isa" ("thing-referred-to" var-SNIPPET) "IM chat handle")
+  '("isa" ("thing-referred-to" var-SNIPPET) "IM communication")
+  '("isa" ("thing-referred-to" var-SNIPPET) "IM communication content")
+  '("isa" ("thing-referred-to" var-SNIPPET) "timestamp")
+  '("task" var-SNIPPET)
+  '("completed" var-SNIPPET)
+  ))
+
+(defun nlu-remove-tags-from-region (&optional mark-arg point-arg)
+ "Annotation a text with a tag"
+ (interactive)
+ (let* ((mark (if mark-arg mark-arg (mark)))
+	(point (if point-arg point-arg (point)))
+	(min (nlu-region-min mark point))
+	(max (nlu-region-max mark point)))
+  (save-excursion
+   (goto-char min)
+   (while (<= (point) max)
+    (nlu-remove-tags-at-point)
+    (forward-char)))))
+
+(defun nlu-remove-non-tags-from-region (&optional mark-arg point-arg)
+ "Annotation a text with a tag"
+ (interactive)
+ (let ((mark (if mark-arg mark-arg (mark)))
+       (point (if point-arg point-arg (point)))
+       (min (nlu-region-min mark point))
+       (max (nlu-region-max mark point)))
+  (save-excursion
+   (goto-char min)
+   (while (<= (point) max)
+    (nlu-remove-non-tags-at-point)
+    (forward-char)))))
+
+(defun nlu-remove-properties-from-region (&optional mark-arg point-arg)
+ "Annotation a text with a tag"
+ (interactive)
+ (let ((mark (if mark-arg mark-arg (mark)))
+       (point (if point-arg point-arg (point)))
+       (min (nlu-region-min mark point))
+       (max (nlu-region-max mark point)))
+  (save-excursion
+   (goto-char min)
+   (while (<= (point) max)
+    (nlu-remove-properties-at-point)
+    (forward-char)))))
+
+(defun nlu-remove-tags-at-point ()
+ ""
+ (interactive)
+ (remove-text-properties (point) (+ (point) 1) (nlu-tags (text-properties-at (point)))))
+
+(defun nlu-remove-non-tags-at-point ()
+ ""
+ (interactive)
+ (remove-text-properties (point) (+ (point) 1) (nlu-non-tags (text-properties-at (point)))))
+
+(defun nlu-remove-properties-at-point ()
+ ""
+ (interactive)
+ (remove-text-properties (point) (+ (point) 1) (text-properties-at (point))))
+
+(defun nlu-see-properties-at-point ()
+ ""
+ (interactive)
+ (dolist (pair (text-properties-at (point))) (see pair)))
+
+
+(defun nlu-test-emphasize-region ()
+ "Test changing the font properties of a piece of text"
+ (interactive)
+ (add-text-properties (point) (mark) '(face nlu-face-temp)))
+
+(defun nlu-reset-faces-for-tags ()
+ ""
+ (interactive)
+ (setq nlu-possible-faces (face-list))
+ (shift nlu-possible-faces)
+ (setq nlu-faces-for-tags nil))
+
+(nlu-reset-faces-for-tags)
+(setq nlu-display-tags-mode t)
+
+(defun nlu-reset-buffer ()
+ "Reset all the things associated with the buffer"
+ (interactive)
+ (save-excursion
+  (beginning-of-buffer)
+  (set-mark-command nil)
+  (end-of-buffer)
+  (backward-char)
+  (nlu-remove-tags-from-region)
+  (nlu-remove-non-tags-from-region)
+  )
+ (nlu-reset-face-for-tag)
+ )
+
+(defun nlu-reset-face-for-tag ()
+ (interactive)
+ (nlu-reset-faces-for-tags)
+ (setq nlu-faces-for-tags nil))
+
+(defun nlu-get-face-for-tag (tag)
+ "Return the face associated with a tag, or associate a new face
+with the tag and return that"
+ (let* ((printed (prin1-to-string tag))
+	(face (cdr (assoc printed nlu-faces-for-tags))))
+  (if (not (facep face))
+   (push (cons printed (shift nlu-possible-faces)) nlu-faces-for-tags)))
+ (cdr (assoc (prin1-to-string tag) nlu-faces-for-tags)))
+
+;; (nlu-get-face-for-tag "test2")
+
+(defun nlu-redisplay-text-with-tags-emphasized ()
+ "Redraw the text, taking care to colorize and put on special fonts for each text item"
+ (interactive)
+ (let ((min (min (mark) (point)))
+       (max (max (mark) (point))))
+  (save-excursion
+   (goto-char min)
+   (while (<= (point) max)
+    (dolist (tag (plist-keys (nlu-tags (text-properties-at (point))))) 
+     (add-text-properties (point) (+ (point) 1) (list 'face (nlu-get-face-for-tag tag))))
+    (forward-char)))))
+
+(defgroup nlu-faces nil
+  "NLU faces for highlighting text"
+  :prefix "nlu-face-"
+  :group 'nlu-faces)
+
+(setq nlu-face-temp 'nlu-face-temp)
+(defface nlu-face-temp
+  '((((class grayscale) (background light)) (:foreground "DimGray" :slant italic))
+    (((class grayscale) (background dark)) (:foreground "LightGray" :slant italic))
+    (((class color) (min-colors 88) (background light)) (:foreground "RosyBrown"))
+    (((class color) (min-colors 88) (background dark)) (:foreground "LightSalmon"))
+    (((class color) (min-colors 16) (background light)) (:foreground "RosyBrown"))
+    (((class color) (min-colors 16) (background dark)) (:foreground "LightSalmon"))
+    (((class color) (min-colors 8)) (:foreground "green"))
+    (t (:slant italic)))
+  "Font Lock mode face used to highlight strings."
+  :group 'nlu-faces)
+
+(defun nlu-tag-search ()
+ "Search for a tag based on concept, so you don't have to remember the exact tag"
+ (interactive)
+ )
+
+;; need to make the tag suite be stored somewhere remotely
+
+(defun nlu-highlight-all-tags-of-type ()
+ "Highlight any tags that are subsumed by a particular tag type"
+ (interactive)
+ )
+
+;; have options to apply computational semantics and other functions
+;; on point, have a dictionary of functions
+
+;; we have lookup-meaning-of-text, translate-text, speak-text
+;; need parse-text,
+
+;; view the current interpretation context
+
+;; nlu-sem-
+
+;; mark a given text region as completed
+
+;; maybe we can mark a text by having the text snippet a reference to
+;; the contents of the text and then also locking that portion of the
+;; text for editing
+
+;; read-only
+
+;; modification-hooks
+;; insert-in-front-hooks
+;; insert-behind-hooks
+
+;; perform operation on text - based on it's isa class, have different
+;; operations that can be performed on text - for instance, you could
+;; mark a task complete, mark a task as being identical to another task
+
+;; you should have a normal form that text is reduced to when dealing
+;; with the actual meaning of the text
+
+(defun nlu-tag-word-sense ()
+ "Get the word, look up all the senses, perhaps recommend a
+default sense.  Overwrite existing sense data if tagged, or place
+a sense with the assertion that the user has entered it"
+ (interactive)
+ ;; get the word at point, probably just symbol at point, or do token
+ ;; at point, expand on that eventually look up through NLU probably
+ ;; the various senses of the word
+ (let* 
+  ((word (erc-string-no-properties (thing-at-point 'word)))
+   (message (uea-query-agent-raw nil "NLU" (freekbs2-util-data-dumper
+	  (list
+	   (cons "_DoNotLog" 1)
+	   (cons "Command" "Get Word Senses")
+	   (cons "Word" word)
+	   )
+	  )))
+   (senses
+    (assoc "Result"
+     (freekbs2-util-data-dedumper
+      (nth 5 message))))
+   )
+  ;; (see senses)
+  ;; (see message)
+  (completing-read "Choose sense: " (mapcar 'cdr (cdr senses)))
+  ))
+
+;; the basic idea is that we should have the data structure for the
+;; value of an nlu text property be a hash of various items including
+;; an abstracted form (without the position data, but a variable
+;; instead), a type, the actual statement, etc, etc.
+
+
+(defun nlu-paraphrase-object ()
+ "Generate alternative ways of saying the same thing (possibly to
+ verify the computers understanding of the sense of the item)"
+ ;; objects may be thing-at-point, any combination of the freekbs stack
+ ;; or ring, the region, or the kill buffer
+
+ )
+
+;; do more reading on linguistics
+
+(defun nlu-get-tags-in-region ()
+ "extract all of the tags in the region"
+ (interactive)
+ (let 
+  ((min (min (mark) (point)))
+   (max (max (mark) (point)))
+   (hash (make-hash-table :size 1000 :test 'eql))
+   (list nil))
+  (save-excursion
+   (goto-char min)
+   (while (<= (point) max)
+    (dolist (value (plist-values (nlu-tags (text-properties-at (point))))) 
+     (puthash (prin1-to-string value) t hash)
+     )
+    (forward-char)))
+  (maphash (lambda (key value) (push (read key) list)) hash)
+  list))
+
+(defun nlu-see-tags-in-region ()
+ ""
+ (interactive)
+ (see (nlu-get-tags-in-region)))
+
+(defun nlu-convert-inline-in-region-to-text-properties (text offset) "")
+
+(defun nlu-convert-text-properties-in-region-to-inline () 
+ ""
+ (interactive)
+ (let* 
+  ((message
+    (uea-query-agent-raw nil "NLU"
+     (freekbs2-util-data-dumper
+      (list
+       (cons "_DoNotLog" 1)
+       (cons "Command" "Convert Text Properties To Inline")
+       (cons "Text" (nlu-get-text-in-region))
+       (cons "Properties" (nlu-get-tags-in-region))
+       )
+      )
+     ))
+   (replacement
+    (assoc "Result"
+     (freekbs2-util-data-dedumper
+      (nth 5 message))))
+   )
+  (see replacement)
+  )
+ )
+
+(defun nlu-get-text-in-region ()
+ ""
+ (buffer-substring-no-properties (point) (mark)))
+
+;; (defun nlu-convert-standoff-to-text-properties (text) "")
+;; (defun nlu-convert-text-properties-to-standoff (text) "")
+;; (defun nlu-convert-inline-to-standoff (text) "")
+;; (defun nlu-convert-standoff-to-inline (text) "")
+
+(defun nlu-push-n-words-onto-stack (arg)
+ "Load as many as the argument of symbols onto the stack"
+ (interactive "p")
+ (save-excursion
+  (forward-word (+ (floor (/ arg 2)) 1))
+  (set-mark (point))
+  (backward-word arg)
+  (freekbs2-push-onto-stack (buffer-substring-no-properties (point) (mark)) nil)))
+
+(defun nlu-resolve-deixis ()
+ "Display information about the meaning of the deixis of the word or phrase at point")
+
+(defun nlu-highlight-tag-schema-in-region ()
+ "Highlight a particular tag schema in the region, so for instance, named entities"
+ (interactive)
+ ;; choose the tag schema
+ 
+ )
+
+(defun nlu-index-tags ()
+ "Make an index of the tags that includes different important
+ information, and make it available for other functions to use"
+ ;; 
+ 
+ )
+
+;; (defun nlu-lookup-item-extensively ()
+;;  "grab the most relevant item under the text cursor"
+;;  (interactive)
+;;  (let ((tag (nlu-get-most-interesting-tag-at-point)))
+;;   ;; push the tag onto the stack
+;;   (freekbs2-push-onto-stack tag nil)
+;;   ;; now run the various emacs commands on the tag at point
+;;   (freekbs2-execute-emacs-function-on-stack "freekbs2-execute-functions-lookup-item-extensively")))
+
+(defun nlu-lookup-item-extensively ()
+ "grab the most relevant item under the text cursor"
+ (interactive)
+ (nlu-push-most-interesting-tag-at-point-onto-stack)
+ ;; now run the various emacs commands on the tag at point
+ (freekbs2-execute-emacs-function-on-stack "freekbs2-execute-functions-lookup-item-extensively"))
+
+(defun nlu-push-most-interesting-tag-at-point-onto-stack ()
+ "Grab the most relevant item under the text cursor and put it on
+the stack"
+ (interactive)
+ (let ((tag (nlu-get-most-interesting-tag-at-point)))
+  ;; push the tag onto the stack
+  (freekbs2-push-onto-stack tag nil)))
+
+(defun nlu-forward-most-interesting-tag ()
+ "Move forward across the most interesting tag"
+ )
+
+(defun nlu-backward-most-interesting-tag ()
+ "Move backward across the most interesting tag")
+
+;; have a lazy evaluate syntax mode that does formatting on the
+;; current buffer
+
+;; add functions for knowledge base lookup, etc
+
+(defun nlu-ghost-buffer (&optional buffer)
+ "Create a copy of the current buffer useful for performing an
+ analysis on" 
+ (interactive)
+ (let ((current-point (point)))
+  (save-excursion
+   (if (and buffer (bufferp buffer)) (switch-to-buffer buffer))
+   (mark-whole-buffer)
+   (setq nlu-ghost-buffer-contents (buffer-substring (point) (mark))))
+  (switch-to-buffer (get-buffer-create (concat "Ghost of " (buffer-name (current-buffer)))))
+  (insert nlu-ghost-buffer-contents)
+  (goto-char current-point)
+  ;; save a variable that indicates this is a ghost buffer, so that we
+  ;; can lock read-only the buffer when we are not running NLU stuff
+  ;; on it
+  ))
+
+(defun nlu-declare-desire-to-obtain-publication ()
+ "We really should have a publication at point function, process
+ the whole document with the citation extraction software"
+ 
+ )
+
+(defun nlu-retrieve-document-link-at-point-for-analysis ()
+ "Take the url link at point, retrieve the document, convert to
+ text, make read-only and open in NLU"
+ (interactive)
+ ;; first determine whether the link under point is a url or a w3m-link
+ (let* ((url1 (w3m-url-valid (w3m-anchor)))
+	(url2 (w3m-url-valid (thing-at-point 'url)))
+	(actual-url (if url1 url1 (if url2 url2 nil)))
+	(file-location
+	 (shell-command-to-string
+	  (concat "/var/lib/myfrdcsa/codebases/internal/digilib/scripts/retrieve-paper.pl -u "
+	   (shell-quote-argument actual-url))))
+	(original-document-file 
+	 (progn
+	  (string-match "Docfile: \\(.+\\)" file-location)
+	  (match-string 1 file-location)))
+	(text-file 
+	 (progn
+	  (string-match "Textfile: \\(.+\\)" file-location)
+	  (match-string 1 file-location)))
+	)
+  (if
+   (and
+    (not x-no-window-manager)
+    (or 
+     (and (= emacs-minor-version 2) (>= emacs-major-version 23))
+     (> emacs-minor-version 2)))
+   (ffap original-document-file)
+   (ffap text-file))))
+
+
+(defun nlu-ghost-buffer-p (&optional buffer-arg)
+ "Determine if the buffer is a ghost buffer or not"
+ (interactive)
+ (let* ((buffer (if buffer-arg buffer-arg (current-buffer)))
+	(buffer-name (buffer-name buffer)))
+  (eq (string-match "^Ghost of " buffer-name) 0)))
+
+
+;; create a major mode for Ghost Buffers
+;; add all kinds of analysis options
+
+;; create an analyzer reasoner that schedules analysis (knowing how
+;; long it usually takes)
+
+;; create a goal based system for understanding the meaning of all
+;; the text, maybe use soar or a production system
+
+;; export the marked up tags to a combined feature learner
+
+;; have the ability to adjust markup to correct for mistakes
+
+;; have the ability to recognize when the user is not using the
+;; interface in order to do extra processing of the text
+
+;; dynamically highlight text as new information is learned
+
+;; have the ability to swap between different highlighting schemes as
+;; needed, maybe a ring of them
+
+;; analyze the whole buffer in certain cases
+
+;; fix the problematic sayer cache results
+
+;; add locking to read-only for ghost buffers
+
+;; have text independent knowledge for each buffer, and a mode for
+;; accessing and manipulating it
+
+;; add sentence tags
+
+(defun nlu-mark-academic-research-interest-in-item-on-top-of-stack ()
+ ""
+ (interactive)
+ ;; assert into a knowledge base somewhere that the current user has
+ ;; an academic interest in this topic
+ (if (nth 0 freekbs2-stack)
+  (let* ((context "Org::FRDCSA::Academician")
+	 (formula (list "has-academic-research-interest"
+		   (chomp (shell-command-to-string "whoami"))
+		   (nth 0 freekbs2-stack))))
+   (freekbs2-assert-formula formula context)
+   (message (concat "Asserted " (prin1-to-string formula) " to " context))
+   )
+  (message "No item on stack to add to interests")))
+
+(defun nlu-mark-desire-to-read-citation-on-top-of-stack ()
+ ""
+ (interactive)
+ ;; assert into a knowledge base somewhere that the current user has
+ ;; an academic interest in this topic
+ (if (nth 0 freekbs2-stack)
+  (let* ((context "Org::FRDCSA::Academician")
+	 (formula (list "desires"
+		   (chomp (shell-command-to-string "whoami"))
+		   (list "read" (nth 0 freekbs2-stack))
+		   )))
+   (freekbs2-assert-formula formula context)
+   (message (concat "Asserted " (prin1-to-string formula) " to " context))
+   )
+  (message "No item on stack to add to reading list")))
+
+(defun nlu-mark-requires-definition-of-item-on-top-of-stack ()
+ ""
+ (interactive)
+ ;; assert into a knowledge base somewhere that the current user has
+ ;; an academic interest in this topic
+ (if (nth 0 freekbs2-stack)
+  (let* ((context "Org::FRDCSA::Academician")
+	 (formula (list "requires-definition-of"
+		   (chomp (shell-command-to-string "whoami"))
+		   (nth 0 freekbs2-stack))))
+   (freekbs2-assert-formula formula context)
+   (message (concat "Asserted " (prin1-to-string formula) " to " context))
+   )
+  (message "No item on stack to add to interests")))
+
+(defun nlu-declare-isa-for-item-on-top-of-stack ()
+ "List the available actions for the nugget at point"
+ (interactive)
+ (if (nth 0 freekbs2-stack)
+  (let* ((potential-isas (list "thing" "place"))
+	 ;; (potential-isas (eval
+	 ;; 		  (read
+	 ;; 		   (shell-command-to-string
+	 ;; 		    (concat
+	 ;; 		     "/var/lib/myfrdcsa/codebases/internal/freekbs2/scripts/helper/potential-isas.pl "
+	 ;; 		     (shell-quote-argument freekbs2-database)
+	 ;; 		     " "
+	 ;; 		     (shell-quote-argument freekbs2-context))))))
+	 (isa (completing-read "Which Class should this belong to: " potential-isas)))
+   (see isa)
+   (if isa 
+    (let* ((formula (list "isa"
+		      (nth 0 freekbs2-stack)
+		      isa)))
+     (freekbs2-assert-formula formula freekbs2-context)
+     (message (concat "Asserted " (prin1-to-string formula) " to " freekbs2-context))
+     )
+    (message "No class selected")))
+  (message "No item on stack to classify")))
+
+;; develop functions for quoting from a given document, and taking
+;; that quote in context, also for using a particular quote as part of
+;; an argument or evidence
+
+(defun nlu-what-can-I-do-with-nugget-at-point ()
+ "List the available actions for the nugget at point"
+ (interactive)
+ 
+ )
+
+(defun nlu-list-affordances-for-item-on-top-of-stack ()
+ "Use the NLU system to prove things about the item on
+ stack (such as where it was obtained from, keep that information
+ somewhere) and determine what the item is and how it can be
+ used.  For instance, a publication reference can be retrieved, a
+ software can (possibly) be downloaded, etc."
+ (interactive)
+ ;; obtain the classification and facts about them item
+
+ ;; retrieve the affordances 
+
+ ;; possibly use text properties to keep metadata about the item
+ 
+ )

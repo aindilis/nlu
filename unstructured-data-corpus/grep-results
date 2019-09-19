@@ -1,0 +1,20 @@
+RADAR/Strategy/MetaSite.pm:# This  program  is  designed  to  search a  collection  of  metasites
+RADAR/Strategy/MetaSite.pm:sub search_metasites {
+RADAR/Strategy/Extract.pm:       File => "/var/lib/myfrdcsa/codebases/internal/radar/data/metasites");
+RADAR/Strategy/Extract.pm:    my $f = "/tmp/metasite.htm";
+RADAR/Strategy/Extract.pm:       File => "/var/lib/myfrdcsa/codebases/internal/radar/data/metasite-links");
+RADAR/Method/URL.pm:	  "MetaSite links to projects",
+Makefile.old:	RADAR/Strategy/MetaSite.pm \
+Makefile.old:	RADAR/Strategy/MetaSite.pm \
+Makefile.old:	$(INST_LIB)/RADAR/Strategy/MetaSite.pm \
+Makefile.old:	  RADAR/Strategy/MetaSite.pm $(INST_LIB)/RADAR/Strategy/MetaSite.pm 
+blib/lib/RADAR/Strategy/MetaSite.pm:# This  program  is  designed  to  search a  collection  of  metasites
+blib/lib/RADAR/Strategy/MetaSite.pm:sub search_metasites {
+blib/lib/RADAR/Strategy/Extract.pm:       File => "/var/lib/myfrdcsa/codebases/internal/radar/data/metasites");
+blib/lib/RADAR/Strategy/Extract.pm:    my $f = "/tmp/metasite.htm";
+blib/lib/RADAR/Strategy/Extract.pm:       File => "/var/lib/myfrdcsa/codebases/internal/radar/data/metasite-links");
+blib/lib/RADAR/Method/URL.pm:		       "MetaSite links to projects"));
+Makefile:	RADAR/Strategy/MetaSite.pm \
+Makefile:	RADAR/Strategy/MetaSite.pm \
+Makefile:	$(INST_LIB)/RADAR/Strategy/MetaSite.pm \
+Makefile:	  RADAR/Strategy/MetaSite.pm $(INST_LIB)/RADAR/Strategy/MetaSite.pm 

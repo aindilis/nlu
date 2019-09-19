@@ -1,0 +1,20 @@
+#!/usr/bin/perl -w
+
+use NLU;
+
+use UniLang::Agent::Agent;
+use UniLang::Util::Message;
+
+$UNIVERSAL::agent = UniLang::Agent::Agent->new
+  (Name => "NLU",
+   ReceiveHandler => \&Receive);
+$UNIVERSAL::agent->DoNotDaemonize(1);
+$UNIVERSAL::nlu = NLU->new();
+
+sub Receive {
+  my %args = @_;
+  $UNIVERSAL::nlu->ProcessMessage
+    (Message => $args{Message});
+}
+
+$UNIVERSAL::nlu->Execute();

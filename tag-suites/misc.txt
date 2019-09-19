@@ -1,0 +1,4 @@
+# I guess there are already DTDs out there, 
+# I could start collecting them
+
+

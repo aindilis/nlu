@@ -1,0 +1,2239 @@
+$WSD =
+  [
+   [
+    '',
+    [
+     {
+      'Glos' => 'drawing a comparison in order to show a similarity in some respect; "the operation of a computer presents and interesting analogy to the working of the brain"; "the models show by analogy how matter is built up"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'analogy#n#2'
+				],
+				[
+				 [
+				  'comparison#n#1',
+				  'comparing#n#1'
+				 ],
+				 [
+				  [
+				   'examination#n#1',
+				   'scrutiny#n#1'
+				  ],
+				  [
+				   [
+				    'investigation#n#2',
+				    'investigating#n#1'
+				   ],
+				   [
+				    [
+				     'work#n#1'
+				    ],
+				    [
+				     [
+				      'activity#n#1'
+				     ],
+				     [
+				      [
+				       'act#n#2',
+				       'deed#n#2',
+				       'human_action#n#1',
+				       'human_activity#n#1'
+				      ],
+				      [
+				       [
+					'event#n#1'
+				       ],
+				       [
+					[
+					 'psychological_feature#n#1'
+					],
+					[
+					 [
+					  'abstraction#n#6',
+					  'abstract_entity#n#1'
+					 ],
+					 [
+					  [
+					   'entity#n#1'
+					  ]
+					 ]
+					]
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Analogy#n#2',
+      'Word' => 'Analogies',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'constituting an imitation; "the mimic warfare of the opera stage"- Archibald Alison  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'mimic#a#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'mimic#a#1',
+      'Word' => 'mimic',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'a'
+     },
+     {
+      'Glos' => 'plan or create according to a model or models  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'model#v#1',
+				 'pattern#v#1'
+				],
+				[
+				 [
+				  'imitate#v#1',
+				  'copy#v#2',
+				  'simulate#v#1'
+				 ],
+				 [
+				  [
+				   'reproduce#v#1'
+				  ],
+				  [
+				   [
+				    'produce#v#2',
+				    'make#v#6',
+				    'create#v#6'
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'pattern#v#1',
+      'Word' => 'patterns',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'v'
+     },
+     {
+      'Glos' => 'to the opposite side; "the football field was 300 feet across"  ',
+      'WQD' => 'across#r#1',
+      'Word' => 'across',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'r'
+     },
+     {
+      'Glos' => 'the set of facts or circumstances that surround a situation or event; "the historical context"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'context#n#2',
+				 'circumstance#n#2',
+				 'setting#n#4'
+				],
+				[
+				 [
+				  'environment#n#1'
+				 ],
+				 [
+				  [
+				   'situation#n#1',
+				   'state_of_affairs#n#1'
+				  ],
+				  [
+				   [
+				    'state#n#2'
+				   ],
+				   [
+				    [
+				     'attribute#n#2'
+				    ],
+				    [
+				     [
+				      'abstraction#n#6',
+				      'abstract_entity#n#1'
+				     ],
+				     [
+				      [
+				       'entity#n#1'
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'context#n#2',
+      'Word' => 'contexts',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'via#ND',
+      'Word' => 'via',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'a representation of the structure on which Jesus was crucified; used as an emblem of Christianity or in heraldry  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'Cross#n#3'
+				],
+				[
+				 [
+				  'emblem#n#1'
+				 ],
+				 [
+				  [
+				   'design#n#4',
+				   'pattern#n#3',
+				   'figure#n#12'
+				  ],
+				  [
+				   [
+				    'decoration#n#1',
+				    'ornament#n#1',
+				    'ornamentation#n#2'
+				   ],
+				   [
+				    [
+				     'artifact#n#1',
+				     'artefact#n#1'
+				    ],
+				    [
+				     [
+				      'whole#n#2',
+				      'unit#n#6'
+				     ],
+				     [
+				      [
+				       'object#n#1',
+				       'physical_object#n#1'
+				      ],
+				      [
+				       [
+					'physical_entity#n#1'
+				       ],
+				       [
+					[
+					 'entity#n#1'
+					]
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Cross#n#3',
+      'Word' => 'Cross',
+      'Lin' => '-',
+      'Sense' => '3',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'territory over which rule or control is exercised; "his domain extended into Europe"; "he made it the law of the land"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'domain#n#2',
+				 'demesne#n#2',
+				 'land#n#3'
+				],
+				[
+				 [
+				  'region#n#3'
+				 ],
+				 [
+				  [
+				   'location#n#1'
+				  ],
+				  [
+				   [
+				    'object#n#1',
+				    'physical_object#n#1'
+				   ],
+				   [
+				    [
+				     'physical_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Domain#n#2',
+      'Word' => 'Domain',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'an abstraction belonging to or characteristic of two entities or parts together  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'relation#n#1'
+				],
+				[
+				 [
+				  'abstraction#n#6',
+				  'abstract_entity#n#1'
+				 ],
+				 [
+				  [
+				   'entity#n#1'
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Relation#n#1',
+      'Word' => 'Relations',
+      'Lin' => '. ',
+      'Sense' => '1',
+      'POS' => 'n'
+     }
+    ],
+    [
+     {
+      'Glos' => 'a representation of the structure on which Jesus was crucified; used as an emblem of Christianity or in heraldry  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'Cross#n#3'
+				],
+				[
+				 [
+				  'emblem#n#1'
+				 ],
+				 [
+				  [
+				   'design#n#4',
+				   'pattern#n#3',
+				   'figure#n#12'
+				  ],
+				  [
+				   [
+				    'decoration#n#1',
+				    'ornament#n#1',
+				    'ornamentation#n#2'
+				   ],
+				   [
+				    [
+				     'artifact#n#1',
+				     'artefact#n#1'
+				    ],
+				    [
+				     [
+				      'whole#n#2',
+				      'unit#n#6'
+				     ],
+				     [
+				      [
+				       'object#n#1',
+				       'physical_object#n#1'
+				      ],
+				      [
+				       [
+					'physical_entity#n#1'
+				       ],
+				       [
+					[
+					 'entity#n#1'
+					]
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Cross#n#3',
+      'Word' => 'Cross',
+      'Lin' => '-',
+      'Sense' => '3',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'territory over which rule or control is exercised; "his domain extended into Europe"; "he made it the law of the land"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'domain#n#2',
+				 'demesne#n#2',
+				 'land#n#3'
+				],
+				[
+				 [
+				  'region#n#3'
+				 ],
+				 [
+				  [
+				   'location#n#1'
+				  ],
+				  [
+				   [
+				    'object#n#1',
+				    'physical_object#n#1'
+				   ],
+				   [
+				    [
+				     'physical_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Domain#n#2',
+      'Word' => 'Domain',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'an abstraction belonging to or characteristic of two entities or parts together  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'relation#n#1'
+				],
+				[
+				 [
+				  'abstraction#n#6',
+				  'abstract_entity#n#1'
+				 ],
+				 [
+				  [
+				   'entity#n#1'
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Relation#n#1',
+      'Word' => 'Relations',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'change location; move, travel, or proceed, also metaphorically; "How fast does your new car go?"; "We travelled from Rome to Naples by bus"; "The policemen went from door to door looking for the suspect"; "The soldiers moved towards the city in an attempt to take it before night fell"; "news travelled fast"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'travel#v#1',
+				 'go#v#1',
+				 'move#v#1',
+				 'locomote#v#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'go#v#1',
+      'Word' => 'go',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'v'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'from#ND',
+      'Word' => 'from',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'territory over which rule or control is exercised; "his domain extended into Europe"; "he made it the law of the land"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'domain#n#2',
+				 'demesne#n#2',
+				 'land#n#3'
+				],
+				[
+				 [
+				  'region#n#3'
+				 ],
+				 [
+				  [
+				   'location#n#1'
+				  ],
+				  [
+				   [
+				    'object#n#1',
+				    'physical_object#n#1'
+				   ],
+				   [
+				    [
+				     'physical_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'domain#n#2',
+      'Word' => 'domain',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'to#ND',
+      'Word' => 'to',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'territory over which rule or control is exercised; "his domain extended into Europe"; "he made it the law of the land"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'domain#n#2',
+				 'demesne#n#2',
+				 'land#n#3'
+				],
+				[
+				 [
+				  'region#n#3'
+				 ],
+				 [
+				  [
+				   'location#n#1'
+				  ],
+				  [
+				   [
+				    'object#n#1',
+				    'physical_object#n#1'
+				   ],
+				   [
+				    [
+				     'physical_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'domain#n#2',
+      'Word' => 'domain',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'when#ND',
+      'Word' => 'when',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'the#ND',
+      'Word' => 'the',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => '(mathematics) the set of values of the dependent variable for which a function is defined; "the image of f(x) = x^2 is the set of all non-negative real numbers if the domain of the function is the set of all real numbers"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'image#n#7',
+				 'range#n#7',
+				 'range_of_a_function#n#1'
+				],
+				[
+				 [
+				  'set#n#2'
+				 ],
+				 [
+				  [
+				   'abstraction#n#6',
+				   'abstract_entity#n#1'
+				  ],
+				  [
+				   [
+				    'entity#n#1'
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'range#n#7',
+      'Word' => 'range',
+      'Lin' => ' ',
+      'Sense' => '7',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'be#v#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'be#v#1',
+      'Word' => 'is',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'v'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'the#ND',
+      'Word' => 'the',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'closely similar or comparable in kind or quality or quantity or degree; "curtains the same color as the walls"; "two girls of the same age"; "mother and son have the same blue eyes"; "animals of the same species"; "the same rules as before"; "two boxes having the same dimensions"; "the same day next year"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'same#a#2'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'same#a#2',
+      'Word' => 'same',
+      'Lin' => ', ',
+      'Sense' => '2',
+      'POS' => 'a'
+     },
+     {
+      'Glos' => 'a very poisonous metallic element that has three allotropic forms; arsenic and arsenic compounds are used as herbicides and insecticides and various alloys; found in arsenopyrite and orpiment and realgar  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'arsenic#n#2',
+				 'As#n#1',
+				 'atomic_number_33#n#1'
+				],
+				[
+				 [
+				  'chemical_element#n#1',
+				  'element#n#3'
+				 ],
+				 [
+				  [
+				   'substance#n#1'
+				  ],
+				  [
+				   [
+				    'matter#n#3'
+				   ],
+				   [
+				    [
+				     'physical_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ],
+				  [
+				   [
+				    'part#n#1',
+				    'portion#n#1',
+				    'component_part#n#1',
+				    'component#n#2',
+				    'constituent#n#3'
+				   ],
+				   [
+				    [
+				     'relation#n#1'
+				    ],
+				    [
+				     [
+				      'abstraction#n#6',
+				      'abstract_entity#n#1'
+				     ],
+				     [
+				      [
+				       'entity#n#1'
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'as#n#1',
+      'Word' => 'as',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'an associate degree in nursing  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'Associate_in_Nursing#n#1',
+				 'AN#n#1'
+				],
+				[
+				 [
+				  'associate_degree#n#1',
+				  'associate#n#5'
+				 ],
+				 [
+				  [
+				   'academic_degree#n#1',
+				   'degree#n#3'
+				  ],
+				  [
+				   [
+				    'award#n#2',
+				    'accolade#n#1',
+				    'honor#n#1',
+				    'honour#n#2',
+				    'laurels#n#1'
+				   ],
+				   [
+				    [
+				     'symbol#n#1'
+				    ],
+				    [
+				     [
+				      'signal#n#1',
+				      'signaling#n#1',
+				      'sign#n#3'
+				     ],
+				     [
+				      [
+				       'communication#n#2'
+				      ],
+				      [
+				       [
+					'abstraction#n#6',
+					'abstract_entity#n#1'
+				       ],
+				       [
+					[
+					 'entity#n#1'
+					]
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'an#n#1',
+      'Word' => 'an',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'a representation of common ground between theories or phenomena; "there was no overlap between their proposals"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'overlap#n#1',
+				 'convergence#n#3',
+				 'intersection#n#5'
+				],
+				[
+				 [
+				  'representation#n#1',
+				  'mental_representation#n#1',
+				  'internal_representation#n#1'
+				 ],
+				 [
+				  [
+				   'content#n#5',
+				   'cognitive_content#n#1',
+				   'mental_object#n#1'
+				  ],
+				  [
+				   [
+				    'cognition#n#1',
+				    'knowledge#n#1',
+				    'noesis#n#1'
+				   ],
+				   [
+				    [
+				     'psychological_feature#n#1'
+				    ],
+				    [
+				     [
+				      'abstraction#n#6',
+				      'abstract_entity#n#1'
+				     ],
+				     [
+				      [
+				       'entity#n#1'
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'overlap#n#1',
+      'Word' => 'overlap',
+      'Lin' => '. ',
+      'Sense' => '1',
+      'POS' => 'n'
+     }
+    ],
+    [
+     {
+      'NotCertain' => 1,
+      'WQD' => 'That#ND',
+      'Word' => 'That',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'is#NR',
+      'Word' => 'is',
+      'Lin' => ' ',
+      'POS' => 'NR'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'the#ND',
+      'Word' => 'the',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'the fundamental assumptions from which something is begun or developed or calculated or explained; "the whole argument rested on a basis of conjecture"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'basis#n#2',
+				 'base#n#7',
+				 'foundation#n#5',
+				 'fundament#n#1',
+				 'groundwork#n#1',
+				 'cornerstone#n#1'
+				],
+				[
+				 [
+				  'assumption#n#2',
+				  'supposition#n#2',
+				  'supposal#n#1'
+				 ],
+				 [
+				  [
+				   'hypothesis#n#2',
+				   'possibility#n#3',
+				   'theory#n#2'
+				  ],
+				  [
+				   [
+				    'concept#n#1',
+				    'conception#n#1',
+				    'construct#n#1'
+				   ],
+				   [
+				    [
+				     'idea#n#1',
+				     'thought#n#1'
+				    ],
+				    [
+				     [
+				      'content#n#5',
+				      'cognitive_content#n#1',
+				      'mental_object#n#1'
+				     ],
+				     [
+				      [
+				       'cognition#n#1',
+				       'knowledge#n#1',
+				       'noesis#n#1'
+				      ],
+				      [
+				       [
+					'psychological_feature#n#1'
+				       ],
+				       [
+					[
+					 'abstraction#n#6',
+					 'abstract_entity#n#1'
+					],
+					[
+					 [
+					  'entity#n#1'
+					 ]
+					]
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'basis#n#2',
+      'Word' => 'basis',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'of#ND',
+      'Word' => 'of',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'expressing, composed of, or based on an analogy; "the analogical use of a metaphor"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'analogical#a#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Analogical#a#1',
+      'Word' => 'Analogical',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'a'
+     },
+     {
+      'Glos' => 'decide by reasoning; draw or come to a conclusion; "We reasoned that it was cheaper to rent than to buy a house"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'reason#v#1',
+				 'reason_out#v#1',
+				 'conclude#v#1'
+				],
+				[
+				 [
+				  'think#v#3',
+				  'cogitate#v#2',
+				  'cerebrate#v#1'
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Reason#v#1',
+      'Word' => 'Reasoning',
+      'Lin' => '. ',
+      'Sense' => '1',
+      'POS' => 'v'
+     }
+    ],
+    [
+     {
+      'NotCertain' => 1,
+      'WQD' => 'If#ND',
+      'Word' => 'If',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'data#NR',
+      'Word' => 'data',
+      'Lin' => ' ',
+      'POS' => 'NR'
+     },
+     {
+      'Glos' => 'have or possess, either in a concrete or an abstract sense; "She has $1,000 in the bank"; "He has got two beautiful daughters"; "She holds a Master\'s degree from Harvard"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'have#v#1',
+				 'have_got#v#1',
+				 'hold#v#4'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'have#v#1',
+      'Word' => 'has',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'v'
+     },
+     {
+      'Glos' => 'easily perceived; easy to become aware of; "this situation produces recognizable stress symptoms"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'recognizable#a#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'recognizable#a#1',
+      'Word' => 'recognizable',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'a'
+     },
+     {
+      'Glos' => 'the characteristic parts of a person\'s face: eyes and nose and mouth and chin; "an expression of pleasure crossed his features"; "his lineaments were very regular"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'feature#n#2',
+				 'lineament#n#2'
+				],
+				[
+				 [
+				  'body_part#n#1'
+				 ],
+				 [
+				  [
+				   'part#n#3',
+				   'piece#n#3'
+				  ],
+				  [
+				   [
+				    'thing#n#12'
+				   ],
+				   [
+				    [
+				     'physical_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'feature#n#2',
+      'Word' => 'features',
+      'Lin' => ', ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'the branch of engineering that deals with the use of computers and telecommunications to retrieve and store and transmit information  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'information_technology#n#1',
+				 'IT#n#1'
+				],
+				[
+				 [
+				  'engineering#n#2',
+				  'engineering_science#n#1',
+				  'applied_science#n#1',
+				  'technology#n#2'
+				 ],
+				 [
+				  [
+				   'discipline#n#1',
+				   'subject#n#3',
+				   'subject_area#n#1',
+				   'subject_field#n#1',
+				   'field#n#4',
+				   'field_of_study#n#1',
+				   'study#n#6',
+				   'bailiwick#n#2'
+				  ],
+				  [
+				   [
+				    'knowledge_domain#n#1',
+				    'knowledge_base#n#1',
+				    'domain#n#5'
+				   ],
+				   [
+				    [
+				     'content#n#5',
+				     'cognitive_content#n#1',
+				     'mental_object#n#1'
+				    ],
+				    [
+				     [
+				      'cognition#n#1',
+				      'knowledge#n#1',
+				      'noesis#n#1'
+				     ],
+				     [
+				      [
+				       'psychological_feature#n#1'
+				      ],
+				      [
+				       [
+					'abstraction#n#6',
+					'abstract_entity#n#1'
+				       ],
+				       [
+					[
+					 'entity#n#1'
+					]
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'it#n#1',
+      'Word' => 'it',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'be#v#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'be#v#1',
+      'Word' => 'is',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'v'
+     },
+     {
+      'Glos' => '(biochemistry) purine base found in DNA and RNA; pairs with thymine in DNA and with uracil in RNA  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'adenine#n#1',
+				 'A#n#4'
+				],
+				[
+				 [
+				  'purine#n#1'
+				 ],
+				 [
+				  [
+				   'base#n#10',
+				   'alkali#n#1'
+				  ],
+				  [
+				   [
+				    'compound#n#2',
+				    'chemical_compound#n#1'
+				   ],
+				   [
+				    [
+				     'chemical#n#1',
+				     'chemical_substance#n#1'
+				    ],
+				    [
+				     [
+				      'material#n#1',
+				      'stuff#n#1'
+				     ],
+				     [
+				      [
+				       'substance#n#1'
+				      ],
+				      [
+				       [
+					'matter#n#3'
+				       ],
+				       [
+					[
+					 'physical_entity#n#1'
+					],
+					[
+					 [
+					  'entity#n#1'
+					 ]
+					]
+				       ]
+				      ],
+				      [
+				       [
+					'part#n#1',
+					'portion#n#1',
+					'component_part#n#1',
+					'component#n#2',
+					'constituent#n#3'
+				       ],
+				       [
+					[
+					 'relation#n#1'
+					],
+					[
+					 [
+					  'abstraction#n#6',
+					  'abstract_entity#n#1'
+					 ],
+					 [
+					  [
+					   'entity#n#1'
+					  ]
+					 ]
+					]
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'a#n#4',
+      'Word' => 'a',
+      'Lin' => ' ',
+      'Sense' => '4',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'a decorative or artistic work; "the coach had a design on the doors"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'design#n#4',
+				 'pattern#n#3',
+				 'figure#n#12'
+				],
+				[
+				 [
+				  'decoration#n#1',
+				  'ornament#n#1',
+				  'ornamentation#n#2'
+				 ],
+				 [
+				  [
+				   'artifact#n#1',
+				   'artefact#n#1'
+				  ],
+				  [
+				   [
+				    'whole#n#2',
+				    'unit#n#6'
+				   ],
+				   [
+				    [
+				     'object#n#1',
+				     'physical_object#n#1'
+				    ],
+				    [
+				     [
+				      'physical_entity#n#1'
+				     ],
+				     [
+				      [
+				       'entity#n#1'
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'pattern#n#3',
+      'Word' => 'pattern',
+      'Lin' => '. ',
+      'Sense' => '3',
+      'POS' => 'n'
+     }
+    ],
+    [
+     {
+      'Glos' => 'the repeated use of the same word or word pattern as a rhetorical device  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'repetition#n#3'
+				],
+				[
+				 [
+				  'rhetorical_device#n#1'
+				 ],
+				 [
+				  [
+				   'device#n#2'
+				  ],
+				  [
+				   [
+				    'expressive_style#n#1',
+				    'style#n#2'
+				   ],
+				   [
+				    [
+				     'communication#n#2'
+				    ],
+				    [
+				     [
+				      'abstraction#n#6',
+				      'abstract_entity#n#1'
+				     ],
+				     [
+				      [
+				       'entity#n#1'
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Repetition#n#3',
+      'Word' => 'Repetition',
+      'Lin' => ' ',
+      'Sense' => '3',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'be#v#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'be#v#1',
+      'Word' => 'is',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'v'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'what#ND',
+      'Word' => 'what',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'be suitable for; "Wood makes good furniture"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'make#v#31'
+				],
+				[
+				 [
+				  'be#v#1'
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'make#v#31',
+      'Word' => 'makes',
+      'Lin' => ' ',
+      'Sense' => '31',
+      'POS' => 'v'
+     },
+     {
+      'Glos' => 'a metric unit of length equal to one ten billionth of a meter (or 0.0001 micron); used to specify wavelengths of electromagnetic radiation  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'angstrom#n#1',
+				 'angstrom_unit#n#1',
+				 'A#n#1'
+				],
+				[
+				 [
+				  'metric_linear_unit#n#1'
+				 ],
+				 [
+				  [
+				   'linear_unit#n#1',
+				   'linear_measure#n#1'
+				  ],
+				  [
+				   [
+				    'unit_of_measurement#n#1',
+				    'unit#n#1'
+				   ],
+				   [
+				    [
+				     'definite_quantity#n#1'
+				    ],
+				    [
+				     [
+				      'measure#n#2',
+				      'quantity#n#1',
+				      'amount#n#3'
+				     ],
+				     [
+				      [
+				       'abstraction#n#6',
+				       'abstract_entity#n#1'
+				      ],
+				      [
+				       [
+					'entity#n#1'
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ],
+				 [
+				  [
+				   'metric_unit#n#1',
+				   'metric#n#2'
+				  ],
+				  [
+				   [
+				    'unit_of_measurement#n#1',
+				    'unit#n#1'
+				   ],
+				   [
+				    [
+				     'definite_quantity#n#1'
+				    ],
+				    [
+				     [
+				      'measure#n#2',
+				      'quantity#n#1',
+				      'amount#n#3'
+				     ],
+				     [
+				      [
+				       'abstraction#n#6',
+				       'abstract_entity#n#1'
+				      ],
+				      [
+				       [
+					'entity#n#1'
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'a#n#1',
+      'Word' => 'a',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => '(mathematics) an attribute of a shape or relation; exact reflection of form on opposite sides of a dividing line or plane  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'symmetry#n#1',
+				 'symmetricalness#n#1',
+				 'correspondence#n#4',
+				 'balance#n#9'
+				],
+				[
+				 [
+				  'spatial_property#n#1',
+				  'spatiality#n#1'
+				 ],
+				 [
+				  [
+				   'property#n#2'
+				  ],
+				  [
+				   [
+				    'attribute#n#2'
+				   ],
+				   [
+				    [
+				     'abstraction#n#6',
+				     'abstract_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'symmetry#n#1',
+      'Word' => 'symmetry',
+      'Lin' => ', ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'and#ND',
+      'Word' => 'and',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'be#v#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'be#v#1',
+      'Word' => 'is',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'v'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'what#ND',
+      'Word' => 'what',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'be suitable for; "Wood makes good furniture"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'make#v#31'
+				],
+				[
+				 [
+				  'be#v#1'
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'make#v#31',
+      'Word' => 'makes',
+      'Lin' => ' ',
+      'Sense' => '31',
+      'POS' => 'v'
+     },
+     {
+      'Glos' => 'a metric unit of length equal to one ten billionth of a meter (or 0.0001 micron); used to specify wavelengths of electromagnetic radiation  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'angstrom#n#1',
+				 'angstrom_unit#n#1',
+				 'A#n#1'
+				],
+				[
+				 [
+				  'metric_linear_unit#n#1'
+				 ],
+				 [
+				  [
+				   'linear_unit#n#1',
+				   'linear_measure#n#1'
+				  ],
+				  [
+				   [
+				    'unit_of_measurement#n#1',
+				    'unit#n#1'
+				   ],
+				   [
+				    [
+				     'definite_quantity#n#1'
+				    ],
+				    [
+				     [
+				      'measure#n#2',
+				      'quantity#n#1',
+				      'amount#n#3'
+				     ],
+				     [
+				      [
+				       'abstraction#n#6',
+				       'abstract_entity#n#1'
+				      ],
+				      [
+				       [
+					'entity#n#1'
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ],
+				 [
+				  [
+				   'metric_unit#n#1',
+				   'metric#n#2'
+				  ],
+				  [
+				   [
+				    'unit_of_measurement#n#1',
+				    'unit#n#1'
+				   ],
+				   [
+				    [
+				     'definite_quantity#n#1'
+				    ],
+				    [
+				     [
+				      'measure#n#2',
+				      'quantity#n#1',
+				      'amount#n#3'
+				     ],
+				     [
+				      [
+				       'abstraction#n#6',
+				       'abstract_entity#n#1'
+				      ],
+				      [
+				       [
+					'entity#n#1'
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'a#n#1',
+      'Word' => 'a',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'a decorative or artistic work; "the coach had a design on the doors"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'design#n#4',
+				 'pattern#n#3',
+				 'figure#n#12'
+				],
+				[
+				 [
+				  'decoration#n#1',
+				  'ornament#n#1',
+				  'ornamentation#n#2'
+				 ],
+				 [
+				  [
+				   'artifact#n#1',
+				   'artefact#n#1'
+				  ],
+				  [
+				   [
+				    'whole#n#2',
+				    'unit#n#6'
+				   ],
+				   [
+				    [
+				     'object#n#1',
+				     'physical_object#n#1'
+				    ],
+				    [
+				     [
+				      'physical_entity#n#1'
+				     ],
+				     [
+				      [
+				       'entity#n#1'
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'pattern#n#3',
+      'Word' => 'pattern',
+      'Lin' => '\'',
+      'Sense' => '3',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => '1/60 of a minute; the basic unit of time adopted under the Systeme International d\'Unites  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'second#n#1',
+				 'sec#n#1',
+				 's#n#1'
+				],
+				[
+				 [
+				  'time_unit#n#1',
+				  'unit_of_time#n#1'
+				 ],
+				 [
+				  [
+				   'measure#n#2',
+				   'quantity#n#1',
+				   'amount#n#3'
+				  ],
+				  [
+				   [
+				    'abstraction#n#6',
+				    'abstract_entity#n#1'
+				   ],
+				   [
+				    [
+				     'entity#n#1'
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 's#n#1',
+      'Word' => 's',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'the characteristic parts of a person\'s face: eyes and nose and mouth and chin; "an expression of pleasure crossed his features"; "his lineaments were very regular"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'feature#n#2',
+				 'lineament#n#2'
+				],
+				[
+				 [
+				  'body_part#n#1'
+				 ],
+				 [
+				  [
+				   'part#n#3',
+				   'piece#n#3'
+				  ],
+				  [
+				   [
+				    'thing#n#12'
+				   ],
+				   [
+				    [
+				     'physical_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'feature#n#2',
+      'Word' => 'features',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'easily perceived; easy to become aware of; "this situation produces recognizable stress symptoms"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'recognizable#a#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'recognizable#a#1',
+      'Word' => 'recognizable',
+      'Lin' => '. ',
+      'Sense' => '1',
+      'POS' => 'a'
+     }
+    ],
+    [
+     {
+      'Glos' => 'a message received and understood  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'information#n#1',
+				 'info#n#1'
+				],
+				[
+				 [
+				  'message#n#2',
+				  'content#n#2',
+				  'subject_matter#n#1',
+				  'substance#n#6'
+				 ],
+				 [
+				  [
+				   'communication#n#2'
+				  ],
+				  [
+				   [
+				    'abstraction#n#6',
+				    'abstract_entity#n#1'
+				   ],
+				   [
+				    [
+				     'entity#n#1'
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'Information#n#1',
+      'Word' => 'Information',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'be#v#1'
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'be#v#1',
+      'Word' => 'is',
+      'Lin' => ' ',
+      'Sense' => '1',
+      'POS' => 'v'
+     },
+     {
+      'Glos' => '(biochemistry) purine base found in DNA and RNA; pairs with thymine in DNA and with uracil in RNA  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'adenine#n#1',
+				 'A#n#4'
+				],
+				[
+				 [
+				  'purine#n#1'
+				 ],
+				 [
+				  [
+				   'base#n#10',
+				   'alkali#n#1'
+				  ],
+				  [
+				   [
+				    'compound#n#2',
+				    'chemical_compound#n#1'
+				   ],
+				   [
+				    [
+				     'chemical#n#1',
+				     'chemical_substance#n#1'
+				    ],
+				    [
+				     [
+				      'material#n#1',
+				      'stuff#n#1'
+				     ],
+				     [
+				      [
+				       'substance#n#1'
+				      ],
+				      [
+				       [
+					'matter#n#3'
+				       ],
+				       [
+					[
+					 'physical_entity#n#1'
+					],
+					[
+					 [
+					  'entity#n#1'
+					 ]
+					]
+				       ]
+				      ],
+				      [
+				       [
+					'part#n#1',
+					'portion#n#1',
+					'component_part#n#1',
+					'component#n#2',
+					'constituent#n#3'
+				       ],
+				       [
+					[
+					 'relation#n#1'
+					],
+					[
+					 [
+					  'abstraction#n#6',
+					  'abstract_entity#n#1'
+					 ],
+					 [
+					  [
+					   'entity#n#1'
+					  ]
+					 ]
+					]
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'a#n#4',
+      'Word' => 'a',
+      'Lin' => ' ',
+      'Sense' => '4',
+      'POS' => 'n'
+     },
+     {
+      'Glos' => 'a large orchestra; can perform symphonies; "we heard the Vienna symphony"  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'symphony_orchestra#n#1',
+				 'symphony#n#2',
+				 'philharmonic#n#1'
+				],
+				[
+				 [
+				  'orchestra#n#1'
+				 ],
+				 [
+				  [
+				   'musical_organization#n#1',
+				   'musical_organisation#n#1',
+				   'musical_group#n#1'
+				  ],
+				  [
+				   [
+				    'organization#n#1',
+				    'organisation#n#2'
+				   ],
+				   [
+				    [
+				     'social_group#n#1'
+				    ],
+				    [
+				     [
+				      'group#n#1',
+				      'grouping#n#1'
+				     ],
+				     [
+				      [
+				       'abstraction#n#6',
+				       'abstract_entity#n#1'
+				      ],
+				      [
+				       [
+					'entity#n#1'
+				       ]
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'symphony#n#2',
+      'Word' => 'symphony',
+      'Lin' => ' ',
+      'Sense' => '2',
+      'POS' => 'n'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'of#ND',
+      'Word' => 'of',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => 'an artistic movement in the late 19th century that tried to express abstract or mystical ideas through the symbolic use of images  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'symbolism#n#3'
+				],
+				[
+				 [
+				  'artistic_movement#n#1',
+				  'art_movement#n#1'
+				 ],
+				 [
+				  [
+				   'movement#n#4',
+				   'social_movement#n#1',
+				   'front#n#10'
+				  ],
+				  [
+				   [
+				    'social_group#n#1'
+				   ],
+				   [
+				    [
+				     'group#n#1',
+				     'grouping#n#1'
+				    ],
+				    [
+				     [
+				      'abstraction#n#6',
+				      'abstract_entity#n#1'
+				     ],
+				     [
+				      [
+				       'entity#n#1'
+				      ]
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'symbolism#n#3',
+      'Word' => 'symbolism',
+      'Lin' => ' ',
+      'Sense' => '3',
+      'POS' => 'n'
+     },
+     {
+      'NotCertain' => 1,
+      'WQD' => 'and#ND',
+      'Word' => 'and',
+      'Lin' => ' ',
+      'POS' => 'ND'
+     },
+     {
+      'Glos' => '(mathematics) an attribute of a shape or relation; exact reflection of form on opposite sides of a dividing line or plane  ',
+      'Hypen' => {
+		  'Result' => [
+			       [
+				[
+				 'symmetry#n#1',
+				 'symmetricalness#n#1',
+				 'correspondence#n#4',
+				 'balance#n#9'
+				],
+				[
+				 [
+				  'spatial_property#n#1',
+				  'spatiality#n#1'
+				 ],
+				 [
+				  [
+				   'property#n#2'
+				  ],
+				  [
+				   [
+				    'attribute#n#2'
+				   ],
+				   [
+				    [
+				     'abstraction#n#6',
+				     'abstract_entity#n#1'
+				    ],
+				    [
+				     [
+				      'entity#n#1'
+				     ]
+				    ]
+				   ]
+				  ]
+				 ]
+				]
+			       ]
+			      ]
+		 },
+      'WQD' => 'symmetry#n#1',
+      'Word' => 'symmetry',
+      'Lin' => '. ',
+      'Sense' => '1',
+      'POS' => 'n'
+     }
+    ]
+   ]
+  ];

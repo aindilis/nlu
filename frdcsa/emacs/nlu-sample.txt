@@ -1,0 +1,9 @@
+(valid ∀φ 2a 2b φ ⇔ 2b 2a φ)
+|=ST T
+(valid ∀φ, ψ 2a (2a φ ∨ 2b ψ) ⊃ (2a φ ∨ 2a ψ)) ∧
+(valid ∀φ, ψ 2b (2a φ ∨ 2b ψ) ⊃ (2b φ ∨ 2b ψ)) (35)
+Example 6. Suppose we want to work with a 2-dimensional logic combining a
+modality 2k of knowledge with a modality 2b of belief. Moreover, suppose we
+model 2k as an S5 modality and 2b as an D45 modality and let us furthermore
+add two axioms characterizing their relationship. We may then want to check
+whether or not 2k and 2b coincide, i.e., whether 2k includes 2b:

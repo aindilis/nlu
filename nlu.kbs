@@ -1,0 +1,60 @@
+("has-analysis" "CoreferenceResolution")
+("has-analysis" "CycLsForNP")
+("has-analysis" "DateExtraction")
+("has-analysis" "FactExtraction")
+("has-analysis" "GetDatesTIMEX3")
+("has-analysis" "KNext")
+("has-analysis" "MontyLingua")
+("has-analysis" "NamedEntityRecognition")
+("has-analysis" "NounPhraseExtraction")
+("has-analysis" "SemanticAnnotation")
+("has-analysis" "SpeechActClassification")
+("has-analysis" "TermExtraction")
+("has-analysis" "Tokenization")
+("has-analysis" "WSD")
+
+("has-issue" ("analysis-fn" "KNext") "Won't return the correct answer.")
+
+("has-relatively-instantaneous-init" "CoreferenceResolution")
+("not" ("has-relatively-instantaneous-init" "CycLsForNP"))
+("has-relatively-instantaneous-init" "DateExtraction")
+;; ("not" ("has-relatively-instantaneous-init" "FactExtraction"))
+("has-relatively-instantaneous-init" "GetDatesTIMEX3")
+("not" ("has-relatively-instantaneous-init" "KNext"))
+("not" ("has-relatively-instantaneous-init" "MontyLingua"))
+("not" ("has-relatively-instantaneous-init" "NamedEntityRecognition"))
+("has-relatively-instantaneous-init" "NounPhraseExtraction")
+("has-relatively-instantaneous-init" "SemanticAnnotation")
+;; ("not" ("has-relatively-instantaneous-init" "SpeechActClassification"))
+;; ("not" ("has-relatively-instantaneous-init" "TermExtraction"))
+;; ("not" ("has-relatively-instantaneous-init" "Tokenization"))
+("not" ("has-relatively-instantaneous-init" "WSD"))
+
+("not" ("has-relatively-instantaneous-response" "CoreferenceResolution"))
+("not" ("has-relatively-instantaneous-response" "CycLsForNP"))
+("has-relatively-instantaneous-response" "DateExtraction")
+("not" ("has-relatively-instantaneous-response" "FactExtraction"))
+("has-relatively-instantaneous-response" "GetDatesTIMEX3")
+("not" ("has-relatively-instantaneous-response" "KNext"))
+("not" ("has-relatively-instantaneous-response" "MontyLingua"))
+("not" ("has-relatively-instantaneous-response" "NamedEntityRecognition"))
+("has-relatively-instantaneous-response" "NounPhraseExtraction")
+("not" ("has-relatively-instantaneous-response" "SemanticAnnotation"))
+("not" ("has-relatively-instantaneous-response" "SpeechActClassification"))
+("has-relatively-instantaneous-response" "TermExtraction")
+("has-relatively-instantaneous-response" "Tokenization")
+("not" ("has-relatively-instantaneous-response" "WSD"))
+
+;; add to sayer to time function execution and add result information
+;; to database, of both startup and function call
+
+;; need to know if we have an adaptor which can return nlu-style
+;; annotations
+
+("has-nlu-style-annotation-function" "Tokenization")
+
+;; ("has-sayer-caching" "")
+
+
+
+

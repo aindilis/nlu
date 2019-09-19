@@ -1,0 +1,372 @@
+<passages>
+  <passage>
+    <text>
+      What's the difference between "perl" and "Perl"?  One bit. Oh, you
+      weren't talking ASCII? :-) Larry now uses "Perl" to signify the
+      language proper and "perl" the implementation of it, i.e. the
+      current interpreter. Hence Tom's quip that "Nothing but perl can
+      parse Perl."  You may or may not choose to follow this usage. For
+      example, parallelism means "awk and perl" and "Python and Perl"
+      look OK, while "awk and Perl" and "Python and perl" do not. But
+      never write "PERL", because perl is not an acronym, apocryphal
+      folklore and post-facto expansions notwithstanding.
+    </text>
+    <conclusions>
+      <conclusion>
+	<content>Perl herein refers to the programming language</content>
+	<justification>I wrote the passage</justification>
+      </conclusion>
+      <conclusion>
+	<content>ASCII refers to the ASCII text standard</content>
+	<justification>Guessing</justification>
+      </conclusion>
+      <conclusion>
+	<content>Larry refers to Larry Wall, the inventor of Perl</content>
+	<justification>I think he is often referred to on a first name basis in the Perl Community.</justification>
+      </conclusion>
+      <conclusion>
+	<content>perhaps Tom refers to Tom Christianson</content>
+	<justification>He is often mentioned in these contexts</justification>
+      </conclusion>
+      <conclusion>
+	<content>awk is the programming language</content>
+	<justification>awk and perl being mentioned together makes on think they are references.</justification>
+      </conclusion>
+      <conclusion>
+	<content>post-facto may not be a valid phrase</content>
+	<justification>never heard it, well perhaps "ex post facto"</justification>
+      </conclusion>
+    </conclusions>
+  </passage>
+  <passage>
+    <text>
+      (wishlist shopping list
+      (extra phone storage micro-sdcard)
+      (get toothbrush holder)
+      )
+    </text>
+    <conclusions>
+      <conclusion>
+	<content>The list is one of my to do style lists</content>
+	<justification>I wrote it, it was found in such a file, and it has the correct syntax</justification>
+      </conclusion>
+      <conclusion>
+	<content>it is a shoping list</content>
+	<justification>labelled as such</justification>
+      </conclusion>
+      <conclusion>
+	<content>it is a nested list</content>
+	<justification>format observation</justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+    </conclusions>
+  </passage>
+  <passage>
+    <text>
+      YOURSELF AND THE NEIGHBOURS (Seumas MacManus)
+      Illustrated by Thomas Fogarty
+
+      THE BALTIMORE SUN—Once m a great many years there is published a book that
+      stands out so pre-eminently above the general run of books that it deserves to
+      be classed among the masterpieces of a country's literature. Such a book is
+      Seumas MacManus' Yourself and i-,-.e Neighbours.
+    </text>
+    <conclusions>
+      <conclusion>
+	<content>'i-,-.e' is OCR junk</content>
+	<justification>text was probably downloaded from Google Books, which had OCRed it</justification>
+      </conclusion>
+      <conclusion>
+	<content>'Once m a great' is OCR junk, probably means 'Once in a great'</content>
+	<justification>intuitive language modeling, the m looks like in</justification>
+      </conclusion>
+      <conclusion>
+	<content>"Seamus MacManus'" is possessive, and the ' trailing MacManus is because of the fact that MacManus ends with an s, and is not OCR junk</content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content>'Yourself and i-,-.e Neighbours' is the title of a book</content>
+	<justification>it says "such a book is X's blah blah blah, however, there are no quotes</justification>
+      </conclusion>
+      <conclusion>
+	<content>'Yourself and i-,-.e Neighbours' should read "Yourself and the Neighbours"</content>
+	<justification>There is a mention in the text above that </justification>
+      </conclusion>
+      <conclusion>
+	<content>Seamas MacManus wrote "Yourself and the Neighbours"</content>
+	<justification>first, they have his name in parens after the title, as if he is the author, second, they have the title of the book in the gentive role wrt the mention of Seamus MacManus</justification>
+      </conclusion>
+      <conclusion>
+	<content>Thomas Fogarty illustrated the book "Yourself and the Neighbours"</content>
+	<justification>in the line following the title, it says illustrated by X, which seems eliptical for "it was illustrated by X", where it would refer to the book "Yourself and the Neighbours"</justification>
+      </conclusion>
+      <conclusion>
+	<content>"Yourself and the Neighbours" is the title of a book</content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+    </conclusions>
+  </passage>
+  <passage>
+    <text>
+      'Once m a great' is OCR junk, probably means 'Once in a great'
+    </text>
+    <conclusions>
+      <conclusion>
+	<content>the single quoted string 'Once m a great' above refers to a selection from the original passage</content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content>"OCR junk" means characters that are randomly output by an OCR conversion of the text from images </content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+    </conclusions>
+  </passage>
+  <passage>
+    <text>
+      My husband was a geologist.
+    </text>
+    <conclusions>
+      <conclusion>
+	<content>
+	  The husband has either died, or retired.
+	</content>
+	<justification>
+	  
+	</justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+    </conclusions>
+  </passage>
+  <passage>
+    <text>
+    </text>
+    <conclusions>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+    </conclusions>
+  </passage>
+  <passage>
+    <text>
+    </text>
+    <conclusions>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+    </conclusions>
+  </passage>
+  <passage>
+    <text>
+    </text>
+    <conclusions>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+      <conclusion>
+	<content></content>
+	<justification></justification>
+      </conclusion>
+    </conclusions>
+  </passage>
+</passages>

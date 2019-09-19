@@ -1,0 +1,1837 @@
+       Knowledge Representation/Translation in RDF+OWL, N3, KIF, UML and
+        the WebKB-2 languages (For-Links, Frame-CG, Formalized English)
+
+                              Dr Philippe Martin
+
+       (Note: this is a work in progress; many parts need to be refined)
+
+You need to enable Javascript (see the Preferences options of your browser) if
+you want to hide the translations and explanations for certain languages.
+
+
+
+Table of Contents
+
+ 1. Knowledge Representation Languages
+ 2. Existential Quantification, Conjunction, Relations, Functions
+ 3. Contextualizations (meta-statements)
+ 4. Identities, Names and Authorship
+ 5. Universal Quantification, Definitions, Implications
+     1. Simple Definition/Assertion Via Relations-From/To-a-Class
+     2. Definition
+     3. Domain, Range and Cardinality of Relations
+     4. InstanceOf, SubtypeOf and Subtype Partition
+     5. Non-binary relations
+     6. Synthesis: a Typical Example
+     7. Relations-From/To-a-Class Used As Shortcuts
+     8. Lambda Abstractions, Qualitative Valuation
+ 6. Numerical Quantification
+ 7. Alternatives and Isolated Collections
+ 8. Negation, Difference, Exclusion, Complement, Reverse
+ 9. Relations from Collections and Quantifier Precedence
+10. Higher-order Statements
+11. Ontology-dependent Representations
+     1. Measures
+     2. Intervals
+     3. Qualitative Valuations
+
+
+
+1. Knowledge Representation Languages
+
+General terminology.
+In this document, an ontology is a set of partial or complete machine-readable
+definitions for "formal terms" referring to objects ("resources" in OWL/RDF/XML
+terminology). Objects are either represented as classes (i.e., types: concept
+types or relation types) or individuals (types can have instances, individuals
+cannot). The definitions associated to a formal term can be used as semantic
+constraints for checking its use in other knowledge representation statements.
+Statements are either definitions (partial or complete definitions) or
+assertions (e.g., facts, data, beliefs or hypothesis). Like assertions,
+definitions can be used for knowledge inferencing. UML data models can be
+viewed as ontologies but their roles is (also) to prescribe how and which
+individuals should be entered by users rather than simply describing some
+relationships between some objects of a world. Hence, compared to ontologies,
+data models require additional kinds of constraints. However, apart from
+highlighting this rarely noted distinction between "knowledge description
+constraints" and "knowledge entering constraints", this document does not
+propose special (ad-hoc?) representations for the latter constraints since they
+are not dealt with in the "knowledge representation" litterature.
+
+Goal. This document was originally intended to extend UML in order to cover
+common knowledge representation features useful to write definitions or
+assertions, and for each feature the mapping with other models and notations is
+illustrated: notations using the OWL model, KIF-based notations, and high-level
+notations from WebKB-2. However, the mapping with UML proved difficult: in the
+various cases below, UML examples are given instead of the exact translations
+of what is expressed in the other languages (i.e, notations + models). The
+OMG's ODM (Ontology Definition Metamodel) proposes partial (and sometimes
+total) structural mappings between UML, OWL, ER, CL and Topic Maps. This
+document is essentially a case-by-case comparison of OWL, KIF, their usual
+notations, and higher-level notations. If you wish one more language to be
+compared here, send me the translations in this language of the examples given
+below and I'll include them (citing you as author of these translations).
+
+KIF, OWL, and their notations.
+KIF refers to a Fist-Order Predicate Calculus (FOPC) based model and its
+LISP-based notation. KIF has been designed and used to specify the logical
+denotation of many other knowledge representation languages (KRLs). KIF is the
+current de-facto standard for knowledge interchange, and is the notation and
+basis used by the main knowledge sharing international projects of the
+knowledge representation community: Common Logic, SUO and IFF.
+OWL is a model that follows the principles of terminological logics languages
+and hence frame-based languages. OWL includes the RDF and RDFS model. OWL can
+be represented in KIF (the reverse is false). OWL and its RDF/XML notation are
+W3C recommendations (from now on and except when the expression "OWL model" is
+used, references to OWL also refer to RDF/XML, the RDF model and its extension
+named RDFS). Notation 3 (or N3) is a syntax sometimes used as a more readable
+alternative to RDF/XML; it is more expressive than RDF/XML but less than KIF.
+The RDF model and the OWL model are language ontologies: like metamodels, they
+propose formal terms for concepts and relations (e.g., subtypeOf) that are
+necessary to express statements regardless of what the statements express. KRLs
+such as KIF make their language ontologies implicit. Content ontologies are
+like models, i.e., they contain formal terms referring to objects in the
+modeled real/imaginary world. RDF/XML is an XML textual notation for statements
+using the RDF metamodel. Statements using the OWL metamodel are usually written
+using RDF/XML but they can also be written in KIF: these two notations are used
+below and respectively named XOWL and KOWL. More precisely, since the OWL model
+can be divided into three increasingly expressive metamodels - OWL lite, OWL DL
+and OWL full - the least expressive part of OWL involved will be specified by
+using the terms XOWLL, XOWLD, XOWLF, KOWLL, KOWLD and XOWLF.
+
+Higher-level languages.
+Knowledge entering and sharing requires higher-level languages
+(models+notations) than OWL and KIF. Here, "higher-level" means more
+user-friendly and more "normalizing", i.e., restricting the number of ways
+something can be expressed. This is achieved by providing (linear or graphic)
+graph-based expressive languages with high-level constructs such as extended
+quantifiers (e.g., "at least 65%", "most" and "2 to 4"). Below, the high-level
+notations used below are used in the WebKB knowledge server: Formalized
+English (FE), Frame-CG (FCG) and For-Links (FL) (since FL is more adequate for
+taxonomies, FL and FCG/FE will rarely be presented as alternatives for
+translations). These notations [Martin 2002] were mainly derived from the
+original linear form of the Conceptual Graph model [Sowa 1992] and to a less
+extent, Frame-Logics and KIF. The WebKB model [Martin 2001] is an extension and
+normalization of the CG model. I have converted this model into a MOF2
+metamodel and named it "KRM". Its MOF HUTN format, which I named "KRF", is one
+of the formats used below when UML needs to be extended.
+
+
+
+2. Existential Quantification, Conjunction, Relations, Functions
+
+A "conjunctive existentially quantified statement" is a set of existentially
+quantified objects (named or anonymous objects) possibly connected by
+relations. Such statements are very common and nearly all KRLs permit to
+represent them. They also have a nice property: the generalization of such a
+statement (a simple and common graph operation consisting of replacing an
+individual in the statement by a class or a class by one of its superclass, or
+by removing a relation) is a logical deduction [Sowa, 1984]. Hence conversely,
+looking for such specializations of such a statement/query retrieve "logical"
+answers. This property can be extended to such statements with positive
+contexts (see next section) [Chein and Mugnier, 1997] or distributive sets but
+not to statements including some universal quantification, negation, modality,
+OR relation, OR-set, etc. Looking for specializations of the last cases is
+still a simple way to retrieve "interesting" answers (e.g., "john thinks there
+is no employee under 25" in answer to "is there an employee under 30?") but
+these are not "logical" answers.
+
+Here is an example. From now on and until the "Definition" Section, for
+readability reasons, object names are most often used instead of identifiers.
+Furthermore, the creator of each statement is not represented since an
+additional context would be required for that. "FE" is for Formalized English.
+
+E:     Tom owns a dog that is not Snoopy.
+
+FE:    Tom is owner of a dog different_from Snoopy.
+
+FCG:   [Tom, owner of: (a dog != Snoopy)]
+
+KIF:   (exists ((?x dog)) (and (owner ?x Tom) (/= ?x Snoopy)))
+
+XOWLL: <Dog><owner><owl:Thing rdf:about="#Tom"/></owner>
+         <owl:differentFrom rdf:resource="#Snoopy"/></Dog>
+
+N3:    [a :Dog; :owner :Tom;  owl:differentFrom :Snoopy].
+
+KRF:   TNode{term:Tom sourceOf:
+         Relation{rType:owner dest: QNode{cType:dog sourceOf:
+           Relation {rType: different_from dest: TNode{term:Snoopy} }}}}.
+
+Related simple example in UML:
+                               +--------------+
+                               | [umlIndivid] |
+                               +--------------+
+
+           Example of Conjunctive Existentially Quantified Sentence
+               (excerpt from Schreiber's OWL translation in UML)
+
+
+
+3. Contextualizations (meta-statements)
+
+Contexts permit to represent statements over statements, and hence, for
+example, situation duration and statement negation, modalities, creator and
+argumentation relations. Contextualised statements are represented via
+delimitors such as '(...) and ^(...) in KIF or keywords (e.g., aboutEach in RDF
+/XML and hence OWL. In FCG and FE, statements always have delimitors (`...' in
+FE, [...] in FCG) and the context of a statement may be specified by adding a
+list of relations (delimited by a pair of parenthesis). These relations are
+about the statement, or in other words, about each relation of the statement.
+
+Given the ill-designed RDF model and syntax (ill-designed mostly because of the
+difficulties created by the choice of a triple-based model and an XML syntax),
+the meaning and use of aboutEach is often problematic; the W3C Working Draft of
+23/01/2003 revising the W3C Recommendation of 22/02/1999 about RDF/XML removed
+aboutEach from the grammar. However, since it has not (yet) been replaced, any
+practical way to represent relations from statements or collections with RDF/
+XML has also been removed. Given these are basic and unavoidable features of
+knowledge/ontology representation, this removal is one more evidence that RDF/
+XML (and indirectly OWL) is totally unfit for such purpose. In order to present
+translations in OWL, this removal of aboutEach is ignored below (thus, the
+assumption is that a similar construct will one day be introduced as a
+replacement).
+
+In the following example, to represent the negation of a statement in OWL, an
+intermediary class is created for this statement and then an instance of the
+complement of this intermediary class is refered to. Although syntactically
+correct, it is doubtful that an inference engine will be able to exploit such
+an indirection any time soon.
+
+E:     Tom believes Mary likes him (now) in 2003, and that before she did not.
+
+FE:    Tom is believer of ` *p `Mary is liking Tom' at time 2003'
+       and is believer of `!*p is before 2003'.
+
+FCG:   [Tom, believer of: [*p [Mary, agent of:(a liking,object:Tom)], time:2003],
+             believer of: [!*p, before: 2003] ]
+
+KIF:   (exists (?p)
+         (and (= ?p '(exists ((?x liking)) (and (agent *l Mary) (object ?l Tom))))
+              (believer ^(time ,?p 2003) Tom)
+              (believer ^(before (not ,?p) 2003) Tom)))
+
+XOWLD: <rdf:Description rdf:bagID="p">
+         <Liking><agent><rdf:Description rdf:about="#Mary"/></agent>
+                 <object rdf:resource="#Tom"/></Liking></rdf:Description>
+       <rdf:Description rdf:bagID="now"  rdf:aboutEach="#p"  time ="2003"/>
+       <owl:Class rdf:bagID="class_of_not_p">
+         <owl:complementOf rdf:parseType="Collection">
+           <owl:Class><owl:oneOf rdf:parseType="Collection">
+              <owl:Thing rdf:about="#p"/></owl:oneOf>
+           </owl:Class></owl:complementOf></owl:Class>
+       <class_of_not_p rdf:bagID="not_p"/>
+       <rdf:Description rdf:bagID="past"  rdf:aboutEach="#not_p"  before="2003"/>
+       <rdf:Description rdf:aboutEach="#now"><believer rdf:resource="#Tom"/>
+       </rdf:Description>
+       <rdf:Description rdf:aboutEach="#past"><believer rdf:resource="#Tom"/>
+       </rdf:Description>
+
+N3:    {{[a :Liking;  :agent :Mary; :object :Tom]} rdf:ID :p;  :time "2003"} believer :Tom.
+       :not_p negation :p.  {:not_p :before "2003"} believer :Tom.
+
+KRF:   TNode {term:Tom
+         sourceOf:isReversed Relation{rType:believer dest:
+           ENode {embeddedNode1: ENode part: {embeddedNode1:
+                    TNode{term:Mary sourceOf:isReversed
+                      Relation{rType:agent dest: QNode{cType:liking sourceOf:
+                        Relation{rType:object dest: TNode{Term:Tom} }}}}}
+                  sourceOf:Relation{rType:time dest:
+                    QNode{cType:"year" quantifier:Quantifier{num:"2003"}}}}}
+         sourceOf:isReversed Relation{rType:believer dest:
+           ENode {embeddedNode1: isNegated ENode {embeddedNode1Ref: p}
+                  sourceOf: Relation{rType:before dest:
+                  QNode{cType:year quantifier:Quantifier{num:"2003"}}}}}}
+
+
+
+4. Identities, Names and Authorship
+
+An identity relation may be seen as specifying that two classes are identical,
+or from another viewpoint, as a way to associate various identifiers to a same
+object.
+
+In this document, an ad-hoc representation is used for representing authorship
+in RDF/XML (as in the example below): the relation/property dc:creator is used
+in the same way xml:lang is used in XML, that is, as if it was a special XML
+attribute of another property. Using a metastatement (as in the previous
+section) would be more correct but would reduce too much the readability (and
+hence understandability) of the given examples.
+
+bottom is a constant in KIF; in the other notations, the identifier kif#bottom
+is used.
+
+E:     According to pm, pm#nothing is identical to owl#nothing,
+       and according to Joe, owl#nothing identical to kif#bottom.
+
+FL:    pm#nothing   =  owl#nothing (pm)  kif#bottom (Joe);
+
+FCG:   [pm#nothing, = owl#nothing](pm);  [pm#nothing, = kif#bottom](Joe);
+
+KIF:   (dc#Creator '(= pm#nothing  owl#nothing) pm)
+       (dc#Creator '(= pm#nothing  bottom) Joe)
+
+KOWLL: (dc#Creator '(owl#equivalentClass pm#nothing owl#nothing ) pm)
+       (dc#Creator '(owl#equivalentClass pm#nothing bottom) Joe)
+
+XOWLL: <owl:Class rdf:about="&pm;Nothing">
+         <owl:equivalentClass rdf:resource="&kif;Bottom" dc:creator="Joe"/>
+         <owl:equivalentClass rdf:resource="&owl;Nothing" dc:creator="pmartin@dstc.edu.au"/>
+       </owl:Class>
+
+N3:    {pm:Nothing owl:equivalentClass kif:Bottom}  dc:creator "Joe".
+       {pm:Nothing owl:equivalentClass owl:Nothing} dc:creator "pmartin@dstc.edu.au".
+
+For relations between relation types (i.e., between "properties" in OWL
+terminology), OWL Lite requires the use of owl#equivalent_property instead of
+owl#equivalent_class. Similarly, for relations between individuals, OWL Lite
+requires the use of owl#same_individual_as. In all cases, owl#same_as may be
+used instead in OWL Full, and there is no change in the other notations; owl#
+same_as may only be used in OWL Full because it asserts equality (identity) not
+simply equivalence.
+
+
+Although names are not definitions, identifiers are also names and hence, it is
+suitable to detail now how names can be associated to objects.
+
+E:     There is a class named "dog" and "domestic_dog" by wn, and "doggy"
+       and "chien" by pm; "dog" is a key name for wn; "chien" is a French name.
+
+FL:    wn#dog__domestic_dog  name: "doggy" (pm) "chien" (pm, language: wn#French);
+
+KOWLL: (dc#Creator '(rdfs#label wn#dog "dog") pm)  ;;"class" not represented
+       (dc#Creator '(rdfs#label wn#dog "dogmestic_dog") wm)
+       (dc#Creator '(rdfs#label wn#dog "doggy") pm)
+       (dc#Creator '(xml#lang '(rdfs#label wn#dog "chien") fr) pm)
+
+XOWLL: <owl:Class rdf:about="&wn;dog">
+         <rdfs:label dc:Creator="http://wordnet.princeton.edu/">dog</rdfs:label>
+         <rdfs:label dc:Creator="http://wordnet.princeton.edu/">domestic_dog</rdfs:label>
+         <rdfs:label dc:Creator="pmartin@dstc.edu.au">doggy</rdfs:label>
+         <rdfs:label xml:lang="fr" dc:Creator="pmartin@dstc.edu.au">chien</rdfs:label>
+       </owl:Class>
+
+N3:    {wn:dog rdfs:label "dog", "domestic_dog"} dc:creator "http://wordnet.princeton.edu/".
+       {wn:Dog rdfs:label "doggy"} dc:creator "pmartin@dstc.edu.au".
+       { {wn:Dog rdfs:label "chien"} xml:lang "fr"} dc:creator "pmartin@dstc.edu.au".
+
+
+
+5. Universal Quantification, Definitions, Implications
+
+Distinctions between assertions and definitions.
+Definitions differ from assertions-using-a-universal-quantifier in the sense
+that definitions cannot be false. For example, defining a class with name
+"rectangle" as a kind of car is not false, even if "rectangle" is not an
+intuitive name for a class of car. However, like an assertion, a new definition
+may happen to be inconsistent with already entered definitions or assertions.
+In such a case, various strategies can be used. In a multi-user Knowledge Base
+Management System (shared KBMS), the new definition may be denied (i.e., the
+user has to associate its definition to a more appropriate class) or accepted
+(then, in order to keep the knowledge base consistent and according to the new
+definition, a more appropriate class must be automatically created, given an
+identifier and inserted into the class generalization hierarchy). For the
+management of shared knowledge (in a cooperatively built KB or in a KB
+automatically built by collecting knowledge from various private KBs), it is
+important that the creator of each object, relation or statement can be
+formally associated to them, either manually by the knowledge provider or
+automatically (then, knowledge filtering can be done on the creators, using
+their identifiers, superclasses or statements about them). Since this is one of
+the (many) things RDF/XML is not tailored for, comments will simply be used in
+the OWL-related translations (the "Context" section will also show how creators
+can be associated in more formal but ad-hoc ways to RDF/XML representations).
+A class definition is complete if it specifies necessary and sufficient
+conditions for objects to be instance of the class, or partial if it specifies
+either necessary or sufficient conditions. Setting a relation subtypeOf from a
+class to another is a simple way to define one necessary condition for the
+source class, and one sufficient condition for the destination class. (However,
+if this relation is set by someone who has not created the source/destination
+class, the relation may be treated as an assertion rather than a definition for
+knowledge inferencing/checking and inconsistency handling purposes). This
+document first lists simple definitions/assertions via such "relations-from/
+to-a-class", then presents various features for expressing statements
+(definitions or assertions), and concludes with a section on definitions using
+such features. In the first and last sections, only identifiers will be used
+for objects. In the other sections, for maximum readability, object names will
+often be used instead of object identifiers, but statements will still be
+asumed unambiguous (either because each name happens to refer to only one
+object or the ambiguity can be automatically resolved by exploiting semantic
+constraints, e.g., relation signatures). In a KBMS, ambiguous statements should
+not be accepted.
+
+Universal quantification does not exist in OWL but using class definitions is
+close enough. The difference is that a universal statement can be false whereas
+definitions cannot (a definition does not assert a fact but only lists
+conditions for membership to a class and thus is neither true nor false but
+some people say that a definition is "always true, by definition").
+Furthermore, when two users give conflicting definitions about a same class,
+this can be adequately resolved by creating two different classes (since the
+conflict reveals that the authors of the definitions do not think about the
+same concept/object), whereas resolving conflicting assertions (or beliefs when
+each assertion has a creator) implies selecting between them (or none of them)
+and this is a matter of trust or strategy (e.g., the simple strategy of always
+selecting the most specialized assertion).
+
+The following example requires OWL Full because part is a transitive relation.
+Otherwise, OWL Lite would have been sufficient (the used cardinality is not
+more than 1).
+
+E:     Animals have exactly one head.
+
+FE:    Any animal has for part 1 head.
+
+FCG:   [any animal, part: 1 head]
+
+KIF:   (forall ((?a animal)) (exists1 '?h (and (head ?h) (part ?a '?h))))
+
+XOWLF: <rdf:Property rdf:ID="headPart">
+         <rdfs:subPropertyOf rdf:resource="#part"/>
+         <rdfs:range rdf:resource="#Head"/> </rdf:Property>
+       <owl:Class rdf:about="#Animal">
+         <rdfs:subClassOf><owl:Restriction>
+           <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1
+           </owl:cardinality> <owl:onProperty rdf:resource="#headPart"/>
+                          </owl:Restriction></rdfs:subClassOf></owl:Class>
+
+N3:    :headPart a rdf:Property;  rdfs:subPropertyOf :part;  rdfs:range :Head.
+       :Animal rdfs:subClassOf
+          [a owl:Restriction;  owl:onProperty :headPart;  owl:cardinality 1].
+
+KRF:   QNode {cType:animal quantifier:Quantifier{kind:any}
+         sourceOf: Relation {rType:part dest:
+           QNode {cType:head quantifier:Quantifier{num:"1"}}}}
+
+Here is a KIF definition of exists1:
+(defrelation exists1 (?var ?predicate) :=
+  (truth ^(exists (,?var)
+    (and (,?predicate ,?var) (forall(?y) (=> (,?predicate ?y) (= ,?var ?
+y)))))))
+
+
+
+Definition
+
+A class (concept type or relation type) definition states necessary and/or
+sufficient conditions for objects to be instance of this class. Some KRLs (but
+not OWL nor KIF) also accept "prototypes" (as in "a prototypical bird is able
+to fly"). Since I advocate the use of extended quantifiers, I think that
+statements using the "most" quantifier (or a more precise one, e.g., "78%") and
+contexts (e.g., to specify the location and time, as in "'78% of birds are able
+to fly' in australia, in 2003") should be used instead of prototypes.
+
+Any statement (using any of the above presented features) can be used in a
+definition. However, inference engines can only use simple definitions to
+categorize classes into a generalization hierarchy, or find the most
+specialized class (or classes) for an object according to the statements using
+it (or in frame-based terminology, according to the properties associated to
+it).
+
+Setting a subtypeOf relation from a class to another is a way to give necessary
+conditions for the source class and sufficient conditions for the destination
+class. In OWL, this is the only way in OWL, and the use of temporary classes
+called "restrictions" (some restricted forms of lambda-abstractions) plus
+relations such as owl#intersection_of, owl#union_of and owl#complement_of
+permit to create complex definitions. The direct use of these three relations,
+owl#equivalent_class, owl#equivalent_property or owl#inverse_of actually define
+necessary and sufficient conditions. Thus, the following example of a partial
+definition can be changed into a complete definition by replacing
+"rdfs:subClassOf" by "owl:equivalentClass" in the OWL translations (and ":=>"
+by ":=" in FCG and KIF). As announced in the first section, class identifiers
+are now used instead of class names in the examples.
+
+E:     According to "pm", a person necessarily has for parent a person.
+
+FCG:   [type wn#person (*x) :=> [*x, pm#parent: a wn#person] ](pm)
+
+KIF:   (dc#Creator '(defrelation wn#person (?p) :=>
+                      (exists ((?p2 #person)) (pm#parent ?p ?p2))) pm)
+
+XOWLL: <owl:Class rdf:about="&wn;Person">
+         <rdfs:subClassOf><owl:Restriction>
+                            <owl:onProperty rdf:resource="&pm;parent"/>
+                            <owl:toClass rdf:resource="&wn;Person"/>
+                          </owl:Restriction></rdfs:subClassOf>
+         <rdfs:comment>According to pmartin@dstc.edu.au</rdfs:comment>
+       </owl:Class>
+
+N3:    {wn:Person rdfs:subClassOf
+           [a owl:Restriction; owl:onProperty pm:parent; owl:toClass wn:Person]
+       } dc:Creator "pmartin@dstc.edu.au".
+
+KRF:   Definition { creator: User pm
+         dType:CType person  kind:NC  parameter:("x")
+         embeddedNode1: QNode {var:"x" sourceOf:Relation{rType:"pm#parent"
+           dest: QNode {cType:person} }}}
+
+Related simple example in UML:
+                               +--------------+
+                               | [umlDefined] |
+                               +--------------+
+
+ A definition by necessary and sufficient conditions (excerpt from Schreiber's
+                            OWL translation in UML)
+
+In FCG and KIF, the definition of relation types is identical to the definition
+of other classes except for the number of parameters (variables). In OWL, there
+is no variable, and hence no syntactic means to give a definition to a relation
+type (apart from indicating its superclass, domain and range).
+
+In addition to definitions by intension, OWL permits definitions by extention.
+I have not encountered such definitions in ontologies. If I do, I will extend
+the FL grammar to represent them as indicated below, i.e., by accepting "closed
+instance partitions".
+
+E:     The class pm#Da_Ponte_opera_of_Mozart has only three instances:
+       pm#Le_Nozze_di_Figaro, pm#Don_Giovanni and pm#Cosi_fan_tutte.
+
+FL:    pm#Da_Ponte_opera_of_Mozart
+        instance: {(pm#Le_Nozze_di_Figaro,pm#Don_Giovanni,pm#Cosi_fan_tutte)}(exclusive);
+        //"{(...)}" refer to a complete AND-SET, hence here a complete "instance partition".
+
+FCG:   [a pm#Da_Ponte_opera_of_Mozart,
+         = OR{pm#Le_Nozze_di_Figaro,pm#Don_Giovanni,pm#Cosi_fan_tutte}]
+
+KIF:   (<=> (pm#Da_Ponte_opera_of_Mozart ?x)
+            (or (= ?x pm#Le_Nozze_di_Figaro) (?x pm#Don_Giovanni)
+                (= ?x pm#Cosi_fan_tutte)))
+
+XOWLL: <owl:Class rdf:ID="&pm;Da_Ponte_opera_of_Mozart">
+         <owl:oneOf rdf:parseType="Collection">
+           <owl:Thing rdf:ID="&pm;Nozze_di_Figaro"/>
+           <owl:Thing rdf:ID="&pm;Don_Giovanni"/>
+           <owl:Thing rdf:ID="&pm;Cosi_fan_tutte"/>
+         </owl:oneOf></owl:Class>
+         <!-- the intercap style cannot be used for identifiers here
+         because then they could not be translated back to other notations -->
+
+N3:    pm:Da_Ponte_opera_of_Mozart
+         owl:oneOf (pm:Nozze_di_Figaro, pm:Don_Giovanni, pm:Cosi_fan_tutte).
+
+KRF:   QNode{cType:"pm#Da_Ponte_opera_of_Mozart"
+         sourceOf: Relation{rType:equal dest:
+           NodeCollection{aggregation:or
+             collElt: TNode{term:"pm#Le_Nozze_di_Figaro"}
+             collElt: TNode{term:"pm#Don_Giovanni"}
+             collElt: TNode{term:"pm#Cosi_fan_tutte"} }}}
+
+UML:
+                               +--------------+
+                               | [umlEnumera] |
+                               +--------------+
+
+An enumerated class. The number "3" at the upper-right corner of the class box
+    specifies that this class has exactly three instances   (excerpt from 
+                      Schreiber's OWL translation in UML)
+
+
+
+Simple Definition/Assertion Via Relations-From/To-a-Class
+
+An object identifier may be a URL (as in RDF/XML, e.g., http://www.foo.com and
+http://www.bar.com/doc.html#car), an e-mail address or, within a shared KBMS
+for example, the composition of a source/user identifier and a "key name"
+within that namespace, as in wn#electric_car and pm#electric_vehicle (with wn
+referring to WordNet 1.7 and pm to the person identified by
+pmartin@dstc.edu.au). This last notation is used in WebKB-2 and will be use in
+the following examples. All the used identifiers exist in the KB of WebKB-2,
+and their related classes (e.g., subclasses) and statements are accessible via
+WebKB-2 interfaces or URLs (e.g., ../../bin/categSearch.cgi?categ=
+wn%23electric_car).
+
+Note that a key name is also a name, and hence when an object identifier is
+created with an English word/expression as key name, its orthograph or case
+should not be altered and hence, in WebKB-2, the character '_' is used as a
+connector (e.g., pm#electric_vehicle, not pm#ElectricVehicle). This is
+important for the presentation of statements in natural language or restricted
+languages. Without this convention, the correct orthograph cannot be retrieved
+with certainty (at least in English) and the knowledge providers are expected
+to specify the correct orthograph using an additional name ("label" in RDF/XML)
+which is cumbersome and, in practice, rarely done. As shown below in the RDF/
+XML translations, when converting statements to languages where other
+conventions have been adopted, the identifiers are converted too. When
+referring to object identifiers which do not follow the expected conventions
+(e.g., the "elements" of the Dublin Core are relations but their identifiers
+beging by an uppercase), no orthographic change is made (e.g., dc#Creator is
+used in all notations).
+
+In FCG, a statement of the form "[x, r: y]" means "x has for r y". In the
+KIF-based notations below, a statement of the form "(r x y)" also means "x has
+for r y" (this convention is unfortunately not in the KIF documentation and
+hence the opposite convention is used by some other people).
+
+
+
+Domain, Range and Cardinality of Relations
+
+In predicate logic and semantic networks, a relation is a first-order entity,
+that is, it is not "local" to an object but can be applied to any object
+provided that the class of this object complies with the relevant class
+specified in the signature of the relation, i.e., is identical to it, more
+specialized, or to ease query formulation, more general. Identifiers of
+relation types also have no separate namespace. For clarity purposes, the
+expression "relation types" is often used as a synonym to "relation classes".
+
+Binary relations ("properties" in OWL terminology) map directly to UML
+associations. In OWL, the relations rdfs#domain and rdfs#range permit to
+specify the signature of a relation, while rdfs#domain, while owl#
+min_cardinality, owl#max_cardinality and owl#cardinality permit to specify its
+range cardinality. Stating that a relation type is instance of the the
+metaclass owl#functional_property or owl#inverse_functional_property
+respectively permits to specify a range cardinality (0..1) and a domain
+cardinality (0..1). To specify other domain cardinalities in OWL, inverse
+relations must unfortunately be introduced.
+
+OWL Lite consider datatypes (e.g.,, numbers and strings) and objects having a
+class as exclusive kinds of objects. This exclusion is fortunately removed in
+OWL DL and OWL Full but OWL distinguishes between "object properties" and
+"datatype properties". Using attributes seem to be a natural way to represent
+"datatype properties" in UML but this implies that an attribute is just a
+shortcut for an association (which must be automatically derivable from the
+attribute by an UML system).
+
+Below are two examples of relation definitions. pm is a constant that refers to
+the person that has for identifier pmartin@dstc.edu.au. "E" is for "English". "
+//" introduces a line comment for people only (i.e., discarded by parsers). The
+OWL notations below use the XML comment marks "<!-- ... -->" for such comments.
+They also use RDF/XML namespace shortcuts, e.g., they do not refer to owl#
+nothing but either to owl:Nothing or to &owl;Nothing, depending on where the
+identifier is used.
+
+E:     Relations of type pm#husband are defined as both functional and
+       inverse functional relations, from an object of class pm#woman to
+       an object of class pm#man.
+
+FL:    pm#husband (0..1 pm#woman -> pm#man);                    //default representation;
+FL:    pm#husband (0..1 pm#woman, 0..1 pm#man);                 //a more extended form;
+FL:    pm#woman pm#husband: pm#man (pm, any->0..1, 0..1<-any);  //another one;
+
+KOWLL: (owl#functional_property pm#husband)
+       (owl#inverse_functional_property pm#husband)
+       (rdfs#domain pm#husband pm#woman)  (rdfs#range pm#husband pm#man)
+
+XOWLL: <owl:FunctionalProperty rdf:ID="&pm;husband">
+         <rdf:type    rdf:resource="&owl;InverseFunctionalProperty" />
+         <rdfs:domain rdf:resource="&pm;Woman"/>
+         <rdfs:range  rdf:resource="&pm;Man"/> </owl:FunctionalProperty>
+
+N3:    @prefix pm: <"pm#">.  //such namespace declarations will not be repeated in the next N3 examples
+       @prefix dolce: <"dolce#">.
+       @prefix kif: <"http://logic.stanford.edu/kif/kif.html#">.
+       @prefix rdf: <"http://www.w3.org/1999/02/22-rdf-syntax-ns#">.
+       @prefix rdfs: <"http://www.w3.org/TR/1999/PR-rdf-schema-19990303#">.
+       @prefix dc: <"http://purl.org/metadata/dublin_core#">.
+       @prefix daml: <"http://www.daml.org/2000/10/daml-ont#">.
+       @prefix pm: <"http://www.webkb.org/kb/theKB_terms.rdf/pm#">.
+       @prefix wn: <"http://www.webkb.org/kb/theKB_terms.rdf/wn#">.
+       @prefix owl: <"http://www.w3.org/TR/owl-features#">.
+       @prefix : <#>.
+       pm:husband a owl:FunctionalProperty, owl:InverseFunctionalProperty;
+                  rdfs:domain pm:Woman;   rdfs:range pm:Man.
+
+KRF:   not needed here since UML not extended here
+
+
+E:     Relations of type pm#parent are from pm#animal to pm#animal. The domain
+       cardinality is 0..* and the range cardinality 2..2 (in our real world).
+
+FL:    pm#parent (0..* pm#animal, 2 pm#animal);  //0..* is optional here
+FL:    pm#animal  pm#parent: pm#animal (any->2, 0..*<-any); //"0..*<-any" is optional
+
+KIF:   (defrelation pm#parent (?x ?y) :=> (and (pm#animal ?x) (pm#animal ?y)))
+       (forall ((a pm#animal)) (existsN ('?p pm#animal (pm#parent '?a ?p))))
+
+XOWLD: <owl:ObjectProperty rdf:ID="&pm;parent">
+         <rdfs:domain rdf:resource="&pm;Animal"/>
+         <rdfs:range  rdf:resource="&pm;Animal"/> </owl:ObjectProperty>
+       <owl:Class rdf:about="&pm;Animal"/>
+         <rdfs:subClassOf><owl:Restriction>
+           <owl:onProperty rdf:resource="&pm;parent"/>
+           <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">2
+           </owl:cardinality> </owl:Restriction> </rdfs:subClassOf> </owl:Class>
+
+N3:    pm:parent a owl:ObjectProperty;  rdfs:domain pm:Animal;  rdfs:range pm:Animal.
+       pm:Animal rdfs:subClassOf
+                   [a owl:Restriction;  owl:onProperty pm:Parent;  owl:cardinality 2].
+
+Related simple examples in UML:
+                               +--------------+
+                               | [umlAssocia] |
+                               +--------------+
+
+  An "object property" shown as an association (excerpt from Schreiber's OWL
+                              translation in UML)
+
+                               +--------------+
+                               | [umlAttribu] |
+                               +--------------+
+
+ Some "datatype properties" shown as attributes (excerpt from Schreiber's OWL
+                              translation in UML)
+
+
+
+InstanceOf, SubtypeOf and Subtype Partition
+
+Instance relations can be used between an individual and a class, or between
+classes as in the next example.
+
+E:     According to OWL, owl#annotation_property has for instance rdfs#label.
+
+FL:    owl#annotation_property instance: rdfs#label;  //':' can be used instead of "instance:"
+
+FCG:   [owl#annotation_property, rdf#type of: rdfs#label](owl);
+
+KIF:   (dc#Creator '(owl#annotation_property rdfs#label) owl)
+KOWLL: (dc#Creator '(rdf#type rdfs#label owl#annotation_property) owl)
+
+XOWLL: <rdf:Property rdf:about="&rdfs;label">
+         <rdf:type rdf:resource="&owl;AnnotationProperty" dc:Creator="owl"/>
+       </rdf:Property>
+
+N3:    {rdfs:label rdf:type owl:AnnotationProperty} dc:Creator "owl".
+
+Related simple example in UML:
+                               +--------------+
+                               | [umlTransit] |
+                               +--------------+
+
+    Example of how an instanceOf relation and a transitive relation may be
+                              represented in UML
+               (excerpt from Schreiber's OWL translation in UML)
+
+Here is an example for subtype relations.
+
+E:     According to OWL, owl#datatype_property is a subclass of rdf#property.
+
+FL:    owl#datatype_property supertype: rdf#property; //"subtype of" could also be used
+FL:    owl#datatype_property < rdf#property; //'<' is a shortcut for "supertype:"
+
+FCG:   [owl#datatype_property, rdfs#sub_class_of: rdf#property](owl);
+
+KIF:   (dc#Creator '(forall ((?i owl#datatype_property)) (rdf#property ?i)) owl)
+KOWLL: (dc#Creator '(rdfs#sub_class_of owl#datatype_property rdf#property) owl)
+
+XOWLL: <owl:Class rdf:about="&owl;DatatypeProperty">
+         <rdfs:subClassOf rdf:resource="&rdf;Property" dc:Creator="owl"/></owl:Class>
+
+N3:    {owl:DatatypeProperty rdfs:subClassOf rdf:Property} dc:Creator "owl".
+
+OWL requires the use of rdfs#sub_property_of instead of rdfs#sub_class_of for
+subtype relations between class of relations.
+
+                               +--------------+
+                               | [umlSubprop] |
+                               +--------------+
+
+ Example of the use of a class of relation (property) specializing another one
+               (excerpt from Schreiber's OWL translation in UML)
+
+
+Here is an example of open subclass partition, that is, a set of exclusive
+subclasses. For each notation except FL and UML, the statement of the previous
+example is taken into account, that is, not repeated.
+
+E:     According to OWL Lite, owl#datatype_property and owl#object_property are
+       exclusive subclasses of rdf#property.
+
+FL:    rdf#property > { owl#datatype_property (owl)
+                        owl#object_property (owl)   } (owl_lite, exclusive);
+        //"{...}" refer to an AND-SET, hence here a list of exclusive subtypes
+        //since '>' is a shortcut for "subtype:" and the fact that the members
+        //of this set are exclusive is indicated in the context of this set
+
+FCG:   [owl#object_property, rdfs#sub_class_of: rdf#property](owl);
+       [owl#object_property, owl#disjoint_with: owl#datatype_property](owl_lite);
+
+KOWLL: (dc#Creator '(rdfs#sub_class_of owl#object_property rdf#property) owl_lite)
+       (dc#Creator '(owl#disjoint_with owl#object_property owl#datatype_property)
+                   owl_lite)
+
+XOWLL: <owl:Class rdf:about="&owl;ObjectProperty">
+         <rdfs:subClassOf rdf:resource="&rdf;Property" dc:Creator="owl_lite"/>
+         <owl:disjointWith rdf:resource="&rdf;DatatypeProperty" dc:Creator="owl_lite"/>
+       </owl:Class>
+
+N3:    {owl:ObjectProperty rdfs:subClassOf rdf:Property} dc:Creator "owl_lite".
+       {owl:ObjectProperty owl:disjointWith rdf:DatatypeProperty} dc:Creator "owl_lite".
+
+
+Here is the same example but with a closed (i.e., complete) subclass partition,
+i.e., a set of exclusive subclasses that covers all the possible instances of
+the source class. (Note: the exclusion between owl#datatype_property and owl#
+object_property exists in OWL Lite but not anymore in OWL DL/Full). For each
+notation except FL and UML, the statements of the two previous examples are
+taken into account.
+
+E:     According to OWL Lite, owl#datatype_property and owl#object_property form
+       a complete subclass partition of rdf#property.
+
+FL:    rdf#property > {( owl#datatype_property (owl_lite)
+                         owl#object_property   (owl_lite) )} (owl_lite, exclusive);
+        //"{(...)}" refer to a complete AND-SET, hence here a complete "subtype partition"
+
+FCG:   [rdf#property, owl#union_of: {owl#datatype_property,owl#object_property}(exclusive)
+       ](owl_lite);
+
+KOWLL: (dc#Creator '(owl#union_of rdf#property
+                          (listof owl#datatype_property owl#object_property)
+                    ) owl_lite)
+
+XOWLL: <owl:Class rdf:about="&owl;Property">
+          <owl:unionOf rdf:parseType="Collection" dc:Creator="owl_lite" >
+             <owl:Class rdf:about="&owl;ObjectProperty"/>
+             <owl:Class rdf:about="&owl;DatatypeProperty"/>
+          </owl:unionOf>
+       </owl:Class>
+       <owl:Class rdf:about="&owl;ObjectProperty">
+          <owl:disjointWith rdf:resource="&owl;DatatypeProperty" dc:Creator="owl_lite"/>
+       </owl:Class>
+
+N3:    {owl:Property owl:unionOf owl:ObjectProperty,owl:DatatypeProperty} dc:Creator "owl_lite".
+       {owl:ObjectProperty owl:disjointWith owl:DatatypeProperty} dc:Creator "owl_lite".
+
+
+
+Non-binary relations
+
+FL, FCG and KIF accept N-ary relations. One way to translate a non-binary
+relation type into OWL is to convert it into a regular class and introduce a
+relation for each argument.
+
+FL:    pm#ternary_relation (owl#thing,owl#thing,owl#thing);
+
+XOWLL: <owl:Class rdf:ID="&pm;TernaryRelation">
+         <rdf:Property rdf:ID="&pm;ternaryRelationArg1">
+           <rdfs:domain rdf:resource="&owl;thing"/> </rdf:Property>
+         <rdf:Property rdf:ID="&pm;ternaryRelationArg2">
+           <rdfs:domain rdf:resource="&owl;thing"/> </rdf:Property>
+         <rdf:Property rdf:ID="&pm;ternaryRelationArg3">
+           <rdfs:domain rdf:resource="&owl;thing"/> </rdf:Property>
+       </owl:Class>
+
+N3:    pm:TernaryRelation a owl:Class;
+                          pm:ternaryRelationArg1 owl:thing;
+                          pm:ternaryRelationArg2 owl:thing;
+                          pm:ternaryRelationArg3 owl:thing.
+
+
+
+Synthesis: a typical example
+
+FL:    pm#thing__something (^any object is instance of this class^) 29/11/1999
+         name:  "chose" (kr, language: wn#French),  instance of:  owl#class,
+         >  {(pm#situation pm#entity)}(exclusive)  pm#thing_playing_some_role,
+         =  owl#thing suo#entity;
+
+KOWLL: (owl#class pm#thing)
+         (rdfs#label pm#thing "something") //the binary relation rdfs#label
+         (dc#Creator '(xml#lang '(rdfs#label pm#thing "chose") fr) kr)
+         (dc#Creator pm#thing pmartin@dstc.edu.au)
+         (dc#Date pm#thing "29/11/1999")
+         (rdfs#comment pm#thing "any object is instance of this class")
+         (owl#union_of pm#thing (listof pm#situation pm#entity))
+         (owl#disjointWith pm#entity pm#situation)
+         (rdfs#subClassOf pm#entity pm#thing)
+         (rdfs#subClassOf pm#situation pm#thing)
+         (rdfs#subClassOf pm#thing_playing_some_role pm#thing)
+         (owl#sameClassAs pm#thing owl#thing)    (owl#sameClassAs pm#thing suo#entity)
+
+XOWLL: <owl:Class rdf:ID="&pm;Thing">
+         <rdfs:label>thing</rdfs:label> <rdfs:label>something</rdfs:label>
+         <rdfs:label xml:lang="fr" dc:Creator="kerry@dstc.edu.au">chose</rdfs:label>
+         <dc:Creator>pmartin@dstc.edu.au</dc:Creator>
+         <dc:Date>29/11/1999</dc:Date>
+         <rdfs:comment>any object is instance of this class</rdfs:comment>
+         <owl:unionOf rdf:parseType="Collection">
+           <owl:Class rdf:ID="&pm;Entity"/>
+           <owl:Class rdf:ID="&pm;Situation"/> </owl:unionOf>
+         <owl#sameClassAs rdf:resource="&owl;Thing"/>
+         <owl#sameClassAs rdf:resource="&suo;Entity"/>
+       </owl:Class>
+       <owl:Class rdf:about="&pm;Entity">
+         <owl:disjointWith rdf:about="&pm;Situation"/> </owl:Class>
+       <owl:Class rdf:about="&pm;ThingPlayingSomeRole">
+         <rdfs:subClassOf rdf:about="&pm;Thing"/> </owl:Class>
+
+N3:    pm:Thing a owl:Class;
+          rdfs:label "thing", "something";  dc:Creator pmartin@dstc.edu.au;
+          dc:Date "29/11/1999";  rdfs:comment "any object is instance of this class";
+          owl:unionOf (pm:Entity  pm:Situation);  owl:sameClass owl:Thing, suo:Entity.
+       {{pm:Thing rdfs:label "chose"} xml:lang "fr"} dc:Creator "kerry@dstc.edu.au".
+       pm:Entity a owl:Class;  owl:disjointWith pm:Situation.
+       pm:ThingPlayingSomeRole a owl:Class;  rdfs:subClassOf pm:Thing.
+
+
+
+Relations-From/To-a-Class Used As Shortcuts
+
+Lexical ontologies such as WordNet often have additional relations-from/
+to-a-class that are of a different nature than the above cited ones: they are
+simply shortcuts for universally quantified assertions. Examples of such
+relations are memberOf, substanceOf, partOf, locationOf and urlOf.
+
+In FL, the relation "partOf" refers to the spatial/physical "partOf" (i.e.,
+"portionOf" or "componentOf") when spatial entities are connected, and
+"subprocessOf" when processes are connected. The relation "part" refers to
+"part", the inverse of "partOf". The example also shows how cardinality and
+complete/open partitions for transitive relations may be specified. The
+relation type pm#disjoint_part is defined in the KIF version and re-used in the
+OWL version.
+
+E:     Any human body has at most 2 arms. Any arm belongs to at most 1 body.
+
+FL:    pm#human_body part: wn#arm (any->0..2, 0..1<-any);
+
+KIF:   (forall ((?b pm#human_body)) (atMostN 2 '?a wn#arm (pm#part ?b '?a)))
+       (forall ((?a wn#arm)) (atMostN 1 '?b pm#human_body (pm#part '?b ?a)))
+
+XOWLD: <rdf:Property rdf:ID="ArmPart"><rdfs:subPropertyOf rdf:resource="&pm;part"/>
+         <owl:inverseOf rdf:ID="ArmPartOf"/>
+         <rdfs:range rdf:resource="&wn;Arm"/> </rdf:Property>
+       <owl:Class rdf:about="&pm;HumanBody"><rdfs:subClassOf>
+         <owl:Restriction><owl:onProperty rdf:resource="#ArmPart"/>
+           <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">2
+           </owl:maxCardinality></owl:Restriction> </rdfs:subClassOf></owl:Class>
+       <owl:Class rdf:about="&wn;Arm"><rdfs:subClassOf>
+         <owl:Restriction><owl:onProperty rdf:resource="#ArmPartOf"/>
+           <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1
+           </owl:maxCardinality></owl:Restriction> </rdfs:subClassOf></owl:Class>
+
+N3:    :ArmPart a rdf:Property;             rdfs:subPropertyOf pm:part;
+                owl:inverseOf :ArmPartOf;   rdfs:range wn:Arm.
+       pm:HumanBody rdfs:subClassOf
+          [a owl:Restriction;  owl:onProperty ArmPart;  owl:cardinality 2].
+       wn:Arm rdfs:subClassOf
+          [a owl:Restriction;  owl:onProperty ArmPartOf;  owl:cardinality 1].
+
+Here is a KIF definition of atMostN:
+
+(defrelation atMostN (?num ?var ?type ?predicate) :=
+  (exists ((?s set)(?n)) (and (size ?s ?n) (=< ?n ?num)
+    (truth ^(forall (,?var) (=> (member ,?var ,?s)
+                                (and (,?type ,?var) ,?predicate)))))))
+
+
+
+Lambda Abstractions, Qualitative Valuation
+
+A lambda abstraction is an on-the-fly (i.e., in the middle of a statement,
+instead of using a class name) complete definition of an anonymous class (i.e.,
+unnamed and therefore not stored in the ontology). Its use is very handy with
+universal quantifiers (or similar extended quantifiers) as the following
+example shows. The example also shows that in KIF and OWL, a class named
+"healthy_bird" had to be explicitely introduced instead of being kept
+anonymous. (However, OWL permits some restricted kinds of lambda-abstractions
+via the use of owl#restriction).
+
+The example also illustrates another kind of shortcut in FE and FCG: the use of
+the keyword "good" (which is one of the few predefined keywords for qualitative
+valuation in FE and FCG) instead of the use of a "measure" relation.
+
+E:     At least 93% of healthy birds fly.
+
+FE:    At least 93% of [bird experiencer of a good health] are agent of a flight.
+
+FCG:   [at least 93% of (bird,experiencer of:a good health), agent of: a flight]
+
+KIF:   (defobject healthy_bird (?b) :=
+         (exists ((?h health))
+           (and (bird ?b) (experiencer ?h ?b) (measure ?h good))))
+       (forAtLeastNpercent 93 '?x healthy_bird
+         (exists ((?f flight)) (agent ?f '?x)))
+
+XOWLL: <owl:Class rdf:ID="GoodHealth">
+         <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Class rdf:about="#Health"/>
+            <owl:Restriction><owl:onProperty rdf:resource="#measure"/>
+              <owl:hasValue rdf:resource="#Good"/></owl:Restriction>
+         </owl:intersectionOf></owl:Class>
+       <owl:Class rdf:ID="HealthyBird">
+         <owl:equivalentClass><owl:Restriction>
+           <owl:onProperty rdf:resource="#experiencerOf"/>
+           <owl:allValuesFrom rdf:resource="#GoodHealth"/></owl:Restriction>
+         </owl:equivalentClass></owl:Class>
+       <owl:Class rdf:about="#HealthyBird" quantifier="at least 93%">
+         <agentOf><Flight/></agentOf></owl:Class>
+
+N3:    :GoodHealth owl:intersectionf :Health,
+          [a owl:Restriction;  owl:onProperty :measure;  owl:hasValue :Good].
+       :HealthyBird owl:equivalentClass
+          [a owl:Restriction;  owl:onProperty :exprerienceOf;  owl:allValuesFrom :GoodHealth].
+       {:HealthyBird :agentOf :Flight} :quantifier "at least 93%".
+
+KRF:   LNode { embeddedNode1: QNode {cType:bird
+                    quantifier: Quantifier{kind:percentage num:"93"}
+                    sourceOf: isReversed Relation {rType:experiencer
+                                dest: QNode {cType: health  qualifier:good}}}
+               sourceOf: Relation {rType:agent dest: QNode {cType: flight}} }
+
+
+
+6. Numerical Quantification
+
+Besides the classic quantifiers "there exists" and "for any", extended
+quantifiers such as "at least 2", "60%" or "most" are also very useful. As
+shown below, there is no problem to define them in KIF.
+In OWL, as shown in the previous example, cardinalities may sometimes be used
+to represent simple numerical quantifiers (this only works within class
+definitions; it would not work for example to represent "Tom has only 3 legs").
+For other cases, there are two solutions: (i) using an approach similar to the
+one used for the KIF statements, which would involve the use of owl#one_of
+relations (to define/get a list for the instances of a class), kif#length
+relations (to define/get the number of elements in a list), and mutiplication
+and comparison relations, or (ii) define a class attribute "quantifier". Both
+approaches are ad-hoc, may be difficult to use for specifying the scope of
+quantifiers in complex statements, and no OWL inference engine will be able to
+use them since they involve elements outside OWL. Here, the latter approach is
+adopted because it is much simpler to use by people and (adapted) inference
+engines.
+In FCG and FE, the quantifier "most" means "at least 60%". A similar
+equivalence for OWL statements could be adopted by the W3C.
+
+The following example also shows how "physical possibility" may be represented
+using the keyword "can" in FE and FCG, or contexts in KIF and OWL. However, (i)
+ unless identifiers for "modality" and "physical_possibility" are standardized,
+no inference engine will use them, (ii) specifying a context over a class
+definition may not be accepted or understood by OWL inference engines, (iii)
+ specifying the scope of contexts in OWL may be problematic for complex
+statements.
+
+E:     At least 85% of birds are able to fly.
+
+FE:    At least 85% of bird can be agent of a flight.
+
+FCG:   [at least 85% of bird, can be agent of: a flight]
+
+KIF:   (forAtLeastNpercent 85 '?x bird
+         (exists ((?f flight)) (modality '(agent ?f ,?x) physical_possibility)))
+
+XOWLL: <rdf:Property rdf:ID="quantifier">
+         <rdfs:domain rdf:resource="&owl;Class"/>
+         <rdfs:range rdf:resource="&rdfs;Literal"/> </rdf:Property>
+       <owl:Class rdf:about="#Bird" rdf:bagID="b" quantifier="at least 85%">
+         <agentOf><Flight/></agentOf></owl:Class>
+       <rdf:Description rdf:aboutEach="#b">
+         <modality rdf#resource="#PhysicalPossibility"/> </rdf:Description>
+
+N3:    :quantifier a rdf:Property;  rdfs:domain owl:Class;  rdfs:range  rdfs:Literal.
+       :Bird rdf:bagID :b;  quantifier "at least 85%".
+       @forAll :b . { {:b :agentOf :Flight} :modality :PhysicalPossibility }.
+
+KRF:   QNode {cType:bird quantifier:Quantifier{kind:percentage num:"85"}
+              sourceOf: Relation {rType:agent  modality:"can"
+                  dest: QNode {cType: flight} }}
+
+Introduced constructs:
+
+<rdf:Property rdf:ID="quantifier">
+  <!-- domain: either a class or a description that uses aboutEach -->
+  <rdfs:range rdf:resource="&rdfs;Literal"/> </rdf:Property>
+
+(defrelation forAtLeastNpercent (?n ?var ?type ?predicate) :=
+  (exists ((?s set))
+    (and (truth ^(forall (,?var) (=> (member ,?var ,?s) (,?type ,?var)))
+         (>= (numMembersSuchThat ,?s ,?predicate) (/ (* (size ,?s) ?n) 100)))))
+
+  (define-function numMembersSuchThat (?set ?p) :-> ?num :=
+    (if (and (set ?set) (predicate ?p)) (numElemsSuchThat (listOf ?set) ?p)))
+
+  (define-function numElemsSuchThat (?list ?p) :-> ?num :=
+    (cond ((null ?list) 0)
+          ((list ?list) (if ?p (1+ (numElemsSuchThat (rest ?list) ?p))))))
+
+
+The above OWL representation uses agentOf, the relation type inverse of agent.
+The RDF/XML syntax is so poor that it requires the definition of a new type
+instead of permitting the use of some syntactic sugar such as a keyword of. It
+is un-natural and time-consuming for the user, and also imposes additional work
+to the OWL parser or inference engine.
+
+
+
+7. Alternatives and Isolated Collections
+
+Td be written.
+
+
+
+8. Negation, Difference, Exclusion, Complement, Reverse
+
+Two forms of negation have been presented above: one involving a different_from
+relation (differentFrom in OWL, /= in KIF), and one involving the negation of a
+sentence ("not" in KIF). This last form is more difficult to exploit by
+inference engines and leaves room for ambiguity. For example, "Tom does not own
+a blue car" may mean that "Tom has a car but not blue" or that "Tom does not
+have a car". Thus, it is better to use the first form, or break sentences into
+smaller blocks connected by coreference variables in order to reduce or avoid
+ambiguities.
+Here is a variant of the first form: negation on types. In the OWL translation,
+it is unclear if a owl#different_from relation is sufficient or if a owl#
+complement_of relation is required (in which case OWL DL would be necessary).
+
+E:     Tom owns something that is not a car.
+
+FE:    Tom is owner of a !car.
+
+FCG:   [Tom, owner of: a !car]
+
+KIF:   (exists (?type ?x) (and (owner ?x Tom) (holds ?type ?x) (/= ?type car)))
+
+XOWLL: <owl:Thing><owner><owl:Thing rdf:about="#Tom"/></owner>
+                  <rdf:type><owl:Class><owl:differentFrom rdf:resource="#car"/>
+                            </owl:Class> </rdf:type> </owl:Thing>
+
+N3:    [a [a owl:Class;   owl:differentFrom :Car];  :owner :Tom].
+
+KRF:   TNode {term:Tom 
+         sourceOf: isReversed Relation{rType:owner dest:
+           isNegatedType QNode{cType:car}}}
+
+Exclusion between objects (and hence, some forms of negation between classes,
+instances or statements) may also be represented via XOR-collections or
+OR-collections.
+RDF (and hence OWL) proposes an alt collection to store alternatives but
+unfortunately does not specify if this "or" is inclusive or exclusive. Although
+specializing alt by or_bag and xor_set seems a good idea (even if RDF engines
+are unlikely to take advantage of this distinction), the current RDF/XML
+grammar only permits to define members (using rdf#li relations) to collections
+of type Bag, Alt and Seq and not specializations of these types! Furthermore,
+it is unclear how collections on types are interpreted in RDF (distributive,
+collective or cumulative interpretation). Hence, it is better to use relations
+such as owl#union_of, owl#one_of, owl#disjoint_with, owl#complement_of or owl#
+differentFrom). Here is an example of OR-collection between instances. (Note:
+red, yellow and orange are not instance but subtype of color, and have many
+subtypes, e.g., crimson, dark_red and chrome_red. The instances of these colors
+are the actual occurrences of colors that physical objects have.)
+
+E:     Tom's car is red, yellow or orange.
+
+FE:    Tom is owner of a car that has for color OR{a red, a yellow, an orange}.
+
+FCG:   [Tom, owner of: (a car, color: OR{a red, a yellow, an orange})]
+
+KIF:   (exists ((?x car) ?c)
+         (and (owner ?x Tom) (color ?x ?c) (or (red ?c)(yellow ?c)(orange ?c))))
+
+XOWLD: <Car><owner><owl:Thing rdf:about="#Tom"/></owner>
+         <color><owl:Thing>
+                  <rdf:type><owl:Class><owl:unionOf rdf:parseType="Collection">
+                                         <Red/><Yellow/><Orange/></owl:unionOf>
+                  </rdf:type></owl:Thing></color></Car>
+
+N3:    [a :Car;  :owner :Tom;
+                 :color [a [owl:unionOf (:Red :Yellow :Orange)] ].
+
+KRF:   TNode {term:Tom 
+         sourceOf:isReversed Relation{rType:owner dest:
+           QNode{cType:car sourceOf: Relation{rType:color dest:
+             NodeCollection{aggregation:or collElt:QNode{cType:red}
+               collElt:QNode{cType:yellow} collElt:QNode{cType:orange}}}}}}
+
+It should be noted that for this example, using a type such as warm_color would
+have been better than using an OR-collection of red, yellow and orange (and
+this would have eased inferencing). More generally, negation can be represented
+in numerous ways and these representations are often difficult for an inference
+engine to compare and hence fully exploit. Both for knowledge exchange with
+frame-based systems and for knowledge inferencing, different_from relations
+between instances or types should be prefered to other forms of negations.
+
+
+
+Different_from, Exclusion, Complement, Reverse
+
+In the WebKB-2 model and KRM, objects are assumed to be different when they are
+not connected by identity relations. This convention eases both knowledge
+entering, storage and inferencing. Because of it, no notation has been given
+for different-from relations in FL and KRF. In OWL, the "unique name"
+assumption is left as an inference engine choice (which in our opinion is not a
+good decision for knowledge representation and sharing purposes) and hence owl#
+differentFrom is provided by OWL Lite.
+
+E:     According to pm, pm#state is different from dolce#state.
+
+FCG:   [pm#state, != dolce#state](pm);
+
+KIF:   (dc#Creator '(/= pm#state dolce#state) pm)
+KOWLL: (dc#Creator '(owl#differentFrom pm#state dolce#state) pm)
+
+XOWLL: <owl:Class rdf:about="&pm;State">
+         <owl:differentFrom rdf:resource="&dolce;State" dc:Creator="pmartin@dstc.edu.au"/>
+       </owl:Class>
+
+N3:    {pm:State owl:differentFrom dolce:State} dc:creator "pmartin@dstc.edu.au".
+
+
+Exclusion relations are the "relations-from/to-a-class" most commonly used in
+ontologies after subtypeOf and instanceOf relations. They are often given via
+the subtype partitions (presented with subtypeOf). An exclusion relation states
+that its source and destination cannot have common subtypes nor instances.
+
+E:     According to dolce, dolce#state and dolce#process are exclusive.
+
+FL:    dolce#state  exclusion: dolce#process; //the creator of the relation does not need to
+        //be specified because it is identical to the creator of the source object;
+        //this convention will also be used for OWL translations
+FL:    dolce#state ! dolce#process;  //'!' is an abbreviation for "exclusion:"
+
+FCG:   [dolce#state, owl#disjoint_with: dolce#process](dolce);
+
+KOWLD: (dc#Creator '(owl#disjoint_with dolce#state dolce#process) dolce)
+
+XOWLD: <owl:Class rdf:about="&dolce;State">
+         <owl:disjointWith rdf:resource="&dolce;Process" dc:Creator="dolce"/></owl:Class>
+
+N3:    {dolce:State owl:disjointWith dolce:Process} dc:creator "dolce".
+
+Related simple example in UML:
+                               +--------------+
+                               | [umlDisjoin] |
+                               +--------------+
+
+          Example of how exclusive classes may be represented in UML
+               (excerpt from Schreiber's OWL translation in UML)
+
+
+The destination class of a complementOf relation covers all the instances that
+are not covered by the source class (and conversely). Given this meaning, apart
+from connecting the classes owl#thing and owl#nothing, one may wonder which
+other named classes this relation can connect. However, in OWL, this relation
+is useful within definitions to refer to the complement of a class and then
+specialize it or intersect it with another class.
+
+
+Inverse relations can only be set between relation typees.
+
+E:     According to pm, pm#subtype is inverse of pm#supertype.
+
+FL:    pm#subtype  inverse: pm#supertype;  //'-' can be used instead of "inverse:"
+
+FCG:   [pm#subtype, owl#inverse_of: pm#supertype](pm);
+
+KIF:   (dc#Creator '(<=> (pm#subtype ?x ?y) (pm#supertype ?y ?x)) owl)
+KOWLL: (dc#Creator '(owl#inverse_of pm#subtype pm#supertype) pm)
+
+XOWLL: <rdf:Property rdf:ID="&pm;subtype">
+         <owl:inverseOf rdf:resource="&pm;supertype" dc:Creator="pmartin@dstc.edu.au"/>
+       </rdf:Property>
+
+N3:    pm:subtype a rdf:Property.
+       {pm:subtype  owl:inverseOf pm:supertype} dc:Creator "pmartin@dstc.edu.au".
+
+
+OWL Lite also proposes the meta-classes owl#symmetric_property and owl#
+transitive_property, to type classes of relations that are symmetric or
+transitive. However, only in OWL Full can these meta-classes be used to type
+classes of relations that can have data types (integer, string, ...) as
+destinations. The meta-classes owl#symmetric_property and owl#
+transitive_property could be re-used in UML (see next example).
+
+
+
+9. Collections and Quantifier Precedence
+
+Collections have already been introduced in the previous section and via
+examples using numerical quantifiers. This section uses "AND collections" and
+shows how various interpretations of the English sentence "9 judges have
+approved 50 laws" (and some variations of it) can be interpreted. This study of
+how relations between members of two simple collections can be represented
+illustrates the importance of specifying how a collection must be interpreted,
+and shows how to handle complex cases of quantifier precedence (between
+numerical, existential and universal quantifiers).
+
+The sentence "9 judges have approved 50 laws" is ambiguous. The 9 judges may
+have individually or collectively approved 50 laws (the same 50 or not), and
+"collectively" may have two meanings: a participation to a "unique" approval
+act or the approval of "most" of the laws (or a combination of both as
+ilustrated in the last example of this section). This study shows that this
+leads to at least 32 different logical interpretations. In this document,
+"judges approving together/collectively" means that "there exists a (unique)
+approval and each of the judges is agent of that approval". Similarly, "laws
+collectively approved" means that "there exists an approval and each of the
+laws are object of that approval". This interpretation of "collectiveness" was
+used in [Sowa, 1992] and, in Conceptual Graph terminology, it implies that the
+approval must be represented by a "concept node", not by a "relation node"
+(this result was however not explicited by Sowa). In [Sowa, 1992], any
+collection in a concept node of a conceptual graph can be specified as having a
+distributive interpretation (each member of the collection individually
+participates to the relations associated to the node), a collective
+interpretation (the members collectively participate to the relations
+associated to the node), a defaut interpretation (an unspecified mix of
+collective and distributive interpretation) or a cumulative interpretation (the
+relations are about the collection itself).
+
+OWL (or more exactly RDF) introduces some notion of distributive interpretation
+via the keyword aboutEach but it is not clear if this is the default
+interpretation, the direct distributive interpretation or the general
+distributive interpretation (the distinction between the last two will be
+explained below). Without aboutEach, the relations are about the collection
+itself (cumulative interpretation). However, in their examples, the RDF authors
+also represent the collective interpretation via direct relations to the bag
+(e.g., see Section 3.5 of RDFMS). For the OWL translations, a relation type
+interpretation, a class set and a relation type size have been introduced. The
+type set is declared as a subtype of rdf#bag; this permits the use of rdf#
+about_each.
+
+The first example keeps the ambiguity of the above cited sentence (both
+collections have the default interpretation). The `s' at the end of judges and
+laws in the FE and FCG representations are supposed to be automatically removed
+(WebKB-2 does this when a numerical or universal quantifier is involved). In
+this section, FE and KRF translations are only given in this first example, but
+a Predicate Logic (PL) translation is added using the symbols "∀" for the
+universal quantifier, "∃" for the existential quantifier, "∈" for membership to
+a set, and "^" for "and".
+
+E:     9 judges have (each/together) approved 50 laws.
+
+FE:    9 judges are agent of an approval with object 50 laws.
+
+FCG:   [9 judges, agent of: (an approval, object: 50 laws)]
+
+KIF:   (forAllN 9 '?j judge (forAllN 50 '?l law
+         (exists ((?a approval)) (and (agent ?a '?j) (object ?a '?l)))))
+PL:    ∃js set(js)^size(js,9) ^ ∀j∈js  ∃ls set(ls)^size(ls,50) ^ ∀l∈ls
+         ∃a approval(a) ^ agent(a,j) ^ object(a,l)
+
+XOWLD: <!-- 1st version -->
+       <rdf:Property rdf:ID="objectLaw">
+         <rdfs:subPropertyOf rdf:resource="#object"/>
+         <rdfs:range rdf:resource="#Law"/> </rdf:Property>
+       <owl:Class rdf:ID="ApprovalOf50laws">
+         <owl:intersectionOf rdf:parseType="Collection">
+           <Approval/>
+           <owl:Restriction>
+             <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">50
+             </owl:cardinality>
+             <owl:onProperty rdf:resource="#objectLaw"/></owl:Restriction>
+         </owl:intersectionOf></owl:Class>
+       <Set rdf:ID="Judges"><size>9</size></Set>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="separately">
+         <rdf:type rdf:resource="#Judge"/></rdf:Description>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="default">
+         <agentOf><ApprovalOf50laws/></agentOf></rdf:Description>
+
+  <!-- The next version is shorter but highly tentative. It mostly relies on the
+       special meaning of the relation "interpretation". RDF does not specify
+       what embedded uses of aboutEach mean. More generally and mainly because
+       it is based on triples, RDF has no clear notion of quantifier/statement
+       scopes and insufficient means to specify them. -->
+       <Set rdf:ID="Laws"/>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="separately">
+          <rdf:type rdf:resource="#Law"/></rdf:Description>
+       <Set rdf:ID="Judges"><size>9</size></Set>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="separately">
+          <rdf:type rdf:resource="#Judge"/></rdf:Description>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="default">
+          <agentOf><Approval><object> 
+            <rdf:Description rdf:aboutEach="#Laws" interpretation="default">
+              <size>50</size> 
+           </rdf:Description></object></Approval></agentOf></rdf:Description> -->
+  <!-- OWL may permit to define Judges as a set without introducing
+          the class Set, in the following way:
+            <owl:AllDifferent><owl:distinctMembers><rdf:Bag rdf:ID="Judges"/>
+                              </owl:distinctMembers></owl:AllDifferent> -->
+
+N3:    :objectLaw a rdf:Property;  rdfs:subPropertyOf :object;  rdfs:range :Law.
+       :ApprovalOf50laws a owl:Class; 
+                         owl:intersectionOf :Approval,
+                             [a owl:Restriction; owl:onProperty :objectLaw; owl:cardinality 50].
+       :Judges a Set;  size 9.
+       @forAll :j . { :j a :Judge;  is pm:member of :Judges } => { [a :ApprovalOf50laws] :agent :j }.
+
+KRF:   QNode{cType:judge quantifier:Quantifier{num:"9"}
+         sourceOf:isReversed Relation{rType:agent dest:
+           QNode{cType:approval sourceOf: Relation{rType:object dest:
+             QNode{cType:judge quantifier:Quantifier{num:"50"}}}}}}
+
+Introduced constructs:
+
+<rdf:Property rdf:ID="interpretation"/>
+  <rdfs:range rdf:resource="&rdfs;Literal"/>
+</rdf:Property>
+
+(defrelation forAllN (?num ?var ?type ?predicate) :=
+  (exists ((?s set)) (and (size ?s ?num)
+    (truth ^(forall (,?var) (=> (member ,?var ,?s)
+                                (and (,?type ,?var) ,?predicate)))))))
+//forAllN is nearly identical to the above defined atMostN: only the
+//constraint on the size of the set differs
+
+
+
+In FE and FCG, the order and scope of quantifiers is specified by their order
+and the structure of the graphs. The next example shows a simple inversion of
+the quantifier order.
+
+E:     50 laws have been approved by 9 judges (each/together).
+
+FCG:   [50 laws, object of: (an approval, agent: 9 judges)]
+
+KIF:   (forAllN 50 '?l law (forAllN 9 '?j judge
+         (exists ((?a approval)) (and (agent ?a '?j) (object ?a '?l)))))
+PL:    ∃ls set(ls) ^ size(ls,50) ^ ∀l∈ls  ∃js set(js)^size(js,9) ^ ∀j∈js
+         ∃a approval(a) ^ agent(a,j) ^ object(a,l)
+
+XOWLD: <!-- 1st version -->
+       <rdf:Property rdf:ID="agentJudge">
+         <rdfs:subPropertyOf rdf:resource="#agent"/>
+         <rdfs:range rdf:resource="#Judge"/> </rdf:Property>
+       <owl:Class rdf:ID="ApprovalBy9Judges">
+         <owl:intersectionOf rdf:parseType="Collection">
+           <Approval/>
+           <owl:Restriction>
+             <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">9
+             </owl:cardinality>
+             <owl:onProperty rdf:resource="#agentJudge"/></owl:Restriction>
+         </owl:intersectionOf></owl:Class>
+       <Set rdf:ID="Laws"><size>50</size></Set>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="separately">
+         <rdf:type rdf:resource="#Law"/></rdf:Description>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="default">
+         <objectOf><ApprovalBy9Judges/></objectOf></rdf:Description>
+
+N3:    :agentJudge a rdf:Property;  rdfs:subPropertyOf :object;  rdfs:range :Judge.
+       :ApprovalBy9Judges a owl:Class; 
+                         owl:intersectionOf :Approval,
+                             [a owl:Restriction; owl:onProperty :agentJudge; owl:cardinality 9].
+       :Laws a Set;  size 50.
+       @forAll :l . { :l a :Law;  is pm:member of :Laws } => {[a :ApprovalBy9judges] :object :l}.
+
+
+
+In FE and FCG, the collective interpretation is specified via the keywords
+together, group of, set of, bag of, list of, sequence of or alternatives (the
+first three are synonyms; in this document, set is most often used).
+
+If we take the two previous examples and gradually introduce the collective
+interpretation for the collections (i.e., the sharing of the approvals by the
+judges/laws, e.g., in the KIF translations, by gradually moving "(exists ((?a
+approval)" to the left), we obtain five different logical interpretations
+(instead of six because when both collections are collectively interpreted, the
+inversion of quantifier order does not change the meaning). Below are three of
+these combinations (the other two are: "A group of 50 laws has been approved by
+9 judges" and "A group of 9 judges has approved 50 laws").
+
+E:     9 judges have (each/together) approved a group of 50 laws.
+
+FCG:   [9 judges, agent of: (an approval, object:  50 laws together)]
+
+KIF:   (forAllN 9 '?j judge (exists ((?a approval) (?ls set))
+         (forAllIn ?ls 50 '?l law (and (agent ?a '?j) (object ?a '?l)))))
+PL:    ∃js set(js)^size(js,9) ^ ∀j ∈js  ∃a approval(a) ^
+         ∃ls set(ls)^size(ls,50) ^ ∀l∈ls  agent(a,j) ^ object(a,l)
+
+XOWLD: <owl:Class rdf:ID="ApprovalOf50laws">
+         <owl:intersectionOf rdf:parseType="Collection" interpretation="collective">
+           <Approval/>
+           <owl:Restriction>
+             <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">50
+             </owl:cardinality>
+             <owl:onProperty rdf:resource="#objectLaw"/></owl:Restriction>
+         </owl:intersectionOf></owl:Class>
+       <Set rdf:ID="Judges"><size>9</size></Set>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="separately">
+         <rdf:type rdf:resource="#Judge"/></rdf:Description>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="default">
+         <agentOf><ApprovalOf50laws/></agentOf></rdf:Description>
+
+N3:    :Judges a Set; size 9.
+       @forAll :j.  { :j a :Judge; is pm:member of :Judges }
+          => { @exist :a.  {:a a :approval.    :Laws at set; size 50}
+                 => { @forAll :l.  { :l a :Law; is pm:member of :Laws}
+                        => {:a :agent :j; :object :l}
+                    } }
+
+E:     50 laws have been approved by a group of 9 judges.
+
+FCG:   [50 laws, object of: (an approval, agent: 9 judges together)]
+
+KIF:   (forAllN 50 '?l law (exists ((?a approval) (?js set))
+         (forAllIn ?js 9 '?j judge (and (agent ?a '?j) (object ?a '?l)))))
+PL:    ∃ls set(ls)^size(ls,50) ^ ∀l ∈ls  ∃a approval(a) ^
+         ∃js set(js)^size(js,9) ^ ∀j∈js  agent(a,j) ^ object(a,l)
+
+XOWLD: <Set rdf:ID="Judges"/>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="separately">
+         <rdf:type rdf:resource="#Judge"/></rdf:Description>
+       <Set rdf:ID="Laws"><size>50</size></Set>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="separately">
+          <rdf:type rdf:resource="#Law"/></rdf:Description>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="default">
+         <objectOf><Approval><agent>
+           <rdf:Description rdf:aboutEach="#Judges" interpretation="collective">
+              <size>9</size>
+           </rdf:Description></agent></Approval></objectOf></rdf:Description>
+
+N3:    :Laws a Set; size 50.
+       @forAll :l.  { :l a :Law; is pm:member of :Laws }
+          => { @exist :a.  @exist :Judges. {:a a :approval}
+                 => { @forAll :j.  { :j a :Judge; is pm:member of :Judges.  :Judges a Set; size 9. }
+                        => {:a :agent :j; :object :l}
+                    } }
+
+E:     A group of 9 judges has approved a group of 50 laws.
+
+FCG:   [9 judges together, agent of:(an approval,object: 50 laws together)]
+ or:   [a set of 50 laws, object of:(an approval,agent:a set of 9 judges)]
+ or:   [an approval, agent: a set of 9 judges, object: a set of 50 laws]
+
+KIF:   (exists ((?a approval) (?js set) (?ls set))
+         (forAllIn ?js 9 '?j judge (forAllIn ?ls 50 '?l law
+           (and (agent ?a '?j) (object ?a '?l)))))
+PL:    ∃a approval(a) ^ ∃js set(js)^size(js,9) ^
+         ∃ls set(ls)^size(ls,50) ^  ∀j∈js ∀l∈ls agent(a,j) ^ object(a,l)
+
+XOWLD: <Set rdf:ID="Judges"><size>9</size></Set>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="separately">
+         <rdf:type rdf:resource="#Judge"/></rdf:Description>
+       <Set rdf:ID="Laws"><size>50</size></Set>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="separately">
+          <rdf:type rdf:resource="#Law"/></rdf:Description>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="collective">
+         <agentOf><Approval><object>
+           <rdf:Description rdf:aboutEach="#Laws" interpretation="collective"/>
+                            </object></Approval></agentOf></rdf:Description>
+
+N3:    :Judges a Set; size 9.  :Laws a Set; size 50.
+       @exist :a. {:a a :approval}
+         => { @forAll :j.  @forAll :l.  { :j a :Judge; is pm:member of :Judges}
+              => {:a :agent :j; :object :l.   :l a :Law; is pm:member of :Laws}  }
+
+Here is a definition for the "quantifier" forAllIn.
+(defrelation forAllIn (?s ?num ?var ?type ?predicate) :=
+  (and (size ?s ?num)
+       (truth ^(forall (,?var) (=> (member ,?var ,?s)
+                                   (and (,?type ,?var) ,?predicate))))))
+
+
+
+In [Sowa, 1992], the distributive interpretation (i.e., where each member of
+the collection individually participates to the relations associated to the
+collection) specifies that each member is connected to different objects,
+directly (i.e., via 1 relation) or indirectly (i.e., 2 or more relations within
+the statement), unless otherwise specified. For better precision, FE and FCG
+distinguishes the directly distributive interpretation (which can be specified
+via the keyword "each") from Sowa's general distributive interpretation (which
+can be specified via the keyword "separately"). If the directly distributive
+interpretation is introduced into the previous seven combinations, nine
+different logical interpretations are obtained. A few more are obtained when
+the general distributive interpretation is introduced; below are are two of
+them (in the KIF (resp. PL) translations, replacing the first exists1For (resp.
+∃!!) by exists (resp. ∃) leads to the direct distributive interpretation).
+
+E:     9 judges have separately approved 50 laws (that's 450 approvals of law)
+
+FCG:   [separately 9 judges, agent of: (an approval, object: 50 laws)]
+
+KIF:   (forAllN 9 '?j judge (exists1For '?j '?ls set (forAllIn '?ls 50 '?l law
+         (exists1For '?j '?a approval (and (agent '?a '?j) (object '?a '?l))))))
+PL:    ∃js set(js)^size(js,9) ^ ∀j∈js   ∃!!ls set(ls)^size(ls,50) ^
+         ∀l∈ls  ∃!!a approval(a) ^ agent(a,j) ^ object(a,l)
+
+
+XOWLD: <Set rdf:ID="Laws"/>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="separately">
+          <rdf:type rdf:resource="#Law"/></rdf:Description>
+       <Set rdf:ID="Judges"><size>9</size></Set>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="separately">
+         <rdf:type rdf:resource="#Judge"/>
+         <agentOf><Approval><object>
+           <rdf:Description rdf:aboutEach="#Laws" interpretation="default">
+              <size>50</size>
+           </rdf:Description></object></Approval></agentOf></rdf:Description>
+
+N3:    :Judges a Set; size 9.
+       @forAll :j.  { :j a :Judge; is pm:member of :Judges }
+           => { :Laws a Set; size 50.
+                @forAll :l.  { :l a :Law; is pm:member of :Laws}
+                  => { @exist :a. {:a a :approval} => {:a :agent :j; :object :l}
+                       {:a :agent ?j; :object :l} => {?j = :j}
+                       {:a :agent :j; :object ?l} => {?l = :l}
+                     } }
+
+E:    9 judges have separately approved a group of 50 laws (that's 450 approvals of law)
+
+FCG:  [separately 9 judges, agent of: (an approval, object: a set of 50 laws)]
+
+KIF:  (forAllN 9 '?j judge (exists1For '?j '?ls set (exists1For '?j '?a approval
+        (forAllIn '?ls 50 '?l law (and (agent '?a '?j) (object '?a '?l))))))
+PL:   ∃js set(js)^size(js,9) ^ ∀j∈js   ∃!!ls set(ls)^size(ls,50) ^
+        ∃!!a approval(a)  ∀l∈ls  agent(a,j)^ object(a,l)
+
+XOWLD: <Set rdf:ID="Laws"/>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="separately">
+          <rdf:type rdf:resource="#Law"/></rdf:Description>
+       <Set rdf:ID="Judges"><size>9</size></Set>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="separately">
+         <rdf:type rdf:resource="#Judge"/>
+         <agentOf><Approval><object>
+           <rdf:Description rdf:aboutEach="#Laws" interpretation="collective">
+              <size>50</size>
+           </rdf:Description></object></Approval></agentOf></rdf:Description>
+
+N3:    :Judges a Set; size 9.
+       @forAll :j.  { :j a :Judge; is pm:member of :Judges }
+           => { :Laws a Set; size 50.  @exist :a.
+                @forAll :l.  { :l a :Law; is pm:member of :Laws}
+                  => {  {:a a :approval; :agent :j; :object :l}
+                        {:a :agent ?j; :object :l} => {?j = :j}
+                        {:a :agent :j; :object ?l} => {?l = :l}
+                     }
+              } 
+
+Below is a KIF definition of exists1For. This quantifier permits us to specify
+that the judges are agent of different approvals of different laws (first
+example) or groups of laws (second example).
+(defrelation exists1For (?var1 ?var2 ?type ?predicate) :=
+  (truth ^(exists (,?var2)
+    (and (,?type ,?var2)  (,?predicate ,?var1 ,?var2)
+         (forall (?x) (=> (,?predicate ,?var1 ?x) (= ,?var2 ?x)))
+         (forall (?y) (=> (,?predicate ?y ,?var2) (= ,?var1 ?y)))))))
+
+
+
+Finally, "most" can also be introduced as an interpretation of collectiveness
+in each of the previous (7+9=16) combinations (hence, 16 logical
+interpretations again). Here is one of them.
+
+E:     A group of 50 laws has been approved by most in a group of 9 judges.
+
+FCG:   [a group of 9 judges, agent of:
+         (an approval, object: most in a group of 50 laws)]
+
+FCG:   [most in a group of 50 laws, object of:
+         (an approval, agent: a group of 9 judges)]
+
+KIF:   (exists ((?a approval) (?js set) (?ls set))
+         (forAllIn ?js 9 '?j judge (forMostIn ?ls 50 '?l law
+           (and (agent ?a '?j) (object ?a '?l)))))
+PL:    ∃a approval(a) ^  ∃js set(js)^size(js,9) ^  ∃ls set(ls)^size(ls,50) ^
+         ∀j∈js agent(a,j) ^  ∃mostOfls set(mostOfls)
+           (∀l∈ls  (object(a,l) => l∈mostOfls))   ^  size(mostOfls) >= 2
+                                                 // >=2 since size(ls)/2=1.5 
+
+XOWLD: <Set rdf:ID="Judges"/>
+       <rdf:Description rdf:aboutEach="#Judges" interpretation="separately">
+         <rdf:type rdf:resource="#Judge"/></rdf:Description>
+       <Set rdf:ID="Laws"><size>50</size></Set>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="separately">
+          <rdf:type rdf:resource="#Law"/></rdf:Description>
+       <rdf:Description rdf:aboutEach="#Laws" interpretation="collective">
+         <objectOf><Approval><agent>
+           <rdf:Description rdf:aboutEach="#Judges" interpretation="collective"
+                                                    quantifier="most">
+              <size>9</size>
+           </rdf:Description></agent></Approval></objectOf></rdf:Description>
+
+N3:    @exist :a. {:a a :approval}  :Judges a Set; size 9.  :Laws a Set; size 50.
+       @forAll :j.  { :j a :Judge; is pm:member of :Judges }
+           => { {:a :agent :j;}.  @forSome :mostOfls. :mostOfls a :Set; >= 2.
+                @forAll :l.  { :l a :Law; is pm:member of :Laws}
+                  =>{ {:a :object :l} => {:l is pm:member of :mostOfls} }
+              }
+
+Here is a KIF definition of forMostIn (the definition of numMembersSuchThat was
+given earlier).
+(defrelation forMostIn (?set ?num ?var ?type ?predicate) :=
+  (and (size ?set ?num)
+       (truth ^(forall (,?var) (=> (member ,?var ,?set) (,?type ,?var))))
+       (>= (numMembersSuchThat ,?set ,?predicate) (* (size ,?set) 0.6))))
+
+
+
+10. Higher-order Statements
+
+First-order statements only permit to use universal quantification over
+individuals. Higher-order statements also permit to universal quantification
+over types. OWL does not permit genuine universal quantification (it only
+accepts certain forms of class definition) or rules. The definition of
+transitive_binary_relation requires such features and is a classic example of
+second-order statement. (A first-order statement is sufficient to describe the
+transitivity of a particular relation, e.g., "the part of a part is also a
+part", but would also be difficult to express in OWL without using the type owl
+#transitive_property. Hence, as opposed to the previous examples, a "slight"
+extension to OWL would be insufficient for the example below. Instead, the
+proposed translation uses "big" extensions to RDF imagined by Berners-Lee in
+1999: a forall construct and new attributes such as pname to quantify over
+classes. However, in 2001, DAML+OIL, the precursor of the OWL, was adopted by
+the W3C as an extension to RDF, and hence it is unlikely that Tim Berners Lee's
+extensions for genuine universal quantification will be adopted in the future.
+
+E:    A transitive_binary_relation_type rt is such that
+        if x is connected to y by a relation of type rt, and 
+           y is connected to z by a relation of type rt, 
+        then x is connected to z by a relation of type rt.
+
+FCG:  [type transitive_binary_relation_type (*rt) :=
+        [ [^x, *rt: (^y, *rt: ^z)] => [^x, *rt: ^z]
+        ]] //^x and ^y are "free variables", i.e., variables that are
+           //implicitely universally quantified (KIF also accepts them)
+
+KIF:  (defrelation transitive_binary_relation_type (?rt) :=
+        (and (binrel ?rt ?s)     //?s is a free variable
+             (forall (?x ?y ?z)
+               (=> (and (?rt ?x ?y) (?rt ?y ?z)) (?rt ?x ?z)))))
+      //to be accepted in all the versions of KIF, it would be better to write 
+      //    (=> (and (holds ?rt ?x ?y)(holds ?rt ?y ?z))(holds ?rt ?x ?z)))))
+      //but since variables for predicates have already been used in definitions
+      //above, that facility is re-used here
+
+RDF+: <forall var="r" v2="x" v3="y" v4="z"> <!--var,v2,v3,v4: new attributes-->
+        <if><TransitiveBinaryRelationType rdf:about="#rt">
+        <then><if><rdf:Description about="#x">
+                    <rdf:property pname="#rt"><!-- pname: new attribute -->
+                      <rdf:Description about="#y">
+                        <rdf:property pname="#rt"><rdf:Description about="#z"/>
+                        </rdf:property></rdf:Description>
+                    </rdf:property></rdf:Description>
+              <then><rdf:Description about="#x">
+                      <rdf:property pname="#rt"><rdf:Description about="#z"/>
+                      </rdf:property></rdf:Description>
+              </then></if></then></if></forall>
+
+N3:   @forAll :rt .{ :rt a owl:TransitiveProperty. } log:implies
+      { @forAll :x , :y , :z.
+        { :x :rt :y. :y :rt :z. } log:implies { :x :rt :z. }.
+      }.  <!-- assuming that :rt is a variable for a type, not a type -->
+
+KRF:   Definition {dType:MetaType transitive_binary_relation_type
+                   kind:NSC  parameter:("rt") embeddedNode1:ENode {
+         embeddedNode1:
+           QNode {var:"x" sourceOf:Relation{var:"rt" dest:
+             QNode{var:"y" sourceOf:Relation{var:"rt" dest:QNode{var:"z"}}}}}
+         sourceOf: ENode {embeddedNode1:
+           QNode {var:"x" sourceOf:Relation{var:"rt" dest:QNode{var:"z"}}}}}}
+
+
+
+11. Ontology-dependent Representations
+
+Measures
+
+Although measure representation is a "content ontology" issue (such as how to
+represent relations from states, processes or statements) rather than a
+"language ontology" issue (such as quantification and contextualization), it
+has to be treated now because FE and FCG provide shortcuts which are discussed
+after this example.
+
+E:     There is a car that weights 923.5 kg.
+
+FE:    There is a car that has for weight 923.5 kg.
+
+FCG:   [a car, weight: 923.5 kg]
+ or:   [a car, weight: a weight *w] [measure(*w,923.5,kg)]
+
+KIF:   (exists ((?c car) (?w weight))
+         (and (weight2 ?c ?w) (measure ?w 923.5 kg)))
+
+XOWLL: <Car><weight><Weight><measure><Measure><unit rdf:resource="#kg"/>
+                                              <number>923.5</number></Measure>
+                            </measure></Weight></weight></Car>
+
+N3:    [a :Car; :weight2 [a :Weight; :measure; [a :Measure; :unit :kg; :number "923.5"] ] ].
+
+KRF:   QNode{cType:car  sourceOf:Relation{rType:weight dest:
+         QNode{cType:kg quantifier:Quantifier{num:"923.5"}}}}
+
+As illustrated above, in FE and FCG, instead of using the relation measure, a
+real number can be put in front of a "unit" class as if it was a
+collection-related numerical quantifier (a difference is that this numerical
+quantifier can only be a positive integer since it represents the number of
+objects in a collection). FE and FCG also permit a "dimension" class (or more
+generally any subclass of pm#thing_that_can_be_seen_as_a_relation) to be used
+as if it was a relation type (which implicitely has for range an object of the
+class). This eases the entering, reading and matching of statements, and avoids
+duplicating the hierarchy of classes for dimensions into a hierarchy of
+relation types for these dimensions (as must be done with the other notations).
+This approach is also consistent with the way qualitative values are
+represented (e.g., a certain red represents a certain number of hertz, and a
+red car can be represented as [a car, color: a red]). However, this approach
+implies that red is a subclass of color and kg is a subclass of weight. This is
+a rather natural categorization and is the case in WordNet, but some ontologies
+(e.g., DOLCE) categorize red and kg as dimension values (or "quales") which are
+exclusive with dimensions/attributes (or "qualities"). Since this alternative
+approach does not permit to exploit generalization links, it either requires
+the introduction of relations and definitions to connect each dimension and its
+related values, or inferencing possibilities are lost, and hence this not a
+scalable approach. However, if this is done, such ontologies can be used with
+the above approach. For example, assuming that red now denotes a dimension
+value, and that value is a generic relation between dimensions and dimension
+values, the following FCG can be written: [a car, color: (a
+color, value: a red)].
+
+
+
+Intervals
+
+An interval of numerical quantifiers has different representations depending on
+their meaning: number of objects or measure. Below is an example.
+Alternatively, if the interval is simply a collection of 2 numbers, the usual
+representation for a collection is sufficient.
+
+E:     2 to 3 persons are running for 45.5 minutes to an hour.
+
+FE:    2 to 3 persons is agent of a run with duration 45.5 to 60 minutes.
+
+FCG:   [2 to 3 persons, agent of: (a run, duration: 45 to 60 minute)]
+
+KIF:   (forAllInBetween 2 3 '?p person
+         (exists ((?r run) (?d duration) (?n number))
+           (and (duration2 ?r ?d) (measure ?d ?n minute)
+                (>= ?n 45.5) (=< ?n60))))
+
+XOWLD: <Set rdf:ID="persons"/>
+       <Set rdf:ID="Persons"><size><Number><atLeast>2</atLeast>
+                                     <atMost>3</atMost><Number></size></Set>
+       <rdf:Description rdf:aboutEach="#Persons" interpretation="default">
+         <rdf:type rdf:resource="#Person"/>
+         <agentof><Run><duration><Duration><measure>
+                                   <Measure><unit rdf:resource="#minutes"/>
+                                            <number>45.5</number></Measure>
+                                   </Measure></measure></duration></Duration>
+                  </Run></agentof></rdf:Description>
+
+N3:    :Persons a Set; :size [a :Number; atLeast 2; atMost 3].
+       @forAll :p. {:p a :Person; is :member of :Persons}
+          => { [a :Run;  agent :p;  :duration
+                  [a Duration; measure
+                    [a :Measure; :unit :minute; :atLeast "45.5"; :atMost "60"]
+                  ] ] }
+
+KRF:   QNode{cType:person quantifier:Quantifier{num:"2" toNumber:"3"}
+         sourceOf:isReversed Relation{rType:agent dest:
+           QNode{cType:run sourceOf:Relation{rType:duration dest: QNode{
+             cType:"minute" quantifier:Quantifier{num:"45.5" toNumber:"60"}}}}}}
+
+
+Here is a KIF definition of forAllInBetween.
+(defrelation forAllInBetween (?s ?n1 ?n2 ?var ?type ?predicate) :=
+  (exists (?n) (and (size ?s ?n) (>= ?n ?n1) (=< ?n ?n2)
+       (truth ^(forall (,?var) (=> (member ,?var ,?s)
+                                   (and (,?type ,?var) ,?predicate))))))
+
+
+
+Qualitative Valuations
+
+
+
+Bibliography
+
+Martin Ph. & Eklund P. (2001). Large-scale cooperatively-built heterogeneous
+KBs. Proceedings of ICCS'01, 9th International Conference on Conceptual
+Structures (Springer Verlag, LNAI 2120, pp. 231-244), Stanford University,
+California, USA, July 30 to August 3, 2001. http://www.webkb.org/doc/papers/
+iccs01/
+
+Martin Ph. (2002a). Knowledge representation in CGLF, CGIF, KIF, Frame-CG and
+Formalized-English. Proceedings of ICCS'02, 10th International Conference on
+Conceptual Structures (Springer Verlag, LNAI 2393, pp. 77-91), Borovets,
+Bulgaria, July 15-19, 2002. http://www.webkb.org/doc/papers/iccs02/
+
+M. Chein and M.L. Mugnier, Positive Nested Conceptual Graphs, Proceedings of
+ICCS'97, 5th International Conference on Conceptual Structures (Springer
+Verlag, LNAI 1257, pp. 95-109), Seattle, USA, August 4-8, 1997.
+
+J.F. Sowa (1992). Conceptual Graphs Summary. In: Conceptual Structures: Current
+Research and Practice (Eds: T.E. Nagle, J.A. Nagle, L.L. Gerholz and P.W.
+Eklund), Ellis Horwood (1992), pp. 3-51.

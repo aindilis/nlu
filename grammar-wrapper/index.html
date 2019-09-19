@@ -1,0 +1,538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Eli Bendersky&#039;s website  &raquo; Generating random sentences from a context free grammar</title>
+
+<meta name="generator" content="WordPress" /> <!-- leave this for stats -->
+
+<link rel="stylesheet" href="http://eli.thegreenplace.net/wp-content/themes/elitheme/style.css" type="text/css" media="screen" />
+<link rel="alternate" type="application/rss+xml" title="Eli Bendersky&#039;s website RSS Feed" href="http://eli.thegreenplace.net/feed/" />
+<link rel="pingback" href="http://eli.thegreenplace.net/xmlrpc.php" />
+
+<style type="text/css" media="screen">
+/*	To accomodate differing install paths of WordPress, images are referred only here,
+	and not in the wp-layout.css file. If you prefer to use only CSS for colors and what
+	not, then go right ahead and delete the following lines, and the image files. */
+		
+	body { background: url("http://eli.thegreenplace.net/wp-content/themes/elitheme/images/kubrickbgcolor.jpg"); }	
+	#page { background: url("http://eli.thegreenplace.net/wp-content/themes/elitheme/images/kubrickbgwide.jpg") repeat-y top; border: none; } 
+	#header { background: url("http://eli.thegreenplace.net/wp-content/themes/elitheme/images/kubrickheader.jpg") no-repeat bottom center; }
+	#footer { background: url("http://eli.thegreenplace.net/wp-content/themes/elitheme/images/kubrickfooter.jpg") no-repeat bottom; border: none; }
+
+    #headerimg { background: url('http://eli.thegreenplace.net/wp-content/themes/elitheme/images/personalheader.gif') no-repeat top;}
+</style>
+
+<link rel="alternate" type="application/rss+xml" title="Eli Bendersky&#039;s website &raquo; Generating random sentences from a context free grammar Comments Feed" href="http://eli.thegreenplace.net/2010/01/28/generating-random-sentences-from-a-context-free-grammar/feed/" />
+<link rel='stylesheet' id='wp-quicklatex-format-css'  href='http://eli.thegreenplace.net/wp-content/plugins/wp-quicklatex/css/quicklatex-format.css?ver=3.4.2' type='text/css' media='all' />
+<script type='text/javascript' src='http://eli.thegreenplace.net/wp-includes/js/tw-sack.js?ver=1.6.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var AjaxForceCommentPreviewVars = {"emptyString":"A preview will appear here","url":"http:\/\/eli.thegreenplace.net\/wp-content\/plugins\/ajax-force-comment-preview\/ajax-force-comment-preview.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://eli.thegreenplace.net/wp-content/plugins/ajax-force-comment-preview/ajax-force-comment-preview.js?ver=2.0610975520'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://eli.thegreenplace.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://eli.thegreenplace.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Book review: &#8220;Matplotlib for Python developers&#8221; by Sandro Tosi' href='http://eli.thegreenplace.net/2010/01/27/book-review-matplotlib-for-python-developers-by-sandro-tosi/' />
+<link rel='next' title='Removing epsilon productions from context free grammars' href='http://eli.thegreenplace.net/2010/02/08/removing-epsilon-productions-from-context-free-grammars/' />
+<meta name="generator" content="WordPress 3.4.2" />
+<link rel='canonical' href='http://eli.thegreenplace.net/2010/01/28/generating-random-sentences-from-a-context-free-grammar/' />
+<link rel='shortlink' href='http://eli.thegreenplace.net/?p=2070' />
+
+	<!-- Google Ajax Search -->
+
+	
+	<link href="http://www.google.com/uds/css/gsearch.css" type="text/css" rel="stylesheet"/>
+	<style>	
+	
+	/* Width */
+	.gsc-control {
+	  	width: 190px;
+		overflow: hidden
+	}
+	.gs-result .gs-title,
+	.gs-result .gs-title * {
+		font-size: em;
+	  	color: #;
+	}
+	.gsc-results .gsc-trailing-more-results,
+	.gsc-results .gsc-trailing-more-results * {
+	  	color: #;
+	}
+	.gs-result a.gs-visibleUrl,
+	.gs-result .gs-visibleUrl {
+	  	color: #;
+	}
+	.gs-result a.gs-clusterUrl,
+	.gs-result .gs-clusterUrl {
+	  	color: #;
+	}
+	.gsc-resultsbox-visible {
+		display: table;
+		width: 100%;
+		overflow: hidden
+	}
+	</style>
+
+
+	<style>
+	img.gsc-branding-img {
+	display: none;
+	}
+	td.gsc-branding-text div.gsc-branding-text {
+	display: none;
+	}	
+	</style>
+
+		
+	<script src='http://www.google.com/uds/api?file=uds.js&amp;v=1.0&key=ABQIAAAASJLkfzhbrk2er4Fet8xQ8RTEuR52sBrLGuwoSTDIWMPE_c3JyBS_mfdA9ofPFAiibXYIkxl8dPjKeA' type='text/javascript'></script>
+	<!-- Google AjaxSearch Plugin for WordPress initialization -->
+	<script type='text/javascript'> 
+
+
+
+
+		function OnLoad()
+		{
+			
+			var searchControl = new GSearchControl();
+			searchControl .setLinkTarget(GSearch.LINK_TARGET_SELF); 
+			var webSearch = new GwebSearch();   
+			webSearch.setSiteRestriction("http://eli.thegreenplace.net");
+			webSearch.setUserDefinedLabel("Results");
+			webSearch.setUserDefinedClassSuffix("webSearch");
+											var options = new GsearcherOptions();
+			options.setExpandMode(GSearchControl.EXPAND_MODE_OPEN);
+			searchControl.addSearcher(webSearch, options);
+											
+
+			var drawOptions = new GdrawOptions();
+			drawOptions.setDrawMode(GSearchControl.DRAW_MODE_LINEAR);
+			searchControl.draw(document.getElementById("searchcontrol"),drawOptions);
+		}
+		GSearch.setOnLoadCallback(OnLoad);
+
+	</script>
+	<!-- Google Maps Plugin for WordPress (end) -->
+
+                <script type='text/javascript' src='http://eli.thegreenplace.net/wp-content/plugins/stupid-captcha/jquery.js.php' ></script>
+        <script type='text/javascript' src='http://eli.thegreenplace.net/wp-content/plugins/stupid-captcha/stupid-captcha.js.php' ></script></head>
+<body>
+<div id="page">
+
+
+<div id="header">
+	<a href="http://eli.thegreenplace.net/"><img src="http://eli.thegreenplace.net/wp-content/themes/elitheme/images/personalheader.gif"></a>
+<!--	<div id="headerimg">
+		<h1><a href="http://eli.thegreenplace.net/">Eli Bendersky&#039;s website</a></h1>
+		<div class="description">Eli Bendersky&#039;s personal website</div>
+	</div>-->
+</div>
+<hr />
+
+	<div id="content" class="widecolumn">
+				
+  	
+		<div class="navigation">
+			<div class="alignleft"><b><a href="http://eli.thegreenplace.net/archives/">&lt;&lt;&lt;</a> 
+            Back to blog <a href="http://eli.thegreenplace.net/archives/">Archives</a></b></div>
+            <br/>
+		</div>
+		<div class="post" id="post-2070">
+			<h2><a href="http://eli.thegreenplace.net/2010/01/28/generating-random-sentences-from-a-context-free-grammar/" rel="bookmark" title="Permanent Link: Generating random sentences from a context free grammar">Generating random sentences from a context free grammar</a></h2>
+			<small>January 28th, 2010 at 3:13 pm <!-- by eliben --></small>
+			
+			<div class="entry">
+				<p>Sometimes it&#8217;s interesting to randomly generate a large amount of valid sentences from a <a class="reference external" href="http://en.wikipedia.org/wiki/Context_free_grammar/">context free grammar</a>. The best use for this is automated stress-testing of parsers for those grammars <a class="footnote-reference" href="#id4" id="id1">[1]</a>.</p>
+<p>So how would you generate sentences?</p>
+<div class="section" id="simple-recursive-algorithm">
+<h3>Simple recursive algorithm</h3>
+<p>The first approach that springs to mind is a simple recursive traversal of the grammar, choosing productions at random. Here&#8217;s the algorithm with some infrastructure:</p>
+<div class="highlight">
+<pre><span style="color: #00007f; font-weight: bold">class</span> <span style="color: #00007f">CFG</span>(<span style="color: #00007f">object</span>):
+    <span style="color: #00007f; font-weight: bold">def</span> <span style="color: #00007f">__init__</span>(<span style="color: #00007f">self</span>):
+        <span style="color: #00007f">self</span>.prod = defaultdict(<span style="color: #00007f">list</span>)
+
+    <span style="color: #00007f; font-weight: bold">def</span> <span style="color: #00007f">add_prod</span>(<span style="color: #00007f">self</span>, lhs, rhs):
+        <span style="color: #7f007f">&quot;&quot;&quot; Add production to the grammar. &#39;rhs&#39; can</span>
+<span style="color: #7f007f">            be several productions separated by &#39;|&#39;.</span>
+<span style="color: #7f007f">            Each production is a sequence of symbols</span>
+<span style="color: #7f007f">            separated by whitespace.</span>
+
+<span style="color: #7f007f">            Usage:</span>
+<span style="color: #7f007f">                grammar.add_prod(&#39;NT&#39;, &#39;VP PP&#39;)</span>
+<span style="color: #7f007f">                grammar.add_prod(&#39;Digit&#39;, &#39;1|2|3|4&#39;)</span>
+<span style="color: #7f007f">        &quot;&quot;&quot;</span>
+        prods = rhs.split(<span style="color: #7f007f">&#39;|&#39;</span>)
+        <span style="color: #00007f; font-weight: bold">for</span> prod <span style="color: #0000aa">in</span> prods:
+            <span style="color: #00007f">self</span>.prod[lhs].append(<span style="color: #00007f">tuple</span>(prod.split()))
+
+    <span style="color: #00007f; font-weight: bold">def</span> <span style="color: #00007f">gen_random</span>(<span style="color: #00007f">self</span>, symbol):
+        <span style="color: #7f007f">&quot;&quot;&quot; Generate a random sentence from the</span>
+<span style="color: #7f007f">            grammar, starting with the given</span>
+<span style="color: #7f007f">            symbol.</span>
+<span style="color: #7f007f">        &quot;&quot;&quot;</span>
+        sentence = <span style="color: #7f007f">&#39;&#39;</span>
+
+        <span style="color: #007f00"># select one production of this symbol randomly</span>
+        rand_prod = random.choice(<span style="color: #00007f">self</span>.prod[symbol])
+
+        <span style="color: #00007f; font-weight: bold">for</span> sym <span style="color: #0000aa">in</span> rand_prod:
+            <span style="color: #007f00"># for non-terminals, recurse</span>
+            <span style="color: #00007f; font-weight: bold">if</span> sym <span style="color: #0000aa">in</span> <span style="color: #00007f">self</span>.prod:
+                sentence += <span style="color: #00007f">self</span>.gen_random(sym)
+            <span style="color: #00007f; font-weight: bold">else</span>:
+                sentence += sym + <span style="color: #7f007f">&#39; &#39;</span>
+
+        <span style="color: #00007f; font-weight: bold">return</span> sentence
+</pre>
+</div>
+<p><tt class="docutils literal"><span class="pre">CFG</span></tt> represents a context free grammar. It holds productions in the <tt class="docutils literal"><span class="pre">prod</span></tt> attribute, which is a dictionary mapping a symbol to a list of its possible productions. Each production is a tuple of symbols. A symbol can either be a terminal or a nonterminal. Those are distinguished as follows: nonterminals have entries in <tt class="docutils literal"><span class="pre">prod</span></tt>, terminals do not.</p>
+<p><tt class="docutils literal"><span class="pre">gen_random</span></tt> is a simple recursive algorithm for generating a sentence starting with the given grammar symbol. It selects one of the productions of <tt class="docutils literal"><span class="pre">symbols</span></tt> randomly and iterates through it, recursing into nonterminals and emitting terminals directly.</p>
+<p>Here&#8217;s an example usage of the class with a very simple natural-language grammar:</p>
+<div class="highlight">
+<pre>cfg1 = CFG()
+cfg1.add_prod(<span style="color: #7f007f">&#39;S&#39;</span>, <span style="color: #7f007f">&#39;NP VP&#39;</span>)
+cfg1.add_prod(<span style="color: #7f007f">&#39;NP&#39;</span>, <span style="color: #7f007f">&#39;Det N | Det N&#39;</span>)
+cfg1.add_prod(<span style="color: #7f007f">&#39;NP&#39;</span>, <span style="color: #7f007f">&#39;I | he | she | Joe&#39;</span>)
+cfg1.add_prod(<span style="color: #7f007f">&#39;VP&#39;</span>, <span style="color: #7f007f">&#39;V NP | VP&#39;</span>)
+cfg1.add_prod(<span style="color: #7f007f">&#39;Det&#39;</span>, <span style="color: #7f007f">&#39;a | the | my | his&#39;</span>)
+cfg1.add_prod(<span style="color: #7f007f">&#39;N&#39;</span>, <span style="color: #7f007f">&#39;elephant | cat | jeans | suit&#39;</span>)
+cfg1.add_prod(<span style="color: #7f007f">&#39;V&#39;</span>, <span style="color: #7f007f">&#39;kicked | followed | shot&#39;</span>)
+
+<span style="color: #00007f; font-weight: bold">for</span> i <span style="color: #0000aa">in</span> <span style="color: #00007f">xrange</span>(<span style="color: #007f7f">10</span>):
+    <span style="color: #00007f; font-weight: bold">print</span> cfg1.gen_random(<span style="color: #7f007f">&#39;S&#39;</span>)
+</pre>
+</div>
+<p>And here are some sample statements generated by it:</p>
+<div class="highlight">
+<pre>the suit kicked my suit
+she followed she
+she shot a jeans
+he shot I
+a elephant followed the suit
+he followed he
+he shot the jeans
+his cat kicked his elephant
+I followed Joe
+a elephant shot Joe
+</pre>
+</div>
+</div>
+<div class="section" id="the-problem-with-the-simple-algorithm">
+<h3>The problem with the simple algorithm</h3>
+<p>Consider the following grammar:</p>
+<div class="highlight">
+<pre>cfgg = CFG()
+cfgg.add_prod(<span style="color: #7f007f">&#39;S&#39;</span>, <span style="color: #7f007f">&#39;S S S S | a&#39;</span>)
+</pre>
+</div>
+<p>It has a single nonterminal, <tt class="docutils literal"><span class="pre">S</span></tt> and a single terminal <tt class="docutils literal"><span class="pre">a</span></tt>. Trying to generate a random sentence from it sometimes results in a <tt class="docutils literal"><span class="pre">RuntimeError</span></tt> exception being thrown: <tt class="docutils literal"><span class="pre">maximum</span> <span class="pre">recursion</span> <span class="pre">depth</span> <span class="pre">exceeded</span> <span class="pre">while</span> <span class="pre">calling</span> <span class="pre">a</span> <span class="pre">Python</span> <span class="pre">object</span></tt>. Why is that?</p>
+<p>Consider what happens when <tt class="docutils literal"><span class="pre">gen_random</span></tt> runs on this grammar. In the first call, it has a 50% chance of selecting the <tt class="docutils literal"><span class="pre">S</span> <span class="pre">S</span> <span class="pre">S</span> <span class="pre">S</span></tt> production and a 50% chance of selecting <tt class="docutils literal"><span class="pre">a</span></tt>. If <tt class="docutils literal"><span class="pre">S</span> <span class="pre">S</span> <span class="pre">S</span> <span class="pre">S</span></tt> is selected, the algorithm will now recurse 4 times into each <tt class="docutils literal"><span class="pre">S</span></tt>. The chance of all those calls resulting in <tt class="docutils literal"><span class="pre">a</span></tt> is just 0.0625, and there&#8217;s a 0.9375 chance that at least one will result in <tt class="docutils literal"><span class="pre">S</span></tt> and generate <tt class="docutils literal"><span class="pre">S</span> <span class="pre">S</span> <span class="pre">S</span> <span class="pre">S</span></tt> again. As this process continues, chances get slimmer and slimmer that the algorithm will ever terminate. This isn&#8217;t good.</p>
+<p>You may now think that this is a contrived example and real-life grammars are more well-behaved. Unfortunately this isn&#8217;t the case. Consider this (rather ordinary) arithmetic expression grammar:</p>
+<div class="highlight">
+<pre>cfg2 = CFG()
+cfg2.add_prod(<span style="color: #7f007f">&#39;EXPR&#39;</span>, <span style="color: #7f007f">&#39;TERM + EXPR&#39;</span>)
+cfg2.add_prod(<span style="color: #7f007f">&#39;EXPR&#39;</span>, <span style="color: #7f007f">&#39;TERM - EXPR&#39;</span>)
+cfg2.add_prod(<span style="color: #7f007f">&#39;EXPR&#39;</span>, <span style="color: #7f007f">&#39;TERM&#39;</span>)
+cfg2.add_prod(<span style="color: #7f007f">&#39;TERM&#39;</span>, <span style="color: #7f007f">&#39;FACTOR * TERM&#39;</span>)
+cfg2.add_prod(<span style="color: #7f007f">&#39;TERM&#39;</span>, <span style="color: #7f007f">&#39;FACTOR / TERM&#39;</span>)
+cfg2.add_prod(<span style="color: #7f007f">&#39;TERM&#39;</span>, <span style="color: #7f007f">&#39;FACTOR&#39;</span>)
+cfg2.add_prod(<span style="color: #7f007f">&#39;FACTOR&#39;</span>, <span style="color: #7f007f">&#39;ID | NUM | ( EXPR )&#39;</span>)
+cfg2.add_prod(<span style="color: #7f007f">&#39;ID&#39;</span>, <span style="color: #7f007f">&#39;x | y | z | w&#39;</span>)
+cfg2.add_prod(<span style="color: #7f007f">&#39;NUM&#39;</span>, <span style="color: #7f007f">&#39;0|1|2|3|4|5|6|7|8|9&#39;</span>)
+</pre>
+</div>
+<p>When I try to generate random sentences from it, less than 30% percent of the runs terminate <a class="footnote-reference" href="#id5" id="id2">[2]</a>.</p>
+<p>The culprit here is the <tt class="docutils literal"><span class="pre">(</span> <span class="pre">EXPR</span> <span class="pre">)</span></tt> production of <tt class="docutils literal"><span class="pre">FACTOR</span></tt>. An expression can get expanded into several factors, each of which can once again result in a whole new expression. Just a couple of such derivations can be enough for the whole generation process to diverge. And there&#8217;s no real way to get rid of this, because <tt class="docutils literal"><span class="pre">(</span> <span class="pre">EXPR</span> <span class="pre">)</span></tt> is an essential derivation of <tt class="docutils literal"><span class="pre">FACTOR</span></tt>, allowing us to parse expressions like <tt class="docutils literal"><span class="pre">5</span> <span class="pre">*</span> <span class="pre">(1</span> <span class="pre">+</span> <span class="pre">x)</span></tt>.</p>
+<p>Thus, even for real-world grammars, the simple recursive approach is an inadequate solution. <a class="footnote-reference" href="#id6" id="id3">[3]</a></p>
+</div>
+<div class="section" id="an-improved-generator-convergence">
+<h3>An improved generator: convergence</h3>
+<p>We can employ a clever trick to make the generator always converge (in the mathematical sense). Think of the grammar as representing an infinite tree:</p>
+<p><img alt="http://eli.thegreenplace.net/wp-content/uploads/2010/01/expr1.png" src="http://eli.thegreenplace.net/wp-content/uploads/2010/01/expr1.png" /></p>
+<p>The bluish nodes represent nonterminals, and the greenish nodes represent possible productions. If we think of the grammar this way, it is obvious that the <tt class="docutils literal"><span class="pre">gen_random</span></tt> method presented earlier is a simple n-nary tree walk.</p>
+<p>The idea of the algorithm is to attach weights to each possible production and select the production according to these weights. Once a production is selected, its weight is decreased and passed recursively down the tree. Therefore, once the generator runs into the same nonterminal and considers these productions again, there will be a lower chance for the same recursion to occur. A diagram shows this best:</p>
+<p><img alt="http://eli.thegreenplace.net/wp-content/uploads/2010/01/expr2.png" src="http://eli.thegreenplace.net/wp-content/uploads/2010/01/expr2.png" /></p>
+<p>Note that initially all the productions of <tt class="docutils literal"><span class="pre">expr</span></tt> have the same weight, and will be selected with equal probability. Once <tt class="docutils literal"><span class="pre">term</span> <span class="pre">-</span> <span class="pre">expr</span></tt> is selected, the algorithm takes note of this. When the same choice is presented again, the weight of <tt class="docutils literal"><span class="pre">term</span> <span class="pre">-</span> <span class="pre">expr</span></tt> is decreased by some factor (in this case by a factor of 2). Note that it can be selected once again, but then for the next round its weight will be 0.25. This of course only applies to the same tree branch. If <tt class="docutils literal"><span class="pre">term</span> <span class="pre">-</span> <span class="pre">expr</span></tt> is selected in some other, unrelated branch, its weight is unaffected by this selection.</p>
+<p>This improvement solves the divergence problem of the naive recursive algorithm. Here&#8217;s its implementation (it&#8217;s a method of the same <tt class="docutils literal"><span class="pre">CFG</span></tt> class presented above):</p>
+<div class="highlight">
+<pre><span style="color: #00007f; font-weight: bold">def</span> <span style="color: #00007f">gen_random_convergent</span>(<span style="color: #00007f">self</span>,
+      symbol,
+      cfactor=<span style="color: #007f7f">0.25</span>,
+      pcount=defaultdict(<span style="color: #00007f">int</span>)
+  ):
+  <span style="color: #7f007f">&quot;&quot;&quot; Generate a random sentence from the</span>
+<span style="color: #7f007f">      grammar, starting with the given symbol.</span>
+
+<span style="color: #7f007f">      Uses a convergent algorithm - productions</span>
+<span style="color: #7f007f">      that have already appeared in the</span>
+<span style="color: #7f007f">      derivation on each branch have a smaller</span>
+<span style="color: #7f007f">      chance to be selected.</span>
+
+<span style="color: #7f007f">      cfactor - controls how tight the</span>
+<span style="color: #7f007f">      convergence is. 0 &lt; cfactor &lt; 1.0</span>
+
+<span style="color: #7f007f">      pcount is used internally by the</span>
+<span style="color: #7f007f">      recursive calls to pass on the</span>
+<span style="color: #7f007f">      productions that have been used in the</span>
+<span style="color: #7f007f">      branch.</span>
+<span style="color: #7f007f">  &quot;&quot;&quot;</span>
+  sentence = <span style="color: #7f007f">&#39;&#39;</span>
+
+  <span style="color: #007f00"># The possible productions of this symbol are weighted</span>
+  <span style="color: #007f00"># by their appearance in the branch that has led to this</span>
+  <span style="color: #007f00"># symbol in the derivation</span>
+  <span style="color: #007f00">#</span>
+  weights = []
+  <span style="color: #00007f; font-weight: bold">for</span> prod <span style="color: #0000aa">in</span> <span style="color: #00007f">self</span>.prod[symbol]:
+      <span style="color: #00007f; font-weight: bold">if</span> prod <span style="color: #0000aa">in</span> pcount:
+          weights.append(cfactor ** (pcount[prod]))
+      <span style="color: #00007f; font-weight: bold">else</span>:
+          weights.append(<span style="color: #007f7f">1.0</span>)
+
+  rand_prod = <span style="color: #00007f">self</span>.prod[symbol][weighted_choice(weights)]
+
+  <span style="color: #007f00"># pcount is a single object (created in the first call to</span>
+  <span style="color: #007f00"># this method) that&#39;s being passed around into recursive</span>
+  <span style="color: #007f00"># calls to count how many times productions have been</span>
+  <span style="color: #007f00"># used.</span>
+  <span style="color: #007f00"># Before recursive calls the count is updated, and after</span>
+  <span style="color: #007f00"># the sentence for this call is ready, it is rolled-back</span>
+  <span style="color: #007f00"># to avoid modifying the parent&#39;s pcount.</span>
+  <span style="color: #007f00">#</span>
+  pcount[rand_prod] += <span style="color: #007f7f">1</span>
+
+  <span style="color: #00007f; font-weight: bold">for</span> sym <span style="color: #0000aa">in</span> rand_prod:
+      <span style="color: #007f00"># for non-terminals, recurse</span>
+      <span style="color: #00007f; font-weight: bold">if</span> sym <span style="color: #0000aa">in</span> <span style="color: #00007f">self</span>.prod:
+          sentence += <span style="color: #00007f">self</span>.gen_random_convergent(
+                              sym,
+                              cfactor=cfactor,
+                              pcount=pcount)
+      <span style="color: #00007f; font-weight: bold">else</span>:
+          sentence += sym + <span style="color: #7f007f">&#39; &#39;</span>
+
+  <span style="color: #007f00"># backtracking: clear the modification to pcount</span>
+  pcount[rand_prod] -= <span style="color: #007f7f">1</span>
+  <span style="color: #00007f; font-weight: bold">return</span> sentence
+</pre>
+</div>
+<p>An auxiliary <tt class="docutils literal"><span class="pre">weighted_choice</span></tt> function is used:</p>
+<div class="highlight">
+<pre><span style="color: #00007f; font-weight: bold">def</span> <span style="color: #00007f">weighted_choice</span>(weights):
+    rnd = random.random() * <span style="color: #00007f">sum</span>(weights)
+    <span style="color: #00007f; font-weight: bold">for</span> i, w <span style="color: #0000aa">in</span> <span style="color: #00007f">enumerate</span>(weights):
+        rnd -= w
+        <span style="color: #00007f; font-weight: bold">if</span> rnd &lt; <span style="color: #007f7f">0</span>:
+            <span style="color: #00007f; font-weight: bold">return</span> i
+</pre>
+</div>
+<p>Note the <tt class="docutils literal"><span class="pre">cfactor</span></tt> parameter of the algorithm. This is the <em>convergence factor</em> &#8211; the probability by which a weight is multiplied each time it&#8217;s been selected. Having been selected <tt class="docutils literal"><span class="pre">N</span></tt> times, the weight becomes <tt class="docutils literal"><span class="pre">cfactor</span></tt> to the power <tt class="docutils literal"><span class="pre">N</span></tt>. I&#8217;ve plotted the average length of the generated sentence from the expression grammar as a function of <tt class="docutils literal"><span class="pre">cfactor</span></tt>:</p>
+<p><img alt="http://eli.thegreenplace.net/wp-content/uploads/2010/01/cfactor_plot.png" src="http://eli.thegreenplace.net/wp-content/uploads/2010/01/cfactor_plot.png" /></p>
+<p>As expected, the average length grows with <tt class="docutils literal"><span class="pre">cfactor</span></tt>. If we set <tt class="docutils literal"><span class="pre">cfactor</span></tt> to 1.0, this becomes the naive algorithm where all the productions are always of equal weight.</p>
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion</h3>
+<p>While the naive algorithm is suitable for some simplistic cases, for real-world grammars it&#8217;s inadequate. A generalization that employs weighted selection using a convergence factor provides a much better solution that generates sentences from grammars with guaranteed termination. This is a sound and relatively efficient method that can be used in real-world applications to generate complex random test cases for parsers.</p>
+<div align="center" class="align-center"><img alt="http://eli.thegreenplace.net/wp-content/uploads/hline.jpg" class="align-center" src="http://eli.thegreenplace.net/wp-content/uploads/hline.jpg" style="width: 320px; height: 5px;" /></div>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup>
+<col class="label" />
+<col /></colgroup>
+<tbody valign="top">
+<tr>
+<td class="label"><a class="fn-backref" href="#id1">[1]</a></td>
+<td>Another could be some rudimentary form of random text generation, although the resulting text isn&#8217;t very comprehensible. Markov chains are much better for this.</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup>
+<col class="label" />
+<col /></colgroup>
+<tbody valign="top">
+<tr>
+<td class="label"><a class="fn-backref" href="#id2">[2]</a></td>
+<td>A larger percentage can be achieved by increasing Python&#8217;s recursion depth limit, but this is not the point.</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup>
+<col class="label" />
+<col /></colgroup>
+<tbody valign="top">
+<tr>
+<td class="label"><a class="fn-backref" href="#id3">[3]</a></td>
+<td>Some algorithms, like <a class="reference external" href="http://www.stonehenge.com/merlyn/LinuxMag/col04.html">this one</a> by Randal Schwartz, assign fixed weights to each production. While it could be used to decrease the chances of divergence, it&#8217;s not a really good general solution for our problem. However, it works great for simple, non-recursive grammars like the one presented in his article.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Related posts:</p><ol>
+<li><a href='http://eli.thegreenplace.net/2010/02/08/removing-epsilon-productions-from-context-free-grammars/' rel='bookmark' title='Removing epsilon productions from context free grammars'>Removing epsilon productions from context free grammars</a></li>
+<li><a href='http://eli.thegreenplace.net/2007/11/24/the-context-sensitivity-of-cs-grammar/' rel='bookmark' title='The context sensitivity of C&#8217;s grammar'>The context sensitivity of C&#8217;s grammar</a></li>
+<li><a href='http://eli.thegreenplace.net/2011/05/02/the-context-sensitivity-of-c%e2%80%99s-grammar-revisited/' rel='bookmark' title='The context sensitivity of C’s grammar, revisited'>The context sensitivity of C’s grammar, revisited</a></li>
+<li><a href='http://eli.thegreenplace.net/2008/09/26/recursive-descent-ll-and-predictive-parsers/' rel='bookmark' title='Recursive descent, LL and predictive parsers'>Recursive descent, LL and predictive parsers</a></li>
+<li><a href='http://eli.thegreenplace.net/2010/01/22/weighted-random-generation-in-python/' rel='bookmark' title='Weighted random generation in Python'>Weighted random generation in Python</a></li>
+</ol>	
+					
+				<p class="postmetadata alt">
+					<small>
+						This entry was posted
+						on Thursday, January 28th, 2010 at 15:13						and is filed under <a href="http://eli.thegreenplace.net/category/articles/" title="View all posts in Articles" rel="category tag">Articles</a>, <a href="http://eli.thegreenplace.net/category/programming/compilation/" title="View all posts in Compilation" rel="category tag">Compilation</a>.
+						You can follow any responses to this entry through the <a href='http://eli.thegreenplace.net/2010/01/28/generating-random-sentences-from-a-context-free-grammar/feed/'>RSS 2.0</a> feed. 
+						
+													You can skip to the end and leave a response. Pinging is currently not allowed.
+			
+												
+					</small>
+				</p>
+	
+			</div>
+		</div>
+		
+	
+<!-- You can start editing here. -->
+
+
+	<h3 id="comments">5 Responses to &#8220;Generating random sentences from a context free grammar&#8221;</h3> 
+
+	<ol class="commentlist">
+
+	
+		<li class="alt" id="comment-256367">
+			<cite>sivan<img style='float: left; margin-right: 10px; border: none; display:inline;' src='http://www.gravatar.com/avatar/eb76f0ace0a2e8402d430553e1e96c27?rating=X&amp;default=identicon' alt='No Gravatar' width=40 height=40/></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-256367" title="">January 28th, 2010 at 19:57</a> </small>
+
+			<p>Eli,<br />
+I once used this: <a href="http://cs.baylor.edu/~maurer/dgl.php" rel="nofollow">http://cs.baylor.edu/~maurer/dgl.php</a> to generate test cases for a psl parser&#8230;<br />
+Nice tool.<br />
+Sivan.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-256371">
+			<cite><a href='http://www.stonehenge.com/merlyn/' rel='external nofollow'>Randal L. Schwartz</a><a href='http://www.stonehenge.com/merlyn/' rel='external nofollow'><img style='float: left; margin-right: 10px; border: none; display:inline;' src='http://www.gravatar.com/avatar/b337d1e52bf3d796a7728def67a602fd?rating=X&amp;default=identicon' alt='No Gravatar' width=40 height=40/></a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-256371" title="">January 28th, 2010 at 20:09</a> </small>
+
+			<p>Hey, nice to see someone pays attention to my work.  I like your ideas of variable weights too.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-256420">
+			<cite><a href='http://www.polygen.org' rel='external nofollow'>ZeD</a><a href='http://www.polygen.org' rel='external nofollow'><img style='float: left; margin-right: 10px; border: none; display:inline;' src='http://www.gravatar.com/avatar/5b8ba221ade55df80b623122471d81e5?rating=X&amp;default=identicon' alt='No Gravatar' width=40 height=40/></a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-256420" title="">January 28th, 2010 at 23:00</a> </small>
+
+			<p>on polygen.org you can find a very good  sentence generator. unfornately the site is in italian, </p>
+<p>just as an example <a href="http://www.polygen.org/it/grammatiche/tecnologie/eng/paper.grm" rel="nofollow">http://www.polygen.org/it/grammatiche/tecnologie/eng/paper.grm</a></p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-256579">
+			<cite>eliben<img style='float: left; margin-right: 10px; border: none; display:inline;' src='http://www.gravatar.com/avatar/fc761ccaf6c0d7d977e2959f9bfebd06?rating=X&amp;default=identicon' alt='No Gravatar' width=40 height=40/></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-256579" title="">January 29th, 2010 at 08:57</a> </small>
+
+			<p><strong>@sivan,</strong><br />
+Yes, I remember you were using something like this. I&#8217;ve looked at DGL now and it explicitly says (in the end of one of its papers) that recursive grammars can lead to &#8220;infinite test cases&#8221;, and that to solve this problem appropriate weights have to be assigned. But it expects one to assign these weights manually, just like in Randal&#8217;s spew program (the one I pointed to in the comments). I think it could also use this &#8220;auto-convergence&#8221; improvement.</p>
+<p>P.S. I had no idea you&#8217;re reading this blog. Nice to know, and regards to all the Formal guys &#038; gals  <img src='http://eli.thegreenplace.net/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p><strong>@Randal,</strong><br />
+Back when I was a Perlista, I read a lot of your articles. Really admire your work &#8211; thanks for commenting.</p>
+<p><strong>@ZeD,</strong><br />
+I wonder how it handles this problem. Since its grammars are usually representative of natural languages, I suppose it doesn&#8217;t really have the recursion problem to deal with.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-256756">
+			<cite>bored@stumbleupon<img style='float: left; margin-right: 10px; border: none; display:inline;' src='http://www.gravatar.com/avatar/e019e14acb3aaa65f14537bf07e4a908?rating=X&amp;default=identicon' alt='No Gravatar' width=40 height=40/></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-256756" title="">January 29th, 2010 at 12:47</a> </small>
+
+			<p>would have been nice to show us what the improved algorithm produced&#8230; <img src='http://eli.thegreenplace.net/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+
+		</li>
+
+	
+	
+	</ol>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://eli.thegreenplace.net/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" />
+<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+        <!--<span>Write the number 4 here (required)</span><br/>-->
+    <p><input type="text" name="stupid-captcha" value="" tabindex="4"/> 
+    <label for="stupid-captcha"><small>Write the number 4 here (required)</small></label></p>
+
+<p><small>To post code with preserved formatting, enclose it in `backticks` (even multiple lines) </small></p>
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="5"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="2070" />
+</p>
+<input name="afcp-preview" type="button" id="afcp-preview" tabindex="6" value="Preview" /><div id="ajax-force-comment-preview"></div><noscript><p><strong>Currently you have JavaScript disabled. In order to post comments, please make sure JavaScript is enabled, and reload the page.</strong></p></noscript><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="54b9ae847f" /></p>
+</form>
+
+
+
+
+	
+		
+	</div>
+
+<hr />
+<div id="footer">
+	<p>
+		Eli Bendersky&#039;s website is powered by 
+		<a href="http://wordpress.org/">WordPress</a>
+		<br /><a href="http://eli.thegreenplace.net/feed/">Entries (RSS)</a>
+		and <a href="http://eli.thegreenplace.net/comments/feed/">Comments (RSS)</a>.
+<!--	<br/><br/>
+	Ads:
+    <a href="http://www.behindthecounter.com/newegg-promo-code/">Newegg Promo Code</a>
+-->
+	</p>
+</div>
+</div>
+
+<!-- Gorgeous design by Michael Heilemann - http://binarybonsai.com/kubrick/ -->
+
+		</body>
+</html>

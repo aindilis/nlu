@@ -1,0 +1,22 @@
+text segmentation (sentence detection, paragraph detection, list identification)
+morphological analysis
+named-entity recognition
+named-entity disambiguation
+name variant recognition (named-entity lemmatization)
+syntactic parsing and chunking
+co-reference resolution
+pronomial resolution (he, she it)
+synonymous entity resolution (different names for same entity)
+synonymous phrase/synonymous relationship resolution
+general reference resolution
+word sense disambiguation
+textual entailment
+sentiment summarization
+text classification
+knowledge acquisition, information extraction
+question answering
+information retrieval
+machine translation
+text summarization
+
+http://lordpimpington.com/codespeaks/drupal-5.1/?q=node/5

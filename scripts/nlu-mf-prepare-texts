@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+
+use PerlLib::SwissArmyKnife;
+use KBS2::Util;
+
+foreach my $file (`find . | grep '\.txt\$'`) {
+  chomp $file;
+  # print "<$file>\n";
+  my $basename = basename($file);
+  $basename =~ s/\.txt$//i;
+  $basename =~ s/\.html$//i;
+  $prologified = NLU_MF_Prologify(Text => $basename);
+  my $command = "nlu-mf-prepare-text-for-nlu-manual-formalization.pl -c \"$prologified\" \"$file\"";
+  print $command."\n";
+  system $command;
+  GetSignalFromUserToProceed();
+}

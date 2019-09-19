@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html> <head>
+<title>Alfa - Using the GF plug-in to produce Natural Language Translation of</title>
+<link rel="stylesheet" type="text/css" HREF="../alfa.css">
+<link rel="author" HREF="/~hallgren/" title="Thomas Hallgren">
+<link rel="parent" HREF="../" title="The Proof Editor Alfa">
+</head>
+
+<body BGCOLOR="#eedfcc">
+<IMG align=right  HEIGHT=120 WIDTH=245 SRC="../alfa2.jpg" alt="">
+<h1>Alfa</h1>
+
+<h2>Using the GF plug-in to produce Natural Language Translations of
+Formal Proofs</h2>
+
+By using the <cite>GF plug-in</cite>, formal proofs developed in <a
+href="../">Alfa</a> can be translated to natural language. Currently,
+translations to English, French and Swedish are available, and
+more languages can be added by the user (but some linguistic
+knowledge and familiarity with
+<a href="http://www.grammaticalframework.org/">GF</a> is required).
+
+<p>
+The GF plug-in knows how to translate all Alfa built-in syntax (the
+various forms of definitions and expressions), and provides default
+translations of user-defined identifiers. However, to obtain nice text, the
+user is expected to provide sutiable translations along with any new
+definitions introduced in a proof. These translations are specified by
+adding <em>grammatical annotations</em> to definitons. The
+grammatical annotions are written in a simple language provided by GF.
+
+<h3>An example</h3>
+
+To activate the GF plugin, start Alfa with the following command:
+
+<blockquote>
+<code>alfa - -plugins GF</code>
+</blockquote>
+
+As a simple example, let's see how to translate the definition of
+natural numbers and addition of natural numbers to English. We start
+by defining these things in the usual way in Alfa:
+
+<p>
+<center><IMG  WIDTH=310 HEIGHT=209 SRC="P/gf0.gif" alt="[Def of Nat and +]"></center>
+
+<p>
+We can already obtain an English translation of this.
+By selecting <strong>GF: Eng</strong> as the default declaration view
+from the <strong>View</strong> menu, we get the following:
+<p>
+<center><IMG  WIDTH=437 HEIGHT=222 SRC="P/gf1.gif" alt="[GF: Eng view before adding grammatical annotations]"></center>
+<p>
+It is also possible to select definition(s) and apply
+commands from the menu window to choose how to present them, e.g.,
+<strong>GF: Show in Eng</strong>, <strong>GF: Show all
+translation</strong>, <strong>Show default declaration
+view</strong>. You can also select parts of expressions and apply
+similar commands to them.
+<p>
+The next step is to tell GF how to translate <code>Nat</code> and
+<code>+</code> to English.
+
+<p>
+We start by considering the translation of <code>Nat</code>.
+Names of data types (sets) are usually
+translated into nouns. In this case we want to use the phrase
+<em>natural number</em>. Nouns may be used in both singular and plural
+forms, so the translation have to indicate both forms. Fortunately,
+the grammatical annotation language provides some auxiliary functions
+to make this easy. In the case of regular nouns, for which the plural
+form is obtained by adding an <code>s</code> to the end of the word,
+it is particularly easy.
+<p>
+To enter the translation of <code>Nat</code> in Alfa, select the definition
+of <code>Nat</code> (or just the name in the LHS of the definition)
+and choose the command <strong>GF: Change Eng translation of
+Nat</strong> in the menu window. You should now see a text editor
+window containing the default translation of <code>Nat</code>:
+<p>
+<center><IMG  WIDTH=419 HEIGHT=320 SRC="P/gf2.gif" alt="[Editor with default grammatical annotation for Nat]"></center>
+<p>
+We can now replace the default translation with the desired one:
+<p>
+<center><IMG  WIDTH=333 HEIGHT=181 SRC="P/gf3.gif" alt="[Editor with user provided grammatical annotation for Nat]"></center>
+<p>
+Note that strings enclosed in quotes (<code>"</code>) should contain
+single words and that the operator <code>++</code> is used to form
+phrases containg more than one word. The function <code>regCN</code>
+takes care of adding an <code>s</code> to the last word of the
+argument phrase, in the places where it is used in the plural form.
+<p>
+When we press <strong>OK</strong>, the translation of the
+definitions in the main window will be updated accordingly:
+
+<p>
+<center><IMG  WIDTH=439 HEIGHT=234 SRC="P/gf4.gif" alt="[Main window with improved translation of Nat]"></center>
+
+<p>
+Note that <code>Nat</code> is appropriately translated to <em>a
+natural number</em> or <em>natural numbers</em> depending on the context.
+
+<p>
+We continue with the translation of the constructors <code>Zero</code>
+and <code>Succ</code>. (To be able to select them and edit their
+translations, you probably first have to switch back the declaration view to
+<strong>Complete definitions</strong>.)
+<p>
+While the names of sets behave like nouns, constructors and other
+elements of sets behave more like proper names. For
+<code>Zero</code> and <code>Succ</code>, we enter the following
+translations:
+
+<blockquote><code>Zero@_  = mkPN "zero"</code></blockquote>
+<blockquote><code>Succ@_ n = likeSucc "successor" n</code></blockquote>
+
+The function <code>mkPN</code> creates simple proper names and
+<code>likeSucc</code> constructs phrases like <em>the
+<var>xxx</var> of <var>yyy</var></em>, where <var>xxx</var> is a
+word and <var>yyy</var> is another proper name:
+<p>
+Finally, we add a translation for the operator <code>+</code>. We
+choose to translate <code>a+b</code> to the phrase <code>the sum of a
+and b</code>, which can be used as a proper name.
+
+<blockquote><code>+ a b = likeSum "sum" a b</code></blockquote>
+
+We now have completed our example, and the final translation to English is:
+<p>
+<center><IMG  WIDTH=432 HEIGHT=232 SRC="P/gf5.gif" alt="[Final English translation of Nat and +]"></center>
+<p>
+
+<h3>Known bugs and limitations</h3>
+
+<ul>
+  <li>After adding a new data type, the GF plug-in is not updated with
+      information about the new constructors. Workaround: save and
+      reopen the document.
+  <li>User defined entities can only be used with the same arity they
+      have in their definitions. For example, the arity of <code>+</code>
+      above is 2, so it must always be applied to two
+      arguments. Something like <code>map (+2) xs</code>, which could
+      otherwise be perfectly reasonable, can at present not be translated
+      correctly.
+</ul>
+
+<h3>See Also</h3>
+
+<ul>
+  <li>Description of
+      <a href="http://www.cse.chalmers.se/~aarne/GF/doc/annotations.html">the
+      grammatical annotation language</a>.
+  <li>Quick reference list of auxiliary translation functions
+      (<code>regCN</code>, <code>mkPN</code>, <code>likeSucc</code>,
+      <code>mkPN</code>, <code>likeSum</code> and many more). (Not written yet.)
+  <li>The <a href="../plugins.html">Alfa plug-ins</a> page.
+  <li><a href="http://www.grammaticalframework.org/">GF</a>,
+      the Grammatical Framework.
+  <li>Thomas Hallgren &amp; Aarne Ranta:
+      <a href="http://www.cse.chalmers.se/~hallgren/Papers/lpar2000.ps.gz"><cite>An extensible proof
+      text editor</cite></a>,
+      <a href="http://www.cs.man.ac.uk/~voronkov/LPAR/2000/general.html">LPAR'2000</a>. 
+      In LNCS/LNAI No. 1955.
+  <li>Thomas Hallgren:
+      <a href="http://www.cse.chalmers.se/~hallgren/Papers/insertion_sort.ps"><cite>The correctness of
+      insertion sort</cite></a>. A draft paper created with Alfa and
+      the GF plug-in.
+</ul>
+
+<hr>
+<address>
+
+ 5 Jul 2012 19:45
+<a href="/~hallgren/">Thomas Hallgren</a>
+</address>
+
+</body> </html>

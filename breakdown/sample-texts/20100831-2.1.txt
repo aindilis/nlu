@@ -1,0 +1,21 @@
+8/31/2010 Justin Coslor Midpoint Divisibility Test proto-code Version 2.0
+
+-----------------------------------------------------
+for n = 0 to 100
+ while twinprime test is true, set p1 = p2 and loop twinprime iteration.
+ if svoid test is false
+ then 
+    if odd odd test is true then set p1 = p2 and return to while
+ else if even odd test is true then set p1 = p2 and return to while
+ else print svoid test positive so set p1 = p2
+ endif
+n = n + 1
+repeat
+-----------------------------------------------------
+
+note: m = midpoint and s = spacing
+note: twinprime means s = 1     [m = 6 % 0 (m divisible by 6)]
+note: svoid test means s = 11 + 12n     [m has no common divisors]
+note: odd odd test means s = 3 + 4n  [m = 3 % 0 (m divisible by 3)]
+note: even odd test means s = 5 + 4n [m = 2 % 0 (m divisible by 2)]
+note: svoid = odd odd [but m has no common midpoint divisors]

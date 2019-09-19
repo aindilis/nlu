@@ -1,0 +1,2721 @@
+$VAR1 = {
+          'NounPhraseExtraction' => [
+                                      'contexts',
+                                      2,
+                                      'basis of analogical reasoning',
+                                      1,
+                                      'relations',
+                                      2,
+                                      'form',
+                                      1,
+                                      'configurations of variables',
+                                      1,
+                                      'patterns',
+                                      3,
+                                      'configurations',
+                                      3,
+                                      'configurations of patterns',
+                                      1,
+                                      'similar relational operators',
+                                      1,
+                                      'operators',
+                                      1,
+                                      'symbolism',
+                                      1,
+                                      'two analogies',
+                                      1,
+                                      'relational',
+                                      2,
+                                      'symphony',
+                                      1,
+                                      'recognizable features',
+                                      1,
+                                      'analogical reasoning',
+                                      1,
+                                      'data',
+                                      1,
+                                      'qualitative',
+                                      1,
+                                      'properties',
+                                      1,
+                                      'comparisons',
+                                      1,
+                                      'cross-domain relation',
+                                      1,
+                                      'analogies',
+                                      2,
+                                      'relation',
+                                      1,
+                                      'qualitative adjective descriptive comparisons',
+                                      1,
+                                      'first principle dimensional properties',
+                                      1,
+                                      'adjective descriptive comparisons',
+                                      1,
+                                      'cross-domain',
+                                      2,
+                                      'cross-domain relations',
+                                      2,
+                                      'frameworks',
+                                      1,
+                                      'relational frameworks',
+                                      1,
+                                      'range',
+                                      1,
+                                      'dimensional',
+                                      1,
+                                      'variables',
+                                      2,
+                                      'meaning',
+                                      1,
+                                      'domain',
+                                      2,
+                                      'descriptive comparisons',
+                                      1,
+                                      'basis',
+                                      1,
+                                      'metaphor',
+                                      1,
+                                      'something',
+                                      1,
+                                      'intention',
+                                      1,
+                                      'symphony of symbolism',
+                                      1,
+                                      'reasoning',
+                                      1,
+                                      'features',
+                                      2,
+                                      'meat of metaphor',
+                                      1,
+                                      'dimensional properties',
+                                      1,
+                                      'information',
+                                      1,
+                                      'analogical',
+                                      1,
+                                      'principle',
+                                      1,
+                                      'relational operators',
+                                      1,
+                                      'quantifiers',
+                                      1,
+                                      'pattern',
+                                      2,
+                                      'symmetry',
+                                      2,
+                                      'adjective',
+                                      1,
+                                      'meat',
+                                      1,
+                                      'repetition',
+                                      1,
+                                      'principle dimensional properties',
+                                      1
+                                    ],
+          'NamedEntityRecognition' => [
+                                        []
+                                      ],
+          'MontyLingua' => [
+                             [
+                               {
+                                 'Results' => {}
+                               },
+                               {
+                                 'Results' => {
+                                                'generated_summary' => 'Context composed of configuration of pattern pattern pattern composed of configuration of variable and variable and variable composed of configuration of first principle dimensional property.  Relational framework simulated meat of metaphor.  Two analogy juxtaposed by similar relational operator.  That formed cross-domain relation in overlap of meaning or intention or something.',
+                                                'adj_phrases_tagged' => '[\'such/JJ\']',
+                                                'noun_phrases_tagged' => '[\'Contexts/NNP\', \'configurations/NNS\', \'patterns/NNS ,/, patterns/NNS\', \'configurations/NNS\', \'variables/NNS ,/, and/CC variables/NNS\', \'configurations/NNS\', \'first/JJ principle/NN dimensional/JJ properties/NNS\', \'quantifiers/NNS and/CC qualitative/JJ adjective/NN descriptive/JJ comparisons/NNS\', \'relational/JJ frameworks/NNS\', \'meat/NN\', \'metaphor/NN\', \'two/CD analogies/NNS\', \'similar/JJ relational/JJ operators/NNS\', \'that/WDT\', \'cross-domain/JJ relation/NN\', \'overlap/NN\', \'meaning/NN or/CC intention/NN or/CC something/NN\']',
+                                                'relations' => '[[\'compose\', \'Context\', \'of configuration\', \'of pattern pattern\'], [\'compose\', \'pattern pattern\', \'of configuration\', \'of variable and variable\'], [\'compose\', \'variable and variable\', \'of configuration\', \'of first principle dimensional property\'], [\'simulate\', \'relational framework\', \'meat\', \'of metaphor\'], [\'juxtapose\', \'two analogy\', \'by similar relational operator\'], [\'form\', \'that\', \'cross-domain relation\', \'in overlap\', \'of meaning or intention or something\']]',
+                                                'verb_arg_structures' => '[[\'are/VBP composed/VBN\', \'Contexts/NNP\', [\'of/IN configurations/NNS\', \'of/IN patterns/NNS patterns/NNS\']], [\'are/VBP composed/VBN\', \'patterns/NNS ,/, patterns/NNS\', [\'of/IN configurations/NNS\', \'of/IN variables/NNS and/CC variables/NNS\']], [\'are/VBP composed/VBN\', \'variables/NNS ,/, and/CC variables/NNS\', [\'of/IN configurations/NNS\', \'of/IN first/JJ principle/NN dimensional/JJ properties/NNS\']], [\'can/MD simulate/VB\', \'those/DT relational/JJ frameworks/NNS\', [\'meat/NN\', \'of/IN metaphor/NN\']], [\'juxtaposed/VBN\', \'two/CD analogies/NNS\', [\'by/IN similar/JJ relational/JJ operators/NNS\']], [\'form/VBP\', \'that/WDT\', [\'cross-domain/JJ relation/NN\', \'in/IN overlap/NN\', \'of/IN meaning/NN or/CC intention/NN or/CC something/NN\']]]',
+                                                'parameterized_predicates' => '[[[\'compose\', [\'past_tense\', \'passive_voice\']], [\'Context\', [\'plural\']], [\'of configuration\', [\'prep=of\', \'plural\']], [\'of pattern , pattern\', [\'prep=of\', \'plural\']]], [[\'compose\', [\'past_tense\', \'passive_voice\']], [\'pattern , pattern\', [\'plural\']], [\'of configuration\', [\'prep=of\', \'plural\']], [\'of variable , and variable\', [\'prep=of\', \'plural\']]], [[\'compose\', [\'past_tense\', \'passive_voice\']], [\'variable , and variable\', [\'plural\']], [\'of configuration\', [\'prep=of\', \'plural\']], [\'of first principle dimensional property\', [\'prep=of\', \'plural\']]], [[\'simulate\', []], [\'relational framework\', [\'determiner=those\', \'plural\']], [\'meat\', [\'determiner=the\']], [\'of metaphor\', [\'prep=of\']]], [[\'juxtapose\', [\'past_tense\']], [\'analogy\', [\'determiner=two\', \'plural\']], [\'by similar relational operator\', [\'prep=by\', \'plural\']]], [[\'form\', []], [\'that\', []], [\'cross-domain relation\', [\'determiner=a\']], [\'in overlap\', [\'prep=in\', \'determiner=an\']], [\'of meaning or intention or something\', [\'prep=of\']]]]',
+                                                'adj_phrases' => '[\'such\']',
+                                                'modifiers_tagged' => '[\'first/JJ\', \'dimensional/JJ\', \'such/JJ\', \'qualitative/JJ\', \'descriptive/JJ\', \'relational/JJ\', \'similar/JJ\', \'relational/JJ\', \'cross-domain/JJ\', \'else/RB\']',
+                                                'verb_arg_structures_concise' => '[\'("compose" "Context" "of configuration" "of pattern pattern")\', \'("compose" "pattern pattern" "of configuration" "of variable and variable")\', \'("compose" "variable and variable" "of configuration" "of first principle dimensional property")\', \'("simulate" "relational framework" "meat" "of metaphor")\', \'("juxtapose" "two analogy" "by similar relational operator")\', \'("form" "that" "cross-domain relation" "in overlap" "of meaning or intention or something")\']',
+                                                'run_time' => '0.07',
+                                                'verb_phrases_tagged' => '[\'are/VBP composed/VBN\', \'are/VBP composed/VBN\', \'are/VBP composed/VBN\', \'simulate/VB\', \'juxtaposed/VBN\', \'form/VBP\']',
+                                                'modifiers' => '[\'first\', \'dimensional\', \'such\', \'qualitative\', \'descriptive\', \'relational\', \'similar\', \'relational\', \'cross-domain\', \'else\']',
+                                                'prep_phrases_tagged' => '[\'of/IN configurations/NNS\', \'of/IN patterns/NNS ,/, patterns/NNS\', \'of/IN configurations/NNS\', \'of/IN variables/NNS ,/, and/CC variables/NNS\', \'of/IN configurations/NNS\', \'of/IN first/JJ principle/NN dimensional/JJ properties/NNS\', \'as/IN quantifiers/NNS and/CC qualitative/JJ adjective/NN descriptive/JJ comparisons/NNS\', \'of/IN metaphor/NN\', \'as/IN two/CD analogies/NNS\', \'by/IN similar/JJ relational/JJ operators/NNS\', \'in/IN an/DT overlap/NN\', \'of/IN meaning/NN or/CC intention/NN or/CC something/NN\']',
+                                                'noun_phrases' => '[\'Contexts\', \'configurations\', \'patterns , patterns\', \'configurations\', \'variables , and variables\', \'configurations\', \'first principle dimensional properties\', \'quantifiers and qualitative adjective descriptive comparisons\', \'relational frameworks\', \'meat\', \'metaphor\', \'two analogies\', \'similar relational operators\', \'that\', \'cross-domain relation\', \'overlap\', \'meaning or intention or something\']',
+                                                'prep_phrases' => '[\'of configurations\', \'of patterns , patterns\', \'of configurations\', \'of variables , and variables\', \'of configurations\', \'of first principle dimensional properties\', \'as quantifiers and qualitative adjective descriptive comparisons\', \'of metaphor\', \'as two analogies\', \'by similar relational operators\', \'in an overlap\', \'of meaning or intention or something\']',
+                                                'verb_phrases' => '[\'are composed\', \'are composed\', \'are composed\', \'simulate\', \'juxtaposed\', \'form\']',
+                                                'eval_relations' => [
+                                                                      [
+                                                                        'compose',
+                                                                        'Context',
+                                                                        'of configuration',
+                                                                        'of pattern pattern'
+                                                                      ],
+                                                                      [
+                                                                        'compose',
+                                                                        'pattern pattern',
+                                                                        'of configuration',
+                                                                        'of variable and variable'
+                                                                      ],
+                                                                      [
+                                                                        'compose',
+                                                                        'variable and variable',
+                                                                        'of configuration',
+                                                                        'of first principle dimensional property'
+                                                                      ],
+                                                                      [
+                                                                        'simulate',
+                                                                        'relational framework',
+                                                                        'meat',
+                                                                        'of metaphor'
+                                                                      ],
+                                                                      [
+                                                                        'juxtapose',
+                                                                        'two analogy',
+                                                                        'by similar relational operator'
+                                                                      ],
+                                                                      [
+                                                                        'form',
+                                                                        'that',
+                                                                        'cross-domain relation',
+                                                                        'in overlap',
+                                                                        'of meaning or intention or something'
+                                                                      ]
+                                                                    ]
+                                              }
+                               },
+                               {
+                                 'Results' => {
+                                                'generated_summary' => 'Analogy mimicked pattern across context via Cross-Domain Relation.',
+                                                'adj_phrases_tagged' => '[]',
+                                                'noun_phrases_tagged' => '[\'Analogies/NNP\', \'patterns/NNS\', \'contexts/NNS\', \'Cross-Domain/NNP Relations/NNPS\']',
+                                                'relations' => '[[\'mimic\', \'Analogy\', \'pattern\', \'across context\', \'via Cross-Domain Relation\']]',
+                                                'verb_arg_structures' => '[[\'mimic/VB\', \'Analogies/NNP\', [\'patterns/NNS\', \'across/IN contexts/NNS\', \'via/IN Cross-Domain/NNP Relations/NNPS\']]]',
+                                                'parameterized_predicates' => '[[[\'mimic\', []], [\'Analogy\', [\'plural\']], [\'pattern\', [\'plural\']], [\'across context\', [\'prep=across\', \'plural\']], [\'via Cross-Domain Relation\', [\'prep=via\', \'plural\']]]]',
+                                                'adj_phrases' => '[]',
+                                                'modifiers_tagged' => '[]',
+                                                'verb_arg_structures_concise' => '[\'("mimic" "Analogy" "pattern" "across context" "via Cross-Domain Relation")\']',
+                                                'run_time' => '0.01',
+                                                'verb_phrases_tagged' => '[\'mimic/VB\']',
+                                                'modifiers' => '[]',
+                                                'prep_phrases_tagged' => '[\'across/IN contexts/NNS\', \'via/IN Cross-Domain/NNP Relations/NNPS\']',
+                                                'noun_phrases' => '[\'Analogies\', \'patterns\', \'contexts\', \'Cross-Domain Relations\']',
+                                                'prep_phrases' => '[\'across contexts\', \'via Cross-Domain Relations\']',
+                                                'verb_phrases' => '[\'mimic\']',
+                                                'eval_relations' => [
+                                                                      [
+                                                                        'mimic',
+                                                                        'Analogy',
+                                                                        'pattern',
+                                                                        'across context',
+                                                                        'via Cross-Domain Relation'
+                                                                      ]
+                                                                    ]
+                                              }
+                               },
+                               {
+                                 'Results' => {
+                                                'generated_summary' => 'Cross-Domain Relation went from domain to domain.  Range was .',
+                                                'adj_phrases_tagged' => '[\'same/JJ\']',
+                                                'noun_phrases_tagged' => '[\'Cross-Domain/NNP Relations/NNPS\', \'domain/NN\', \'domain/NN\', \'range/NN\', \'overlap/NN\']',
+                                                'relations' => '[[\'go\', \'Cross-Domain Relation\', \'from domain\', \'to domain\'], [\'be\', \'range\']]',
+                                                'verb_arg_structures' => '[[\'go/VB\', \'Cross-Domain/NNP Relations/NNPS\', [\'from/IN domain/NN\', \'to/TO domain/NN\']], [\'is/VBZ\', \'the/DT range/NN\', []]]',
+                                                'parameterized_predicates' => '[[[\'go\', []], [\'Cross-Domain Relation\', [\'plural\']], [\'from domain\', [\'prep=from\']], [\'to domain\', [\'prep=to\']]], [[\'be\', []], [\'range\', [\'determiner=the\']]]]',
+                                                'adj_phrases' => '[\'same\']',
+                                                'modifiers_tagged' => '[\'same/JJ\']',
+                                                'verb_arg_structures_concise' => '[\'("go" "Cross-Domain Relation" "from domain" "to domain")\', \'("be" "range" )\']',
+                                                'run_time' => '0.02',
+                                                'verb_phrases_tagged' => '[\'go/VB\', \'is/VBZ\']',
+                                                'modifiers' => '[\'same\']',
+                                                'prep_phrases_tagged' => '[\'from/IN domain/NN\', \'to/TO domain/NN\', \'as/IN an/DT overlap/NN\']',
+                                                'noun_phrases' => '[\'Cross-Domain Relations\', \'domain\', \'domain\', \'range\', \'overlap\']',
+                                                'prep_phrases' => '[\'from domain\', \'to domain\', \'as an overlap\']',
+                                                'verb_phrases' => '[\'go\', \'is\']',
+                                                'eval_relations' => [
+                                                                      [
+                                                                        'go',
+                                                                        'Cross-Domain Relation',
+                                                                        'from domain',
+                                                                        'to domain'
+                                                                      ],
+                                                                      [
+                                                                        'be',
+                                                                        'range'
+                                                                      ]
+                                                                    ]
+                                              }
+                               },
+                               {
+                                 'Results' => {
+                                                'generated_summary' => 'Was basis of Analogical Reasoning.',
+                                                'adj_phrases_tagged' => '[]',
+                                                'noun_phrases_tagged' => '[\'basis/NN\', \'Analogical/NNP Reasoning/NN\']',
+                                                'relations' => '[[\'be\', \'\', \'basis\', \'of Analogical Reasoning\']]',
+                                                'verb_arg_structures' => '[[\'is/VBZ\', \'\', [\'basis/NN\', \'of/IN Analogical/NNP Reasoning/NN\']]]',
+                                                'parameterized_predicates' => '[[[\'be\', []], [\'\', []], [\'basis\', [\'determiner=the\']], [\'of Analogical Reasoning\', [\'prep=of\']]]]',
+                                                'adj_phrases' => '[]',
+                                                'modifiers_tagged' => '[]',
+                                                'verb_arg_structures_concise' => '[\'("be" "" "basis" "of Analogical Reasoning")\']',
+                                                'run_time' => '0.01',
+                                                'verb_phrases_tagged' => '[\'is/VBZ\']',
+                                                'modifiers' => '[]',
+                                                'prep_phrases_tagged' => '[\'of/IN Analogical/NNP Reasoning/NN\']',
+                                                'noun_phrases' => '[\'basis\', \'Analogical Reasoning\']',
+                                                'prep_phrases' => '[\'of Analogical Reasoning\']',
+                                                'verb_phrases' => '[\'is\']',
+                                                'eval_relations' => [
+                                                                      [
+                                                                        'be',
+                                                                        '',
+                                                                        'basis',
+                                                                        'of Analogical Reasoning'
+                                                                      ]
+                                                                    ]
+                                              }
+                               },
+                               {
+                                 'Results' => {
+                                                'generated_summary' => 'Datum hadn\'t recognizable feature.  It was pattern.',
+                                                'adj_phrases_tagged' => '[]',
+                                                'noun_phrases_tagged' => '[\'data/NNS\', \'recognizable/JJ features/NNS\', \'it/PRP\', \'pattern/NN\']',
+                                                'relations' => '[[\'have\', \'datum\', \'recognizable feature\'], [\'be\', \'it\', \'pattern\']]',
+                                                'verb_arg_structures' => '[[\'has/VBZ\', \'data/NNS\', [\'recognizable/JJ features/NNS\']], [\'is/VBZ\', \'it/PRP\', [\'pattern/NN\']]]',
+                                                'parameterized_predicates' => '[[[\'have\', []], [\'datum\', [\'plural\']], [\'recognizable feature\', [\'plural\']]], [[\'be\', []], [\'it\', []], [\'pattern\', [\'determiner=a\']]]]',
+                                                'adj_phrases' => '[]',
+                                                'modifiers_tagged' => '[\'recognizable/JJ\']',
+                                                'verb_arg_structures_concise' => '[\'("have" "datum" "recognizable feature")\', \'("be" "it" "pattern")\']',
+                                                'run_time' => '0.01',
+                                                'verb_phrases_tagged' => '[\'has/VBZ\', \'is/VBZ\']',
+                                                'modifiers' => '[\'recognizable\']',
+                                                'prep_phrases_tagged' => '[\'If/IN data/NNS\']',
+                                                'noun_phrases' => '[\'data\', \'recognizable features\', \'it\', \'pattern\']',
+                                                'prep_phrases' => '[\'If data\']',
+                                                'verb_phrases' => '[\'has\', \'is\']',
+                                                'eval_relations' => [
+                                                                      [
+                                                                        'have',
+                                                                        'datum',
+                                                                        'recognizable feature'
+                                                                      ],
+                                                                      [
+                                                                        'be',
+                                                                        'it',
+                                                                        'pattern'
+                                                                      ]
+                                                                    ]
+                                              }
+                               },
+                               {
+                                 'Results' => {
+                                                'generated_summary' => 'Repetition was what made symmetry.  Was what made pattern \'s feature recognizable.',
+                                                'adj_phrases_tagged' => '[\'recognizable/JJ\']',
+                                                'noun_phrases_tagged' => '[\'Repetition/NNP\', \'what/WP\', \'symmetry/NN\', \'what/WP\', "pattern/NN \'s/POS features/NNS"]',
+                                                'relations' => '[[\'be\', \'Repetition\', \'what\'], [\'make\', \'what\', \'symmetry\'], [\'be\', \'\', \'what\'], [\'make\', \'what\', "pattern \'s feature", \'recognizable\']]',
+                                                'verb_arg_structures' => '[[\'is/VBZ\', \'Repetition/NNP\', [\'what/WP\']], [\'makes/VBZ\', \'what/WP\', [\'symmetry/NN\']], [\'is/VBZ\', \'\', [\'what/WP\']], [\'makes/VBZ\', \'what/WP\', ["pattern/NN \'s/POS features/NNS", \'recognizable/JJ\']]]',
+                                                'parameterized_predicates' => '[[[\'be\', []], [\'Repetition\', []], [\'what\', []]], [[\'make\', [\'perfect_tense\']], [\'what\', []], [\'symmetry\', [\'determiner=a\']]], [[\'be\', []], [\'\', []], [\'what\', []]], [[\'make\', [\'perfect_tense\']], [\'what\', []], ["pattern \'s feature", [\'determiner=a\', \'plural\']], [\'recognizable\', []]]]',
+                                                'adj_phrases' => '[\'recognizable\']',
+                                                'modifiers_tagged' => '[\'recognizable/JJ\']',
+                                                'verb_arg_structures_concise' => '[\'("be" "Repetition" "what")\', \'("make" "what" "symmetry")\', \'("be" "" "what")\', \'("make" "what" "pattern \\\'s feature" "recognizable")\']',
+                                                'run_time' => '0.02',
+                                                'verb_phrases_tagged' => '[\'is/VBZ\', \'makes/VBZ\', \'is/VBZ\', \'makes/VBZ\']',
+                                                'modifiers' => '[\'recognizable\']',
+                                                'prep_phrases_tagged' => '[]',
+                                                'noun_phrases' => '[\'Repetition\', \'what\', \'symmetry\', \'what\', "pattern \'s features"]',
+                                                'prep_phrases' => '[]',
+                                                'verb_phrases' => '[\'is\', \'makes\', \'is\', \'makes\']',
+                                                'eval_relations' => [
+                                                                      [
+                                                                        'be',
+                                                                        'Repetition',
+                                                                        'what'
+                                                                      ],
+                                                                      [
+                                                                        'make',
+                                                                        'what',
+                                                                        'symmetry'
+                                                                      ],
+                                                                      [
+                                                                        'be',
+                                                                        '',
+                                                                        'what'
+                                                                      ],
+                                                                      [
+                                                                        'make',
+                                                                        'what',
+                                                                        'pattern \'s feature',
+                                                                        'recognizable'
+                                                                      ]
+                                                                    ]
+                                              }
+                               }
+                             ]
+                           ],
+          'DateExtraction' => [
+                                '<doc>
+<s><lex pos=nnp>Contexts</lex> <lex pos=vbp>are</lex> <lex pos=vbn>composed</lex> <lex pos=in>of</lex> <lex pos=nns>configurations</lex> <lex pos=in>of</lex> <lex pos=nns>patterns</lex> <lex pos=ppc>,</lex> <lex pos=nns>patterns</lex> <lex pos=vbp>are</lex> <lex pos=vbn>composed</lex> <lex pos=in>of</lex> <lex pos=nns>configurations</lex> <lex pos=in>of</lex> <lex pos=nns>variables</lex> <lex pos=ppc>,</lex> <lex pos=cc>and</lex> <lex pos=nns>variables</lex> <lex pos=vbp>are</lex> <lex pos=vbn>composed</lex> <lex pos=in>of</lex> <lex pos=nns>configurations</lex> <lex pos=in>of</lex> <lex pos=jj>first</lex> <lex pos=nn>principle</lex> <lex pos=nn>dimensional</lex> <lex pos=nns>properties</lex> <lex pos=ppc>,</lex> <lex pos=jj>such</lex> <lex pos=in>as</lex> <lex pos=nns>quantifiers</lex> <lex pos=cc>and</lex> <lex pos=nn>qualitative</lex> <lex pos=nn>adjective</lex> <lex pos=jj>descriptive</lex> <lex pos=nns>comparisons</lex> <lex pos=ppc>,</lex> <lex pos=cc>and</lex> <lex pos=det>those</lex> <lex pos=nn>relational</lex> <lex pos=nns>frameworks</lex> <lex pos=md>can</lex> <lex pos=vbp>simulate</lex> <lex pos=det>the</lex> <lex pos=nn>meat</lex> <lex pos=in>of</lex> <lex pos=nn>metaphor</lex> <lex pos=ppc>,</lex> <lex pos=in>as</lex> <lex pos=cd>two</lex> <lex pos=nns>analogies</lex> <lex pos=vbd>juxtaposed</lex> <lex pos=in>by</lex> <lex pos=jj>similar</lex> <lex pos=nn>relational</lex> <lex pos=nns>operators</lex> <lex pos=in>that</lex> <lex pos=nn>form</lex> <lex pos=det>a</lex> <lex pos=nn>cross-domain</lex> <lex pos=nn>relation</lex> <lex pos=in>in</lex> <lex pos=det>an</lex> <lex pos=vbp>overlap</lex> <lex pos=in>of</lex> <lex pos=nn>meaning</lex> <lex pos=cc>or</lex> <lex pos=nn>intention</lex> <lex pos=cc>or</lex> <lex pos=nn>something</lex> <lex pos=rb>else</lex> <lex pos=pp>.</lex></s>
+
+<s><lex pos=nnp>Analogies</lex> <lex pos=vbp>mimic</lex> <lex pos=nns>patterns</lex> <lex pos=in>across</lex> <lex pos=nns>contexts</lex> <lex pos=in>via</lex> <lex pos=nn>Cross-Domain</lex> <lex pos=nns>Relations</lex> <lex pos=pp>.</lex></s>
+
+<s><lex pos=jj>Cross-Domain</lex> <lex pos=nns>Relations</lex> <lex pos=vbp>go</lex> <lex pos=in>from</lex> <lex pos=nn>domain</lex> <lex pos=to>to</lex> <lex pos=nn>domain</lex> <lex pos=wrb>when</lex> <lex pos=det>the</lex> <lex pos=nn>range</lex> <lex pos=vbz>is</lex> <lex pos=det>the</lex> <lex pos=jj>same</lex> <lex pos=ppc>,</lex> <lex pos=in>as</lex> <lex pos=det>an</lex> <lex pos=vbp>overlap</lex> <lex pos=pp>.</lex></s>
+
+<s><lex pos=det>That</lex> <lex pos=vbz>is</lex> <lex pos=det>the</lex> <lex pos=nn>basis</lex> <lex pos=in>of</lex> <lex pos=nnp>Analogical</lex> <lex pos=nn>Reasoning</lex> <lex pos=pp>.</lex></s>
+
+<s><lex pos=in>If</lex> <lex pos=nns>data</lex> <lex pos=vbz>has</lex> <lex pos=jj>recognizable</lex> <lex pos=nns>features</lex> <lex pos=ppc>,</lex> <lex pos=prp>it</lex> <lex pos=vbz>is</lex> <lex pos=det>a</lex> <lex pos=nn>pattern</lex> <lex pos=pp>.</lex></s>
+
+<s><lex pos=nn>Repetition</lex> <lex pos=vbz>is</lex> <lex pos=wp>what</lex> <lex pos=vbz>makes</lex> <lex pos=det>a</lex> <lex pos=nn>symmetry</lex> <lex pos=ppc>,</lex> <lex pos=cc>and</lex> <lex pos=vbz>is</lex> <lex pos=wp>what</lex> <lex pos=vbz>makes</lex> <lex pos=det>a</lex> <lex pos=nn>pattern</lex> <lex pos=pos>\'s</lex> <lex pos=nns>features</lex> <lex pos=jj>recognizable</lex> <lex pos=pp>.</lex></s>
+
+<s><lex pos=nnp>Information</lex> <lex pos=vbz>is</lex> <lex pos=det>a</lex> <lex pos=nn>symphony</lex> <lex pos=in>of</lex> <lex pos=nn>symbolism</lex> <lex pos=cc>and</lex> <lex pos=nn>symmetry</lex> <lex pos=pp>.</lex></s>
+
+
+
+</doc>
+'
+                              ],
+          'GetDatesTIMEX3' => [
+                                {
+                                  'Dates' => {},
+                                  'CleanedText' => 'Contexts are composed of configurations of patterns , patterns are composed of configurations of variables , and variables are composed of configurations of first principle dimensional properties , such as quantifiers and qualitative adjective descriptive comparisons , and those relational frameworks can simulate the meat of metaphor , as two analogies juxtaposed by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else . Analogies mimic patterns across contexts via Cross-Domain Relations . Cross-Domain Relations go from domain to domain when the range is the same , as an overlap . That is the basis of Analogical Reasoning . If data has recognizable features , it is a pattern . Repetition is what makes a symmetry , and is what makes a pattern \'s features recognizable . Information is a symphony of symbolism and symmetry .',
+                                  'TIMEX3' => '<doc>
+<s><lex pos="nnp">Contexts</lex> <lex pos="vbp">are</lex> <lex pos="vbn">composed</lex> <lex pos="in">of</lex> <lex pos="nns">configurations</lex> <lex pos="in">of</lex> <lex pos="nns">patterns</lex> <lex pos="ppc">,</lex> <lex pos="nns">patterns</lex> <lex pos="vbp">are</lex> <lex pos="vbn">composed</lex> <lex pos="in">of</lex> <lex pos="nns">configurations</lex> <lex pos="in">of</lex> <lex pos="nns">variables</lex> <lex pos="ppc">,</lex> <lex pos="cc">and</lex> <lex pos="nns">variables</lex> <lex pos="vbp">are</lex> <lex pos="vbn">composed</lex> <lex pos="in">of</lex> <lex pos="nns">configurations</lex> <lex pos="in">of</lex> <lex pos="jj">first</lex> <lex pos="nn">principle</lex> <lex pos="nn">dimensional</lex> <lex pos="nns">properties</lex> <lex pos="ppc">,</lex> <lex pos="jj">such</lex> <lex pos="in">as</lex> <lex pos="nns">quantifiers</lex> <lex pos="cc">and</lex> <lex pos="nn">qualitative</lex> <lex pos="nn">adjective</lex> <lex pos="jj">descriptive</lex> <lex pos="nns">comparisons</lex> <lex pos="ppc">,</lex> <lex pos="cc">and</lex> <lex pos="det">those</lex> <lex pos="nn">relational</lex> <lex pos="nns">frameworks</lex> <lex pos="md">can</lex> <lex pos="vbp">simulate</lex> <lex pos="det">the</lex> <lex pos="nn">meat</lex> <lex pos="in">of</lex> <lex pos="nn">metaphor</lex> <lex pos="ppc">,</lex> <lex pos="in">as</lex> <lex pos="cd">two</lex> <lex pos="nns">analogies</lex> <lex pos="vbd">juxtaposed</lex> <lex pos="in">by</lex> <lex pos="jj">similar</lex> <lex pos="nn">relational</lex> <lex pos="nns">operators</lex> <lex pos="in">that</lex> <lex pos="nn">form</lex> <lex pos="det">a</lex> <lex pos="nn">cross-domain</lex> <lex pos="nn">relation</lex> <lex pos="in">in</lex> <lex pos="det">an</lex> <lex pos="vbp">overlap</lex> <lex pos="in">of</lex> <lex pos="nn">meaning</lex> <lex pos="cc">or</lex> <lex pos="nn">intention</lex> <lex pos="cc">or</lex> <lex pos="nn">something</lex> <lex pos="rb">else</lex> <lex pos="pp">.</lex></s>
+
+<s><lex pos="nnp">Analogies</lex> <lex pos="vbp">mimic</lex> <lex pos="nns">patterns</lex> <lex pos="in">across</lex> <lex pos="nns">contexts</lex> <lex pos="in">via</lex> <lex pos="nn">Cross-Domain</lex> <lex pos="nns">Relations</lex> <lex pos="pp">.</lex></s>
+
+<s><lex pos="jj">Cross-Domain</lex> <lex pos="nns">Relations</lex> <lex pos="vbp">go</lex> <lex pos="in">from</lex> <lex pos="nn">domain</lex> <lex pos="to">to</lex> <lex pos="nn">domain</lex> <lex pos="wrb">when</lex> <lex pos="det">the</lex> <lex pos="nn">range</lex> <lex pos="vbz">is</lex> <lex pos="det">the</lex> <lex pos="jj">same</lex> <lex pos="ppc">,</lex> <lex pos="in">as</lex> <lex pos="det">an</lex> <lex pos="vbp">overlap</lex> <lex pos="pp">.</lex></s>
+
+<s><lex pos="det">That</lex> <lex pos="vbz">is</lex> <lex pos="det">the</lex> <lex pos="nn">basis</lex> <lex pos="in">of</lex> <lex pos="nnp">Analogical</lex> <lex pos="nn">Reasoning</lex> <lex pos="pp">.</lex></s>
+
+<s><lex pos="in">If</lex> <lex pos="nns">data</lex> <lex pos="vbz">has</lex> <lex pos="jj">recognizable</lex> <lex pos="nns">features</lex> <lex pos="ppc">,</lex> <lex pos="prp">it</lex> <lex pos="vbz">is</lex> <lex pos="det">a</lex> <lex pos="nn">pattern</lex> <lex pos="pp">.</lex></s>
+
+<s><lex pos="nn">Repetition</lex> <lex pos="vbz">is</lex> <lex pos="wp">what</lex> <lex pos="vbz">makes</lex> <lex pos="det">a</lex> <lex pos="nn">symmetry</lex> <lex pos="ppc">,</lex> <lex pos="cc">and</lex> <lex pos="vbz">is</lex> <lex pos="wp">what</lex> <lex pos="vbz">makes</lex> <lex pos="det">a</lex> <lex pos="nn">pattern</lex> <lex pos="pos">\'s</lex> <lex pos="nns">features</lex> <lex pos="jj">recognizable</lex> <lex pos="pp">.</lex></s>
+
+<s><lex pos="nnp">Information</lex> <lex pos="vbz">is</lex> <lex pos="det">a</lex> <lex pos="nn">symphony</lex> <lex pos="in">of</lex> <lex pos="nn">symbolism</lex> <lex pos="cc">and</lex> <lex pos="nn">symmetry</lex> <lex pos="pp">.</lex></s>
+
+
+
+</doc>
+'
+                                }
+                              ],
+          'WSD' => [
+                     [
+                       '',
+                       [
+                         {
+                           'Glos' => 'drawing a comparison in order to show a similarity in some respect; "the operation of a computer presents and interesting analogy to the working of the brain"; "the models show by analogy how matter is built up"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'analogy#n#2'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'comparison#n#1',
+                                                            'comparing#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'examination#n#1',
+                                                              'scrutiny#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'investigation#n#2',
+                                                                'investigating#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'work#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'activity#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'act#n#2',
+                                                                      'deed#n#2',
+                                                                      'human_action#n#1',
+                                                                      'human_activity#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'event#n#1'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'psychological_feature#n#1'
+                                                                        ],
+                                                                        [
+                                                                          [
+                                                                            'abstraction#n#6',
+                                                                            'abstract_entity#n#1'
+                                                                          ],
+                                                                          [
+                                                                            [
+                                                                              'entity#n#1'
+                                                                            ]
+                                                                          ]
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Analogy#n#2',
+                           'Word' => 'Analogies',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'constituting an imitation; "the mimic warfare of the opera stage"- Archibald Alison  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'mimic#a#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'mimic#a#1',
+                           'Word' => 'mimic',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'a'
+                         },
+                         {
+                           'Glos' => 'plan or create according to a model or models  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'model#v#1',
+                                                          'pattern#v#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'imitate#v#1',
+                                                            'copy#v#2',
+                                                            'simulate#v#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'reproduce#v#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'produce#v#2',
+                                                                'make#v#6',
+                                                                'create#v#6'
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'pattern#v#1',
+                           'Word' => 'patterns',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         },
+                         {
+                           'Glos' => 'to the opposite side; "the football field was 300 feet across"  ',
+                           'WQD' => 'across#r#1',
+                           'Word' => 'across',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'r'
+                         },
+                         {
+                           'Glos' => 'the set of facts or circumstances that surround a situation or event; "the historical context"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'context#n#2',
+                                                          'circumstance#n#2',
+                                                          'setting#n#4'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'environment#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'situation#n#1',
+                                                              'state_of_affairs#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'state#n#2'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'attribute#n#2'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'abstraction#n#6',
+                                                                    'abstract_entity#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'entity#n#1'
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'context#n#2',
+                           'Word' => 'contexts',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'via#ND',
+                           'Word' => 'via',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'a representation of the structure on which Jesus was crucified; used as an emblem of Christianity or in heraldry  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'Cross#n#3'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'emblem#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'design#n#4',
+                                                              'pattern#n#3',
+                                                              'figure#n#12'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'decoration#n#1',
+                                                                'ornament#n#1',
+                                                                'ornamentation#n#2'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'artifact#n#1',
+                                                                  'artefact#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'whole#n#2',
+                                                                    'unit#n#6'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'object#n#1',
+                                                                      'physical_object#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'physical_entity#n#1'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'entity#n#1'
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Cross#n#3',
+                           'Word' => 'Cross',
+                           'Lin' => '-',
+                           'Sense' => '3',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'territory over which rule or control is exercised; "his domain extended into Europe"; "he made it the law of the land"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'domain#n#2',
+                                                          'demesne#n#2',
+                                                          'land#n#3'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'region#n#3'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'location#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'object#n#1',
+                                                                'physical_object#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'physical_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Domain#n#2',
+                           'Word' => 'Domain',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'an abstraction belonging to or characteristic of two entities or parts together  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'relation#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'abstraction#n#6',
+                                                            'abstract_entity#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'entity#n#1'
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Relation#n#1',
+                           'Word' => 'Relations',
+                           'Lin' => '. ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         }
+                       ],
+                       [
+                         {
+                           'Glos' => 'a representation of the structure on which Jesus was crucified; used as an emblem of Christianity or in heraldry  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'Cross#n#3'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'emblem#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'design#n#4',
+                                                              'pattern#n#3',
+                                                              'figure#n#12'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'decoration#n#1',
+                                                                'ornament#n#1',
+                                                                'ornamentation#n#2'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'artifact#n#1',
+                                                                  'artefact#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'whole#n#2',
+                                                                    'unit#n#6'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'object#n#1',
+                                                                      'physical_object#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'physical_entity#n#1'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'entity#n#1'
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Cross#n#3',
+                           'Word' => 'Cross',
+                           'Lin' => '-',
+                           'Sense' => '3',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'territory over which rule or control is exercised; "his domain extended into Europe"; "he made it the law of the land"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'domain#n#2',
+                                                          'demesne#n#2',
+                                                          'land#n#3'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'region#n#3'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'location#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'object#n#1',
+                                                                'physical_object#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'physical_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Domain#n#2',
+                           'Word' => 'Domain',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'an abstraction belonging to or characteristic of two entities or parts together  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'relation#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'abstraction#n#6',
+                                                            'abstract_entity#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'entity#n#1'
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Relation#n#1',
+                           'Word' => 'Relations',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'change location; move, travel, or proceed, also metaphorically; "How fast does your new car go?"; "We travelled from Rome to Naples by bus"; "The policemen went from door to door looking for the suspect"; "The soldiers moved towards the city in an attempt to take it before night fell"; "news travelled fast"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'travel#v#1',
+                                                          'go#v#1',
+                                                          'move#v#1',
+                                                          'locomote#v#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'go#v#1',
+                           'Word' => 'go',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'from#ND',
+                           'Word' => 'from',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'territory over which rule or control is exercised; "his domain extended into Europe"; "he made it the law of the land"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'domain#n#2',
+                                                          'demesne#n#2',
+                                                          'land#n#3'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'region#n#3'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'location#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'object#n#1',
+                                                                'physical_object#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'physical_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'domain#n#2',
+                           'Word' => 'domain',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'to#ND',
+                           'Word' => 'to',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'territory over which rule or control is exercised; "his domain extended into Europe"; "he made it the law of the land"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'domain#n#2',
+                                                          'demesne#n#2',
+                                                          'land#n#3'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'region#n#3'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'location#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'object#n#1',
+                                                                'physical_object#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'physical_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'domain#n#2',
+                           'Word' => 'domain',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'when#ND',
+                           'Word' => 'when',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'the#ND',
+                           'Word' => 'the',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => '(mathematics) the set of values of the dependent variable for which a function is defined; "the image of f(x) = x^2 is the set of all non-negative real numbers if the domain of the function is the set of all real numbers"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'image#n#7',
+                                                          'range#n#7',
+                                                          'range_of_a_function#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'set#n#2'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'abstraction#n#6',
+                                                              'abstract_entity#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'entity#n#1'
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'range#n#7',
+                           'Word' => 'range',
+                           'Lin' => ' ',
+                           'Sense' => '7',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'be#v#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'be#v#1',
+                           'Word' => 'is',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'the#ND',
+                           'Word' => 'the',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'closely similar or comparable in kind or quality or quantity or degree; "curtains the same color as the walls"; "two girls of the same age"; "mother and son have the same blue eyes"; "animals of the same species"; "the same rules as before"; "two boxes having the same dimensions"; "the same day next year"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'same#a#2'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'same#a#2',
+                           'Word' => 'same',
+                           'Lin' => ', ',
+                           'Sense' => '2',
+                           'POS' => 'a'
+                         },
+                         {
+                           'Glos' => 'a very poisonous metallic element that has three allotropic forms; arsenic and arsenic compounds are used as herbicides and insecticides and various alloys; found in arsenopyrite and orpiment and realgar  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'arsenic#n#2',
+                                                          'As#n#1',
+                                                          'atomic_number_33#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'chemical_element#n#1',
+                                                            'element#n#3'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'substance#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'matter#n#3'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'physical_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ],
+                                                            [
+                                                              [
+                                                                'part#n#1',
+                                                                'portion#n#1',
+                                                                'component_part#n#1',
+                                                                'component#n#2',
+                                                                'constituent#n#3'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'relation#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'abstraction#n#6',
+                                                                    'abstract_entity#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'entity#n#1'
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'as#n#1',
+                           'Word' => 'as',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'an associate degree in nursing  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'Associate_in_Nursing#n#1',
+                                                          'AN#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'associate_degree#n#1',
+                                                            'associate#n#5'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'academic_degree#n#1',
+                                                              'degree#n#3'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'award#n#2',
+                                                                'accolade#n#1',
+                                                                'honor#n#1',
+                                                                'honour#n#2',
+                                                                'laurels#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'symbol#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'signal#n#1',
+                                                                    'signaling#n#1',
+                                                                    'sign#n#3'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'communication#n#2'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'abstraction#n#6',
+                                                                        'abstract_entity#n#1'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'entity#n#1'
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'an#n#1',
+                           'Word' => 'an',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'a representation of common ground between theories or phenomena; "there was no overlap between their proposals"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'overlap#n#1',
+                                                          'convergence#n#3',
+                                                          'intersection#n#5'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'representation#n#1',
+                                                            'mental_representation#n#1',
+                                                            'internal_representation#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'content#n#5',
+                                                              'cognitive_content#n#1',
+                                                              'mental_object#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'cognition#n#1',
+                                                                'knowledge#n#1',
+                                                                'noesis#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'psychological_feature#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'abstraction#n#6',
+                                                                    'abstract_entity#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'entity#n#1'
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'overlap#n#1',
+                           'Word' => 'overlap',
+                           'Lin' => '. ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         }
+                       ],
+                       [
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'That#ND',
+                           'Word' => 'That',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'is#NR',
+                           'Word' => 'is',
+                           'Lin' => ' ',
+                           'POS' => 'NR'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'the#ND',
+                           'Word' => 'the',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'the fundamental assumptions from which something is begun or developed or calculated or explained; "the whole argument rested on a basis of conjecture"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'basis#n#2',
+                                                          'base#n#7',
+                                                          'foundation#n#5',
+                                                          'fundament#n#1',
+                                                          'groundwork#n#1',
+                                                          'cornerstone#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'assumption#n#2',
+                                                            'supposition#n#2',
+                                                            'supposal#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'hypothesis#n#2',
+                                                              'possibility#n#3',
+                                                              'theory#n#2'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'concept#n#1',
+                                                                'conception#n#1',
+                                                                'construct#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'idea#n#1',
+                                                                  'thought#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'content#n#5',
+                                                                    'cognitive_content#n#1',
+                                                                    'mental_object#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'cognition#n#1',
+                                                                      'knowledge#n#1',
+                                                                      'noesis#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'psychological_feature#n#1'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'abstraction#n#6',
+                                                                          'abstract_entity#n#1'
+                                                                        ],
+                                                                        [
+                                                                          [
+                                                                            'entity#n#1'
+                                                                          ]
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'basis#n#2',
+                           'Word' => 'basis',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'of#ND',
+                           'Word' => 'of',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'expressing, composed of, or based on an analogy; "the analogical use of a metaphor"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'analogical#a#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Analogical#a#1',
+                           'Word' => 'Analogical',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'a'
+                         },
+                         {
+                           'Glos' => 'decide by reasoning; draw or come to a conclusion; "We reasoned that it was cheaper to rent than to buy a house"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'reason#v#1',
+                                                          'reason_out#v#1',
+                                                          'conclude#v#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'think#v#3',
+                                                            'cogitate#v#2',
+                                                            'cerebrate#v#1'
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Reason#v#1',
+                           'Word' => 'Reasoning',
+                           'Lin' => '. ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         }
+                       ],
+                       [
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'If#ND',
+                           'Word' => 'If',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'data#NR',
+                           'Word' => 'data',
+                           'Lin' => ' ',
+                           'POS' => 'NR'
+                         },
+                         {
+                           'Glos' => 'have or possess, either in a concrete or an abstract sense; "She has $1,000 in the bank"; "He has got two beautiful daughters"; "She holds a Master\'s degree from Harvard"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'have#v#1',
+                                                          'have_got#v#1',
+                                                          'hold#v#4'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'have#v#1',
+                           'Word' => 'has',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         },
+                         {
+                           'Glos' => 'easily perceived; easy to become aware of; "this situation produces recognizable stress symptoms"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'recognizable#a#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'recognizable#a#1',
+                           'Word' => 'recognizable',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'a'
+                         },
+                         {
+                           'Glos' => 'the characteristic parts of a person\'s face: eyes and nose and mouth and chin; "an expression of pleasure crossed his features"; "his lineaments were very regular"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'feature#n#2',
+                                                          'lineament#n#2'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'body_part#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'part#n#3',
+                                                              'piece#n#3'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'thing#n#12'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'physical_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'feature#n#2',
+                           'Word' => 'features',
+                           'Lin' => ', ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'the branch of engineering that deals with the use of computers and telecommunications to retrieve and store and transmit information  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'information_technology#n#1',
+                                                          'IT#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'engineering#n#2',
+                                                            'engineering_science#n#1',
+                                                            'applied_science#n#1',
+                                                            'technology#n#2'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'discipline#n#1',
+                                                              'subject#n#3',
+                                                              'subject_area#n#1',
+                                                              'subject_field#n#1',
+                                                              'field#n#4',
+                                                              'field_of_study#n#1',
+                                                              'study#n#6',
+                                                              'bailiwick#n#2'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'knowledge_domain#n#1',
+                                                                'knowledge_base#n#1',
+                                                                'domain#n#5'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'content#n#5',
+                                                                  'cognitive_content#n#1',
+                                                                  'mental_object#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'cognition#n#1',
+                                                                    'knowledge#n#1',
+                                                                    'noesis#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'psychological_feature#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'abstraction#n#6',
+                                                                        'abstract_entity#n#1'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'entity#n#1'
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'it#n#1',
+                           'Word' => 'it',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'be#v#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'be#v#1',
+                           'Word' => 'is',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         },
+                         {
+                           'Glos' => '(biochemistry) purine base found in DNA and RNA; pairs with thymine in DNA and with uracil in RNA  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'adenine#n#1',
+                                                          'A#n#4'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'purine#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'base#n#10',
+                                                              'alkali#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'compound#n#2',
+                                                                'chemical_compound#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'chemical#n#1',
+                                                                  'chemical_substance#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'material#n#1',
+                                                                    'stuff#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'substance#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'matter#n#3'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'physical_entity#n#1'
+                                                                        ],
+                                                                        [
+                                                                          [
+                                                                            'entity#n#1'
+                                                                          ]
+                                                                        ]
+                                                                      ]
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'part#n#1',
+                                                                        'portion#n#1',
+                                                                        'component_part#n#1',
+                                                                        'component#n#2',
+                                                                        'constituent#n#3'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'relation#n#1'
+                                                                        ],
+                                                                        [
+                                                                          [
+                                                                            'abstraction#n#6',
+                                                                            'abstract_entity#n#1'
+                                                                          ],
+                                                                          [
+                                                                            [
+                                                                              'entity#n#1'
+                                                                            ]
+                                                                          ]
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'a#n#4',
+                           'Word' => 'a',
+                           'Lin' => ' ',
+                           'Sense' => '4',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'a decorative or artistic work; "the coach had a design on the doors"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'design#n#4',
+                                                          'pattern#n#3',
+                                                          'figure#n#12'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'decoration#n#1',
+                                                            'ornament#n#1',
+                                                            'ornamentation#n#2'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'artifact#n#1',
+                                                              'artefact#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'whole#n#2',
+                                                                'unit#n#6'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'object#n#1',
+                                                                  'physical_object#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'physical_entity#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'entity#n#1'
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'pattern#n#3',
+                           'Word' => 'pattern',
+                           'Lin' => '. ',
+                           'Sense' => '3',
+                           'POS' => 'n'
+                         }
+                       ],
+                       [
+                         {
+                           'Glos' => 'the repeated use of the same word or word pattern as a rhetorical device  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'repetition#n#3'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'rhetorical_device#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'device#n#2'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'expressive_style#n#1',
+                                                                'style#n#2'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'communication#n#2'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'abstraction#n#6',
+                                                                    'abstract_entity#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'entity#n#1'
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Repetition#n#3',
+                           'Word' => 'Repetition',
+                           'Lin' => ' ',
+                           'Sense' => '3',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'be#v#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'be#v#1',
+                           'Word' => 'is',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'what#ND',
+                           'Word' => 'what',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'be suitable for; "Wood makes good furniture"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'make#v#31'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'be#v#1'
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'make#v#31',
+                           'Word' => 'makes',
+                           'Lin' => ' ',
+                           'Sense' => '31',
+                           'POS' => 'v'
+                         },
+                         {
+                           'Glos' => 'a metric unit of length equal to one ten billionth of a meter (or 0.0001 micron); used to specify wavelengths of electromagnetic radiation  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'angstrom#n#1',
+                                                          'angstrom_unit#n#1',
+                                                          'A#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'metric_linear_unit#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'linear_unit#n#1',
+                                                              'linear_measure#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'unit_of_measurement#n#1',
+                                                                'unit#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'definite_quantity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'measure#n#2',
+                                                                    'quantity#n#1',
+                                                                    'amount#n#3'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'abstraction#n#6',
+                                                                      'abstract_entity#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'entity#n#1'
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ],
+                                                          [
+                                                            [
+                                                              'metric_unit#n#1',
+                                                              'metric#n#2'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'unit_of_measurement#n#1',
+                                                                'unit#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'definite_quantity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'measure#n#2',
+                                                                    'quantity#n#1',
+                                                                    'amount#n#3'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'abstraction#n#6',
+                                                                      'abstract_entity#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'entity#n#1'
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'a#n#1',
+                           'Word' => 'a',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => '(mathematics) an attribute of a shape or relation; exact reflection of form on opposite sides of a dividing line or plane  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'symmetry#n#1',
+                                                          'symmetricalness#n#1',
+                                                          'correspondence#n#4',
+                                                          'balance#n#9'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'spatial_property#n#1',
+                                                            'spatiality#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'property#n#2'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'attribute#n#2'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'abstraction#n#6',
+                                                                  'abstract_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'symmetry#n#1',
+                           'Word' => 'symmetry',
+                           'Lin' => ', ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'and#ND',
+                           'Word' => 'and',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'be#v#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'be#v#1',
+                           'Word' => 'is',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'what#ND',
+                           'Word' => 'what',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'be suitable for; "Wood makes good furniture"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'make#v#31'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'be#v#1'
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'make#v#31',
+                           'Word' => 'makes',
+                           'Lin' => ' ',
+                           'Sense' => '31',
+                           'POS' => 'v'
+                         },
+                         {
+                           'Glos' => 'a metric unit of length equal to one ten billionth of a meter (or 0.0001 micron); used to specify wavelengths of electromagnetic radiation  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'angstrom#n#1',
+                                                          'angstrom_unit#n#1',
+                                                          'A#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'metric_linear_unit#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'linear_unit#n#1',
+                                                              'linear_measure#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'unit_of_measurement#n#1',
+                                                                'unit#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'definite_quantity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'measure#n#2',
+                                                                    'quantity#n#1',
+                                                                    'amount#n#3'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'abstraction#n#6',
+                                                                      'abstract_entity#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'entity#n#1'
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ],
+                                                          [
+                                                            [
+                                                              'metric_unit#n#1',
+                                                              'metric#n#2'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'unit_of_measurement#n#1',
+                                                                'unit#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'definite_quantity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'measure#n#2',
+                                                                    'quantity#n#1',
+                                                                    'amount#n#3'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'abstraction#n#6',
+                                                                      'abstract_entity#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'entity#n#1'
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'a#n#1',
+                           'Word' => 'a',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'a decorative or artistic work; "the coach had a design on the doors"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'design#n#4',
+                                                          'pattern#n#3',
+                                                          'figure#n#12'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'decoration#n#1',
+                                                            'ornament#n#1',
+                                                            'ornamentation#n#2'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'artifact#n#1',
+                                                              'artefact#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'whole#n#2',
+                                                                'unit#n#6'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'object#n#1',
+                                                                  'physical_object#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'physical_entity#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'entity#n#1'
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'pattern#n#3',
+                           'Word' => 'pattern',
+                           'Lin' => '\'',
+                           'Sense' => '3',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => '1/60 of a minute; the basic unit of time adopted under the Systeme International d\'Unites  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'second#n#1',
+                                                          'sec#n#1',
+                                                          's#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'time_unit#n#1',
+                                                            'unit_of_time#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'measure#n#2',
+                                                              'quantity#n#1',
+                                                              'amount#n#3'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'abstraction#n#6',
+                                                                'abstract_entity#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'entity#n#1'
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 's#n#1',
+                           'Word' => 's',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'the characteristic parts of a person\'s face: eyes and nose and mouth and chin; "an expression of pleasure crossed his features"; "his lineaments were very regular"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'feature#n#2',
+                                                          'lineament#n#2'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'body_part#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'part#n#3',
+                                                              'piece#n#3'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'thing#n#12'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'physical_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'feature#n#2',
+                           'Word' => 'features',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'easily perceived; easy to become aware of; "this situation produces recognizable stress symptoms"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'recognizable#a#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'recognizable#a#1',
+                           'Word' => 'recognizable',
+                           'Lin' => '. ',
+                           'Sense' => '1',
+                           'POS' => 'a'
+                         }
+                       ],
+                       [
+                         {
+                           'Glos' => 'a message received and understood  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'information#n#1',
+                                                          'info#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'message#n#2',
+                                                            'content#n#2',
+                                                            'subject_matter#n#1',
+                                                            'substance#n#6'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'communication#n#2'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'abstraction#n#6',
+                                                                'abstract_entity#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'entity#n#1'
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'Information#n#1',
+                           'Word' => 'Information',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'have the quality of being; (copula, used with an adjective or a predicate noun); "John is rich"; "This is not a good answer"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'be#v#1'
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'be#v#1',
+                           'Word' => 'is',
+                           'Lin' => ' ',
+                           'Sense' => '1',
+                           'POS' => 'v'
+                         },
+                         {
+                           'Glos' => '(biochemistry) purine base found in DNA and RNA; pairs with thymine in DNA and with uracil in RNA  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'adenine#n#1',
+                                                          'A#n#4'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'purine#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'base#n#10',
+                                                              'alkali#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'compound#n#2',
+                                                                'chemical_compound#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'chemical#n#1',
+                                                                  'chemical_substance#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'material#n#1',
+                                                                    'stuff#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'substance#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'matter#n#3'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'physical_entity#n#1'
+                                                                        ],
+                                                                        [
+                                                                          [
+                                                                            'entity#n#1'
+                                                                          ]
+                                                                        ]
+                                                                      ]
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'part#n#1',
+                                                                        'portion#n#1',
+                                                                        'component_part#n#1',
+                                                                        'component#n#2',
+                                                                        'constituent#n#3'
+                                                                      ],
+                                                                      [
+                                                                        [
+                                                                          'relation#n#1'
+                                                                        ],
+                                                                        [
+                                                                          [
+                                                                            'abstraction#n#6',
+                                                                            'abstract_entity#n#1'
+                                                                          ],
+                                                                          [
+                                                                            [
+                                                                              'entity#n#1'
+                                                                            ]
+                                                                          ]
+                                                                        ]
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'a#n#4',
+                           'Word' => 'a',
+                           'Lin' => ' ',
+                           'Sense' => '4',
+                           'POS' => 'n'
+                         },
+                         {
+                           'Glos' => 'a large orchestra; can perform symphonies; "we heard the Vienna symphony"  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'symphony_orchestra#n#1',
+                                                          'symphony#n#2',
+                                                          'philharmonic#n#1'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'orchestra#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'musical_organization#n#1',
+                                                              'musical_organisation#n#1',
+                                                              'musical_group#n#1'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'organization#n#1',
+                                                                'organisation#n#2'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'social_group#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'group#n#1',
+                                                                    'grouping#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'abstraction#n#6',
+                                                                      'abstract_entity#n#1'
+                                                                    ],
+                                                                    [
+                                                                      [
+                                                                        'entity#n#1'
+                                                                      ]
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'symphony#n#2',
+                           'Word' => 'symphony',
+                           'Lin' => ' ',
+                           'Sense' => '2',
+                           'POS' => 'n'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'of#ND',
+                           'Word' => 'of',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => 'an artistic movement in the late 19th century that tried to express abstract or mystical ideas through the symbolic use of images  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'symbolism#n#3'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'artistic_movement#n#1',
+                                                            'art_movement#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'movement#n#4',
+                                                              'social_movement#n#1',
+                                                              'front#n#10'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'social_group#n#1'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'group#n#1',
+                                                                  'grouping#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'abstraction#n#6',
+                                                                    'abstract_entity#n#1'
+                                                                  ],
+                                                                  [
+                                                                    [
+                                                                      'entity#n#1'
+                                                                    ]
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'symbolism#n#3',
+                           'Word' => 'symbolism',
+                           'Lin' => ' ',
+                           'Sense' => '3',
+                           'POS' => 'n'
+                         },
+                         {
+                           'NotCertain' => 1,
+                           'WQD' => 'and#ND',
+                           'Word' => 'and',
+                           'Lin' => ' ',
+                           'POS' => 'ND'
+                         },
+                         {
+                           'Glos' => '(mathematics) an attribute of a shape or relation; exact reflection of form on opposite sides of a dividing line or plane  ',
+                           'Hypen' => {
+                                        'Result' => [
+                                                      [
+                                                        [
+                                                          'symmetry#n#1',
+                                                          'symmetricalness#n#1',
+                                                          'correspondence#n#4',
+                                                          'balance#n#9'
+                                                        ],
+                                                        [
+                                                          [
+                                                            'spatial_property#n#1',
+                                                            'spatiality#n#1'
+                                                          ],
+                                                          [
+                                                            [
+                                                              'property#n#2'
+                                                            ],
+                                                            [
+                                                              [
+                                                                'attribute#n#2'
+                                                              ],
+                                                              [
+                                                                [
+                                                                  'abstraction#n#6',
+                                                                  'abstract_entity#n#1'
+                                                                ],
+                                                                [
+                                                                  [
+                                                                    'entity#n#1'
+                                                                  ]
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                      },
+                           'WQD' => 'symmetry#n#1',
+                           'Word' => 'symmetry',
+                           'Lin' => '. ',
+                           'Sense' => '1',
+                           'POS' => 'n'
+                         }
+                       ]
+                     ]
+                   ],
+          'FactExtraction' => [
+                                {
+                                  'Processed' => [
+                                                   {
+                                                     'ARG2' => 'of configurations of patterns',
+                                                     'TARGET' => 'composed',
+                                                     'ARG1' => 'Contexts'
+                                                   },
+                                                   {
+                                                     'ARG2' => 'of configurations of variables',
+                                                     'TARGET' => 'composed',
+                                                     'ARG1' => 'patterns'
+                                                   },
+                                                   {
+                                                     'ARG2' => 'of configurations of first principle dimensional properties such as quantifiers and qualitative adjective descriptive comparisons and those relational frameworks can simulate the meat of metaphor as two analogies juxtaposed by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else',
+                                                     'TARGET' => 'composed',
+                                                     'ARG1' => 'variables'
+                                                   },
+                                                   {
+                                                     'ARG0' => 'descriptive comparisons and those relational frameworks',
+                                                     'ARG2' => 'as two analogies juxtaposed by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else',
+                                                     'ARGM-MOD' => 'can',
+                                                     'TARGET' => 'simulate',
+                                                     'ARG1' => 'the meat of metaphor'
+                                                   },
+                                                   {
+                                                     'ARG0' => 'by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else',
+                                                     'TARGET' => 'juxtaposed',
+                                                     'ARG1' => 'two analogies'
+                                                   },
+                                                   {
+                                                     'ARG0' => 'similar relational operators',
+                                                     'TARGET' => 'form',
+                                                     'ARG1' => 'a cross-domain relation in an overlap of meaning or intention or something else',
+                                                     'R-ARG0' => 'that'
+                                                   },
+                                                   {
+                                                     'ARG0' => 'an',
+                                                     'TARGET' => 'overlap',
+                                                     'ARG1' => 'of meaning or intention or something else'
+                                                   },
+                                                   {
+                                                     'ARG0' => 'Analogies',
+                                                     'TARGET' => 'mimic',
+                                                     'ARG1' => 'patterns across contexts via Cross-Domain Relations'
+                                                   },
+                                                   {
+                                                     'TARGET' => 'overlap',
+                                                     'ARG1' => 'an'
+                                                   },
+                                                   {
+                                                     'ARG0' => 'what',
+                                                     'TARGET' => 'makes',
+                                                     'ARG1' => 'a symmetry'
+                                                   },
+                                                   {
+                                                     'ARG0' => 'what',
+                                                     'ARG2' => 'recognizable',
+                                                     'TARGET' => 'makes',
+                                                     'ARG1' => 'a pattern \'s features'
+                                                   }
+                                                 ],
+                                  'Parsed' => '0: [ARG1 Contexts] are [TARGET composed ] [ARG2 of configurations of patterns] patterns are composed of configurations of variables and variables are composed of configurations of first principle dimensional properties such as quantifiers and qualitative adjective descriptive comparisons and those relational frameworks can simulate the meat of metaphor as two analogies juxtaposed by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else
+0: Contexts are composed of configurations of patterns [ARG1 patterns] are [TARGET composed ] [ARG2 of configurations of variables] and variables are composed of configurations of first principle dimensional properties such as quantifiers and qualitative adjective descriptive comparisons and those relational frameworks can simulate the meat of metaphor as two analogies juxtaposed by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else
+0: Contexts are composed of configurations of patterns patterns are composed of configurations of variables and [ARG1 variables] are [TARGET composed ] [ARG2 of configurations of first principle dimensional properties such as quantifiers and qualitative adjective descriptive comparisons and those relational frameworks can simulate the meat of metaphor as two analogies juxtaposed by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else]
+0: Contexts are composed of configurations of patterns patterns are composed of configurations of variables and variables are composed of configurations of first principle dimensional properties such as quantifiers and qualitative adjective [ARG0 descriptive comparisons and those relational frameworks] [ARGM-MOD can] [TARGET simulate ] [ARG1 the meat of metaphor] [ARG2 as two analogies juxtaposed by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else]
+0: Contexts are composed of configurations of patterns patterns are composed of configurations of variables and variables are composed of configurations of first principle dimensional properties such as quantifiers and qualitative adjective descriptive comparisons and those relational frameworks can simulate the meat of metaphor as [ARG1 two analogies] [TARGET juxtaposed ] [ARG0 by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else]
+0: Contexts are composed of configurations of patterns patterns are composed of configurations of variables and variables are composed of configurations of first principle dimensional properties such as quantifiers and qualitative adjective descriptive comparisons and those relational frameworks can simulate the meat of metaphor as two analogies juxtaposed by [ARG0 similar relational operators] [R-ARG0 that] [TARGET form ] [ARG1 a cross-domain relation in an overlap of meaning or intention or something else]
+0: Contexts are composed of configurations of patterns patterns are composed of configurations of variables and variables are composed of configurations of first principle dimensional properties such as quantifiers and qualitative adjective descriptive comparisons and those relational frameworks can simulate the meat of metaphor as two analogies juxtaposed by similar relational operators that form a cross-domain relation in [ARG0 an] [TARGET overlap ] [ARG1 of meaning or intention or something else]
+1: [ARG0 Analogies] [TARGET mimic ] [ARG1 patterns across contexts via Cross-Domain Relations]
+2: Cross-Domain Relations go from domain to domain when the range is the same as [ARG1 an] [TARGET overlap ]
+5: Repetition is [ARG0 what] [TARGET makes ] [ARG1 a symmetry] and is what makes a pattern \'s features recognizable
+5: Repetition is what makes a symmetry and is [ARG0 what] [TARGET makes ] [ARG1 a pattern \'s features] [ARG2 recognizable]
+'
+                                }
+                              ],
+          'TermExtraction' => [
+                                []
+                              ],
+          'Tokenization' => [
+                              'Contexts are composed of configurations of patterns , patterns are composed of configurations of variables , and variables are composed of configurations of first principle dimensional properties , such as quantifiers and qualitative adjective descriptive comparisons , and those relational frameworks can simulate the meat of metaphor , as two analogies juxtaposed by similar relational operators that form a cross-domain relation in an overlap of meaning or intention or something else . 
+Analogies mimic patterns across contexts via Cross-Domain Relations . 
+Cross-Domain Relations go from domain to domain when the range is the same , as an overlap . 
+That is the basis of Analogical Reasoning . 
+If data has recognizable features , it is a pattern . 
+Repetition is what makes a symmetry , and is what makes a pattern \'s features recognizable . 
+Information is a symphony of symbolism and symmetry . 
+'
+                            ]
+        };

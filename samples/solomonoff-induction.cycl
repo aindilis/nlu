@@ -1,0 +1,46 @@
+;; has text to analyze
+
+"Computational aspects
+
+Like Solomonoff induction, AIXI is incomputable. However, there are
+computable approximations of it. One such approximation is AIXItl,
+which performs as least as well as the provably best time t and space
+l limited agent.[2] Another approximation to AIXI with a restricted
+environment class is MC-AIXI(FAC-CTW), which has had some success
+playing simple games such as partially observable Pac-Man.[5][6]"
+
+(find-or-create-constant "SolomonoffInduction")
+(cyc-assert '(#$not (#$isa #$SolomonoffInduction #$ComputableArithmeticFunction)) #$SampleMt)
+
+(find-or-create-constant "AIXI")
+(cyc-assert '(#$not (#$isa #$AIXI #$ComputableArithmeticFunction)) #$SampleMt)
+
+(find-or-create-constant "ComputableApproximationFn")
+(cyc-assert '(#$isa #$ComputableApproximationFn #$BinaryFunction) #$SampleMt)
+(cyc-assert '(#$arity #$ComputableApproximationFn 1) #$SampleMt)
+;; should really be an uncomputable arithmetic function
+(cyc-assert '(#$arg1Isa #$ComputableApproximationFn #$Function) #$SampleMt) 
+(cyc-assert '(#$resultIsa #$ComputableApproximationFn #$ComputableArithmeticFunction) #$SampleMt)
+
+(find-or-create-constant "AIXItl")
+(cyc-assert '(#$isa #$AIXItl (#$ComputableApproximationFn #$AIXI)) #$SampleMt)
+(cyc-assert '(#$thereExists ?X (#$isa ?X (#$ComputableApproximationFn #$SolomonoffInduction))) #$SampleMt)
+
+
+
+;; Attempt to automatically normalize this to a Cyc ontology
+
+;; https://sites.google.com/site/narswang/home/agi-introduction
+
+
+;; Attempt to implement this or package such an implementation.  Also
+;; encode in Cyc
+
+;; https://en.wikipedia.org/wiki/G%C3%B6del_machine
+
+;; http://people.idsia.ch/~juergen/goedelmachine.html
+
+
+
+
+;; http://meta-guide.com/software-meta-guide/100-best-sourceforge-artificial-intelligence

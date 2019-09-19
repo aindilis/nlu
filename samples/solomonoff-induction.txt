@@ -1,0 +1,8 @@
+Computational aspects
+
+Like Solomonoff induction, AIXI is incomputable. However, there are
+computable approximations of it. One such approximation is AIXItl,
+which performs as least as well as the provably best time t and space
+l limited agent.[2] Another approximation to AIXI with a restricted
+environment class is MC-AIXI(FAC-CTW), which has had some success
+playing simple games such as partially observable Pac-Man.[5][6]

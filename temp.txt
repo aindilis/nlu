@@ -1,0 +1,121 @@
+Allegory
+A symbolic narrative in which the surface details imply a secondary meaning. Allegory often takes the form of a story in which the characters represent moral qualities. The most famous example in English is John Bunyan's Pilgrim's Progress, in which the name of the central character, Pilgrim, epitomizes the book's allegorical nature. Kay Boyle's story "Astronomer's Wife" and Christina Rossetti's poem "Up-Hill" both contain allegorical elements.
+
+Alliteration
+The repetition of consonant sounds, especially at the beginning of words. Example: "Fetched fresh, as I suppose, off some sweet wood." Hopkins, "In the Valley of the Elwy."
+
+Anapest 
+Two unaccented syllables followed by an accented one, as in com-pre-HEND or in-ter-VENE. An anapestic meter rises to the accented beat as in Byron's lines from "The Destruction of Sennacherib": "And the sheen of their spears was like stars on the sea, / When the blue wave rolls nightly on deep Galilee."
+
+Antagonist
+A character or force against which another character struggles. Creon is Antigone's antagonist in Sophocles' play Antigone; Teiresias is the antagonist of Oedipus in Sophocles' Oedipus the King.
+
+Assonance
+The repetition of similar vowel sounds in a sentence or a line of poetry or prose, as in "I rose and told him of my woe." Whitman's "When I Heard the Learn'd Astronomer" contains assonantal "I's" in the following lines: "How soon unaccountable I became tired and sick, / Till rising and gliding out I wander'd off by myself."
+
+Aubade
+A love lyric in which the speaker complains about the arrival of the dawn, when he must part from his lover. John Donne's "The Sun Rising" exemplifies this poetic genre.
+
+Ballad
+A narrative poem written in four-line stanzas, characterized by swift action and narrated in a direct style. The Anonymous medieval ballad, "Barbara Allan," exemplifies the genre.
+
+Blank verse
+A line of poetry or prose in unrhymed iambic pentameter. Shakespeare's sonnets, Milton's epic poem Paradise Lost, and Robert Frost's meditative poems such as "Birches" include many lines of blank verse. Here are the opening blank verse lines of "Birches": When I see birches bend to left and right / Across the lines of straighter darker trees, / I like to think some boy's been swinging them.
+
+Caesura
+A strong pause within a line of verse. The following stanza from Hardy's "The Man He Killed" contains caesuras in the middle two lines:
+
+He thought he'd 'list, perhaps,
+Off-hand-like--just as I--
+Was out of work-had sold his traps--
+No other reason why.
+
+Character
+An imaginary person that inhabits a literary work. Literary characters may be major or minor, static (unchanging) or dynamic (capable of change). In Shakespeare's Othello, Desdemona is a major character, but one who is static, like the minor character Bianca. Othello is a major character who is dynamic, exhibiting an ability to change.
+
+Characterization
+The means by which writers present and reveal character. Although techniques of characterization are complex, writers typically reveal characters through their speech, dress, manner, and actions. Readers come to understand the character Miss Emily in Faulkner's story "A Rose for Emily" through what she says, how she lives, and what she does.
+
+Climax
+The turning point of the action in the plot of a play or story. The climax represents the point of greatest tension in the work. The climax of John Updike's "A&P," for example, occurs when Sammy quits his job as a cashier.
+
+Closed form
+A type of form or structure in poetry characterized by regularity and consistency in such elements as rhyme, line length, and metrical pattern. Frost's "Stopping By Woods on a Snowy Evening" provides one of many examples. A single stanza illustrates some of the features of closed form:
+
+Whose woods these are I think I know.
+His house is in the village though.
+He will not see me stopping here
+To watch his woods fill up with snow.
+
+Complication
+An intensification of the conflict in a story or play. Complication builds up, accumulates, and develops the primary or central conflict in a literary work. Frank O'Connor's story "Guests of the Nation" provides a striking example, as does Ralph Ellison's "Battle Royal."
+
+Conflict
+A struggle between opposing forces in a story or play, usually resolved by the end of the work. The conflict may occur within a character as well as between characters. Lady Gregory's one-act play The Rising of the Moon exemplifies both types of conflict as the Policeman wrestles with his conscience in an inner conflict and confronts an antagonist in the person of the ballad singer.
+
+Connotation
+The associations called up by a word that goes beyond its dictionary meaning. Poets, especialthe wall,
+Looking as if she were alive. I call
+That piece a woure of speech involving exaggeration. John Donne uses hyperbole in his poem: "Song: Go and Catch a Falling Star."
+
+Iamb
+An unstressed syllable followed by a stressed one, as in to-DAY. See Foot.
+
+Image
+A concrete representation of a sense impression, a feeling, or an idea. Imagery refers to the patn of the "murmur of innumerable bees," which attempts to capture the sound of a swarm of bees buzzing.
+
+Open form
+A type of structure or form in poetry characterized by freedom from regularity and consistency in such elements as rhyme, line length, metrical pattern, and overall poetic structure. E.E. Cummings's "[Buffalo Bill's]" is one examplxth stanza, there is a three-line envoi, which uses the six repeating words, two per line.
+
+Setting
+The time and place of a literary work that establish its context. The stories of Sandra Cisneros are set in the American southwest in the mid to late 20th century, those of James Joyce in Dublin, Ireland in the early 20th century.
+
+Simile
+A figure of speech involving a comparison between unlike things using like, as, or as though. An example: "My love is like a red, red rose."
+
+Sonnet
+A fourteen-line poem in iambic pentameter. The Shakespearean or English sonnet is arranged as three quatrains and a final couplet, rhyming abab cdcd efef gg. The Petrarchan or Italian sonnet divides into two parts: an eight-line octave and a six-line sestet, rhyming abba abba cde cde or abba abba cd cd cd.
+
+Spondee
+A metricalfoot represented by two stressed syllables, such as KNICK-KNACK.
+
+Stanza
+A division or unit of a poem that is repeated in the same form--either with similar or identical patterns or rhyme and meter, or with variations from one stanza to another. The stanzas of Gertrude Schnackenberg's "Signs" are regular; those of Rita Dove's "Canary" are irregular.
+
+Style
+The way an author chooses words, arranges them in sentences or in lines of dialogue or verse, and develops ideas and actions with description, imagery, and other literary techniques. See Connotation, Denotation, Diction, Figurative language, Image, Imagery, Irony, Metaphor, Narrator, Point of view, Syntax, and Tone.
+
+Subject
+What a story or play is about; to be distinguished from plot and theme. Faulkner's "A Rose for Emily" is about the decline of a particular way of life endemic to the American south before the civil war. Its plot concerns how Faulkner describes and organizes the actions of the story's characters. Its theme is the overall meaning Faulkner conveys.
+
+Subplot
+A subsidiary or subordinate or parallel plot in a play or story that coexists with the main plot. The story of Rosencrantz and Guildenstern forms a subplot with the overall plot of Hamlet.
+
+Symbol
+An object or action in a literary work that means more than itself, that stands for something beyond itself. The glass unicorn in The Glass Menagerie, the rocking horse in "The Rocking-Horse Winner," the road in Frost's "The Road Not Taken"--all are symbols in this sense.
+
+Synecdoche
+A figure of speech in which a part is substituted for the whole. An example: "Lend me a hand." See Metonymy.
+
+Syntax
+The grammatical order of words in a sentence or line of verse or dialogue. The organization of words and phrases and clauses in sentences of prose, verse, and dialogue. In the following example, normal syntax (subject, verb, object order) is inverted:
+
+"Whose woods these are I think I know."
+
+Tercet
+A three-line stanza, as the stanzas in Frost's "Acquainted With the Night" and Shelley's "Ode to the West Wind." The three-line stanzas or sections that together constitute the sestet of a Petrarchan or Italian sonnet.
+
+Theme
+The idea of a literary work abstracted from its details of language, character, and action, and cast in the form of a generalization. See discussion of Dickinson's "Crumbling is not an instant's Act."
+
+Tone
+The implied attitude of a writer toward the subject and characters of a work, as, for example, Flannery O'Connor's ironic tone in her "Good Country People." See Irony.
+
+Trochee
+An accented syllable followed by an unaccented one, as in FOOT-ball.
+
+Understatement
+A figure of speech in which a writer or speaker says less than what he or she means; the opposite of exaggeration. The last line of Frost's "Birches" illustrates this literary device: "One could do worse than be a swinger of birches."
+
+Villanelle
+A nineteen-line lyric poem that relies heavily on repetition. The first and third lines alternate throughout the poem, which is structured in six stanzas --five tercets and a concluding quatrain. Examples include Bishop's "One Art," Roethke's "The Waking," and Thomas's "Do Not Go Gentle into That Good Night."

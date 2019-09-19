@@ -1,0 +1,3 @@
+#!/bin/bash
+
+for it in `ls *.txt`; do nlu-mf-prepare-text-for-nlu-manual-formalization.pl -c "$it" "$it" ; done

@@ -1,0 +1,323 @@
+cpan[1]> install Text::Fracture
+CPAN: Storable loaded ok (v2.20)
+Going to read '/home/andrewdo/.cpan/Metadata'
+  Database was generated on Wed, 22 Sep 2010 18:34:06 GMT
+CPAN: LWP::UserAgent loaded ok (v5.835)
+CPAN: Time::HiRes loaded ok (v1.9719)
+Fetching with LWP:
+  ftp://cpan.pair.com/pub/CPAN/authors/01mailrc.txt.gz
+LWP failed with code[404] message[Can't chdir to pub]
+Fetching with Net::FTP:
+  ftp://cpan.pair.com/pub/CPAN/authors/01mailrc.txt.gz
+CPAN: YAML loaded ok (v0.71)
+Going to read '/home/andrewdo/.cpan/sources/authors/01mailrc.txt.gz'
+CPAN: File::Which loaded ok (v1.08)
+CPAN: Compress::Zlib loaded ok (v2.02)
+............................................................................DONE
+Fetching with LWP:
+  ftp://cpan.pair.com/pub/CPAN/modules/02packages.details.txt.gz
+LWP failed with code[404] message[Can't chdir to pub]
+Fetching with Net::FTP:
+  ftp://cpan.pair.com/pub/CPAN/modules/02packages.details.txt.gz
+Going to read '/home/andrewdo/.cpan/sources/modules/02packages.details.txt.gz'
+  Database was generated on Fri, 01 Oct 2010 08:43:30 GMT
+............................................................................DONE
+Fetching with LWP:
+  ftp://cpan.pair.com/pub/CPAN/modules/03modlist.data.gz
+LWP failed with code[404] message[Can't chdir to pub]
+Fetching with Net::FTP:
+  ftp://cpan.pair.com/pub/CPAN/modules/03modlist.data.gz
+Going to read '/home/andrewdo/.cpan/sources/modules/03modlist.data.gz'
+............................................................................DONE
+Going to write /home/andrewdo/.cpan/Metadata
+Running install for module 'Text::Fracture'
+Running make for J/JN/JNW/Text-Fracture-1.02.tar.gz
+Fetching with LWP:
+  ftp://cpan.pair.com/pub/CPAN/authors/id/J/JN/JNW/Text-Fracture-1.02.tar.gz
+LWP failed with code[404] message[Can't chdir to pub]
+Fetching with Net::FTP:
+  ftp://cpan.pair.com/pub/CPAN/authors/id/J/JN/JNW/Text-Fracture-1.02.tar.gz
+CPAN: Digest::SHA loaded ok (v5.47)
+Fetching with LWP:
+  ftp://cpan.pair.com/pub/CPAN/authors/id/J/JN/JNW/CHECKSUMS
+Fetching with LWP:
+  ftp://cpan.pair.com/pub/CPAN/authors/id/J/JN/JNW/CHECKSUMS.gz
+Fetching with Net::FTP:
+  ftp://cpan.pair.com/pub/CPAN/authors/id/J/JN/JNW/CHECKSUMS
+Checksum for /home/andrewdo/.cpan/sources/authors/id/J/JN/JNW/Text-Fracture-1.02.tar.gz ok
+Scanning cache /home/andrewdo/.cpan/build for sizes
+.....................................---------------------------------------DONE
+DEL(1/161): /home/andrewdo/.cpan/build/Biblio-Citation-Parser-1.10-Pimtpu 
+DEL(2/161): /home/andrewdo/.cpan/build/Biblio-Citation-Parser-1.10-Pimtpu.yml 
+DEL(3/161): /home/andrewdo/.cpan/build/Biblio-Document-Parser-1.10-Wf_Qjb 
+DEL(4/161): /home/andrewdo/.cpan/build/Biblio-Document-Parser-1.10-Wf_Qjb.yml 
+DEL(5/161): /home/andrewdo/.cpan/build/Class-Gomor-1.02-tUSiqF 
+DEL(6/161): /home/andrewdo/.cpan/build/Class-Gomor-1.02-tUSiqF.yml 
+DEL(7/161): /home/andrewdo/.cpan/build/DBIx-SQLite-Simple-0.34-0yzsuW 
+DEL(8/161): /home/andrewdo/.cpan/build/DBIx-SQLite-Simple-0.34-0yzsuW.yml 
+DEL(9/161): /home/andrewdo/.cpan/build/Lingua-LinkParser-1.14-HJAi4I 
+DEL(10/161): /home/andrewdo/.cpan/build/Lingua-LinkParser-1.14-HJAi4I.yml 
+DEL(11/161): /home/andrewdo/.cpan/build/Lingua-LinkParser-1.14-kk0012 
+DEL(12/161): /home/andrewdo/.cpan/build/Lingua-LinkParser-1.14-kk0012.yml 
+DEL(13/161): /home/andrewdo/.cpan/build/NLP-GATE-0.2-rJDOc3 
+DEL(14/161): /home/andrewdo/.cpan/build/NLP-GATE-0.2-rJDOc3.yml 
+DEL(15/161): /home/andrewdo/.cpan/build/Linux-Inotify-0.05-bIk8NT 
+DEL(16/161): /home/andrewdo/.cpan/build/Linux-Inotify-0.05-bIk8NT.yml 
+DEL(17/161): /home/andrewdo/.cpan/build/common-sense-3.0-juXQib 
+DEL(18/161): /home/andrewdo/.cpan/build/common-sense-3.0-juXQib.yml 
+DEL(19/161): /home/andrewdo/.cpan/build/Linux-Inotify2-1.21-GjRoCt 
+DEL(20/161): /home/andrewdo/.cpan/build/Linux-Inotify2-1.21-GjRoCt.yml 
+DEL(21/161): /home/andrewdo/.cpan/build/HTTP-DAV-0.40-Eo1FyA 
+DEL(22/161): /home/andrewdo/.cpan/build/HTTP-DAV-0.40-Eo1FyA.yml 
+DEL(23/161): /home/andrewdo/.cpan/build/Cal-DAV-0.6-vN8Dxm 
+DEL(24/161): /home/andrewdo/.cpan/build/Cal-DAV-0.6-vN8Dxm.yml 
+DEL(25/161): /home/andrewdo/.cpan/build/DPKG-Parse-0.01-oYuqHS 
+DEL(26/161): /home/andrewdo/.cpan/build/DPKG-Parse-0.01-oYuqHS.yml 
+DEL(27/161): /home/andrewdo/.cpan/build/Class-Accessor-0.34-0w6Pgf 
+DEL(28/161): /home/andrewdo/.cpan/build/Class-Accessor-0.34-0w6Pgf.yml 
+DEL(29/161): /home/andrewdo/.cpan/build/Expect-1.21-nxS4oc 
+DEL(30/161): /home/andrewdo/.cpan/build/Expect-1.21-nxS4oc.yml 
+DEL(31/161): /home/andrewdo/.cpan/build/Reaper-1.00-qoiXFn 
+DEL(32/161): /home/andrewdo/.cpan/build/Reaper-1.00-qoiXFn.yml 
+DEL(33/161): /home/andrewdo/.cpan/build/Tk-GraphViz-1.01-eRcy98 
+DEL(34/161): /home/andrewdo/.cpan/build/Tk-GraphViz-1.01-eRcy98.yml 
+DEL(35/161): /home/andrewdo/.cpan/build/Test-Output-0.16-LfRQ1i 
+DEL(36/161): /home/andrewdo/.cpan/build/Test-Output-0.16-LfRQ1i.yml 
+DEL(37/161): /home/andrewdo/.cpan/build/SGML-Parser-OpenSP-0.994-ulbbtz.yml 
+DEL(38/161): /home/andrewdo/.cpan/build/SGML-Parser-OpenSP-0.994-ulbbtz 
+DEL(39/161): /home/andrewdo/.cpan/build/SGML-Parser-OpenSP-0.994-u84rVD 
+DEL(40/161): /home/andrewdo/.cpan/build/SGML-Parser-OpenSP-0.994-u84rVD.yml 
+DEL(41/161): /home/andrewdo/.cpan/build/Class-Generate-1.10-deNc5Q 
+DEL(42/161): /home/andrewdo/.cpan/build/Class-Generate-1.10-deNc5Q.yml 
+DEL(43/161): /home/andrewdo/.cpan/build/Nmap-Scanner-1.0-VZ76cX 
+DEL(44/161): /home/andrewdo/.cpan/build/Nmap-Scanner-1.0-VZ76cX.yml 
+DEL(45/161): /home/andrewdo/.cpan/build/Sub-Override-0.08-YH3jw1 
+DEL(46/161): /home/andrewdo/.cpan/build/HTML-TokeParser-Simple-3.15-MP8opM 
+DEL(47/161): /home/andrewdo/.cpan/build/Sub-Override-0.08-YH3jw1.yml 
+DEL(48/161): /home/andrewdo/.cpan/build/HTML-TokeParser-Simple-3.15-MP8opM.yml 
+DEL(49/161): /home/andrewdo/.cpan/build/WWW-Mechanize-GZip-0.12-m6inqH 
+DEL(50/161): /home/andrewdo/.cpan/build/WWW-Mechanize-GZip-0.12-m6inqH.yml 
+DEL(51/161): /home/andrewdo/.cpan/build/WWW-Contact-0.37-U1NWTE 
+DEL(52/161): /home/andrewdo/.cpan/build/WWW-Contact-0.37-U1NWTE.yml 
+DEL(53/161): /home/andrewdo/.cpan/build/MP3-Tag-1.12-UVGu5B 
+DEL(54/161): /home/andrewdo/.cpan/build/MP3-Tag-1.12-UVGu5B.yml 
+DEL(55/161): /home/andrewdo/.cpan/build/MP3-Info-1.24-SQGt38 
+DEL(56/161): /home/andrewdo/.cpan/build/MP3-Info-1.24-SQGt38.yml 
+DEL(57/161): /home/andrewdo/.cpan/build/Config-Options-0.08-awET6R 
+DEL(58/161): /home/andrewdo/.cpan/build/Config-Options-0.08-awET6R.yml 
+DEL(59/161): /home/andrewdo/.cpan/build/Music-Tag-0.33-OoihWi 
+DEL(60/161): /home/andrewdo/.cpan/build/Music-Tag-0.33-OoihWi.yml 
+DEL(61/161): /home/andrewdo/.cpan/build/Music-Tag-MP3-0.29-8GkxsB 
+DEL(62/161): /home/andrewdo/.cpan/build/Music-Tag-MP3-0.29-8GkxsB.yml 
+DEL(63/161): /home/andrewdo/.cpan/build/MP3-Find-0.06-ah1P3x 
+DEL(64/161): /home/andrewdo/.cpan/build/MP3-Find-0.06-ah1P3x.yml 
+DEL(65/161): /home/andrewdo/.cpan/build/Net-Amazon-0.59-koaoCd 
+DEL(66/161): /home/andrewdo/.cpan/build/Net-Amazon-0.59-koaoCd.yml 
+DEL(67/161): /home/andrewdo/.cpan/build/Bundle-Music-Tag-0.02-Lw1Q3c 
+DEL(68/161): /home/andrewdo/.cpan/build/ANSIColor-3.00-kJ3GaS 
+DEL(69/161): /home/andrewdo/.cpan/build/ANSIColor-3.00-kJ3GaS.yml 
+DEL(70/161): /home/andrewdo/.cpan/build/Text-LevenshteinXS-0.03-gqA_gu.yml 
+DEL(71/161): /home/andrewdo/.cpan/build/Text-LevenshteinXS-0.03-gqA_gu 
+DEL(72/161): /home/andrewdo/.cpan/build/Music-Tag-File-0.29-5zoc7U 
+DEL(73/161): /home/andrewdo/.cpan/build/Music-Tag-File-0.29-5zoc7U.yml 
+DEL(74/161): /home/andrewdo/.cpan/build/Tree-Simple-1.18-dJq0bK 
+DEL(75/161): /home/andrewdo/.cpan/build/Tree-Simple-1.18-dJq0bK.yml 
+DEL(76/161): /home/andrewdo/.cpan/build/Ogg-Vorbis-Header-PurePerl-1.0-Jpoaes 
+DEL(77/161): /home/andrewdo/.cpan/build/Ogg-Vorbis-Header-PurePerl-1.0-Jpoaes.yml 
+DEL(78/161): /home/andrewdo/.cpan/build/MP4-Info-1.12-XHwJnt 
+DEL(79/161): /home/andrewdo/.cpan/build/MP4-Info-1.12-XHwJnt.yml 
+DEL(80/161): /home/andrewdo/.cpan/build/Class-Throwable-0.11-o6pwo0 
+DEL(81/161): /home/andrewdo/.cpan/build/Tree-Simple-View-0.17-xT1WKF 
+DEL(82/161): /home/andrewdo/.cpan/build/Class-Throwable-0.11-o6pwo0.yml 
+DEL(83/161): /home/andrewdo/.cpan/build/Tree-Simple-View-0.17-xT1WKF.yml 
+DEL(84/161): /home/andrewdo/.cpan/build/Audio-M4P-0.51-o6pKWv 
+DEL(85/161): /home/andrewdo/.cpan/build/Audio-M4P-0.51-o6pKWv.yml 
+DEL(86/161): /home/andrewdo/.cpan/build/Music-Tag-M4A-0.3-Pm2ivd 
+DEL(87/161): /home/andrewdo/.cpan/build/Music-Tag-M4A-0.3-Pm2ivd.yml 
+DEL(88/161): /home/andrewdo/.cpan/build/Audio-FLAC-Header-2.3-6z2BUw 
+DEL(89/161): /home/andrewdo/.cpan/build/Music-Tag-FLAC-0.31-60aQPU 
+DEL(90/161): /home/andrewdo/.cpan/build/Audio-FLAC-Header-2.3-6z2BUw.yml 
+DEL(91/161): /home/andrewdo/.cpan/build/Music-Tag-FLAC-0.31-60aQPU.yml 
+DEL(92/161): /home/andrewdo/.cpan/build/Audio-FLAC-Header-2.3-fv9ps_.yml 
+DEL(93/161): /home/andrewdo/.cpan/build/Audio-FLAC-Header-2.3-fv9ps_ 
+DEL(94/161): /home/andrewdo/.cpan/build/Audio-FLAC-Header-2.3-Fr_U3n 
+DEL(95/161): /home/andrewdo/.cpan/build/Audio-FLAC-Header-2.3-Fr_U3n.yml 
+DEL(96/161): /home/andrewdo/.cpan/build/Music-Tag-FLAC-0.31-92c5Zj 
+DEL(97/161): /home/andrewdo/.cpan/build/Music-Tag-FLAC-0.31-92c5Zj.yml 
+DEL(98/161): /home/andrewdo/.cpan/build/Text-Unaccent-1.08-L76TIg.yml 
+DEL(99/161): /home/andrewdo/.cpan/build/Text-Unaccent-1.08-VvKCLr 
+DEL(100/161): /home/andrewdo/.cpan/build/Text-Unaccent-1.08-VvKCLr.yml 
+DEL(101/161): /home/andrewdo/.cpan/build/CPAN-DistnameInfo-0.10-78RHb5 
+DEL(102/161): /home/andrewdo/.cpan/build/CPAN-DistnameInfo-0.10-78RHb5.yml 
+DEL(103/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-0.5.1-7hE2A2 
+DEL(104/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-0.5.1-7hE2A2.yml 
+DEL(105/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-LeosLyrics-0.02-NjhlH0 
+DEL(106/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-LeosLyrics-0.02-NjhlH0.yml 
+DEL(107/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-LeosLyrics-0.02-YaYdED 
+DEL(108/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-LeosLyrics-0.02-YaYdED.yml 
+DEL(109/161): /home/andrewdo/.cpan/build/WebService-MusicBrainz-0.93-M5Jmxp 
+DEL(110/161): /home/andrewdo/.cpan/build/WebService-MusicBrainz-0.93-M5Jmxp.yml 
+DEL(111/161): /home/andrewdo/.cpan/build/Music-Tag-MusicBrainz-0.3-3pNU6f 
+DEL(112/161): /home/andrewdo/.cpan/build/Music-Tag-MusicBrainz-0.3-3pNU6f.yml 
+DEL(113/161): /home/andrewdo/.cpan/build/Acme-MetaSyntactic-0.99-GlIC0Z 
+DEL(114/161): /home/andrewdo/.cpan/build/Acme-MetaSyntactic-0.99-GlIC0Z.yml 
+DEL(115/161): /home/andrewdo/.cpan/build/Music-Tag-OGG-0.33-D69P1U 
+DEL(116/161): /home/andrewdo/.cpan/build/Music-Tag-OGG-0.33-D69P1U.yml 
+DEL(117/161): /home/andrewdo/.cpan/build/Music-Tag-Amazon-0.33-h9f2Gd.yml 
+DEL(118/161): /home/andrewdo/.cpan/build/Music-Tag-Lyrics-0.29-STJyUe 
+DEL(119/161): /home/andrewdo/.cpan/build/Music-Tag-Lyrics-0.29-STJyUe.yml 
+DEL(120/161): /home/andrewdo/.cpan/build/WebService-SongLyrics-0.01-qYikaQ 
+DEL(121/161): /home/andrewdo/.cpan/build/WebService-SongLyrics-0.01-qYikaQ.yml 
+DEL(122/161): /home/andrewdo/.cpan/build/MusicRoom-0.40-YYNohv 
+DEL(123/161): /home/andrewdo/.cpan/build/MusicRoom-0.40-YYNohv.yml 
+DEL(124/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-AZLyrics-0.05-AJS5jT 
+DEL(125/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-AZLyrics-0.05-AJS5jT.yml 
+DEL(126/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-AstraWeb-0.33-XwE4kI 
+DEL(127/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-AstraWeb-0.33-XwE4kI.yml 
+DEL(128/161): /home/andrewdo/.cpan/build/HTML-LinkExtractor-0.13-DB__ML 
+DEL(129/161): /home/andrewdo/.cpan/build/HTML-LinkExtractor-0.13-DB__ML.yml 
+DEL(130/161): /home/andrewdo/.cpan/build/String-Similarity-1.04-apXLgK 
+DEL(131/161): /home/andrewdo/.cpan/build/String-Similarity-1.04-apXLgK.yml 
+DEL(132/161): /home/andrewdo/.cpan/build/Net-Google-1.0-HudbbD 
+DEL(133/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-Google-0.02-UkCWZp 
+DEL(134/161): /home/andrewdo/.cpan/build/Net-Google-1.0-HudbbD.yml 
+DEL(135/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-Google-0.02-UkCWZp.yml 
+DEL(136/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-LyricWiki-0.08-26XJhA 
+DEL(137/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-LyricWiki-0.08-26XJhA.yml 
+DEL(138/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-Lyrics007-0.06-9b3Bod 
+DEL(139/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-Lyrics007-0.06-9b3Bod.yml 
+DEL(140/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-LyricsDownload-0.01-ehqMqQ 
+DEL(141/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-LyricsDownload-0.01-ehqMqQ.yml 
+DEL(142/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-0.3.1-IK1WBY 
+DEL(143/161): /home/andrewdo/.cpan/build/Lyrics-Fetcher-0.3.1-IK1WBY.yml 
+DEL(144/161): /home/andrewdo/.cpan/build/Net-DBus-Skype-0.02-mJ97XX 
+DEL(145/161): /home/andrewdo/.cpan/build/Net-DBus-Skype-0.02-mJ97XX.yml 
+DEL(146/161): /home/andrewdo/.cpan/build/X11-WMCtrl-0.01-Ka8a8w 
+DEL(147/161): /home/andrewdo/.cpan/build/X11-WMCtrl-0.01-Ka8a8w.yml 
+DEL(148/161): /home/andrewdo/.cpan/build/Test-Number-Delta-1.03-pibuLq 
+DEL(149/161): /home/andrewdo/.cpan/build/Test-Number-Delta-1.03-pibuLq.yml 
+DEL(150/161): /home/andrewdo/.cpan/build/Geo-Ellipsoid-1.12-zAen6N 
+DEL(151/161): /home/andrewdo/.cpan/build/Geo-Ellipsoid-1.12-zAen6N.yml 
+DEL(152/161): /home/andrewdo/.cpan/build/WWW-Google-News-0.12-94nDlH 
+DEL(153/161): /home/andrewdo/.cpan/build/WWW-Google-News-0.12-94nDlH.yml 
+DEL(154/161): /home/andrewdo/.cpan/build/GPS-Point-0.18-SualcB 
+DEL(155/161): /home/andrewdo/.cpan/build/GPS-Point-0.18-SualcB.yml 
+DEL(156/161): /home/andrewdo/.cpan/build/Geo-Google-Latitude-0.06-DLYvLx 
+DEL(157/161): /home/andrewdo/.cpan/build/Geo-Google-Latitude-0.06-DLYvLx.yml 
+DEL(158/161): /home/andrewdo/.cpan/build/Tk-WorldCanvas-1.2.7-NLHcD9 
+DEL(159/161): /home/andrewdo/.cpan/build/Tk-WorldCanvas-1.2.7-NLHcD9.yml 
+DEL(160/161): /home/andrewdo/.cpan/build/Lingua-Rhyme-0.092-s1KzYW 
+DEL(161/161): /home/andrewdo/.cpan/build/Lingua-Rhyme-0.092-s1KzYW.yml 
+CPAN: Archive::Tar loaded ok (v1.52)
+Text-Fracture-1.02/
+Text-Fracture-1.02/Fracture.pm
+Text-Fracture-1.02/ppport.h
+Text-Fracture-1.02/META.yml
+Text-Fracture-1.02/test.pl
+Text-Fracture-1.02/Changes
+Text-Fracture-1.02/Fracture.xs
+Text-Fracture-1.02/MANIFEST
+Text-Fracture-1.02/t/
+Text-Fracture-1.02/t/Text-Fracture.t
+Text-Fracture-1.02/Makefile.PL
+Text-Fracture-1.02/README
+CPAN: File::Temp loaded ok (v0.22)
+
+  CPAN.pm: Going to build J/JN/JNW/Text-Fracture-1.02.tar.gz
+
+Checking if your kit is complete...
+Looks good
+Writing Makefile for Text::Fracture
+cp Fracture.pm blib/lib/Text/Fracture.pm
+/usr/bin/perl /usr/local/share/perl/5.10.1/ExtUtils/xsubpp  -typemap /usr/share/perl/5.10/ExtUtils/typemap  Fracture.xs > Fracture.xsc && mv Fracture.xsc Fracture.c
+cc -c   -D_REENTRANT -D_GNU_SOURCE -DDEBIAN -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g   -DVERSION=\"1.02\" -DXS_VERSION=\"1.02\" -fPIC "-I/usr/lib/perl/5.10/CORE"   Fracture.c
+Running Mkbootstrap for Text::Fracture ()
+chmod 644 Fracture.bs
+rm -f blib/arch/auto/Text/Fracture/Fracture.so
+cc  -shared -O2 -g -L/usr/local/lib -fstack-protector Fracture.o  -o blib/arch/auto/Text/Fracture/Fracture.so 	\
+	     	\
+	  
+chmod 755 blib/arch/auto/Text/Fracture/Fracture.so
+cp Fracture.bs blib/arch/auto/Text/Fracture/Fracture.bs
+chmod 644 blib/arch/auto/Text/Fracture/Fracture.bs
+Manifying blib/man3/Text::Fracture.3pm
+  JNW/Text-Fracture-1.02.tar.gz
+  make -- OK
+Running make test
+PERL_DL_NONLAZY=1 /usr/bin/perl "-MExtUtils::Command::MM" "-e" "test_harness(0, 'blib/lib', 'blib/arch')" t/*.t
+t/Text-Fracture.t .. ok
+All tests successful.
+Files=1, Tests=1,  0 wallclock secs ( 0.04 usr  0.00 sys +  0.05 cusr  0.00 csys =  0.09 CPU)
+Result: PASS
+PERL_DL_NONLAZY=1 /usr/bin/perl "-Iblib/lib" "-Iblib/arch" test.pl
+ max_chars=2000, max_lines=20, max_cpl=300
+ text_len=1151
+larr[0].w=0     lno=1   l=0
+larr[1].w=1350  lno=2   l=0
+larr[2].w=-206  lno=3   l=296
+larr[3].w=233   lno=3   l=212
+larr[4].w=1583  lno=4   l=0
+larr[5].w=-12   lno=5   l=12
+larr[6].w=1338  lno=6   l=0
+larr[7].w=-172  lno=7   l=59
+larr[8].w=-20   lno=8   l=23
+larr[9].w=1330  lno=9   l=0
+larr[10].w=-19   lno=10  l=21
+larr[11].w=1331  lno=11  l=0
+larr[12].w=-49   lno=12  l=63
+larr[13].w=1301  lno=13  l=0
+larr[14].w=-165  lno=14  l=206
+larr[15].w=1185  lno=15  l=0
+larr[16].w=-14   lno=16  l=27
+larr[17].w=250   lno=17  l=42
+larr[18].w=-15   lno=18  l=17
+larr[19].w=1335  lno=19  l=0
+larr[20].w=156   lno=20  l=28
+larr[21].w=0     lno=21  l=37
+larr[22].w=1350  lno=22  l=0
+larr[23].w=19    lno=23  l=38
+larr[24].w=-36   lno=24  l=42
+larr[25].w=1564  lno=25  l=0
+============= 0,513,1,4 ================
+
+
+Text-Fracture version 0.01 ========================== Please see perldoc Text::Fracture and test.pl for usage details.  INSTALLATION To install this module type the following: perl Makefile.PL make make test make install DEBUGGING $ gdb --args /usr/bin/perl "-Iblib/lib" "-Iblib/arch" test.pl foo (gdb) break XS_Text__Fracture_do_fract Function "XS_Text__Fracture_do_fract" not defined.  Make breakpoint pending on future shared library load? (y or [n]) y (gdb) break consume_fragments (gdb) run (gdb) p *f@6 
+
+$--
+============= 513,556,4,19 ================
+DEPENDENCIES
+
+This module was started by running h2xs -A -n Text-Fracture
+It has no dependencies.
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2007 by Juergen Weigert (jw@suse.de), Novell Inc.
+
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself, either Perl version 5.8.8 or, at your option, any later version of Perl 5 you may have available.  
+
+This text is a test for the
+ fracture code. We expect it to chop it in 
+in two fragments.
+
+Let us see what will happen.
+-------------------------------------
+
+$--
+============= 1069,82,22,3 ================
+We call init() with a small values, so 
+this text can also remain reasonably small$--
+  JNW/Text-Fracture-1.02.tar.gz
+  make test -- OK
+Running make install
+Prepending /home/andrewdo/.cpan/build/Text-Fracture-1.02-Q9sQ72/blib/arch /home/andrewdo/.cpan/build/Text-Fracture-1.02-Q9sQ72/blib/lib to PERL5LIB for 'install'
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /usr/local/lib/perl/5.10.1/auto/Text/Fracture/Fracture.bs
+Installing /usr/local/lib/perl/5.10.1/auto/Text/Fracture/Fracture.so
+Installing /usr/local/lib/perl/5.10.1/Text/Fracture.pm
+Installing /usr/local/man/man3/Text::Fracture.3pm
+Appending installation info to /usr/local/lib/perl/5.10.1/perllocal.pod
+  JNW/Text-Fracture-1.02.tar.gz
+  make install  -- OK
+
+cpan[2]> 
