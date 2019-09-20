@@ -88,7 +88,7 @@
 (defvar nlu-display-tags-mode t)
 
 (defvar nlu-navigation-on nil)
-(setq nlu-property-header "nlu-")
+(setq nlu-property-header "x-nlu-")
 
 (defun nlu-reset ()
  "Resets the tags in the buffer"
@@ -103,9 +103,9 @@
 (defun nlu-see-tags-at-point ()
  "List the tags for the current point of text"
  (interactive)
- (nlu-tags-viewer-show-tags-at-point (nlu-tags (text-properties-at (point)))))
+ (nlu2-tags-viewer-show-tags-at-point (nlu-tags (text-properties-at (point)))))
 
-;; (defun nlu-tags-viewer-show-tags-at-point ()
+;; (defun nlu2-tags-viewer-show-tags-at-point ()
 ;;  "List the tags for the current point of text"
 ;;  (interactive)
 ;;  ;;(message (elisp-format-string (prin1-to-string (nlu-tags (text-properties-at (point)))))))
@@ -145,8 +145,17 @@
  ""
  (if (derived-mode-p 'nlu-ghost-mode)
   (nlu-unlock-temporarily-and-execute
-   '(put-text-property start end (make-symbol (concat nlu-property-header (prin1-to-string prop))) value))))
+   '(put-text-property start end (make-symbol (concat nlu-property-header (prin1-to-string prop))) t))))
 
+;; (nlu-strip-property-header 'x-nlu-test)
+
+(defun nlu-strip-property-header (prop)
+ "interactive"
+ (read (nlu-strip-property-header-to-string prop)))
+
+(defun nlu-strip-property-header-to-string (prop)
+ "interactive"
+ (substring (format "%s" prop) (length nlu-property-header)))
 (defun nlu-tags (plist)
  (let* ((newplist nil))
   (dolist (key (plist-keys plist))
@@ -500,25 +509,25 @@
  "Forward char but displaying the nlu-tags at point in the minibuffer"
  (interactive "p")
  (forward-char num)
- (nlu-tags-viewer-show-tags-at-point))
+ (nlu2-tags-viewer-show-tags-at-point))
 
 (defun nlu-backward-char (&optional num)
  "Forward char but displaying the nlu-tags at point in the minibuffer"
  (interactive "p")
  (backward-char num)
- (nlu-tags-viewer-show-tags-at-point))
+ (nlu2-tags-viewer-show-tags-at-point))
 
 (defun nlu-previous-line (&optional num)
  "Forward char but displaying the nlu-tags at point in the minibuffer"
  (interactive "p")
  (forward-line (* -1 num))
- (nlu-tags-viewer-show-tags-at-point))
+ (nlu2-tags-viewer-show-tags-at-point))
 
 (defun nlu-next-line (&optional num)
  "Forward char but displaying the nlu-tags at point in the minibuffer"
  (interactive "p")
  (next-line num)
- (nlu-tags-viewer-show-tags-at-point))
+ (nlu2-tags-viewer-show-tags-at-point))
 
 (defun nlu-toggle-navigation ()
  "Switch between normal navigation bindings and nlu navigation bindings"
