@@ -997,11 +997,8 @@ the stack"
    (message "Already ghosted")
    (let* ((current-point (point))
 	  (current-mark (mark))
-	  (ghost-buffer-contents 
-	   (save-excursion
-	    (switch-to-buffer buffer-to-use)
-	    (mark-whole-buffer)
-	    (buffer-substring (point) (mark))))
+	  (ghost-buffer-contents
+	   (kmax-buffer-contents-with-properties))
 	  (title (replace-regexp-in-string "\\([^a-z0-9A-Z]+\\)+" "_" (academician-get-title-of-document-in-buffer-or-on-top-of-stack)))
 	  ;; (ghost-buffer-name (concat "Ghost of " title))
 	  (ghost-buffer-name (concat "Ghost of " (buffer-name buffer-to-use)))
@@ -1024,7 +1021,9 @@ the stack"
     ;; save a variable that indicates this is a ghost buffer, so that we
     ;; can lock read-only the buffer when we are not running NLU stuff
     ;; on it
+    (set-mark (point))
     save-file-name))))
+
 
 (defun nlu-ghost-buffer-original (&optional buffer)
  "Create a copy of the current buffer useful for performing an
