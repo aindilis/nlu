@@ -991,6 +991,7 @@ the stack"
  ;; have a mechanism for finding the same text contents, just formatted differently
 
  (interactive)
+ (nlu-ghost-prepare-text-file buffer)
  (let* 
   ((buffer-to-use (if (and buffer (bufferp buffer)) buffer (current-buffer))))
   (if (non-nil (string-match "^Ghost of " (buffer-name buffer-to-use)))
@@ -1009,6 +1010,9 @@ the stack"
     ;; (switch-to-buffer (get-buffer-create ghost-buffer-name))
     (if (zerop (buffer-size))
      (progn
+      (pop-to-buffer (get-buffer ghost-buffer-name))
+      (if buffer-read-only
+       (toggle-read-only))
       (insert ghost-buffer-contents)
       ;; FIXME figure out how to save buffer properties as well
       ;; (enriched-mode t)
@@ -1024,6 +1028,21 @@ the stack"
     (set-mark (point))
     save-file-name))))
 
+(defun nlu-ghost-prepare-text-file (&optional buffer)
+ ""
+ (interactive)
+ (if buffer (pop-to-buffer buffer))
+ (if (kmax-mode-is-derived-from 'doc-view-mode)
+  (let* ((orig-file-name
+	  (buffer-file-name))
+	 (new-file-name
+	  (car (kmax-swap-filename-extensions "pdf" "txt"
+		(list orig-file-name)))))
+   (if (not (kmax-file-exists-p new-file-name))
+    (progn
+     (doc-view-open-text)
+     (write-file new-file-name))
+    (ffap new-file-name)))))
 
 (defun nlu-ghost-buffer-original (&optional buffer)
  "Create a copy of the current buffer useful for performing an
